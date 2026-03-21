@@ -1,0 +1,330 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aa": "https://automationanywhere.com/ontology/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "rpa": "https://www.w3.org/ns/rpa#",
+
+    "Bot": {
+      "@id": "aa:Bot",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "path": "aa:repositoryPath",
+        "type": {
+          "@id": "aa:botType",
+          "@type": "xsd:string"
+        },
+        "version": {
+          "@id": "aa:version",
+          "@type": "xsd:integer"
+        },
+        "workspaceType": {
+          "@id": "aa:workspaceType",
+          "@type": "xsd:string"
+        },
+        "size": {
+          "@id": "schema:fileSize",
+          "@type": "xsd:integer"
+        },
+        "createdBy": "dcterms:creator",
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedBy": "dcterms:contributor",
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "dependencies": {
+          "@id": "aa:hasDependency",
+          "@container": "@set"
+        },
+        "permission": "aa:hasPermission",
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Deployment": {
+      "@id": "aa:Deployment",
+      "@context": {
+        "deploymentId": {
+          "@id": "aa:deploymentId",
+          "@type": "xsd:string"
+        },
+        "botId": {
+          "@id": "aa:deployedBot",
+          "@type": "xsd:integer"
+        },
+        "automationName": "schema:name",
+        "description": "schema:description",
+        "automationPriority": "aa:priority",
+        "runElevated": {
+          "@id": "aa:runElevated",
+          "@type": "xsd:boolean"
+        },
+        "hideBotAgentUi": {
+          "@id": "aa:hideBotAgentUi",
+          "@type": "xsd:boolean"
+        },
+        "botInput": "aa:hasInput",
+        "callbackInfo": "aa:hasCallback",
+        "unattendedRequest": "aa:unattendedConfig",
+        "attendedRequest": "aa:attendedConfig",
+        "headlessRequest": "aa:headlessConfig"
+      }
+    },
+
+    "WorkItem": {
+      "@id": "aa:WorkItem",
+      "@context": {
+        "id": "@id",
+        "queueId": {
+          "@id": "aa:belongsToQueue",
+          "@type": "xsd:integer"
+        },
+        "json": "aa:payload",
+        "status": {
+          "@id": "aa:workItemStatus",
+          "@type": "xsd:string"
+        },
+        "result": {
+          "@id": "aa:workItemResult",
+          "@type": "xsd:string"
+        },
+        "col1": "aa:displayColumn1",
+        "col2": "aa:displayColumn2",
+        "col3": "aa:displayColumn3",
+        "comment": "schema:comment",
+        "error": "aa:errorMessage",
+        "retryCount": {
+          "@id": "aa:retryCount",
+          "@type": "xsd:integer"
+        },
+        "startTime": {
+          "@id": "schema:startTime",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "deferredUntil": {
+          "@id": "aa:deferredUntil",
+          "@type": "xsd:dateTime"
+        },
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Queue": {
+      "@id": "aa:Queue",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "status": {
+          "@id": "aa:queueStatus",
+          "@type": "xsd:string"
+        },
+        "workItemModelId": {
+          "@id": "aa:hasWorkItemModel",
+          "@type": "xsd:integer"
+        },
+        "reactivationThreshold": {
+          "@id": "aa:reactivationThreshold",
+          "@type": "xsd:integer"
+        },
+        "disallowDuplicate": {
+          "@id": "aa:disallowDuplicate",
+          "@type": "xsd:boolean"
+        },
+        "autoRetryLimit": {
+          "@id": "aa:autoRetryLimit",
+          "@type": "xsd:integer"
+        },
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Credential": {
+      "@id": "aa:Credential",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "ownerId": {
+          "@id": "schema:owner",
+          "@type": "xsd:integer"
+        },
+        "attributes": {
+          "@id": "aa:hasAttribute",
+          "@container": "@set"
+        },
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Locker": {
+      "@id": "aa:Locker",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "ownerId": {
+          "@id": "schema:owner",
+          "@type": "xsd:integer"
+        },
+        "credentials": {
+          "@id": "aa:containsCredential",
+          "@container": "@set"
+        },
+        "consumers": {
+          "@id": "aa:hasConsumer",
+          "@container": "@set"
+        },
+        "members": {
+          "@id": "aa:hasMember",
+          "@container": "@set"
+        },
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "User": {
+      "@id": "schema:Person",
+      "@context": {
+        "id": "@id",
+        "username": "schema:identifier",
+        "email": "schema:email",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "enabled": {
+          "@id": "aa:accountEnabled",
+          "@type": "xsd:boolean"
+        },
+        "roles": {
+          "@id": "aa:hasRole",
+          "@container": "@set"
+        },
+        "licenseFeatures": {
+          "@id": "aa:licenseFeature",
+          "@container": "@set"
+        },
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Role": {
+      "@id": "schema:Role",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "permissions": {
+          "@id": "aa:hasPermission",
+          "@container": "@set"
+        },
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ApiTaskAllocation": {
+      "@id": "aa:ApiTaskAllocation",
+      "@context": {
+        "fileId": {
+          "@id": "aa:allocatedFileId",
+          "@type": "xsd:integer"
+        },
+        "filePath": "aa:repositoryPath",
+        "fileName": "schema:name",
+        "concurrencyLimit": {
+          "@id": "aa:concurrencyLimit",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "BotRunRecord": {
+      "@id": "aa:BotRunRecord",
+      "@context": {
+        "id": "@id",
+        "userName": "schema:identifier",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "email": "schema:email",
+        "hostName": "schema:serverName",
+        "fileName": "schema:name",
+        "startTime": {
+          "@id": "schema:startTime",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "status": {
+          "@id": "aa:executionStatus",
+          "@type": "xsd:string"
+        },
+        "timeTaken": {
+          "@id": "schema:duration",
+          "@type": "xsd:integer"
+        },
+        "successIndicator": {
+          "@id": "aa:successIndicator",
+          "@type": "xsd:boolean"
+        }
+      }
+    }
+  }
+}

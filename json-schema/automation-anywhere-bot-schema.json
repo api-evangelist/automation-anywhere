@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://automationanywhere.com/schemas/bot.json",
+  "title": "Automation Anywhere Bot",
+  "description": "Schema representing a bot (automation file) stored in the Automation Anywhere Control Room repository, including its metadata, versioning, workspace context, and repository permissions.",
+  "type": "object",
+  "required": ["id", "name", "path", "type"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier of the bot file in the Control Room repository"
+    },
+    "parentId": {
+      "type": "integer",
+      "description": "Numeric ID of the parent folder containing this bot in the repository hierarchy"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the bot file as shown in the Control Room repository browser",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "path": {
+      "type": "string",
+      "description": "Full repository path from the workspace root (e.g., /Automation/Finance/Invoice Processing)"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the repository object",
+      "enum": ["BOT", "FILE", "FOLDER", "TASK_BOT", "META_BOT", "IQ_BOT", "API_TASK"]
+    },
+    "size": {
+      "type": "integer",
+      "description": "File size in bytes",
+      "minimum": 0
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version number of the bot file",
+      "minimum": 1
+    },
+    "isProductionVersion": {
+      "type": "boolean",
+      "description": "Whether this version is labeled as the production version"
+    },
+    "workspaceType": {
+      "type": "string",
+      "description": "Workspace this bot belongs to",
+      "enum": ["PUBLIC", "PRIVATE"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional human-readable description of the bot's purpose",
+      "maxLength": 1000
+    },
+    "permission": {
+      "$ref": "#/$defs/ObjectPermission"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "List of other bot files this bot depends on during execution",
+      "items": {
+        "$ref": "#/$defs/DependencyRef"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Optional tags applied to the bot for organization and search",
+      "items": {
+        "type": "string"
+      }
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username of the Control Room user who created this bot"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the bot was first created in the repository"
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "Username of the Control Room user who last modified this bot"
+    },
+    "updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the bot was last modified"
+    }
+  },
+  "$defs": {
+    "ObjectPermission": {
+      "type": "object",
+      "description": "Actions the current authenticated user can perform on this repository object",
+      "properties": {
+        "delete": {
+          "type": "boolean",
+          "description": "Whether the user can delete this bot from the repository"
+        },
+        "download": {
+          "type": "boolean",
+          "description": "Whether the user can download this bot file"
+        },
+        "upload": {
+          "type": "boolean",
+          "description": "Whether the user can upload a new version of this bot"
+        },
+        "run": {
+          "type": "boolean",
+          "description": "Whether the user can deploy and run this bot"
+        },
+        "view": {
+          "type": "boolean",
+          "description": "Whether the user can view this bot in the repository"
+        },
+        "clone": {
+          "type": "boolean",
+          "description": "Whether the user can clone (copy) this bot to another location"
+        }
+      }
+    },
+    "DependencyRef": {
+      "type": "object",
+      "description": "Reference to a file that this bot depends on",
+      "required": ["id", "name", "path"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Numeric ID of the dependency file"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the dependency file"
+        },
+        "path": {
+          "type": "string",
+          "description": "Repository path of the dependency file"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the dependency object",
+          "enum": ["BOT", "FILE", "FOLDER"]
+        }
+      }
+    }
+  }
+}

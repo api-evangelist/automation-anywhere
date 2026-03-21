@@ -1,0 +1,931 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere Repository Management API
+  description: >-
+    The Automation Anywhere Repository Management API provides programmatic
+    access to the Control Room's bot and file repository. It allows developers
+    and administrators to list, search, upload, and manage bots, folders, and
+    dependent files stored in both the public and private workspaces. This API
+    supports bot lifecycle management use cases including automated promotion of
+    bots between environments, bulk file operations, and integration with source
+    control systems. It is commonly used alongside the BLM (Bot Lifecycle
+    Management) API for exporting and importing bots with all their dependencies.
+    Repository permissions are managed at the folder level through roles.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+externalDocs:
+  description: Automation Anywhere Repository Management API Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
+servers:
+  - url: https://{controlRoomUrl}/v2/repository
+    description: Automation Anywhere Control Room Repository Management API v2
+    variables:
+      controlRoomUrl:
+        default: your-control-room.automationanywhere.com
+        description: Your Control Room hostname
+tags:
+  - name: Files
+    description: Manage individual bot files and their dependencies in the repository
+  - name: Folders
+    description: Create, update, list, and delete folders in the repository
+  - name: Workspaces
+    description: List and manage content across public and private workspaces
+  - name: Permissions
+    description: Manage role-based permissions on repository folders
+security:
+  - bearerAuth: []
+  - xAuthorization: []
+paths:
+  /file/list:
+    post:
+      operationId: listFiles
+      summary: List files in the repository
+      description: >-
+        Retrieves a paginated, filterable list of bots, folders, and files
+        stored in the repository. Supports filtering by name, path, type,
+        and modification date. Returns metadata for each file including ID,
+        name, path, size, version, and permissions. Used to discover and
+        locate bot files programmatically.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: Paginated list of files and folders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{fileid}/content:
+    get:
+      operationId: downloadFile
+      summary: Download file contents
+      description: >-
+        Downloads the binary content of a specific file from the repository
+        by its numeric file ID. Returns the file as a binary stream suitable
+        for saving locally or processing programmatically. Requires view
+        or download permission on the file.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/FileIdParam'
+      responses:
+        '200':
+          description: File binary content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{fileid}/dependencies:
+    get:
+      operationId: getFileDependencies
+      summary: View file dependencies
+      description: >-
+        Retrieves the list of files that the specified bot depends on,
+        including shared automation components, templates, and other bots
+        referenced within the automation workflow. Useful for understanding
+        the full dependency tree before exporting or migrating a bot.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/FileIdParam'
+      responses:
+        '200':
+          description: List of file dependencies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDependencyResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{fileid}/dependencies/{workspaceId}:
+    put:
+      operationId: updateFileDependencies
+      summary: Update manual file dependencies
+      description: >-
+        Updates the manually specified dependency list for a bot file within
+        a given workspace. Used when automatic dependency detection is
+        insufficient and dependencies must be declared explicitly.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/FileIdParam'
+        - $ref: '#/components/parameters/WorkspaceIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependencyUpdateRequest'
+      responses:
+        '200':
+          description: Dependencies updated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{fileid}/parents:
+    get:
+      operationId: getFileParents
+      summary: Get file parent folders
+      description: >-
+        Retrieves the immediate parent folder(s) of the specified file in
+        the repository hierarchy. Returns the folder path and ID needed
+        to navigate the repository structure.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/FileIdParam'
+      responses:
+        '200':
+          description: Parent folder information for the file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileParentsResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{id}:
+    delete:
+      operationId: deleteFile
+      summary: Delete a file
+      description: >-
+        Permanently deletes a file from the repository. The file must not
+        have active automations running against it. Deleted files cannot be
+        recovered from the API; use with caution.
+      tags:
+        - Files
+      parameters:
+        - $ref: '#/components/parameters/FileDeleteIdParam'
+      responses:
+        '200':
+          description: File deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/packagesVersionUpdate:
+    post:
+      operationId: updatePackageVersions
+      summary: Update package versions
+      description: >-
+        Executes a bulk package version update across one or more bot files,
+        updating the referenced package versions to the latest available
+        in the Control Room. Used during platform upgrades to ensure bots
+        reference current package versions.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageVersionUpdateRequest'
+      responses:
+        '200':
+          description: Package version update initiated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/version/assignLabel:
+    post:
+      operationId: assignVersionLabel
+      summary: Assign production label to bot version
+      description: >-
+        Assigns the production label to a specific version of a bot file,
+        marking it as the designated production-ready version. This label
+        is used by deployment processes to identify which version of a bot
+        should be deployed in production environments.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignLabelRequest'
+      responses:
+        '200':
+          description: Production label assigned successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File or version not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /folders/{folderid}:
+    post:
+      operationId: createFolder
+      summary: Create a folder
+      description: >-
+        Creates a new folder at the specified location in the repository
+        hierarchy. The parent folder ID is provided in the path. The new
+        folder inherits permissions from its parent unless explicitly
+        overridden.
+      tags:
+        - Folders
+      parameters:
+        - $ref: '#/components/parameters/FolderIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderRequest'
+      responses:
+        '200':
+          description: Folder created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryObject'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateFolder
+      summary: Update a folder
+      description: >-
+        Updates the name or description of an existing folder in the repository.
+        Folder paths are determined by their position in the hierarchy; renaming
+        a folder updates the paths of all contained files.
+      tags:
+        - Folders
+      parameters:
+        - $ref: '#/components/parameters/FolderIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderRequest'
+      responses:
+        '200':
+          description: Folder updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryObject'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteFolder
+      summary: Delete a folder
+      description: >-
+        Permanently deletes a folder and all its contents from the repository.
+        This operation is recursive and will delete all files and subfolders
+        within. Deleted content cannot be recovered.
+      tags:
+        - Folders
+      parameters:
+        - $ref: '#/components/parameters/FolderIdParam'
+      responses:
+        '200':
+          description: Folder deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /folders/{folderid}/list:
+    post:
+      operationId: listFolderContents
+      summary: List folder contents
+      description: >-
+        Returns a paginated, filterable list of files and subfolders within
+        the specified folder. Supports filtering by name, type, and other
+        metadata attributes. Used to navigate the repository hierarchy
+        and discover bot files within specific folders.
+      tags:
+        - Folders
+      parameters:
+        - $ref: '#/components/parameters/FolderIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: List of files and subfolders in the folder
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /recover:
+    post:
+      operationId: recoverBots
+      summary: Recover bots from deleted user repository
+      description: >-
+        Recovers bots from the private workspace of a deleted user and
+        moves them to a specified folder in the public workspace. Used
+        by administrators to preserve automation assets when user accounts
+        are removed from the Control Room.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverRequest'
+      responses:
+        '200':
+          description: Bots recovered successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /role/{roleid}/folder/{folderid}/permissions:
+    get:
+      operationId: getRolePermissionsForFolder
+      summary: View role permissions for a folder
+      description: >-
+        Retrieves the repository permissions granted to a specific role
+        on a specific folder. Returns the set of permitted actions such
+        as view, clone, run, upload, download, and delete.
+      tags:
+        - Permissions
+      parameters:
+        - $ref: '#/components/parameters/RoleIdParam'
+        - $ref: '#/components/parameters/FolderIdParam'
+      responses:
+        '200':
+          description: Role permissions for the specified folder
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryPermissions'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Role or folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /role/{roleid}/permissions:
+    put:
+      operationId: updateRolePermissions
+      summary: Update role permissions
+      description: >-
+        Adds or updates the repository folder permissions granted to a
+        specific role. Permissions are specified as a list of folder-action
+        pairs, enabling fine-grained access control over which operations
+        a role can perform on each folder.
+      tags:
+        - Permissions
+      parameters:
+        - $ref: '#/components/parameters/RoleIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PermissionsUpdateRequest'
+      responses:
+        '200':
+          description: Role permissions updated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /workspaces/{workspaceType}/files/list:
+    post:
+      operationId: listWorkspaceFiles
+      summary: List workspace files
+      description: >-
+        Returns a filterable, paginated list of files and folders within
+        a specific workspace type. The workspaceType path parameter selects
+        between the public workspace (shared across all users) and the
+        private workspace (user-specific). Used for workspace-scoped discovery
+        and management operations.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceTypeParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: List of files in the specified workspace
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+  parameters:
+    FileIdParam:
+      name: fileid
+      in: path
+      required: true
+      description: Unique numeric identifier of the file
+      schema:
+        type: integer
+        format: int64
+    FileDeleteIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the file to delete
+      schema:
+        type: integer
+        format: int64
+    FolderIdParam:
+      name: folderid
+      in: path
+      required: true
+      description: Unique numeric identifier of the folder
+      schema:
+        type: integer
+        format: int64
+    WorkspaceIdParam:
+      name: workspaceId
+      in: path
+      required: true
+      description: Workspace identifier (PUBLIC or PRIVATE)
+      schema:
+        type: string
+        enum:
+          - PUBLIC
+          - PRIVATE
+    WorkspaceTypeParam:
+      name: workspaceType
+      in: path
+      required: true
+      description: Type of workspace to list files from
+      schema:
+        type: string
+        enum:
+          - PUBLIC
+          - PRIVATE
+    RoleIdParam:
+      name: roleid
+      in: path
+      required: true
+      description: Unique numeric identifier of the role
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    RepositoryObject:
+      type: object
+      description: A file or folder in the Control Room repository
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique numeric identifier of the repository object
+        parentId:
+          type: integer
+          format: int64
+          description: ID of the parent folder containing this object
+        name:
+          type: string
+          description: Display name of the file or folder
+        path:
+          type: string
+          description: Full repository path from the workspace root
+        type:
+          type: string
+          description: Type of repository object
+          enum:
+            - FILE
+            - FOLDER
+            - BOT
+        size:
+          type: integer
+          format: int64
+          description: File size in bytes (0 for folders)
+        version:
+          type: integer
+          description: Version number of the file (for versioned bot files)
+        lastModifiedBy:
+          type: string
+          description: Username of the user who last modified this object
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last modification
+        createdBy:
+          type: string
+          description: Username of the user who created this object
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the object was created
+        workspaceType:
+          type: string
+          description: Workspace containing this object
+          enum:
+            - PUBLIC
+            - PRIVATE
+        permission:
+          $ref: '#/components/schemas/ObjectPermission'
+    ObjectPermission:
+      type: object
+      description: Actions the current user can perform on a repository object
+      properties:
+        delete:
+          type: boolean
+          description: Whether the user can delete this object
+        download:
+          type: boolean
+          description: Whether the user can download this object
+        upload:
+          type: boolean
+          description: Whether the user can upload to this location
+        run:
+          type: boolean
+          description: Whether the user can run this bot
+        view:
+          type: boolean
+          description: Whether the user can view this object
+        clone:
+          type: boolean
+          description: Whether the user can clone (copy) this object
+    FileListResponse:
+      type: object
+      description: Paginated list of repository objects
+      properties:
+        list:
+          type: array
+          description: Array of repository object records
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    FileDependencyResponse:
+      type: object
+      description: Dependency information for a bot file
+      properties:
+        dependencies:
+          type: array
+          description: List of files this bot depends on
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+    FileParentsResponse:
+      type: object
+      description: Parent folder information for a repository object
+      properties:
+        parents:
+          type: array
+          description: List of parent folders in the hierarchy
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+    FolderRequest:
+      type: object
+      description: Payload to create or update a folder
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name for the folder
+        description:
+          type: string
+          description: Optional description of the folder's purpose
+    DependencyUpdateRequest:
+      type: object
+      description: Payload to update manual dependencies for a file
+      properties:
+        dependencies:
+          type: array
+          description: List of file IDs to set as manual dependencies
+          items:
+            type: integer
+            format: int64
+            description: Numeric file ID of a dependency
+    PackageVersionUpdateRequest:
+      type: object
+      description: Payload to trigger package version updates on bot files
+      properties:
+        fileIds:
+          type: array
+          description: List of file IDs to update package versions for
+          items:
+            type: integer
+            format: int64
+            description: Numeric file ID
+        packageName:
+          type: string
+          description: Name of the specific package to update (omit for all packages)
+        targetVersion:
+          type: string
+          description: Target version to update to (omit to use latest available)
+    AssignLabelRequest:
+      type: object
+      description: Payload to assign the production label to a specific bot version
+      required:
+        - fileId
+        - version
+      properties:
+        fileId:
+          type: integer
+          format: int64
+          description: Numeric ID of the bot file
+        version:
+          type: integer
+          description: Version number to assign the production label to
+    RecoverRequest:
+      type: object
+      description: Payload to recover bots from a deleted user's private workspace
+      required:
+        - userId
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: Numeric ID of the deleted user whose bots should be recovered
+        targetFolderId:
+          type: integer
+          format: int64
+          description: Folder ID in the public workspace where recovered bots will be moved
+    RepositoryPermissions:
+      type: object
+      description: Permission set for a role on a repository folder
+      properties:
+        folderId:
+          type: integer
+          format: int64
+          description: Folder ID these permissions apply to
+        permissions:
+          type: array
+          description: List of permitted actions
+          items:
+            type: string
+            enum:
+              - clone
+              - upload
+              - download
+              - delete
+              - run
+              - view
+    PermissionsUpdateRequest:
+      type: object
+      description: Payload to update role permissions across one or more folders
+      properties:
+        folderPermissions:
+          type: array
+          description: List of folder permission assignments
+          items:
+            $ref: '#/components/schemas/RepositoryPermissions'
+    FilterRequest:
+      type: object
+      description: Generic filter and pagination request for list endpoints
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                  - asc
+                  - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    PageInfo:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Starting index of returned results
+        total:
+          type: integer
+          description: Total number of matching records
+        totalFilter:
+          type: integer
+          description: Total records after filters applied
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description

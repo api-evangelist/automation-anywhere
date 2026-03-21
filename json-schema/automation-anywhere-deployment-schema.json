@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://automationanywhere.com/schemas/deployment.json",
+  "title": "Automation Anywhere Bot Deployment",
+  "description": "Schema representing a bot deployment request and response in the Automation Anywhere Control Room, including deployment configuration, target device specification, input variables, and the resulting deployment identifier.",
+  "type": "object",
+  "required": ["botId"],
+  "properties": {
+    "deploymentId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique UUID identifier assigned to this deployment instance by the Control Room upon successful dispatch"
+    },
+    "botId": {
+      "type": "integer",
+      "description": "Numeric file ID of the bot to deploy, referencing the bot's ID in the repository",
+      "minimum": 1
+    },
+    "automationName": {
+      "type": "string",
+      "description": "Optional human-readable label for this automation instance as displayed in activity logs and dashboards",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of this specific deployment for tracking and audit purposes",
+      "maxLength": 1000
+    },
+    "botLabel": {
+      "type": "string",
+      "description": "Optional label tag for identifying this deployment instance",
+      "maxLength": 100
+    },
+    "runElevated": {
+      "type": "boolean",
+      "description": "Whether to run the bot with elevated system privileges on the Bot Runner device"
+    },
+    "hideBotAgentUi": {
+      "type": "boolean",
+      "description": "Whether to suppress the Bot Agent user interface on the runner device during execution"
+    },
+    "automationPriority": {
+      "type": "string",
+      "description": "Priority level for this automation in the dispatch queue relative to other pending deployments",
+      "enum": ["PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"]
+    },
+    "callbackInfo": {
+      "$ref": "#/$defs/CallbackInfo"
+    },
+    "botInput": {
+      "type": "object",
+      "description": "Runtime input variables to pass to the bot at execution time. Keys are variable names as defined in the bot; values are typed variable objects.",
+      "additionalProperties": {
+        "$ref": "#/$defs/BotInputVariable"
+      }
+    },
+    "unattendedRequest": {
+      "$ref": "#/$defs/UnattendedRequest"
+    },
+    "attendedRequest": {
+      "$ref": "#/$defs/AttendedRequest"
+    },
+    "headlessRequest": {
+      "$ref": "#/$defs/HeadlessRequest"
+    }
+  },
+  "$defs": {
+    "CallbackInfo": {
+      "type": "object",
+      "description": "Webhook callback configuration for receiving execution completion or failure notifications",
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "HTTPS endpoint URL to POST the execution result notification to upon completion or failure"
+        },
+        "headers": {
+          "type": "object",
+          "description": "Optional HTTP headers to include in the callback POST request (e.g., authorization headers)",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "BotInputVariable": {
+      "type": "object",
+      "description": "A typed input variable value passed to the bot at deployment time",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Data type of the variable matching its declaration in the bot definition",
+          "enum": ["STRING", "NUMBER", "BOOLEAN", "LIST", "DICTIONARY", "DATETIME", "CREDENTIAL"]
+        },
+        "string": {
+          "type": "string",
+          "description": "String value for variables of type STRING"
+        },
+        "number": {
+          "type": "string",
+          "description": "Numeric value represented as a string for NUMBER type variables",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        },
+        "boolean": {
+          "type": "boolean",
+          "description": "Boolean value for BOOLEAN type variables"
+        },
+        "list": {
+          "type": "object",
+          "description": "Structured list value for LIST type variables"
+        },
+        "dictionary": {
+          "type": "object",
+          "description": "Key-value map for DICTIONARY type variables",
+          "additionalProperties": true
+        }
+      }
+    },
+    "UnattendedRequest": {
+      "type": "object",
+      "description": "Configuration for unattended bot execution on Bot Runner devices associated with specified user accounts",
+      "properties": {
+        "runAsUsers": {
+          "type": "array",
+          "description": "User accounts whose associated Bot Runner devices will execute the bot",
+          "items": {
+            "$ref": "#/$defs/RunAsUser"
+          },
+          "minItems": 1
+        },
+        "poolIds": {
+          "type": "array",
+          "description": "Device pool IDs to dispatch the bot to; the Control Room selects an available device from each pool",
+          "items": {
+            "type": "integer",
+            "description": "Numeric ID of a device pool"
+          }
+        }
+      }
+    },
+    "AttendedRequest": {
+      "type": "object",
+      "description": "Configuration for attended bot execution on the device of a currently logged-in user",
+      "properties": {
+        "currentUserDeviceId": {
+          "type": "integer",
+          "description": "Device ID of the machine where the attended user is currently logged in"
+        }
+      }
+    },
+    "HeadlessRequest": {
+      "type": "object",
+      "description": "Configuration for headless bot execution on On-Demand cloud Bot Runner devices",
+      "properties": {
+        "numOfRunAsUsersToUse": {
+          "type": "integer",
+          "description": "Number of On-Demand Bot Runner instances to allocate for parallel headless execution",
+          "minimum": 1
+        }
+      }
+    },
+    "RunAsUser": {
+      "type": "object",
+      "description": "Reference to a user account whose associated Bot Runner device will execute an unattended bot",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Numeric user ID of the run-as user in the Control Room"
+        }
+      }
+    }
+  }
+}
