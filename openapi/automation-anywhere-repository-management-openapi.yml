@@ -31,10 +31,10 @@ tags:
     description: Manage individual bot files and their dependencies in the repository
   - name: Folders
     description: Create, update, list, and delete folders in the repository
-  - name: Workspaces
-    description: List and manage content across public and private workspaces
   - name: Permissions
     description: Manage role-based permissions on repository folders
+  - name: Workspaces
+    description: List and manage content across public and private workspaces
 security:
   - bearerAuth: []
   - xAuthorization: []

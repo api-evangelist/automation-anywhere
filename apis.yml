@@ -1,23 +1,19 @@
 aid: automation-anywhere
-url: 
-  https://raw.githubusercontent.com/api-evangelist/automation-anywhere/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/automation-anywhere/refs/heads/main/apis.yml
 apis:
   - aid: automation-anywhere:control-room-api
     name: Automation Anywhere Control Room API
     tags:
-      - RPA
       - Automation
       - Bot Management
       - Enterprise
       - REST
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - RPA
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
         type: Documentation
       - url: openapi/automation-anywhere-control-room-openapi.yml
         type: OpenAPI
@@ -31,19 +27,16 @@ apis:
   - aid: automation-anywhere:bot-deploy-api
     name: Automation Anywhere Bot Deploy API
     tags:
-      - RPA
-      - Bot Deployment
       - Automation
-      - Orchestration
+      - Bot Deployment
       - Enterprise
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Orchestration
+      - RPA
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
         type: Documentation
       - url: openapi/automation-anywhere-bot-deploy-openapi.yml
         type: OpenAPI
@@ -60,19 +53,16 @@ apis:
   - aid: automation-anywhere:workload-management-api
     name: Automation Anywhere Workload Management API
     tags:
-      - Workload Management
-      - Queues
-      - Work Items
-      - RPA
       - Automation
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Queues
+      - RPA
+      - Work Items
+      - Workload Management
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
         type: Documentation
       - url: openapi/automation-anywhere-workload-management-openapi.yml
         type: OpenAPI
@@ -91,18 +81,15 @@ apis:
     name: Automation Anywhere Bot Insight API
     tags:
       - Analytics
+      - Bot Monitoring
       - Business Intelligence
       - Reporting
       - RPA
-      - Bot Monitoring
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
         type: Documentation
       - url: openapi/automation-anywhere-bot-insight-openapi.yml
         type: OpenAPI
@@ -117,18 +104,15 @@ apis:
     name: Automation Anywhere API Task Execution API
     tags:
       - API Task
+      - Automation
       - Bot Execution
       - Integration
       - RPA
-      - Automation
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
         type: Documentation
       - url: openapi/automation-anywhere-api-task-execution-openapi.yml
         type: OpenAPI
@@ -143,18 +127,15 @@ apis:
     name: Automation Anywhere Credential Vault API
     tags:
       - Credentials
-      - Security
-      - Secrets Management
-      - RPA
       - Enterprise
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - RPA
+      - Secrets Management
+      - Security
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
         type: Documentation
       - url: openapi/automation-anywhere-credential-vault-openapi.yml
         type: OpenAPI
@@ -170,19 +151,16 @@ apis:
   - aid: automation-anywhere:package-sdk
     name: Automation Anywhere Package SDK
     tags:
-      - SDK
-      - Java
-      - Custom Packages
       - Bot Development
+      - Custom Packages
       - Extensions
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Java
+      - SDK
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
         type: Documentation
     description: >-
       The Automation Anywhere Package SDK is a Java-based development toolkit that
@@ -194,19 +172,16 @@ apis:
   - aid: automation-anywhere:repository-management-api
     name: Automation Anywhere Repository Management API
     tags:
-      - Repository
       - Bot Lifecycle
-      - File Management
-      - RPA
       - DevOps
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - File Management
+      - Repository
+      - RPA
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
-    humanURL: 
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
+    humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
     properties:
-      - url: 
-          https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
+      - url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
         type: Documentation
       - url: openapi/automation-anywhere-repository-management-openapi.yml
         type: OpenAPI

@@ -29,10 +29,10 @@ servers:
 tags:
   - name: Authentication
     description: Generate, refresh, validate, and revoke JWT tokens for API access
-  - name: Users
-    description: Create, list, retrieve, update, and delete Control Room users
   - name: Roles
     description: Create, list, retrieve, update, and delete user roles
+  - name: Users
+    description: Create, list, retrieve, update, and delete Control Room users
 security:
   - bearerAuth: []
   - xAuthorization: []

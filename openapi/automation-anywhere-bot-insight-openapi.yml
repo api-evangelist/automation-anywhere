@@ -27,12 +27,12 @@ servers:
         default: your-control-room.automationanywhere.com
         description: Your Control Room hostname
 tags:
+  - name: AuditData
+    description: Retrieve Control Room audit trail data
   - name: BotRunData
     description: Retrieve bot execution run data and performance metrics
   - name: TaskData
     description: Retrieve task metadata, variable profiles, and task-level logs
-  - name: AuditData
-    description: Retrieve Control Room audit trail data
 security:
   - bearerAuth: []
   - xAuthorization: []
