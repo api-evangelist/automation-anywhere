@@ -196,6 +196,22 @@ apis:
       operations, and integration with source control systems.
 
 common:
+  - type: Portal
+    url: https://developer.automationanywhere.com
+  - type: Website
+    url: https://www.automationanywhere.com
+  - type: Documentation
+    url: https://docs.automationanywhere.com
+  - type: Authentication
+    url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-authentication.html
+  - type: TermsOfService
+    url: https://www.automationanywhere.com/legal/terms
+  - type: PrivacyPolicy
+    url: https://www.automationanywhere.com/legal/privacy-policy
+  - type: Support
+    url: https://support.automationanywhere.com
+  - type: Blog
+    url: https://www.automationanywhere.com/blog
   - type: JSON-LD
     url: json-ld/automation-anywhere-context.jsonld
   - type: JSONSchema
@@ -204,8 +220,81 @@ common:
     url: json-schema/automation-anywhere-deployment-schema.json
   - type: JSONSchema
     url: json-schema/automation-anywhere-work-item-schema.json
+  - type: Features
+    data:
+      - name: JWT Authentication
+        description: >-
+          All Control Room APIs use JWT-based authentication. Tokens are obtained
+          via the Authentication API and passed in the X-Authorization or
+          Authorization Bearer header. OAuth 2.0 is supported from v.27 onwards.
+      - name: Versioned API Endpoints
+        description: >-
+          APIs are versioned (v1, v2, v3, v4) with backwards compatibility
+          maintained for at least two years. Deprecated endpoints are announced
+          with at least one additional year of availability.
+      - name: Swagger UI Explorer
+        description: >-
+          Each Control Room instance exposes a Swagger UI at /swagger/ for
+          interactive API exploration and testing with live credentials.
+      - name: API Task Execution
+        description: >-
+          API Tasks allow RPA bots to be exposed as synchronous REST endpoints,
+          enabling external applications to call bots as microservices with
+          input/output parameter exchange.
+      - name: Workload Queuing
+        description: >-
+          Work item queues allow high-volume data to be fed into RPA pipelines
+          from ERP, CRM, and BPM systems with status tracking and result retrieval.
+  - type: UseCases
+    data:
+      - name: DevOps Bot Pipeline
+        description: >-
+          Automate bot deployment across dev, test, and production environments
+          using the Bot Deploy and Repository Management APIs in CI/CD pipelines.
+      - name: Enterprise System Integration
+        description: >-
+          Connect ERP, CRM, and BPM systems to RPA workload queues to distribute
+          and process high-volume transactional data with Automation Anywhere bots.
+      - name: Bot Performance Monitoring
+        description: >-
+          Feed Bot Insight API data into Tableau, Power BI, or Splunk for
+          real-time RPA operational dashboards and business KPI tracking.
+      - name: Credential Governance
+        description: >-
+          Programmatically provision and rotate bot credentials in the Credential
+          Vault from enterprise secrets management systems like CyberArk or HashiCorp Vault.
+      - name: Custom Action Packages
+        description: >-
+          Build proprietary Java action packages using the Package SDK to extend
+          Automation 360 with custom connectors for legacy or specialized systems.
+  - type: Integrations
+    data:
+      - name: SAP
+        description: >-
+          Pre-built SAP integration package for Automation 360 enabling bots to
+          interact with SAP GUI, SAP BAPIs, and S/4HANA REST APIs.
+      - name: Salesforce
+        description: >-
+          Automation Anywhere connector for Salesforce CRM enabling bots to
+          create, update, and query Salesforce records via REST APIs.
+      - name: ServiceNow
+        description: >-
+          Integration with ServiceNow for IT service automation including
+          incident creation, ticket routing, and CMDB updates from RPA bots.
+      - name: Microsoft Office 365
+        description: >-
+          Action packages for interacting with Microsoft 365 services including
+          Outlook, SharePoint, Teams, and Excel via Microsoft Graph API.
+      - name: Blue Prism and UiPath
+        description: >-
+          Migration APIs for moving automations from other RPA platforms to
+          Automation 360 with bot conversion and compatibility tooling.
 
-modified: '2026-03-21'
+modified: '2026-04-19'
 description: >-
-  The Automation Anywhere Control Room provides APIs that enable you to customize
-  how you (and your automations) interact with Automation Anywhere.
+  Automation Anywhere is an enterprise robotic process automation (RPA) platform
+  that enables organizations to automate business processes using software bots.
+  Their developer platform, centered around the Automation 360 Control Room, provides
+  a comprehensive suite of REST APIs for managing bot deployment, workload queues,
+  credentials, repositories, and analytics, as well as an SDK for building custom
+  action packages.
