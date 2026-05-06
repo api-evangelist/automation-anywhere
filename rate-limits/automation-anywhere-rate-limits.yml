@@ -1,117 +1,49 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: automation-anywhere
+provider: Automation Anywhere
 providerId: automation-anywhere
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+notes: Automation Anywhere does not publish public per-second / per-minute rate limits for the Control
+  Room API. Limits are enforced per Control Room tenant and varied by edition (Cloud vs on-prem) and
+  bot count. Concrete numbers require access to the customer's Control Room admin docs.
 tags:
+  - RPA
+  - Intelligent Automation
   - Rate Limiting
-  - Quotas
   - Throttling
-description: Machine-readable rate limit definitions for the automation-anywhere API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - Enterprise
+description: Rate limits for the Automation Anywhere Control Room API surface (Automation 360). Limits
+  are per Control Room tenant and depend on edition, license size, and underlying infrastructure.
+  Public docs do not publish numeric throttles; clients should implement retry-with-backoff and
+  coordinate with their Control Room admin for sustained workloads.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Automation Anywhere Control Room API
-      - Automation Anywhere Bot Deploy API
-      - Automation Anywhere Workload Management API
-      - Automation Anywhere Bot Insight API
-      - Automation Anywhere API Task Execution API
-      - Automation Anywhere Credential Vault API
-      - Automation Anywhere Package SDK
-      - Automation Anywhere Repository Management API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Automation Anywhere Control Room API
-      - Automation Anywhere Bot Deploy API
-      - Automation Anywhere Workload Management API
-      - Automation Anywhere Bot Insight API
-      - Automation Anywhere API Task Execution API
-      - Automation Anywhere Credential Vault API
-      - Automation Anywhere Package SDK
-      - Automation Anywhere Repository Management API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Automation Anywhere Control Room API
-      - Automation Anywhere Bot Deploy API
-      - Automation Anywhere Workload Management API
-      - Automation Anywhere Bot Insight API
-      - Automation Anywhere API Task Execution API
-      - Automation Anywhere Credential Vault API
-      - Automation Anywhere Package SDK
-      - Automation Anywhere Repository Management API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Automation Anywhere Control Room API
-      - Automation Anywhere Bot Deploy API
-      - Automation Anywhere Workload Management API
-      - Automation Anywhere Bot Insight API
-      - Automation Anywhere API Task Execution API
-      - Automation Anywhere Credential Vault API
-      - Automation Anywhere Package SDK
-      - Automation Anywhere Repository Management API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Automation Anywhere Control Room API
-      - Automation Anywhere Bot Deploy API
-      - Automation Anywhere Workload Management API
-      - Automation Anywhere Bot Insight API
-      - Automation Anywhere API Task Execution API
-      - Automation Anywhere Credential Vault API
-      - Automation Anywhere Package SDK
-      - Automation Anywhere Repository Management API
+  - name: Control Room API Default
+    scope: control-room-tenant
+    metric: varies
+    limit: see Control Room admin documentation
+    notes: Limits scale with edition (Community, Cloud Starter, Pro, Enterprise) and Control Room size.
+      Bot deployment, queue submission, and credential APIs may have separate per-endpoint limits.
+  - name: Bot Deployment / Queue API
+    scope: control-room-tenant
+    metric: varies
+    limit: bounded by configured bot pool / queue capacity
+    notes: Throughput is gated by the licensed bot count rather than a request-per-second cap.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers: []
+    description: Implement exponential backoff with jitter on 429 / 503. Honor Retry-After when present.
+  - name: Token / Session Reuse
+    description: Authenticate once with the Control Room and reuse the bearer token until expiry rather
+      than re-authenticating on every call.
+  - name: Bot Capacity Sizing
+    description: Sustained throughput is limited by licensed bot count and Control Room infrastructure
+      sizing, not solely by API throttles. Coordinate with Automation Anywhere support to size for
+      peak load.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
