@@ -290,6 +290,8 @@ common:
           Migration APIs for moving automations from other RPA platforms to
           Automation 360 with bot conversion and compatibility tooling.
 
+  - type: Integrations
+    url: https://www.automationanywhere.com/integrations
 modified: '2026-04-19'
 description: >-
   Automation Anywhere is an enterprise robotic process automation (RPA) platform
@@ -298,3 +300,6 @@ description: >-
   a comprehensive suite of REST APIs for managing bot deployment, workload queues,
   credentials, repositories, and analytics, as well as an SDK for building custom
   action packages.
+integrations:
+  - name: Become a Partner
+  - name: Partner Portal
