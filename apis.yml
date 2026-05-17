@@ -212,7 +212,7 @@ common:
     url: https://support.automationanywhere.com
   - type: Blog
     url: https://www.automationanywhere.com/blog
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/automation-anywhere-context.jsonld
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
