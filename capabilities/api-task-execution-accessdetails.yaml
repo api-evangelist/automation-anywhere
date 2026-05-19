@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Automation Anywhere API Task Execution API — AccessDetails
+  description: 'Automation Anywhere API Task Execution API — AccessDetails. 1 operations. Lead operation: Generate API Task
+    execution URL and token. Self-contained Naftiko capability covering one Automation Anywhere business surface.'
+  tags:
+  - Automation Anywhere
+  - AccessDetails
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTOMATION_ANYWHERE_API_KEY: AUTOMATION_ANYWHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-task-execution-accessdetails
+    baseUri: https://{controlRoomUrl}/orchestrator/v1/hotbot
+    description: Automation Anywhere API Task Execution API — AccessDetails business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: config-accessdetails
+      path: /config/accessdetails
+      operations:
+      - name: generateapitaskaccessdetails
+        method: POST
+        description: Generate API Task execution URL and token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTOMATION_ANYWHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: api-task-execution-accessdetails-rest
+    port: 8080
+    description: REST adapter for Automation Anywhere API Task Execution API — AccessDetails. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/config/accessdetails
+      name: config-accessdetails
+      description: REST surface for config-accessdetails.
+      operations:
+      - method: POST
+        name: generateapitaskaccessdetails
+        description: Generate API Task execution URL and token
+        call: api-task-execution-accessdetails.generateapitaskaccessdetails
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-task-execution-accessdetails-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Automation Anywhere API Task Execution API — AccessDetails. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: generate-api-task-execution-url
+      description: Generate API Task execution URL and token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-task-execution-accessdetails.generateapitaskaccessdetails
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

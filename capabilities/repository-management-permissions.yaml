@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Automation Anywhere Repository Management API — Permissions
+  description: 'Automation Anywhere Repository Management API — Permissions. 2 operations. Lead operation: View role permissions
+    for a folder. Self-contained Naftiko capability covering one Automation Anywhere business surface.'
+  tags:
+  - Automation Anywhere
+  - Permissions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTOMATION_ANYWHERE_API_KEY: AUTOMATION_ANYWHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: repository-management-permissions
+    baseUri: https://{controlRoomUrl}/v2/repository
+    description: Automation Anywhere Repository Management API — Permissions business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: role-roleid-folder-folderid-permissions
+      path: /role/{roleid}/folder/{folderid}/permissions
+      operations:
+      - name: getrolepermissionsforfolder
+        method: GET
+        description: View role permissions for a folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: role-roleid-permissions
+      path: /role/{roleid}/permissions
+      operations:
+      - name: updaterolepermissions
+        method: PUT
+        description: Update role permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTOMATION_ANYWHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: repository-management-permissions-rest
+    port: 8080
+    description: REST adapter for Automation Anywhere Repository Management API — Permissions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/role/{roleid}/folder/{folderid}/permissions
+      name: role-roleid-folder-folderid-permissions
+      description: REST surface for role-roleid-folder-folderid-permissions.
+      operations:
+      - method: GET
+        name: getrolepermissionsforfolder
+        description: View role permissions for a folder
+        call: repository-management-permissions.getrolepermissionsforfolder
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/role/{roleid}/permissions
+      name: role-roleid-permissions
+      description: REST surface for role-roleid-permissions.
+      operations:
+      - method: PUT
+        name: updaterolepermissions
+        description: Update role permissions
+        call: repository-management-permissions.updaterolepermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: repository-management-permissions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Automation Anywhere Repository Management API — Permissions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: view-role-permissions-folder
+      description: View role permissions for a folder
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: repository-management-permissions.getrolepermissionsforfolder
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-role-permissions
+      description: Update role permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: repository-management-permissions.updaterolepermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

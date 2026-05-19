@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Automation Anywhere Bot Insight API — AuditData
+  description: 'Automation Anywhere Bot Insight API — AuditData. 1 operations. Lead operation: Get audit trail data. Self-contained
+    Naftiko capability covering one Automation Anywhere business surface.'
+  tags:
+  - Automation Anywhere
+  - AuditData
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTOMATION_ANYWHERE_API_KEY: AUTOMATION_ANYWHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bot-insight-auditdata
+    baseUri: https://{controlRoomUrl}/v2/botinsight/data/api
+    description: Automation Anywhere Bot Insight API — AuditData business capability. Self-contained, no shared references.
+    resources:
+    - name: getaudittraildata-startIndex-startDate
+      path: /getaudittraildata/{startIndex}/{startDate}
+      operations:
+      - name: getaudittraildata
+        method: GET
+        description: Get audit trail data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AUTOMATION_ANYWHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bot-insight-auditdata-rest
+    port: 8080
+    description: REST adapter for Automation Anywhere Bot Insight API — AuditData. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/getaudittraildata/{startindex}/{startdate}
+      name: getaudittraildata-startindex-startdate
+      description: REST surface for getaudittraildata-startIndex-startDate.
+      operations:
+      - method: GET
+        name: getaudittraildata
+        description: Get audit trail data
+        call: bot-insight-auditdata.getaudittraildata
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bot-insight-auditdata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Automation Anywhere Bot Insight API — AuditData. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-audit-trail-data
+      description: Get audit trail data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bot-insight-auditdata.getaudittraildata
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Automation Anywhere Repository Management API — Workspaces
+  description: 'Automation Anywhere Repository Management API — Workspaces. 1 operations. Lead operation: List workspace files.
+    Self-contained Naftiko capability covering one Automation Anywhere business surface.'
+  tags:
+  - Automation Anywhere
+  - Workspaces
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTOMATION_ANYWHERE_API_KEY: AUTOMATION_ANYWHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: repository-management-workspaces
+    baseUri: https://{controlRoomUrl}/v2/repository
+    description: Automation Anywhere Repository Management API — Workspaces business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: workspaces-workspaceType-files-list
+      path: /workspaces/{workspaceType}/files/list
+      operations:
+      - name: listworkspacefiles
+        method: POST
+        description: List workspace files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTOMATION_ANYWHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: repository-management-workspaces-rest
+    port: 8080
+    description: REST adapter for Automation Anywhere Repository Management API — Workspaces. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspacetype}/files/list
+      name: workspaces-workspacetype-files-list
+      description: REST surface for workspaces-workspaceType-files-list.
+      operations:
+      - method: POST
+        name: listworkspacefiles
+        description: List workspace files
+        call: repository-management-workspaces.listworkspacefiles
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: repository-management-workspaces-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Automation Anywhere Repository Management API — Workspaces. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: list-workspace-files
+      description: List workspace files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: repository-management-workspaces.listworkspacefiles
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

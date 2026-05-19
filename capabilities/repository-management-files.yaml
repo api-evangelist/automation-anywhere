@@ -1,0 +1,376 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Automation Anywhere Repository Management API — Files
+  description: 'Automation Anywhere Repository Management API — Files. 9 operations. Lead operation: List files in the repository.
+    Self-contained Naftiko capability covering one Automation Anywhere business surface.'
+  tags:
+  - Automation Anywhere
+  - Files
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTOMATION_ANYWHERE_API_KEY: AUTOMATION_ANYWHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: repository-management-files
+    baseUri: https://{controlRoomUrl}/v2/repository
+    description: Automation Anywhere Repository Management API — Files business capability. Self-contained, no shared references.
+    resources:
+    - name: file-list
+      path: /file/list
+      operations:
+      - name: listfiles
+        method: POST
+        description: List files in the repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-packagesVersionUpdate
+      path: /files/packagesVersionUpdate
+      operations:
+      - name: updatepackageversions
+        method: POST
+        description: Update package versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-version-assignLabel
+      path: /files/version/assignLabel
+      operations:
+      - name: assignversionlabel
+        method: POST
+        description: Assign production label to bot version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-fileid-content
+      path: /files/{fileid}/content
+      operations:
+      - name: downloadfile
+        method: GET
+        description: Download file contents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: files-fileid-dependencies
+      path: /files/{fileid}/dependencies
+      operations:
+      - name: getfiledependencies
+        method: GET
+        description: View file dependencies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: files-fileid-dependencies-workspaceId
+      path: /files/{fileid}/dependencies/{workspaceId}
+      operations:
+      - name: updatefiledependencies
+        method: PUT
+        description: Update manual file dependencies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: files-fileid-parents
+      path: /files/{fileid}/parents
+      operations:
+      - name: getfileparents
+        method: GET
+        description: Get file parent folders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: files-id
+      path: /files/{id}
+      operations:
+      - name: deletefile
+        method: DELETE
+        description: Delete a file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: recover
+      path: /recover
+      operations:
+      - name: recoverbots
+        method: POST
+        description: Recover bots from deleted user repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTOMATION_ANYWHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: repository-management-files-rest
+    port: 8080
+    description: REST adapter for Automation Anywhere Repository Management API — Files. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/file/list
+      name: file-list
+      description: REST surface for file-list.
+      operations:
+      - method: POST
+        name: listfiles
+        description: List files in the repository
+        call: repository-management-files.listfiles
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/packagesversionupdate
+      name: files-packagesversionupdate
+      description: REST surface for files-packagesVersionUpdate.
+      operations:
+      - method: POST
+        name: updatepackageversions
+        description: Update package versions
+        call: repository-management-files.updatepackageversions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/version/assignlabel
+      name: files-version-assignlabel
+      description: REST surface for files-version-assignLabel.
+      operations:
+      - method: POST
+        name: assignversionlabel
+        description: Assign production label to bot version
+        call: repository-management-files.assignversionlabel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{fileid}/content
+      name: files-fileid-content
+      description: REST surface for files-fileid-content.
+      operations:
+      - method: GET
+        name: downloadfile
+        description: Download file contents
+        call: repository-management-files.downloadfile
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{fileid}/dependencies
+      name: files-fileid-dependencies
+      description: REST surface for files-fileid-dependencies.
+      operations:
+      - method: GET
+        name: getfiledependencies
+        description: View file dependencies
+        call: repository-management-files.getfiledependencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{fileid}/dependencies/{workspaceid}
+      name: files-fileid-dependencies-workspaceid
+      description: REST surface for files-fileid-dependencies-workspaceId.
+      operations:
+      - method: PUT
+        name: updatefiledependencies
+        description: Update manual file dependencies
+        call: repository-management-files.updatefiledependencies
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{fileid}/parents
+      name: files-fileid-parents
+      description: REST surface for files-fileid-parents.
+      operations:
+      - method: GET
+        name: getfileparents
+        description: Get file parent folders
+        call: repository-management-files.getfileparents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/files/{id}
+      name: files-id
+      description: REST surface for files-id.
+      operations:
+      - method: DELETE
+        name: deletefile
+        description: Delete a file
+        call: repository-management-files.deletefile
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/recover
+      name: recover
+      description: REST surface for recover.
+      operations:
+      - method: POST
+        name: recoverbots
+        description: Recover bots from deleted user repository
+        call: repository-management-files.recoverbots
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: repository-management-files-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Automation Anywhere Repository Management API — Files. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-files-repository
+      description: List files in the repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: repository-management-files.listfiles
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-package-versions
+      description: Update package versions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: repository-management-files.updatepackageversions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-production-label-bot-version
+      description: Assign production label to bot version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: repository-management-files.assignversionlabel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-file-contents
+      description: Download file contents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: repository-management-files.downloadfile
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-file-dependencies
+      description: View file dependencies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: repository-management-files.getfiledependencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-manual-file-dependencies
+      description: Update manual file dependencies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: repository-management-files.updatefiledependencies
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-file-parent-folders
+      description: Get file parent folders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: repository-management-files.getfileparents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-file
+      description: Delete a file
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: repository-management-files.deletefile
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: recover-bots-deleted-user-repository
+      description: Recover bots from deleted user repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: repository-management-files.recoverbots
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

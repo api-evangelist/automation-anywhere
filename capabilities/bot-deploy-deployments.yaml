@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Automation Anywhere Bot Deploy API — Deployments
+  description: 'Automation Anywhere Bot Deploy API — Deployments. 1 operations. Lead operation: Deploy a bot. Self-contained
+    Naftiko capability covering one Automation Anywhere business surface.'
+  tags:
+  - Automation Anywhere
+  - Deployments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTOMATION_ANYWHERE_API_KEY: AUTOMATION_ANYWHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bot-deploy-deployments
+    baseUri: https://{controlRoomUrl}/v4
+    description: Automation Anywhere Bot Deploy API — Deployments business capability. Self-contained, no shared references.
+    resources:
+    - name: automations-deploy
+      path: /automations/deploy
+      operations:
+      - name: deploybot
+        method: POST
+        description: Deploy a bot
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTOMATION_ANYWHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bot-deploy-deployments-rest
+    port: 8080
+    description: REST adapter for Automation Anywhere Bot Deploy API — Deployments. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/automations/deploy
+      name: automations-deploy
+      description: REST surface for automations-deploy.
+      operations:
+      - method: POST
+        name: deploybot
+        description: Deploy a bot
+        call: bot-deploy-deployments.deploybot
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bot-deploy-deployments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Automation Anywhere Bot Deploy API — Deployments. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: deploy-bot
+      description: Deploy a bot
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-deploy-deployments.deploybot
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
