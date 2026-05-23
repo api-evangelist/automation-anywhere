@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackageVersionUpdateRequest",
+  "title": "PackageVersionUpdateRequest",
+  "type": "object",
+  "description": "Payload to trigger package version updates on bot files",
+  "properties": {
+    "fileIds": {
+      "type": "array",
+      "description": "List of file IDs to update package versions for",
+      "items": {
+        "type": "integer",
+        "format": "int64",
+        "description": "Numeric file ID"
+      }
+    },
+    "packageName": {
+      "type": "string",
+      "description": "Name of the specific package to update (omit for all packages)"
+    },
+    "targetVersion": {
+      "type": "string",
+      "description": "Target version to update to (omit to use latest available)"
+    }
+  }
+}

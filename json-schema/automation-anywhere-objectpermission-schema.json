@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ObjectPermission",
+  "title": "ObjectPermission",
+  "type": "object",
+  "description": "Actions the current user can perform on a repository object",
+  "properties": {
+    "delete": {
+      "type": "boolean",
+      "description": "Whether the user can delete this object"
+    },
+    "download": {
+      "type": "boolean",
+      "description": "Whether the user can download this object"
+    },
+    "upload": {
+      "type": "boolean",
+      "description": "Whether the user can upload to this location"
+    },
+    "run": {
+      "type": "boolean",
+      "description": "Whether the user can run this bot"
+    },
+    "view": {
+      "type": "boolean",
+      "description": "Whether the user can view this object"
+    },
+    "clone": {
+      "type": "boolean",
+      "description": "Whether the user can clone (copy) this object"
+    }
+  }
+}

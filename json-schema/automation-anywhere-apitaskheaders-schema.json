@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiTaskHeaders",
+  "title": "ApiTaskHeaders",
+  "type": "object",
+  "description": "Authorization headers required when calling the API Task execution URL",
+  "properties": {
+    "X-Authorization": {
+      "type": "string",
+      "description": "Short-lived authorization token to include in the X-Authorization header when invoking the API Task execution URL. Must be refreshed periodically to prevent expiry."
+    }
+  }
+}

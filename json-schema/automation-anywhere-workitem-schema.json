@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkItem",
+  "title": "WorkItem",
+  "type": "object",
+  "description": "A single unit of work in a queue, representing one data record to be processed by a bot",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the work item"
+    },
+    "queueId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the queue this work item belongs to"
+    },
+    "json": {
+      "type": "object",
+      "description": "Key-value map of the work item's data payload matching the queue's work item model attributes",
+      "additionalProperties": true
+    },
+    "status": {
+      "type": "string",
+      "description": "Current processing status of the work item",
+      "enum": [
+        "NEW",
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETE",
+        "DEFERRED"
+      ]
+    },
+    "result": {
+      "type": "string",
+      "description": "Processing result set by the bot upon completion",
+      "enum": [
+        "SUCCESS",
+        "FAILURE"
+      ]
+    },
+    "col1": {
+      "type": "string",
+      "description": "Display column 1 value extracted from the work item data"
+    },
+    "col2": {
+      "type": "string",
+      "description": "Display column 2 value extracted from the work item data"
+    },
+    "col3": {
+      "type": "string",
+      "description": "Display column 3 value extracted from the work item data"
+    },
+    "deviceId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the device that processed this work item"
+    },
+    "deviceUserId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user account under which the work item was processed"
+    },
+    "automationId": {
+      "type": "string",
+      "description": "Deployment ID of the automation that processed this work item"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when processing began"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when processing completed"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional comment added during processing"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if the work item processing failed"
+    },
+    "retryCount": {
+      "type": "integer",
+      "description": "Number of times this work item has been retried"
+    },
+    "deferredUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp until which this work item is deferred"
+    },
+    "createdBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who created this work item"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the work item was created"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Optimistic locking version number"
+    }
+  }
+}

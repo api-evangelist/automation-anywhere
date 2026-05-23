@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RoleListResponse",
+  "title": "RoleListResponse",
+  "type": "object",
+  "description": "Paginated list of role records",
+  "properties": {
+    "list": {
+      "type": "array",
+      "description": "Array of role records matching the filter criteria",
+      "items": {
+        "$ref": "#/components/schemas/RoleResponse"
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

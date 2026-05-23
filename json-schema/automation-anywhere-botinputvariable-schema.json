@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BotInputVariable",
+  "title": "BotInputVariable",
+  "type": "object",
+  "description": "Typed input variable value to pass to a bot at deployment time",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Data type of the variable. Must match the variable type defined in the bot (e.g., STRING, NUMBER, BOOLEAN, LIST, DICTIONARY, DATETIME).",
+      "enum": [
+        "STRING",
+        "NUMBER",
+        "BOOLEAN",
+        "LIST",
+        "DICTIONARY",
+        "DATETIME",
+        "CREDENTIAL"
+      ]
+    },
+    "string": {
+      "type": "string",
+      "description": "String value for STRING type variables"
+    },
+    "number": {
+      "type": "string",
+      "description": "Numeric value as a string for NUMBER type variables"
+    },
+    "boolean": {
+      "type": "boolean",
+      "description": "Boolean value for BOOLEAN type variables"
+    },
+    "list": {
+      "type": "object",
+      "description": "List structure for LIST type variables"
+    },
+    "dictionary": {
+      "type": "object",
+      "description": "Key-value map for DICTIONARY type variables"
+    }
+  }
+}

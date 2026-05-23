@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerMember",
+  "title": "LockerMember",
+  "type": "object",
+  "description": "A user with management membership in a locker",
+  "properties": {
+    "userId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the member user"
+    },
+    "userName": {
+      "type": "string",
+      "description": "Username of the member"
+    },
+    "permissions": {
+      "type": "array",
+      "description": "List of management permissions granted to this member",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

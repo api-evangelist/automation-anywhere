@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilterRequest",
+  "title": "FilterRequest",
+  "type": "object",
+  "description": "Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.",
+  "properties": {
+    "filter": {
+      "$ref": "#/components/schemas/FilterExpression"
+    },
+    "fields": {
+      "type": "array",
+      "description": "List of field names to include in the response",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sort": {
+      "type": "array",
+      "description": "Sorting criteria for the result set",
+      "items": {
+        "$ref": "#/components/schemas/SortCriteria"
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageRequest"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerMemberList",
+  "title": "LockerMemberList",
+  "type": "object",
+  "description": "List of locker members",
+  "properties": {
+    "list": {
+      "type": "array",
+      "description": "Array of locker member records",
+      "items": {
+        "$ref": "#/components/schemas/LockerMember"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAllocationsRequest",
+  "title": "ListAllocationsRequest",
+  "type": "object",
+  "description": "Pagination parameters for listing API Task allocations. Omit to retrieve the first page with default settings.",
+  "properties": {
+    "page": {
+      "$ref": "#/components/schemas/PageRequest"
+    }
+  }
+}

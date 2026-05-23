@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunAsUser",
+  "title": "RunAsUser",
+  "type": "object",
+  "description": "Reference to a user account whose device will run the bot",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Numeric user ID of the run-as user"
+    }
+  }
+}

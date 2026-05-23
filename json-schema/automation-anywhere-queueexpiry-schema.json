@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueueExpiry",
+  "title": "QueueExpiry",
+  "type": "object",
+  "description": "Expiry configuration for work items in the queue",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Expiry type (e.g., DURATION, DATE)"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration value before work items expire"
+    },
+    "durationUnit": {
+      "type": "string",
+      "description": "Time unit for the duration (e.g., HOURS, DAYS)"
+    }
+  }
+}

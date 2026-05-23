@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HeadlessRequest",
+  "title": "HeadlessRequest",
+  "type": "object",
+  "description": "Deployment configuration for headless bot execution on On-Demand Bot Runner cloud devices without a persistent session.",
+  "properties": {
+    "numOfRunAsUsersToUse": {
+      "type": "integer",
+      "description": "Number of On-Demand Bot Runner instances to allocate for parallel headless execution."
+    }
+  }
+}

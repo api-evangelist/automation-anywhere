@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateRoleRequest",
+  "title": "UpdateRoleRequest",
+  "type": "object",
+  "description": "Payload to update an existing Control Room role",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated name for the role"
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated description of the role's purpose"
+    },
+    "permissions": {
+      "type": "array",
+      "description": "Updated set of permissions; replaces existing permissions",
+      "items": {
+        "$ref": "#/components/schemas/Permission"
+      }
+    }
+  }
+}

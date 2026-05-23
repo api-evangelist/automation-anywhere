@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RepositoryPermissions",
+  "title": "RepositoryPermissions",
+  "type": "object",
+  "description": "Permission set for a role on a repository folder",
+  "properties": {
+    "folderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Folder ID these permissions apply to"
+    },
+    "permissions": {
+      "type": "array",
+      "description": "List of permitted actions",
+      "items": {
+        "type": "string",
+        "enum": [
+          "clone",
+          "upload",
+          "download",
+          "delete",
+          "run",
+          "view"
+        ]
+      }
+    }
+  }
+}

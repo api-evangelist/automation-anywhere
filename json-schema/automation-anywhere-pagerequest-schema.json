@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageRequest",
+  "title": "PageRequest",
+  "type": "object",
+  "description": "Pagination parameters for list requests",
+  "properties": {
+    "offset": {
+      "type": "integer",
+      "description": "Zero-based starting index of the result page",
+      "minimum": 0,
+      "default": 0
+    },
+    "length": {
+      "type": "integer",
+      "description": "Number of records to return per page",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 100
+    }
+  }
+}

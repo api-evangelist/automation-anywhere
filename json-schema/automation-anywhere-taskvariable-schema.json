@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskVariable",
+  "title": "TaskVariable",
+  "type": "object",
+  "description": "A single KPI variable tracked during bot task execution",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Variable name as defined in the bot"
+    },
+    "type": {
+      "type": "string",
+      "description": "Data type of the variable (e.g., STRING, NUMBER, DATE)"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable display name for dashboards"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BotRunDataResponse",
+  "title": "BotRunDataResponse",
+  "type": "object",
+  "description": "Paginated response containing bot run execution records",
+  "properties": {
+    "totalRecords": {
+      "type": "integer",
+      "description": "Total number of bot run records available from the start date"
+    },
+    "botRunDataList": {
+      "type": "array",
+      "description": "List of individual bot run records",
+      "items": {
+        "$ref": "#/components/schemas/BotRunRecord"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileParentsResponse",
+  "title": "FileParentsResponse",
+  "type": "object",
+  "description": "Parent folder information for a repository object",
+  "properties": {
+    "parents": {
+      "type": "array",
+      "description": "List of parent folders in the hierarchy",
+      "items": {
+        "$ref": "#/components/schemas/RepositoryObject"
+      }
+    }
+  }
+}

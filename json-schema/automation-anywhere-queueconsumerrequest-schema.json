@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueueConsumerRequest",
+  "title": "QueueConsumerRequest",
+  "type": "object",
+  "description": "Request to add a role as a consumer of a queue",
+  "properties": {
+    "roleId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the role to grant consumer access to the queue"
+    }
+  }
+}

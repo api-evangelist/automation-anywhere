@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssignLabelRequest",
+  "title": "AssignLabelRequest",
+  "type": "object",
+  "description": "Payload to assign the production label to a specific bot version",
+  "required": [
+    "fileId",
+    "version"
+  ],
+  "properties": {
+    "fileId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Numeric ID of the bot file"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Version number to assign the production label to"
+    }
+  }
+}

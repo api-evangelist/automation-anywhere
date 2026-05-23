@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PermissionsUpdateRequest",
+  "title": "PermissionsUpdateRequest",
+  "type": "object",
+  "description": "Payload to update role permissions across one or more folders",
+  "properties": {
+    "folderPermissions": {
+      "type": "array",
+      "description": "List of folder permission assignments",
+      "items": {
+        "$ref": "#/components/schemas/RepositoryPermissions"
+      }
+    }
+  }
+}

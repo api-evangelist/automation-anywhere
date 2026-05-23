@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerConsumerPost",
+  "title": "LockerConsumerPost",
+  "type": "object",
+  "description": "Payload to add a consumer role to a locker",
+  "required": [
+    "roleId"
+  ],
+  "properties": {
+    "roleId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the role to grant consumer access"
+    }
+  }
+}

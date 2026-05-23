@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnattendedRequest",
+  "title": "UnattendedRequest",
+  "type": "object",
+  "description": "Deployment configuration for unattended bot execution. The bot runs on the device(s) associated with the specified runAsUser account, without requiring a logged-in Windows session.",
+  "properties": {
+    "runAsUsers": {
+      "type": "array",
+      "description": "List of user IDs whose associated Bot Runner devices will execute the bot. Each user must have an unattended Bot Runner license.",
+      "items": {
+        "$ref": "#/components/schemas/RunAsUser"
+      }
+    },
+    "poolIds": {
+      "type": "array",
+      "description": "List of device pool IDs to target for execution. The bot will be dispatched to an available device in the specified pools.",
+      "items": {
+        "type": "integer",
+        "description": "Numeric ID of a device pool"
+      }
+    }
+  }
+}

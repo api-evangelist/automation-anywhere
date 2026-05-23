@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueueParticipantRequest",
+  "title": "QueueParticipantRequest",
+  "type": "object",
+  "description": "Request to add a participant to a queue",
+  "properties": {
+    "userId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user to add as a participant"
+    }
+  }
+}

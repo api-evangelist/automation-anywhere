@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenValidationResponse",
+  "title": "TokenValidationResponse",
+  "type": "object",
+  "description": "Result of a token validity check",
+  "properties": {
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the provided token is currently valid"
+    }
+  }
+}

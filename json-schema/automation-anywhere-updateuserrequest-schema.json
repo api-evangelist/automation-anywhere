@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateUserRequest",
+  "title": "UpdateUserRequest",
+  "type": "object",
+  "description": "Payload to update an existing Control Room user account",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Updated email address for the user"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Updated first name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Updated last name"
+    },
+    "roles": {
+      "type": "array",
+      "description": "Updated list of role assignments; replaces existing assignments",
+      "items": {
+        "$ref": "#/components/schemas/RoleRef"
+      }
+    },
+    "licenseFeatures": {
+      "type": "array",
+      "description": "Updated license feature types",
+      "items": {
+        "type": "string"
+      }
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the user account is active"
+    },
+    "password": {
+      "type": "string",
+      "description": "New password for the user"
+    }
+  }
+}

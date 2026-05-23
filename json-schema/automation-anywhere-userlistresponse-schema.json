@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserListResponse",
+  "title": "UserListResponse",
+  "type": "object",
+  "description": "Paginated list of user records",
+  "properties": {
+    "list": {
+      "type": "array",
+      "description": "Array of user records matching the filter criteria",
+      "items": {
+        "$ref": "#/components/schemas/UserResponse"
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

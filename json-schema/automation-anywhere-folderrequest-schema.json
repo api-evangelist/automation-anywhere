@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FolderRequest",
+  "title": "FolderRequest",
+  "type": "object",
+  "description": "Payload to create or update a folder",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the folder"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the folder's purpose"
+    }
+  }
+}

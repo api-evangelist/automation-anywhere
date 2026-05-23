@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VariableProfile",
+  "title": "VariableProfile",
+  "type": "object",
+  "description": "Aggregated profile data for a single KPI variable",
+  "properties": {
+    "variableName": {
+      "type": "string",
+      "description": "Name of the KPI variable"
+    },
+    "totalValue": {
+      "type": "string",
+      "description": "Aggregated total value across all runs in the date range"
+    },
+    "runCount": {
+      "type": "integer",
+      "description": "Number of bot runs contributing to this profile"
+    }
+  }
+}

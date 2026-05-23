@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilterOperand",
+  "title": "FilterOperand",
+  "type": "object",
+  "description": "A single operand in a filter expression, either a field reference or a nested expression",
+  "properties": {
+    "field": {
+      "type": "string",
+      "description": "Field name to filter on"
+    },
+    "value": {
+      "type": "string",
+      "description": "Value to compare against"
+    }
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "provider": "Automation-Anywhere",
+  "providerId": "automation-anywhere",
+  "kind": "json-structure",
+  "description": "Structural overview of the Automation-Anywhere API surface; extracted from openapi/.",
+  "schemaCount": 25,
+  "operationCount": 24,
+  "schemas": [
+    {
+      "name": "Credential",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "CredentialPost",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CredentialAttribute",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CredentialAttributePost",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CredentialAttributeValue",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CredentialAttributeValuePut",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CredentialAttributeValuePostList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CredentialAttributeValuePost",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CredentialAttributeValueList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CredentialFilterResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Locker",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "LockerPost",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "LockerListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LockerCredentialList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LockerCredentialUpdate",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LockerConsumer",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LockerConsumerPost",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "roleId"
+      ]
+    },
+    {
+      "name": "LockerConsumerList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LockerMember",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LockerMemberUpdate",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LockerMemberList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "FilterRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PageRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PageInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/credentials",
+      "operationId": "createCredential",
+      "summary": "Create a credential",
+      "tags": [
+        "Credentials"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/credentials/list",
+      "operationId": "listCredentials",
+      "summary": "Search credentials",
+      "tags": [
+        "Credentials"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/credentials/{id}",
+      "operationId": "getCredential",
+      "summary": "Get a credential by ID",
+      "tags": [
+        "Credentials"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/credentials/{id}",
+      "operationId": "updateCredential",
+      "summary": "Update a credential",
+      "tags": [
+        "Credentials"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/credentials/{id}",
+      "operationId": "deleteCredential",
+      "summary": "Delete a credential",
+      "tags": [
+        "Credentials"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/credentials/{id}/owner/{credentialOwnerId}",
+      "operationId": "updateCredentialOwner",
+      "summary": "Update credential ownership",
+      "tags": [
+        "Credentials"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/credentials/{id}/attributevalues",
+      "operationId": "listCredentialAttributeValues",
+      "summary": "List credential attribute values",
+      "tags": [
+        "AttributeValues"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/credentials/{id}/attributevalues",
+      "operationId": "createCredentialAttributeValues",
+      "summary": "Create credential attribute values",
+      "tags": [
+        "AttributeValues"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/credentials/{id}/attributevalues/{attributeValueId}",
+      "operationId": "updateCredentialAttributeValue",
+      "summary": "Update a credential attribute value",
+      "tags": [
+        "AttributeValues"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/credentials/{id}/attributevalues/{attributeValueId}",
+      "operationId": "deleteCredentialAttributeValue",
+      "summary": "Delete a credential attribute value",
+      "tags": [
+        "AttributeValues"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lockers",
+      "operationId": "createLocker",
+      "summary": "Create a locker",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lockers/list",
+      "operationId": "listLockers",
+      "summary": "Search lockers",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lockers/{id}",
+      "operationId": "getLocker",
+      "summary": "Get a locker by ID",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/lockers/{id}",
+      "operationId": "updateLocker",
+      "summary": "Update a locker",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lockers/{id}",
+      "operationId": "deleteLocker",
+      "summary": "Delete a locker",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lockers/{id}/credentials",
+      "operationId": "listLockerCredentials",
+      "summary": "Get locker credentials",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/lockers/{id}/credentials/{credentialId}",
+      "operationId": "updateLockerCredential",
+      "summary": "Update a credential in a locker",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lockers/{id}/credentials/{credentialId}",
+      "operationId": "removeLockerCredential",
+      "summary": "Remove a credential from a locker",
+      "tags": [
+        "Lockers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lockers/{id}/consumers",
+      "operationId": "listLockerConsumers",
+      "summary": "List locker consumers",
+      "tags": [
+        "LockerConsumers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lockers/{id}/consumers",
+      "operationId": "addLockerConsumer",
+      "summary": "Add a locker consumer",
+      "tags": [
+        "LockerConsumers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lockers/{id}/consumers/{roleId}",
+      "operationId": "removeLockerConsumer",
+      "summary": "Remove a locker consumer",
+      "tags": [
+        "LockerConsumers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lockers/{id}/members",
+      "operationId": "listLockerMembers",
+      "summary": "Get locker members",
+      "tags": [
+        "LockerMembers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/lockers/{id}/members/{userId}",
+      "operationId": "updateLockerMember",
+      "summary": "Update locker member permissions",
+      "tags": [
+        "LockerMembers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lockers/{id}/members/{userId}",
+      "operationId": "removeLockerMember",
+      "summary": "Remove a locker member",
+      "tags": [
+        "LockerMembers"
+      ]
+    }
+  ]
+}

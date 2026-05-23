@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthenticationResponse",
+  "title": "AuthenticationResponse",
+  "type": "object",
+  "description": "Response containing the JWT token for authenticated API access",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "JWT token string to include in subsequent API request headers"
+    },
+    "user": {
+      "$ref": "#/components/schemas/UserSummary"
+    }
+  }
+}

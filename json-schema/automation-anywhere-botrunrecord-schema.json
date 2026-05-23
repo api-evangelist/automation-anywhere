@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BotRunRecord",
+  "title": "BotRunRecord",
+  "type": "object",
+  "description": "A single bot execution run record with performance and identity metadata",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the bot run record"
+    },
+    "userName": {
+      "type": "string",
+      "description": "Username of the Control Room user who ran the bot"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name of the user who ran the bot"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name of the user who ran the bot"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the user who ran the bot"
+    },
+    "hostName": {
+      "type": "string",
+      "description": "Hostname of the Bot Runner device where the bot executed"
+    },
+    "iPAddress": {
+      "type": "string",
+      "description": "IP address of the Bot Runner device"
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of the bot file that was executed"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the bot execution started"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the bot execution ended"
+    },
+    "status": {
+      "type": "string",
+      "description": "Final execution status of the bot run",
+      "enum": [
+        "COMPLETED",
+        "FAILED",
+        "STOPPED",
+        "IN_PROGRESS"
+      ]
+    },
+    "totalLines": {
+      "type": "integer",
+      "description": "Total number of task lines executed during the run"
+    },
+    "timeTaken": {
+      "type": "integer",
+      "description": "Total execution time in milliseconds"
+    },
+    "successIndicator": {
+      "type": "boolean",
+      "description": "Whether the bot run completed successfully"
+    }
+  }
+}

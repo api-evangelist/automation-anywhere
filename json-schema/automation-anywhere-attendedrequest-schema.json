@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttendedRequest",
+  "title": "AttendedRequest",
+  "type": "object",
+  "description": "Deployment configuration for attended bot execution. The bot runs on a device where the target user is currently logged in, with the user present to observe or interact.",
+  "properties": {
+    "currentUserDeviceId": {
+      "type": "integer",
+      "description": "Device ID of the currently logged-in user's machine on which to run the attended bot."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorMessage",
+  "title": "ErrorMessage",
+  "type": "object",
+  "description": "Detailed error response including additional context",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Human-readable description of the error"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Specific error code for programmatic handling"
+    }
+  }
+}

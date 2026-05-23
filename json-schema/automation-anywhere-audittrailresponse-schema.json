@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditTrailResponse",
+  "title": "AuditTrailResponse",
+  "type": "object",
+  "description": "Paginated audit trail records from the Control Room",
+  "properties": {
+    "totalRecords": {
+      "type": "integer",
+      "description": "Total number of audit records available from the start date"
+    },
+    "auditData": {
+      "type": "array",
+      "description": "List of audit trail records",
+      "items": {
+        "$ref": "#/components/schemas/AuditRecord"
+      }
+    }
+  }
+}

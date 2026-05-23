@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerConsumer",
+  "title": "LockerConsumer",
+  "type": "object",
+  "description": "A role with consumer access to a locker's credentials",
+  "properties": {
+    "roleId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the consumer role"
+    },
+    "roleName": {
+      "type": "string",
+      "description": "Name of the consumer role"
+    }
+  }
+}

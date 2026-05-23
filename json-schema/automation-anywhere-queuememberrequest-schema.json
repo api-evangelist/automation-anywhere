@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueueMemberRequest",
+  "title": "QueueMemberRequest",
+  "type": "object",
+  "description": "Request to add or update a user as a queue member",
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "Queue membership role (OWNER, MEMBER, PARTICIPANT)",
+      "enum": [
+        "OWNER",
+        "MEMBER",
+        "PARTICIPANT"
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SortCriteria",
+  "title": "SortCriteria",
+  "type": "object",
+  "description": "Sorting direction and field for list results",
+  "properties": {
+    "field": {
+      "type": "string",
+      "description": "Field name to sort by"
+    },
+    "direction": {
+      "type": "string",
+      "description": "Sort direction",
+      "enum": [
+        "asc",
+        "desc"
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeploymentResponse",
+  "title": "DeploymentResponse",
+  "type": "object",
+  "description": "Response returned when a bot deployment is successfully initiated",
+  "properties": {
+    "deploymentId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique UUID identifier for this deployment instance. Use this ID to query automation activity and monitor execution status via the Bot Execution Orchestrator API."
+    }
+  }
+}

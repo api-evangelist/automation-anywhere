@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CallbackInfo",
+  "title": "CallbackInfo",
+  "type": "object",
+  "description": "Optional callback configuration for receiving execution status notifications at a webhook endpoint when the deployment completes or fails.",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the callback endpoint to notify upon completion"
+    },
+    "headers": {
+      "type": "object",
+      "description": "Optional HTTP headers to include in the callback request",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

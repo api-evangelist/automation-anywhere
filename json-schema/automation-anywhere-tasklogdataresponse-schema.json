@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskLogDataResponse",
+  "title": "TaskLogDataResponse",
+  "type": "object",
+  "description": "Paginated task-level log data records with per-run KPI values",
+  "properties": {
+    "totalRecords": {
+      "type": "integer",
+      "description": "Total number of log records available"
+    },
+    "logData": {
+      "type": "array",
+      "description": "List of task log records",
+      "items": {
+        "$ref": "#/components/schemas/TaskLogRecord"
+      }
+    }
+  }
+}

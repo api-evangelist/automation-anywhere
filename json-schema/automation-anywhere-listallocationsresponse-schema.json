@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListAllocationsResponse",
+  "title": "ListAllocationsResponse",
+  "type": "object",
+  "description": "Paginated list of API Task allocations registered in the Control Room",
+  "properties": {
+    "list": {
+      "type": "array",
+      "description": "Array of API Task allocation records",
+      "items": {
+        "$ref": "#/components/schemas/ApiTaskAllocation"
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

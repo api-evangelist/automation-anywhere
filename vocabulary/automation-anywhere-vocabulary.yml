@@ -1,0 +1,15 @@
+name: Automation-Anywhere Domain Vocabulary
+provider: Automation-Anywhere
+providerId: automation-anywhere
+description: Tag-derived vocabulary for the Automation-Anywhere API surface; sourced from openapi/ tags.
+terms:
+- term: AttributeValues
+  description: Manage credential attribute values for individual credentials
+- term: Credentials
+  description: Create, retrieve, update, delete, and search credentials
+- term: LockerConsumers
+  description: Manage roles with consumer access to locker credentials
+- term: LockerMembers
+  description: Manage user membership within lockers
+- term: Lockers
+  description: Create, retrieve, update, and delete credential lockers

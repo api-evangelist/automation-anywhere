@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessDetailsResponse",
+  "title": "AccessDetailsResponse",
+  "type": "object",
+  "description": "Map of API Task repository paths to their generated execution URLs and tokens",
+  "properties": {
+    "accessDetails": {
+      "type": "object",
+      "description": "Map where each key is a bot repository path and the value contains the execution URL and authorization token for that API Task.",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/ApiTaskAccessDetail"
+      }
+    },
+    "errors": {
+      "type": "object",
+      "description": "Map of repository paths to error messages for any API Tasks that could not have access details generated.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

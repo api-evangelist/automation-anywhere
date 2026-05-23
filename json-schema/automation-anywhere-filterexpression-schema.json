@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilterExpression",
+  "title": "FilterExpression",
+  "type": "object",
+  "description": "Logical filter expression for querying resources",
+  "properties": {
+    "operator": {
+      "type": "string",
+      "description": "Logical operator combining child filters (and, or, not)",
+      "enum": [
+        "and",
+        "or",
+        "not",
+        "eq",
+        "ne",
+        "lt",
+        "le",
+        "gt",
+        "ge",
+        "substring",
+        "startswith"
+      ]
+    },
+    "operands": {
+      "type": "array",
+      "description": "Child filter expressions or field/value pairs",
+      "items": {
+        "$ref": "#/components/schemas/FilterOperand"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerPost",
+  "title": "LockerPost",
+  "type": "object",
+  "description": "Payload to create or update a locker",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the locker"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the locker's purpose"
+    }
+  }
+}

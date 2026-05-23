@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessDetailsRequest",
+  "title": "AccessDetailsRequest",
+  "type": "object",
+  "description": "Request to generate execution URLs and tokens for one or more API Tasks identified by their repository paths.",
+  "required": [
+    "botRepositoryPath"
+  ],
+  "properties": {
+    "botRepositoryPath": {
+      "type": "array",
+      "description": "List of repository paths for the API Tasks to generate access details for. Each path must correspond to an allocated API Task.",
+      "items": {
+        "type": "string",
+        "description": "Repository path of an API Task (e.g., /Automation/MyApiTask)"
+      }
+    }
+  }
+}

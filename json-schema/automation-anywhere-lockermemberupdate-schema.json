@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerMemberUpdate",
+  "title": "LockerMemberUpdate",
+  "type": "object",
+  "description": "Payload to update a locker member's permissions",
+  "properties": {
+    "permissions": {
+      "type": "array",
+      "description": "Updated set of permissions for this member",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

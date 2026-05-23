@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserResponse",
+  "title": "UserResponse",
+  "type": "object",
+  "description": "Full user record returned from create, read, or update operations",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique numeric identifier of the user"
+    },
+    "username": {
+      "type": "string",
+      "description": "The user's login username"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user's email address"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "User's first name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "User's last name"
+    },
+    "roles": {
+      "type": "array",
+      "description": "Roles assigned to the user",
+      "items": {
+        "$ref": "#/components/schemas/RoleRef"
+      }
+    },
+    "licenseFeatures": {
+      "type": "array",
+      "description": "License features assigned to the user",
+      "items": {
+        "type": "string"
+      }
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the user account is currently active"
+    },
+    "createdBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who created this account"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the user was created"
+    },
+    "updatedBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who last updated this account"
+    },
+    "updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last update"
+    }
+  }
+}

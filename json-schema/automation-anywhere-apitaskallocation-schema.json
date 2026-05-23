@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiTaskAllocation",
+  "title": "ApiTaskAllocation",
+  "type": "object",
+  "description": "A single API Task allocation record indicating an allocated real-time API Task",
+  "properties": {
+    "fileId": {
+      "type": "integer",
+      "description": "Numeric file ID of the API Task bot in the repository"
+    },
+    "filePath": {
+      "type": "string",
+      "description": "Repository path of the allocated API Task (e.g., /Automation/MyApiTask)"
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Display name of the API Task file"
+    },
+    "runAsUserOrNone": {
+      "type": "integer",
+      "description": "User ID under which the API Task executes, or null if using the caller's credentials"
+    },
+    "concurrencyLimit": {
+      "type": "integer",
+      "description": "Maximum number of concurrent instances allowed for this API Task in real-time execution mode"
+    }
+  }
+}

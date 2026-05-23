@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageInfo",
+  "title": "PageInfo",
+  "type": "object",
+  "description": "Pagination metadata in list responses",
+  "properties": {
+    "offset": {
+      "type": "integer",
+      "description": "Starting index of the returned results"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of API Task allocations"
+    },
+    "totalFilter": {
+      "type": "integer",
+      "description": "Total records after any filter criteria"
+    }
+  }
+}

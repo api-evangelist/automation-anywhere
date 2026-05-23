@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerConsumerList",
+  "title": "LockerConsumerList",
+  "type": "object",
+  "description": "List of consumer roles for a locker",
+  "properties": {
+    "list": {
+      "type": "array",
+      "description": "Array of consumer role records",
+      "items": {
+        "$ref": "#/components/schemas/LockerConsumer"
+      }
+    }
+  }
+}

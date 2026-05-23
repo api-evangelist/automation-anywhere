@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Permission",
+  "title": "Permission",
+  "type": "object",
+  "description": "A single permission entry granting access to a specific feature or resource",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the permission"
+    },
+    "action": {
+      "type": "string",
+      "description": "The action permitted (e.g., view, create, run, edit, delete)"
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "The type of resource this permission applies to"
+    },
+    "resourceId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Specific resource ID if this is a resource-scoped permission"
+    }
+  }
+}

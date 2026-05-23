@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskMetadataResponse",
+  "title": "TaskMetadataResponse",
+  "type": "object",
+  "description": "Metadata about a specific bot task's analytics configuration",
+  "properties": {
+    "taskName": {
+      "type": "string",
+      "description": "Analytics display name of the task"
+    },
+    "variables": {
+      "type": "array",
+      "description": "KPI variables tracked for this task",
+      "items": {
+        "$ref": "#/components/schemas/TaskVariable"
+      }
+    }
+  }
+}

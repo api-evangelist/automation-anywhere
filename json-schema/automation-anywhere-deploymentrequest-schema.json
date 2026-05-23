@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeploymentRequest",
+  "title": "DeploymentRequest",
+  "type": "object",
+  "description": "Request payload to deploy a bot. Requires the botId and one of the deployment type objects: unattended, attended, or headless.",
+  "required": [
+    "botId"
+  ],
+  "properties": {
+    "botId": {
+      "type": "integer",
+      "description": "Numeric file ID of the bot to deploy from the public workspace"
+    },
+    "automationName": {
+      "type": "string",
+      "description": "Optional human-readable name for this automation deployment instance. Appears in activity logs and the Control Room dashboard."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of this deployment for tracking purposes"
+    },
+    "botLabel": {
+      "type": "string",
+      "description": "Optional label to tag this bot deployment instance"
+    },
+    "runElevated": {
+      "type": "boolean",
+      "description": "Whether to run the bot with elevated system privileges on the Bot Runner device. Requires appropriate device configuration."
+    },
+    "hideBotAgentUi": {
+      "type": "boolean",
+      "description": "Whether to hide the Bot Agent user interface on the runner device during execution. Applicable to attended deployments."
+    },
+    "callbackInfo": {
+      "$ref": "#/components/schemas/CallbackInfo"
+    },
+    "automationPriority": {
+      "type": "string",
+      "description": "Priority level for this automation in the execution queue. Higher priority automations are dispatched before lower priority ones.",
+      "enum": [
+        "PRIORITY_LOW",
+        "PRIORITY_MEDIUM",
+        "PRIORITY_HIGH"
+      ]
+    },
+    "botInput": {
+      "type": "object",
+      "description": "Map of input variable names to typed values to pass to the bot at runtime. Keys are variable names defined in the bot; values are objects with type and value fields.",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/BotInputVariable"
+      }
+    },
+    "unattendedRequest": {
+      "$ref": "#/components/schemas/UnattendedRequest"
+    },
+    "attendedRequest": {
+      "$ref": "#/components/schemas/AttendedRequest"
+    },
+    "headlessRequest": {
+      "$ref": "#/components/schemas/HeadlessRequest"
+    }
+  }
+}

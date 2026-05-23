@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiTaskAccessDetail",
+  "title": "ApiTaskAccessDetail",
+  "type": "object",
+  "description": "Execution URL and authorization token for a single API Task",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Unique execution URL for invoking the API Task directly. POST to this URL with the task's input parameters to trigger execution."
+    },
+    "headers": {
+      "$ref": "#/components/schemas/ApiTaskHeaders"
+    }
+  }
+}

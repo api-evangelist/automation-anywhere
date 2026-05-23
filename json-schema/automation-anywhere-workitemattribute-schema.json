@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkItemAttribute",
+  "title": "WorkItemAttribute",
+  "type": "object",
+  "description": "A single named attribute in a work item model",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the attribute"
+    },
+    "name": {
+      "type": "string",
+      "description": "Attribute name used as the column identifier in work items"
+    },
+    "type": {
+      "type": "string",
+      "description": "Data type of the attribute value",
+      "enum": [
+        "TEXT",
+        "NUMBER",
+        "DATE",
+        "BOOLEAN"
+      ]
+    },
+    "isRequired": {
+      "type": "boolean",
+      "description": "Whether this attribute must be provided when creating a work item"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Queue",
+  "title": "Queue",
+  "type": "object",
+  "description": "A work item queue that buffers data items for processing by bots. Each queue is linked to a work item model defining its schema.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the queue"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the queue"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the queue's purpose"
+    },
+    "reactivationThreshold": {
+      "type": "integer",
+      "description": "Percentage threshold of remaining work items below which the queue triggers reactivation of additional bot instances"
+    },
+    "manualProcessingTime": {
+      "type": "integer",
+      "description": "Estimated manual processing time per work item for SLA calculations"
+    },
+    "manualProcessingTimeUnit": {
+      "type": "string",
+      "description": "Time unit for manualProcessingTime (e.g., minutes, hours)"
+    },
+    "disallowDuplicate": {
+      "type": "boolean",
+      "description": "Whether duplicate work items based on hash are rejected"
+    },
+    "autoRetryLimit": {
+      "type": "integer",
+      "description": "Maximum number of times a failed work item is automatically retried"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current operational status of the queue",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "workItemModelId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the work item model defining this queue's data schema"
+    },
+    "workItemProcessingOrders": {
+      "type": "array",
+      "description": "Ordered list of field names defining work item processing priority",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expiry": {
+      "$ref": "#/components/schemas/QueueExpiry"
+    },
+    "createdBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who created this queue"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the queue was created"
+    },
+    "updatedBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who last modified this queue"
+    },
+    "updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last modification"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Optimistic locking version number"
+    }
+  }
+}

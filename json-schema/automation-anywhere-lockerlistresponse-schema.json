@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LockerListResponse",
+  "title": "LockerListResponse",
+  "type": "object",
+  "description": "Paginated list of lockers",
+  "properties": {
+    "list": {
+      "type": "array",
+      "description": "Array of locker records",
+      "items": {
+        "$ref": "#/components/schemas/Locker"
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

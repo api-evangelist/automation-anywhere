@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecoverRequest",
+  "title": "RecoverRequest",
+  "type": "object",
+  "description": "Payload to recover bots from a deleted user's private workspace",
+  "required": [
+    "userId"
+  ],
+  "properties": {
+    "userId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Numeric ID of the deleted user whose bots should be recovered"
+    },
+    "targetFolderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Folder ID in the public workspace where recovered bots will be moved"
+    }
+  }
+}

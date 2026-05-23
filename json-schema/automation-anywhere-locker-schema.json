@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Locker",
+  "title": "Locker",
+  "type": "object",
+  "description": "A permission-controlled container grouping credentials for bot access. Lockers define which roles (consumer roles) can access the contained credentials during automation execution.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique identifier of the locker"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the locker"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the locker's purpose"
+    },
+    "ownerId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "User ID of the locker owner"
+    },
+    "createdBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who created this locker"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the locker was created"
+    },
+    "updatedBy": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the user who last modified this locker"
+    },
+    "updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last modification"
+    }
+  }
+}

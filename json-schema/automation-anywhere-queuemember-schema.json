@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueueMember",
+  "title": "QueueMember",
+  "type": "object",
+  "description": "A user with membership access to a queue",
+  "properties": {
+    "userId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the queue member user"
+    },
+    "role": {
+      "type": "string",
+      "description": "Membership role of the user in this queue"
+    }
+  }
+}
