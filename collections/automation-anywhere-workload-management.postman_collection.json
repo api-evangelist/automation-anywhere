@@ -1,0 +1,2502 @@
+{
+  "item": [
+    {
+      "id": "ced2dc01-bd7a-4d60-a92e-143fc85cc897",
+      "name": "Queues",
+      "description": {
+        "content": "Create and manage work item queues and their members",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78a1da2e-12ee-4c3d-8d6a-87dcc1dcd7a0",
+          "name": "Get a queue by ID",
+          "request": {
+            "name": "Get a queue by ID",
+            "description": {
+              "content": "Retrieves detailed information about a specific work item queue, including its configuration, associated work item model, processing order, and current status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queues",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the queue"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2fd70af-b76a-4a15-b7ac-77ae908ac825",
+              "name": "Queue details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7770,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"reactivationThreshold\": 7353,\n  \"manualProcessingTime\": 8764,\n  \"manualProcessingTimeUnit\": \"string\",\n  \"disallowDuplicate\": true,\n  \"autoRetryLimit\": 5227,\n  \"status\": \"INACTIVE\",\n  \"workItemModelId\": 2976,\n  \"workItemProcessingOrders\": [\n    \"string\",\n    \"string\"\n  ],\n  \"expiry\": {\n    \"type\": \"string\",\n    \"duration\": 5340,\n    \"durationUnit\": \"string\"\n  },\n  \"createdBy\": 7521,\n  \"createdOn\": \"2011-07-16T23:50:53.912Z\",\n  \"updatedBy\": 219,\n  \"updatedOn\": \"1953-07-09T00:51:57.752Z\",\n  \"version\": 4007\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14610d41-ddb8-4193-a6dd-a8284b054e16",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9485c08-a0dd-4a0c-9e56-c3785595c191",
+              "name": "Queue not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0770e540-a048-41a9-9a51-a9273713e8c7",
+          "name": "Add a queue consumer",
+          "request": {
+            "name": "Add a queue consumer",
+            "description": {
+              "content": "Adds a role as a consumer of the specified queue. Consumer roles are assigned to bots that will process work items from the queue. Only users with queue management permissions can add consumers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queues",
+                ":id",
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the queue"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57c767bd-dece-4c22-bd3a-5aa2d123aaa4",
+              "name": "Consumer added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roleId\": 4736,\n  \"roleName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463de380-702f-4f52-9787-6c081e99c45f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccbe0239-8d03-4165-91ba-7f037a8fa99b",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57d41055-580c-4d17-960e-194087ae5903",
+              "name": "Queue not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8450925-aa59-482e-aa48-dbe8429c757f",
+          "name": "Add or update a queue member",
+          "request": {
+            "name": "Add or update a queue member",
+            "description": {
+              "content": "Adds a user as a member of the specified queue or updates the existing membership configuration. Queue members are human users who can manage queue operations such as reviewing failed items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queues",
+                ":id",
+                "members",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the queue"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "userId",
+                  "description": "(Required) Unique numeric identifier of the user"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c433357-5f03-486c-bc07-c91c67e41a2b",
+              "name": "Queue member added or updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "members",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "userId",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": 8560,\n  \"role\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4122072-520b-4c98-9390-b0136f6015b7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "members",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "userId",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2a28560-208d-4a0d-864e-1500658891c2",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "members",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "userId",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a9f39bd-873f-4e67-ac2b-9028507299db",
+              "name": "Queue or user not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "members",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "userId",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "155d068c-88e8-4673-b956-5b9bdc5424ea",
+          "name": "Add a queue participant",
+          "request": {
+            "name": "Add a queue participant",
+            "description": {
+              "content": "Adds a participant to the specified queue. Participants can view queue status and work item data but have limited management permissions compared to queue owners or members.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queues",
+                ":id",
+                "participants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the queue"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "764955be-887c-4c33-9a22-7c25bd369516",
+              "name": "Participant added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae6a67cb-5faf-4682-9610-7cca4855fcfe",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c39b052-c53a-4162-8a92-3f01548654bf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "315f3633-0cb6-489f-930c-cafaf707a01c",
+              "name": "Queue not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "participants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e80589ab-2221-4269-b143-1ab18d30f60a",
+      "name": "WorkItemModels",
+      "description": {
+        "content": "Create and retrieve work item data models defining queue schema",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "edfa58d0-1c85-4112-98f2-097d284d6817",
+          "name": "Create a work item model",
+          "request": {
+            "name": "Create a work item model",
+            "description": {
+              "content": "Creates a new work item model that defines the data schema for work items in associated queues. A work item model specifies the attribute names and types that each work item must contain, enabling structured data processing by bots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workitemmodels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e07ac53d-ba78-43c2-ae42-33d9efd2601a",
+              "name": "Work item model created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 7425,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4517,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2698,\n  \"name\": \"string\",\n  \"attributes\": [\n    {\n      \"id\": 6896,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4213,\n      \"name\": \"string\",\n      \"type\": \"NUMBER\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": 2971,\n  \"createdOn\": \"1997-10-05T08:56:36.687Z\",\n  \"updatedBy\": 9799,\n  \"updatedOn\": \"1946-12-03T19:04:19.888Z\",\n  \"version\": 4104,\n  \"tenantId\": 3426,\n  \"tenantUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9aaad7b6-48e8-4965-ac8e-b3e6299e06b2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 7425,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4517,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c469bcd-2644-4324-a811-a13818917adf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 7425,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4517,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6bedd61-44ac-45e4-ae76-7ddb8e0982c9",
+          "name": "Get a work item model by ID",
+          "request": {
+            "name": "Get a work item model by ID",
+            "description": {
+              "content": "Retrieves a specific work item model by its numeric identifier, including the full list of attributes defining the model's data schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workitemmodels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the work item model"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae89b901-dc87-47fa-93d8-0c5190af482d",
+              "name": "Work item model details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the work item model"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2698,\n  \"name\": \"string\",\n  \"attributes\": [\n    {\n      \"id\": 6896,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4213,\n      \"name\": \"string\",\n      \"type\": \"NUMBER\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": 2971,\n  \"createdOn\": \"1997-10-05T08:56:36.687Z\",\n  \"updatedBy\": 9799,\n  \"updatedOn\": \"1946-12-03T19:04:19.888Z\",\n  \"version\": 4104,\n  \"tenantId\": 3426,\n  \"tenantUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e243374-8825-49c1-a1b9-a9e7a4f623b9",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the work item model"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9eacb2ae-3d53-4d21-8195-aa173094e854",
+              "name": "Work item model not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the work item model"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "23b4008b-4edf-414f-ba79-13e7ddc4bc58",
+      "name": "WorkItems",
+      "description": {
+        "content": "Add, update, and manage individual work items within queues",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f952f7c1-c9e4-475e-8fc5-e7c47454c652",
+          "name": "Update a work item",
+          "request": {
+            "name": "Update a work item",
+            "description": {
+              "content": "Updates the status, result, or JSON data payload of an existing work item in the queue. Used by bots and administrators to mark work items as complete, failed, or deferred, and to store processing results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queues",
+                ":id",
+                "workitems",
+                ":workItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the queue"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "workItemId",
+                  "description": "(Required) Unique numeric identifier of the work item"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"queueId\": \"<long>\",\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"result\": \"<string>\",\n  \"json\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef283c12-e3d8-43df-9d17-96e735120a3e",
+              "name": "Work item updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "workitems",
+                    ":workItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workItemId",
+                      "description": "(Required) Unique numeric identifier of the work item"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"queueId\": \"<long>\",\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"result\": \"<string>\",\n  \"json\": {\n    \"key_0\": 5741,\n    \"key_1\": 5298.696340713352\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4437,\n  \"queueId\": 5624,\n  \"json\": {\n    \"key_0\": false\n  },\n  \"status\": \"DEFERRED\",\n  \"result\": \"FAILURE\",\n  \"col1\": \"string\",\n  \"col2\": \"string\",\n  \"col3\": \"string\",\n  \"deviceId\": 8861,\n  \"deviceUserId\": 3637,\n  \"automationId\": \"string\",\n  \"startTime\": \"1977-12-06T06:32:22.235Z\",\n  \"endTime\": \"2022-01-09T06:35:51.434Z\",\n  \"comment\": \"string\",\n  \"error\": \"string\",\n  \"retryCount\": 8967,\n  \"deferredUntil\": \"2017-10-05T02:11:34.249Z\",\n  \"createdBy\": 502,\n  \"createdOn\": \"1999-08-04T11:51:10.321Z\",\n  \"version\": 2394\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f57d310-3b4c-436f-8449-3bcdff7db9ec",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "workitems",
+                    ":workItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workItemId",
+                      "description": "(Required) Unique numeric identifier of the work item"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"queueId\": \"<long>\",\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"result\": \"<string>\",\n  \"json\": {\n    \"key_0\": 5741,\n    \"key_1\": 5298.696340713352\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cbd16a0-20d7-4755-9c49-1ecbbc1a6119",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "workitems",
+                    ":workItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workItemId",
+                      "description": "(Required) Unique numeric identifier of the work item"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"queueId\": \"<long>\",\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"result\": \"<string>\",\n  \"json\": {\n    \"key_0\": 5741,\n    \"key_1\": 5298.696340713352\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23db0330-48de-4e73-ac86-23974985e30c",
+              "name": "Queue or work item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "workitems",
+                    ":workItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workItemId",
+                      "description": "(Required) Unique numeric identifier of the work item"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"queueId\": \"<long>\",\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"result\": \"<string>\",\n  \"json\": {\n    \"key_0\": 5741,\n    \"key_1\": 5298.696340713352\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a45b77ba-ddae-466e-a0a7-a6a4738ba677",
+          "name": "Create work items from a file",
+          "request": {
+            "name": "Create work items from a file",
+            "description": {
+              "content": "Bulk-creates work items in a queue by uploading a CSV or Excel file. Each row in the file becomes a work item mapped to the queue's work item model attributes. This is the recommended approach for high-volume data ingestion into RPA queues.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queues",
+                ":id",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the queue"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "CSV or Excel file containing work item data rows"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2788695c-ee24-477b-8bfa-035b115d617d",
+              "name": "Work items created successfully from file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV or Excel file containing work item data rows",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f64ba70f-cc07-4108-9c61-2d8464b90903",
+              "name": "Bad request or invalid file format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV or Excel file containing work item data rows",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cea33f49-f9ba-4d67-9617-92b219e4f85b",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV or Excel file containing work item data rows",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "423b9951-bb5a-4cd2-9ee4-de55892c5d57",
+              "name": "Queue not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queues",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the queue"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV or Excel file containing work item data rows",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/v4/wlm",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ede45a1c-7963-4d35-ae10-868af1c39974",
+    "name": "Automation Anywhere Workload Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere Workload Management API provides programmatic control over work item queues used to distribute high-volume automation workloads across multiple Bot Runner devices. Developers can create and manage work item models and queues, add or update individual work items, and retrieve queue status and processing results. This API enables enterprise systems such as ERP, CRM, and BPM platforms to feed structured data into RPA queues and track processing outcomes in real time. The v4 endpoints provide the most current capabilities including file-based work item creation, consumer and member management, and expiry configuration.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

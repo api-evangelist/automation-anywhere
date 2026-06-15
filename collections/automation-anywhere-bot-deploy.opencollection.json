@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere Bot Deploy API",
+    "version": "v4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deploy a bot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v4/automations/deploy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploys an automation bot from the public workspace to one or more Bot Runner devices. Supports unattended deployment (to devices linked to a specified user), attended deployment (to any device accessible to the user), and headless deployment (to On-Demand Bot Runner devices). Returns a deploymentId that can be used to monitor the execution status. Input variables can be passed at runtime via the botInput field."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

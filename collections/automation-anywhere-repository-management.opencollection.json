@@ -1,0 +1,372 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere Repository Management API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List files in the repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/file/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a paginated, filterable list of bots, folders, and files stored in the repository. Supports filtering by name, path, type, and modification date. Returns metadata for each file including ID, name, path, size, version, and permissions. Used to discover and locate bot files programmatically."
+        },
+        {
+          "info": {
+            "name": "Download file contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/repository/files/:fileid/content",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              }
+            ]
+          },
+          "docs": "Downloads the binary content of a specific file from the repository by its numeric file ID. Returns the file as a binary stream suitable for saving locally or processing programmatically. Requires view or download permission on the file."
+        },
+        {
+          "info": {
+            "name": "View file dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/repository/files/:fileid/dependencies",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of files that the specified bot depends on, including shared automation components, templates, and other bots referenced within the automation workflow. Useful for understanding the full dependency tree before exporting or migrating a bot."
+        },
+        {
+          "info": {
+            "name": "Update manual file dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/v2/repository/files/:fileid/dependencies/:workspaceId",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              },
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace identifier (PUBLIC or PRIVATE)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the manually specified dependency list for a bot file within a given workspace. Used when automatic dependency detection is insufficient and dependencies must be declared explicitly."
+        },
+        {
+          "info": {
+            "name": "Get file parent folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/repository/files/:fileid/parents",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              }
+            ]
+          },
+          "docs": "Retrieves the immediate parent folder(s) of the specified file in the repository hierarchy. Returns the folder path and ID needed to navigate the repository structure."
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/v2/repository/files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file to delete"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a file from the repository. The file must not have active automations running against it. Deleted files cannot be recovered from the API; use with caution."
+        },
+        {
+          "info": {
+            "name": "Update package versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/files/packagesVersionUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a bulk package version update across one or more bot files, updating the referenced package versions to the latest available in the Control Room. Used during platform upgrades to ensure bots reference current package versions."
+        },
+        {
+          "info": {
+            "name": "Assign production label to bot version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/files/version/assignLabel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns the production label to a specific version of a bot file, marking it as the designated production-ready version. This label is used by deployment processes to identify which version of a bot should be deployed in production environments."
+        },
+        {
+          "info": {
+            "name": "Recover bots from deleted user repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/recover",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Recovers bots from the private workspace of a deleted user and moves them to a specified folder in the public workspace. Used by administrators to preserve automation assets when user accounts are removed from the Control Room."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/folders/:folderid",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new folder at the specified location in the repository hierarchy. The parent folder ID is provided in the path. The new folder inherits permissions from its parent unless explicitly overridden."
+        },
+        {
+          "info": {
+            "name": "Update a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/v2/repository/folders/:folderid",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name or description of an existing folder in the repository. Folder paths are determined by their position in the hierarchy; renaming a folder updates the paths of all contained files."
+        },
+        {
+          "info": {
+            "name": "Delete a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/v2/repository/folders/:folderid",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a folder and all its contents from the repository. This operation is recursive and will delete all files and subfolders within. Deleted content cannot be recovered."
+        },
+        {
+          "info": {
+            "name": "List folder contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/folders/:folderid/list",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a paginated, filterable list of files and subfolders within the specified folder. Supports filtering by name, type, and other metadata attributes. Used to navigate the repository hierarchy and discover bot files within specific folders."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View role permissions for a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/repository/role/:roleid/folder/:folderid/permissions",
+            "params": [
+              {
+                "name": "roleid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              },
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ]
+          },
+          "docs": "Retrieves the repository permissions granted to a specific role on a specific folder. Returns the set of permitted actions such as view, clone, run, upload, download, and delete."
+        },
+        {
+          "info": {
+            "name": "Update role permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/v2/repository/role/:roleid/permissions",
+            "params": [
+              {
+                "name": "roleid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds or updates the repository folder permissions granted to a specific role. Permissions are specified as a list of folder-action pairs, enabling fine-grained access control over which operations a role can perform on each folder."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workspace files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/repository/workspaces/:workspaceType/files/list",
+            "params": [
+              {
+                "name": "workspaceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of workspace to list files from"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a filterable, paginated list of files and folders within a specific workspace type. The workspaceType path parameter selects between the public workspace (shared across all users) and the private workspace (user-specific). Used for workspace-scoped discovery and management operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

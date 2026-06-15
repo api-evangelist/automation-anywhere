@@ -1,0 +1,267 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere Control Room API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and generate JWT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/authentication",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a Control Room user using username and password or username and API key, and returns a JSON Web Token (JWT) for use in subsequent API calls. The token is valid for 20 minutes by default and must be included in the X-Authorization or Authorization header of all subsequent requests."
+        },
+        {
+          "info": {
+            "name": "Validate a JWT token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v1/authentication/token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token to validate (deprecated; use X-Authorization header instead)"
+              }
+            ]
+          },
+          "docs": "Verifies whether the provided JWT token is currently valid. Returns a boolean indicating validity. The token can be passed via the X-Authorization header or as a query parameter (deprecated)."
+        },
+        {
+          "info": {
+            "name": "Logout and invalidate JWT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v1/authentication/logout"
+          },
+          "docs": "Immediately invalidates the current JWT token, logging the user out of the Control Room API session. After calling this endpoint, the token can no longer be used for authenticated requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user in the Control Room with the specified username, email, roles, and other attributes. The caller must have the AAE_Admin or user management permissions to invoke this endpoint."
+        },
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/users/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a paginated, filterable list of Control Room users. Supports filtering by username, email, role, and other attributes. The response includes user metadata and assigned roles."
+        },
+        {
+          "info": {
+            "name": "Get user by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific Control Room user, including their roles, permissions, license assignments, and account status."
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Control Room user's attributes including email, roles, license type, and enabled/disabled status. Replaces the full user record with the provided values."
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Control Room user account. This action cannot be undone. All automations associated with the user's private workspace may need to be recovered separately using the repository recovery API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new role in the Control Room with the specified name, description, and set of permissions. Roles are used to grant users access to specific features, folders, and API operations."
+        },
+        {
+          "info": {
+            "name": "List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/roles/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a paginated, filterable list of Control Room roles. Supports filtering by name and other attributes. Returns role metadata including permissions and member counts."
+        },
+        {
+          "info": {
+            "name": "Get role by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific role, including its name, description, permissions, and the list of users assigned to it."
+        },
+        {
+          "info": {
+            "name": "Update a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing role's name, description, and permission set. Changes apply immediately to all users assigned to the role."
+        },
+        {
+          "info": {
+            "name": "Delete a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/v2/usermanagement/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Control Room role. Users assigned only to this role will lose associated permissions. System roles (AAE_Admin, AAE_Basic) cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3164 @@
+{
+  "item": [
+    {
+      "id": "0965779c-05b9-40ce-830b-59206eeb9c7f",
+      "name": "Authentication",
+      "description": {
+        "content": "Generate, refresh, validate, and revoke JWT tokens for API access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c83a3a58-d230-4313-99a9-e2a35acdb2a9",
+          "name": "Authenticate and generate JWT",
+          "request": {
+            "name": "Authenticate and generate JWT",
+            "description": {
+              "content": "Authenticates a Control Room user using username and password or username and API key, and returns a JSON Web Token (JWT) for use in subsequent API calls. The token is valid for 20 minutes by default and must be included in the X-Authorization or Authorization header of all subsequent requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "authentication"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"multipleLogin\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "980f624e-5678-4e90-8d80-5b8467c7ddfb",
+              "name": "Authentication successful, JWT returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"multipleLogin\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"user\": {\n    \"id\": 4510,\n    \"username\": \"string\",\n    \"email\": \"ZZLV1@weCn.ckw\",\n    \"roles\": [\n      {\n        \"id\": 4090,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 4951,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0568418d-4496-4e2f-a061-8dbadb594e27",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"multipleLogin\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28fee7cb-d93a-41ae-be4e-f30c9329df98",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"apiKey\": \"<string>\",\n  \"multipleLogin\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "136eca14-7360-4bdb-80a5-522ff55b12ec",
+          "name": "Validate a JWT token",
+          "request": {
+            "name": "Validate a JWT token",
+            "description": {
+              "content": "Verifies whether the provided JWT token is currently valid. Returns a boolean indicating validity. The token can be passed via the X-Authorization header or as a query parameter (deprecated).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "authentication",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "JWT token to validate (deprecated; use X-Authorization header instead)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b6e0a30-f360-42cd-9dd5-c3acf81850bd",
+              "name": "Token validation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "authentication",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b29460e-8810-442f-9edb-be7713833971",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "authentication",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f27e94d0-cdaf-4cea-aad3-b228588b7e0f",
+          "name": "Logout and invalidate JWT",
+          "request": {
+            "name": "Logout and invalidate JWT",
+            "description": {
+              "content": "Immediately invalidates the current JWT token, logging the user out of the Control Room API session. After calling this endpoint, the token can no longer be used for authenticated requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "authentication",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d964d847-3a1a-4a23-b2c9-1f2a794a4645",
+              "name": "Logout successful, token invalidated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "authentication",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e19b4db-5309-4d28-a1fd-f74f1890d210",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "authentication",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4873f1ea-c792-4411-a394-687e5e823f8c",
+      "name": "Roles",
+      "description": {
+        "content": "Create, list, retrieve, update, and delete user roles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c64d7b34-204a-45c1-99e3-def7d0824ab0",
+          "name": "Create a role",
+          "request": {
+            "name": "Create a role",
+            "description": {
+              "content": "Creates a new role in the Control Room with the specified name, description, and set of permissions. Roles are used to grant users access to specific features, folders, and API operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": \"<long>\",\n      \"action\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"resourceId\": \"<long>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"action\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"resourceId\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a91b1a6-01ba-4c81-be42-76e283777481",
+              "name": "Role created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 3089,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 735\n    },\n    {\n      \"id\": 1191,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2492\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7823,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"permissions\": [\n    {\n      \"id\": 8719,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 6999\n    },\n    {\n      \"id\": 3791,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3119\n    }\n  ],\n  \"createdBy\": 6103,\n  \"createdOn\": \"1948-08-27T01:08:04.688Z\",\n  \"updatedBy\": 2890,\n  \"updatedOn\": \"1994-03-21T10:20:53.077Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "944a2f4d-1dd6-4d61-8cf7-0f9018fc5f74",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 3089,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 735\n    },\n    {\n      \"id\": 1191,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2492\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f61a36c-eab3-4bfb-bfef-5d4401cbb87b",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 3089,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 735\n    },\n    {\n      \"id\": 1191,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2492\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46468f53-839f-4c00-a8b9-33dad25b3feb",
+          "name": "List roles",
+          "request": {
+            "name": "List roles",
+            "description": {
+              "content": "Retrieves a paginated, filterable list of Control Room roles. Supports filtering by name and other attributes. Returns role metadata including permissions and member counts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "roles",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"operator\": \"<string>\",\n    \"operands\": [\n      {\n        \"field\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": \"<integer>\",\n    \"length\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4e5acf5-d211-45d5-b8dd-5d966a53d255",
+              "name": "List of roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"operator\": \"le\",\n    \"operands\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"asc\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 9114,\n    \"length\": 692\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": 7309,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"permissions\": [\n        {\n          \"id\": 6173,\n          \"action\": \"string\",\n          \"resourceType\": \"string\",\n          \"resourceId\": 4866\n        },\n        {\n          \"id\": 6097,\n          \"action\": \"string\",\n          \"resourceType\": \"string\",\n          \"resourceId\": 3207\n        }\n      ],\n      \"createdBy\": 8777,\n      \"createdOn\": \"1955-10-03T00:47:38.606Z\",\n      \"updatedBy\": 9412,\n      \"updatedOn\": \"2011-07-19T20:11:38.001Z\"\n    },\n    {\n      \"id\": 8157,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"permissions\": [\n        {\n          \"id\": 1267,\n          \"action\": \"string\",\n          \"resourceType\": \"string\",\n          \"resourceId\": 4385\n        },\n        {\n          \"id\": 3577,\n          \"action\": \"string\",\n          \"resourceType\": \"string\",\n          \"resourceId\": 407\n        }\n      ],\n      \"createdBy\": 4934,\n      \"createdOn\": \"1969-10-15T22:26:53.524Z\",\n      \"updatedBy\": 2715,\n      \"updatedOn\": \"1979-10-12T17:31:22.657Z\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 399,\n    \"total\": 3524,\n    \"totalFilter\": 1066\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0470dc63-1bb3-4dd3-91fe-093553d8e238",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"operator\": \"le\",\n    \"operands\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"asc\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 9114,\n    \"length\": 692\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6e3eefb-d6d5-46a0-873d-159e7cab1e2a",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"operator\": \"le\",\n    \"operands\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"asc\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 9114,\n    \"length\": 692\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1651de3c-26d9-4165-83a5-ae7a55512978",
+          "name": "Get role by ID",
+          "request": {
+            "name": "Get role by ID",
+            "description": {
+              "content": "Retrieves detailed information about a specific role, including its name, description, permissions, and the list of users assigned to it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "roles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the role"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ab8ce57-202b-4dfa-94ad-0e005aca5210",
+              "name": "Role details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7823,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"permissions\": [\n    {\n      \"id\": 8719,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 6999\n    },\n    {\n      \"id\": 3791,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3119\n    }\n  ],\n  \"createdBy\": 6103,\n  \"createdOn\": \"1948-08-27T01:08:04.688Z\",\n  \"updatedBy\": 2890,\n  \"updatedOn\": \"1994-03-21T10:20:53.077Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b789b508-7b70-4185-8bb2-912badae86cc",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b26b2b8d-18e1-4261-a42a-5f2a7819d9ec",
+              "name": "Role not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff978bfc-c397-4391-b198-04fb3a6cb8e4",
+          "name": "Update a role",
+          "request": {
+            "name": "Update a role",
+            "description": {
+              "content": "Updates an existing role's name, description, and permission set. Changes apply immediately to all users assigned to the role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "roles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the role"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": \"<long>\",\n      \"action\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"resourceId\": \"<long>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"action\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"resourceId\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1392cff-437c-44a3-91e5-f0038ff8fba6",
+              "name": "Role updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 5726,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3371\n    },\n    {\n      \"id\": 543,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2569\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7823,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"permissions\": [\n    {\n      \"id\": 8719,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 6999\n    },\n    {\n      \"id\": 3791,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3119\n    }\n  ],\n  \"createdBy\": 6103,\n  \"createdOn\": \"1948-08-27T01:08:04.688Z\",\n  \"updatedBy\": 2890,\n  \"updatedOn\": \"1994-03-21T10:20:53.077Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92e8ccde-34dd-4505-98b6-0fe73deb440e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 5726,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3371\n    },\n    {\n      \"id\": 543,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2569\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b38a895-3182-44ca-ace8-6ea1749814da",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 5726,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3371\n    },\n    {\n      \"id\": 543,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2569\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78f5d5c2-6f66-4c55-b906-de8548c6877e",
+              "name": "Role not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"id\": 5726,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 3371\n    },\n    {\n      \"id\": 543,\n      \"action\": \"string\",\n      \"resourceType\": \"string\",\n      \"resourceId\": 2569\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bd4b8d4-10b2-4de4-9727-c0b82cbf35f5",
+          "name": "Delete a role",
+          "request": {
+            "name": "Delete a role",
+            "description": {
+              "content": "Permanently deletes a Control Room role. Users assigned only to this role will lose associated permissions. System roles (AAE_Admin, AAE_Basic) cannot be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "roles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the role"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86dd2796-af2c-45f4-96ea-45d899426a2e",
+              "name": "Role deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b2ae3e6-3e1b-4aa9-9bd8-aef361200859",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7937b184-b207-47b9-a25a-1bd14e4e24f7",
+              "name": "Role not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "roles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "006024c2-30f0-4d07-a7e4-ca2fe9b583e5",
+      "name": "Users",
+      "description": {
+        "content": "Create, list, retrieve, update, and delete Control Room users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37dd6c90-09da-4d7f-b1a7-154e86145f5b",
+          "name": "Create a user",
+          "request": {
+            "name": "Create a user",
+            "description": {
+              "content": "Creates a new user in the Control Room with the specified username, email, roles, and other attributes. The caller must have the AAE_Admin or user management permissions to invoke this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bcd30e8b-40e0-424e-ab70-c797e1423d28",
+              "name": "User created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 2794,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 2524,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2288,\n  \"username\": \"string\",\n  \"email\": \"2jf2AlDPjOxOE@oYcHtyiqnoRBfsRjceeLnP.mbt\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"roles\": [\n    {\n      \"id\": 3985,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 6008,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enabled\": false,\n  \"createdBy\": 7206,\n  \"createdOn\": \"1950-09-29T15:12:26.554Z\",\n  \"updatedBy\": 6093,\n  \"updatedOn\": \"1950-09-22T20:46:21.649Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fb691ec-36a9-4168-b6cb-f51c27f482ca",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 2794,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 2524,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b166f873-04b4-451b-a93b-3748ed519aad",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 2794,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 2524,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d2b4ebb-f7ba-4a41-bc83-6c3e5362da37",
+          "name": "List users",
+          "request": {
+            "name": "List users",
+            "description": {
+              "content": "Retrieves a paginated, filterable list of Control Room users. Supports filtering by username, email, role, and other attributes. The response includes user metadata and assigned roles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "users",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"operator\": \"<string>\",\n    \"operands\": [\n      {\n        \"field\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": \"<integer>\",\n    \"length\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d4015d5-f1fa-43aa-958a-33564d91bbd1",
+              "name": "List of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"operator\": \"le\",\n    \"operands\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"asc\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 9114,\n    \"length\": 692\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": 588,\n      \"username\": \"string\",\n      \"email\": \"nbBEkigH@yikgXdAOBkbTjZbRIO.hxz\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"roles\": [\n        {\n          \"id\": 1995,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 4456,\n          \"name\": \"string\"\n        }\n      ],\n      \"licenseFeatures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"enabled\": true,\n      \"createdBy\": 9320,\n      \"createdOn\": \"1967-01-21T04:02:06.783Z\",\n      \"updatedBy\": 4285,\n      \"updatedOn\": \"2021-12-30T09:17:06.380Z\"\n    },\n    {\n      \"id\": 8619,\n      \"username\": \"string\",\n      \"email\": \"t-BVl1obxP@JaQCl.qy\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"roles\": [\n        {\n          \"id\": 8042,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 3949,\n          \"name\": \"string\"\n        }\n      ],\n      \"licenseFeatures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"enabled\": true,\n      \"createdBy\": 7891,\n      \"createdOn\": \"2009-05-15T14:44:39.110Z\",\n      \"updatedBy\": 1121,\n      \"updatedOn\": \"2002-05-04T19:59:35.733Z\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 7844,\n    \"total\": 9561,\n    \"totalFilter\": 4526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21e9755f-a78e-4dcc-9216-07e8d40af0fc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"operator\": \"le\",\n    \"operands\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"asc\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 9114,\n    \"length\": 692\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ea84484-df13-4c46-a967-ae84353e27f3",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"operator\": \"le\",\n    \"operands\": [\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"asc\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 9114,\n    \"length\": 692\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29c15f13-af42-482b-b706-55c6af5fcd19",
+          "name": "Get user by ID",
+          "request": {
+            "name": "Get user by ID",
+            "description": {
+              "content": "Retrieves detailed information about a specific Control Room user, including their roles, permissions, license assignments, and account status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "users",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uid",
+                  "description": "(Required) Unique numeric identifier of the user"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7bc1aab-4203-4c22-a793-87c30782f044",
+              "name": "User details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2288,\n  \"username\": \"string\",\n  \"email\": \"2jf2AlDPjOxOE@oYcHtyiqnoRBfsRjceeLnP.mbt\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"roles\": [\n    {\n      \"id\": 3985,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 6008,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enabled\": false,\n  \"createdBy\": 7206,\n  \"createdOn\": \"1950-09-29T15:12:26.554Z\",\n  \"updatedBy\": 6093,\n  \"updatedOn\": \"1950-09-22T20:46:21.649Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63bef40a-67f7-453b-88b9-50c3226657dc",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2eaec966-ebae-44a9-b679-f078789e4dc1",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a678fadb-5bbf-48bb-a0c5-5c9710299f50",
+          "name": "Update a user",
+          "request": {
+            "name": "Update a user",
+            "description": {
+              "content": "Updates an existing Control Room user's attributes including email, roles, license type, and enabled/disabled status. Replaces the full user record with the provided values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "users",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uid",
+                  "description": "(Required) Unique numeric identifier of the user"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfe021fd-e5f0-4ac5-862e-cb7319e53960",
+              "name": "User updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 5301,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8953,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2288,\n  \"username\": \"string\",\n  \"email\": \"2jf2AlDPjOxOE@oYcHtyiqnoRBfsRjceeLnP.mbt\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"roles\": [\n    {\n      \"id\": 3985,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 6008,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enabled\": false,\n  \"createdBy\": 7206,\n  \"createdOn\": \"1950-09-29T15:12:26.554Z\",\n  \"updatedBy\": 6093,\n  \"updatedOn\": \"1950-09-22T20:46:21.649Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66a6ff82-292a-4fa7-b27a-eae5e27f1b29",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 5301,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8953,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5234cb1f-134f-4367-a424-073ceeed02d5",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 5301,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8953,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c20dbde5-926e-48bf-ba01-de511f72d8a0",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"roles\": [\n    {\n      \"id\": 5301,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8953,\n      \"name\": \"string\"\n    }\n  ],\n  \"licenseFeatures\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfc2360e-02e9-4343-a696-727bf3481698",
+          "name": "Delete a user",
+          "request": {
+            "name": "Delete a user",
+            "description": {
+              "content": "Permanently deletes a Control Room user account. This action cannot be undone. All automations associated with the user's private workspace may need to be recovered separately using the repository recovery API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "usermanagement",
+                "users",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uid",
+                  "description": "(Required) Unique numeric identifier of the user"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be4f2225-781b-46a2-9987-7787f6389cb2",
+              "name": "User deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3aa451c-d73b-4811-b6d8-043f651414fb",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "171189d7-7748-4940-8457-bfb074ae24c5",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "usermanagement",
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "uid",
+                      "description": "(Required) Unique numeric identifier of the user"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4b40e463-3b6c-4c34-89ef-c3060cb09a71",
+    "name": "Automation Anywhere Control Room API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere Control Room API is a comprehensive set of RESTful APIs that enable programmatic management and administration of the Automation 360 RPA platform. It provides endpoints across multiple versioned groups covering authentication, user management, role management, credential vault, repository management, device pools, licensing, policy management, and scheduled automations. Developers can use these APIs to integrate Control Room operations into external applications, CI/CD pipelines, and enterprise systems. All requests require JWT-based authentication obtained through the Authentication API.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

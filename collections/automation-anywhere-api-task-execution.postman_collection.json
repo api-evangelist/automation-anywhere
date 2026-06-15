@@ -1,0 +1,582 @@
+{
+  "item": [
+    {
+      "id": "46aaf06f-5b7e-4d76-99ff-76b44e7e02af",
+      "name": "AccessDetails",
+      "description": {
+        "content": "Generate execution URLs and authorization tokens for API Tasks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "448262c3-b5d6-417f-adce-7f1389fb3e86",
+          "name": "Generate API Task execution URL and token",
+          "request": {
+            "name": "Generate API Task execution URL and token",
+            "description": {
+              "content": "Generates a unique execution URL and short-lived authorization token for one or more API Tasks identified by their repository paths. The returned URL is used to invoke the API Task directly without going through the standard Control Room authentication flow. Both the URL and token are time-limited and should be refreshed periodically (recommended every 5 minutes) to prevent authorization failures during long-running integrations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "accessdetails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"botRepositoryPath\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80d205dd-0356-4c0c-a7ed-95b0fc8cdbe4",
+              "name": "Execution URLs and tokens generated for each requested API Task",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "accessdetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botRepositoryPath\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accessDetails\": {\n    \"key_0\": {\n      \"url\": \"https://sssyWUddUiSxTf.icbmxgnPJ+XmMr0m8ntmkZtgKH\",\n      \"headers\": {\n        \"X-Authorization\": \"string\"\n      }\n    }\n  },\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77679c89-2fc9-4436-bde8-c157f70e0603",
+              "name": "Bad request or invalid repository path",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "accessdetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botRepositoryPath\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cd95875-1eb5-4718-b4e4-5bc5b3a1b52a",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "accessdetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botRepositoryPath\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58aa058f-ce75-438b-b922-e9b517dab99e",
+              "name": "API Task not found or not allocated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "accessdetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botRepositoryPath\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c7a4c902-5d0c-4837-a8b0-fec3dd61c70a",
+      "name": "Allocations",
+      "description": {
+        "content": "List and manage API Task allocations within the Control Room",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "905f94db-500b-4fd4-a92d-9cc61ebc6d02",
+          "name": "List API Task allocations",
+          "request": {
+            "name": "List API Task allocations",
+            "description": {
+              "content": "Returns a paginated list of all API Tasks that have been allocated (registered) for real-time execution within the Control Room. Administrators must allocate an API Task before developers can generate execution URLs for it. Use this endpoint to verify that a specific API Task is available before requesting access details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": {\n    \"offset\": 0,\n    \"length\": 100\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da5367e1-b9c8-4734-938c-10cd422d3c1c",
+              "name": "Paginated list of API Task allocations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"offset\": 0,\n    \"length\": 100\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"fileId\": 2652,\n      \"filePath\": \"string\",\n      \"fileName\": \"string\",\n      \"runAsUserOrNone\": 2371,\n      \"concurrencyLimit\": 9640\n    },\n    {\n      \"fileId\": 5871,\n      \"filePath\": \"string\",\n      \"fileName\": \"string\",\n      \"runAsUserOrNone\": 4840,\n      \"concurrencyLimit\": 5834\n    }\n  ],\n  \"page\": {\n    \"offset\": 6978,\n    \"total\": 9577,\n    \"totalFilter\": 5977\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00b2676c-78b4-493c-9336-332d065fdc5d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"offset\": 0,\n    \"length\": 100\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4756608f-dee8-4786-86cf-f0eb79a5282d",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"offset\": 0,\n    \"length\": 100\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/orchestrator/v1/hotbot",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41d64465-43b9-41e3-bd44-01b67f3c850c",
+    "name": "Automation Anywhere API Task Execution API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

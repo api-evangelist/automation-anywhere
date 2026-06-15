@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere Bot Insight API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BotRunData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get bot run data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/botinsight/data/api/getbotrundata/:startIndex/:startDate",
+            "params": [
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "path",
+                "description": "Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path",
+                "description": "Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieves bot execution run records for a specific date or date range. Each record contains details about a single bot run including user, device, start/end times, status, and performance metrics. Results are paginated at 1000 records per request. Dates must be in ISO 8601 format and the date range cannot exceed 60 days."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "TaskData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get task metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/botinsight/data/api/gettaskmetadata/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata for a specific bot task including its configured KPI variables, data types, and analytics dimensions. The task name must match the Analytics display name configured in the Bot Insight dashboard for the task."
+        },
+        {
+          "info": {
+            "name": "Get task variable profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/botinsight/data/api/gettaskvariableprofile/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of the date range in ISO 8601 format (YYYY-MM-DD)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of the date range in ISO 8601 format (YYYY-MM-DD). Must not be more than 60 days after the from date."
+              }
+            ]
+          },
+          "docs": "Retrieves the variable profile (analytics KPI data) for a specific bot task within a given date range. Returns aggregated values for each KPI variable tracked during bot execution. Dates are provided as query parameters in ISO 8601 format."
+        },
+        {
+          "info": {
+            "name": "Get task log data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/botinsight/data/api/gettasklogdata/:taskName/:startIndex/:startDate",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+              },
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "path",
+                "description": "Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path",
+                "description": "Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed execution log data for a specific bot task, including per-run KPI variable values. Results are paginated at 1000 records per request starting from the given index. Used to extract raw bot analytics data for integration with external BI tools and data warehouses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AuditData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get audit trail data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/v2/botinsight/data/api/getaudittraildata/:startIndex/:startDate",
+            "params": [
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "path",
+                "description": "Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path",
+                "description": "Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieves Control Room audit trail records capturing administrative and operational events such as user logins, bot deployments, role changes, and configuration updates. Results are paginated at 1000 records per request. Requires Bot Insight Admin or AAE_Admin role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

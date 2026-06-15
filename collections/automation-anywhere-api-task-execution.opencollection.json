@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allocations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Task allocations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a paginated list of all API Tasks that have been allocated (registered) for real-time execution within the Control Room. Administrators must allocate an API Task before developers can generate execution URLs for it. Use this endpoint to verify that a specific API Task is available before requesting access details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AccessDetails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate API Task execution URL and token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/config/accessdetails",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a unique execution URL and short-lived authorization token for one or more API Tasks identified by their repository paths. The returned URL is used to invoke the API Task directly without going through the standard Control Room authentication flow. Both the URL and token are time-limited and should be refreshed periodically (recommended every 5 minutes) to prevent authorization failures during long-running integrations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

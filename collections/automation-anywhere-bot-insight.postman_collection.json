@@ -1,0 +1,1418 @@
+{
+  "item": [
+    {
+      "id": "0d5b6718-112e-4ef0-a36c-edd0a112ccae",
+      "name": "AuditData",
+      "description": {
+        "content": "Retrieve Control Room audit trail data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0954e559-b3d2-42e9-b00d-0d50ed39b74e",
+          "name": "Get audit trail data",
+          "request": {
+            "name": "Get audit trail data",
+            "description": {
+              "content": "Retrieves Control Room audit trail records capturing administrative and operational events such as user logins, bot deployments, role changes, and configuration updates. Results are paginated at 1000 records per request. Requires Bot Insight Admin or AAE_Admin role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getaudittraildata",
+                ":startIndex",
+                ":startDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "startIndex",
+                  "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4356829-0d31-41a4-88b0-f58980a0b175",
+              "name": "Audit trail records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getaudittraildata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRecords\": 4628,\n  \"auditData\": [\n    {\n      \"id\": 3689,\n      \"activityType\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"2014-12-16T11:16:59.589Z\",\n      \"detail\": \"string\",\n      \"environmentName\": \"string\",\n      \"eventDescription\": \"string\",\n      \"hostName\": \"string\",\n      \"objectName\": \"string\",\n      \"requestId\": \"string\",\n      \"source\": \"string\",\n      \"status\": \"string\",\n      \"userName\": \"string\"\n    },\n    {\n      \"id\": 6228,\n      \"activityType\": \"string\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1973-05-07T02:20:39.955Z\",\n      \"detail\": \"string\",\n      \"environmentName\": \"string\",\n      \"eventDescription\": \"string\",\n      \"hostName\": \"string\",\n      \"objectName\": \"string\",\n      \"requestId\": \"string\",\n      \"source\": \"string\",\n      \"status\": \"string\",\n      \"userName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6493fad7-580a-43fe-960c-d285d9ca8ae4",
+              "name": "Bad request or invalid date format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getaudittraildata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33787f38-a28a-4e82-84a1-cf22287c2583",
+              "name": "Authentication required or insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getaudittraildata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c0854842-9661-44ea-8845-03510d250df6",
+      "name": "BotRunData",
+      "description": {
+        "content": "Retrieve bot execution run data and performance metrics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "969edcd5-2ff4-4b9b-88ff-66edf0d914a9",
+          "name": "Get bot run data",
+          "request": {
+            "name": "Get bot run data",
+            "description": {
+              "content": "Retrieves bot execution run records for a specific date or date range. Each record contains details about a single bot run including user, device, start/end times, status, and performance metrics. Results are paginated at 1000 records per request. Dates must be in ISO 8601 format and the date range cannot exceed 60 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getbotrundata",
+                ":startIndex",
+                ":startDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "startIndex",
+                  "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71c494ed-752a-408d-ad0c-7ed97f6eafb9",
+              "name": "Bot run data records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getbotrundata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRecords\": 9164,\n  \"botRunDataList\": [\n    {\n      \"id\": 159,\n      \"userName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"oXw@DYevuiqmMjanL.niou\",\n      \"hostName\": \"string\",\n      \"iPAddress\": \"string\",\n      \"fileName\": \"string\",\n      \"startTime\": \"1977-10-15T17:14:55.293Z\",\n      \"endTime\": \"2003-04-12T21:02:44.762Z\",\n      \"status\": \"COMPLETED\",\n      \"totalLines\": 9764,\n      \"timeTaken\": 9159,\n      \"successIndicator\": false\n    },\n    {\n      \"id\": 3306,\n      \"userName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"hiUtGhdI282Y9@Jq.we\",\n      \"hostName\": \"string\",\n      \"iPAddress\": \"string\",\n      \"fileName\": \"string\",\n      \"startTime\": \"1964-02-08T09:54:58.444Z\",\n      \"endTime\": \"2000-04-28T10:59:54.044Z\",\n      \"status\": \"IN_PROGRESS\",\n      \"totalLines\": 2569,\n      \"timeTaken\": 6681,\n      \"successIndicator\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf6afdb6-e39d-4790-ba1b-5c0fd0f97b75",
+              "name": "Bad request or invalid date format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getbotrundata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87cac1cd-88b8-4d56-a16c-31e7434f2a4b",
+              "name": "Authentication required or insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getbotrundata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d2f7d6b7-f38f-4497-ba43-802d4c7e98e8",
+      "name": "TaskData",
+      "description": {
+        "content": "Retrieve task metadata, variable profiles, and task-level logs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b93b17e-131f-4df6-af98-1ea7d98661dd",
+          "name": "Get task metadata",
+          "request": {
+            "name": "Get task metadata",
+            "description": {
+              "content": "Retrieves metadata for a specific bot task including its configured KPI variables, data types, and analytics dimensions. The task name must match the Analytics display name configured in the Bot Insight dashboard for the task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gettaskmetadata",
+                ":taskName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskName",
+                  "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "120eb9e0-47cc-43a8-b3eb-c7ada68160e3",
+              "name": "Task metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskmetadata",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskName\": \"string\",\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"displayName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e62e3324-fa42-45fa-ba91-fa589f55c5dc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskmetadata",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a350743-b160-4367-9216-2bc1ad4b14d1",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskmetadata",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c23df303-f204-4bb3-8e2b-bc9ed7a11826",
+              "name": "Task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskmetadata",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "050c4185-89eb-4d0d-8a7b-b47cc7270bc9",
+          "name": "Get task variable profile",
+          "request": {
+            "name": "Get task variable profile",
+            "description": {
+              "content": "Retrieves the variable profile (analytics KPI data) for a specific bot task within a given date range. Returns aggregated values for each KPI variable tracked during bot execution. Dates are provided as query parameters in ISO 8601 format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gettaskvariableprofile",
+                ":taskName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Start of the date range in ISO 8601 format (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "End of the date range in ISO 8601 format (YYYY-MM-DD). Must not be more than 60 days after the from date."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskName",
+                  "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f62d869-417e-441e-a35f-0895aa22de76",
+              "name": "Task variable profile data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskvariableprofile",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskName\": \"string\",\n  \"from\": \"2001-02-07\",\n  \"to\": \"1957-08-04\",\n  \"profiles\": [\n    {\n      \"variableName\": \"string\",\n      \"totalValue\": \"string\",\n      \"runCount\": 2144\n    },\n    {\n      \"variableName\": \"string\",\n      \"totalValue\": \"string\",\n      \"runCount\": 2012\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2752ca02-ac94-4952-8472-2e799a6db44b",
+              "name": "Bad request or invalid date range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskvariableprofile",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "195e6a19-c021-41e1-8910-4c3579702e49",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettaskvariableprofile",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f64a3049-4750-4d85-a8a9-466e67b3585e",
+          "name": "Get task log data",
+          "request": {
+            "name": "Get task log data",
+            "description": {
+              "content": "Retrieves detailed execution log data for a specific bot task, including per-run KPI variable values. Results are paginated at 1000 records per request starting from the given index. Used to extract raw bot analytics data for integration with external BI tools and data warehouses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gettasklogdata",
+                ":taskName",
+                ":startIndex",
+                ":startDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskName",
+                  "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "startIndex",
+                  "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9049534-bcd8-4835-a03c-8773d43b4b61",
+              "name": "Task log data records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettasklogdata",
+                    ":taskName",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRecords\": 9599,\n  \"logData\": [\n    {\n      \"id\": 572,\n      \"taskName\": \"string\",\n      \"runDate\": \"2007-11-03T07:24:50.377Z\",\n      \"variables\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": 3482,\n      \"taskName\": \"string\",\n      \"runDate\": \"1960-12-11T14:52:10.027Z\",\n      \"variables\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91ca15bc-ec53-466f-a718-84ca567cd963",
+              "name": "Bad request or invalid date format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettasklogdata",
+                    ":taskName",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76a21f2c-12aa-415c-ae3a-86949b9ff341",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gettasklogdata",
+                    ":taskName",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., \"Analytics_ATM Reconciliation\")"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/v2/botinsight/data/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b4cdf68-0a4b-4cc8-9233-27eb9aaa4421",
+    "name": "Automation Anywhere Bot Insight API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere Bot Insight API exposes real-time business process analytics and operational intelligence data collected during bot execution. It allows developers to retrieve KPIs, bot run histories, task metadata, task variable profiles, and audit trail data from the Control Room programmatically. Results are paginated in sets of 1000 records and can be filtered by date ranges in ISO 8601 format. This API is commonly used to feed bot performance data into external dashboards, BI tools such as Tableau, and data warehouses for enterprise reporting. Access requires the AAE_Bot Insight Admin or AAE_Admin role.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

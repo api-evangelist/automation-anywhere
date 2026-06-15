@@ -1,0 +1,4336 @@
+{
+  "item": [
+    {
+      "id": "6ff17f4e-c21d-452e-ab9f-77e53a4a916b",
+      "name": "Files",
+      "description": {
+        "content": "Manage individual bot files and their dependencies in the repository",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f86673bd-9ea3-4cf3-aa53-3bd74f56cf2b",
+          "name": "List files in the repository",
+          "request": {
+            "name": "List files in the repository",
+            "description": {
+              "content": "Retrieves a paginated, filterable list of bots, folders, and files stored in the repository. Supports filtering by name, path, type, and modification date. Returns metadata for each file including ID, name, path, size, version, and permissions. Used to discover and locate bot files programmatically.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": \"<integer>\",\n    \"length\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "627d780b-3fa6-406e-babb-4407b14ba4ce",
+              "name": "Paginated list of files and folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": 9802,\n      \"parentId\": 7304,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 2038,\n      \"version\": 9523,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"1974-04-20T16:45:44.675Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"2026-04-21T00:56:31.346Z\",\n      \"workspaceType\": \"PUBLIC\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": false,\n        \"clone\": true\n      }\n    },\n    {\n      \"id\": 9715,\n      \"parentId\": 2676,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 8428,\n      \"version\": 402,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"2013-11-07T14:26:57.525Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1947-08-02T21:56:01.137Z\",\n      \"workspaceType\": \"PRIVATE\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": true,\n        \"clone\": true\n      }\n    }\n  ],\n  \"page\": {\n    \"offset\": 6450,\n    \"total\": 6701,\n    \"totalFilter\": 2984\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55eacbf2-8290-4d1f-b8d1-e66134d3731a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "363a67db-1564-4bd0-8ab3-1a3f8923c7e9",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "237eeecc-4c7b-4afc-9283-c3bf95d83147",
+          "name": "Download file contents",
+          "request": {
+            "name": "Download file contents",
+            "description": {
+              "content": "Downloads the binary content of a specific file from the repository by its numeric file ID. Returns the file as a binary stream suitable for saving locally or processing programmatically. Requires view or download permission on the file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileid",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "fileid",
+                  "description": "(Required) Unique numeric identifier of the file"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8de2f4f7-1c80-4707-b62a-a899209e2d56",
+              "name": "File binary content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66c7e2ef-0b61-4e57-b1a0-b8a4f1d1fb6a",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68989919-4399-431c-afbb-a3f87d45842f",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44f1058e-612e-4cce-8fb6-84ab3996a019",
+          "name": "View file dependencies",
+          "request": {
+            "name": "View file dependencies",
+            "description": {
+              "content": "Retrieves the list of files that the specified bot depends on, including shared automation components, templates, and other bots referenced within the automation workflow. Useful for understanding the full dependency tree before exporting or migrating a bot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileid",
+                "dependencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "fileid",
+                  "description": "(Required) Unique numeric identifier of the file"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15727dae-a05b-4355-870d-1a3c8ca4e99e",
+              "name": "List of file dependencies",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependencies\": [\n    {\n      \"id\": 9065,\n      \"parentId\": 9855,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"FILE\",\n      \"size\": 9169,\n      \"version\": 7413,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"1980-09-14T13:48:16.958Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1959-11-15T04:22:51.535Z\",\n      \"workspaceType\": \"PRIVATE\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": true,\n        \"upload\": false,\n        \"run\": false,\n        \"view\": true,\n        \"clone\": true\n      }\n    },\n    {\n      \"id\": 6883,\n      \"parentId\": 4219,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"FOLDER\",\n      \"size\": 8437,\n      \"version\": 5572,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"2017-10-25T17:44:46.408Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1956-01-10T08:15:56.100Z\",\n      \"workspaceType\": \"PUBLIC\",\n      \"permission\": {\n        \"delete\": true,\n        \"download\": true,\n        \"upload\": true,\n        \"run\": true,\n        \"view\": true,\n        \"clone\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "528b38d5-b7e7-40dd-b7a4-bea29d3b2d64",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06a3b908-a668-4583-9c2f-9dfa9ab3c0b0",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a08e0b29-e18a-4f12-a844-508ab0cb6650",
+          "name": "Update manual file dependencies",
+          "request": {
+            "name": "Update manual file dependencies",
+            "description": {
+              "content": "Updates the manually specified dependency list for a bot file within a given workspace. Used when automatic dependency detection is insufficient and dependencies must be declared explicitly.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileid",
+                "dependencies",
+                ":workspaceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "fileid",
+                  "description": "(Required) Unique numeric identifier of the file"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspaceId",
+                  "description": "(Required) Workspace identifier (PUBLIC or PRIVATE)"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dependencies\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dccd1d82-867d-47a8-95c3-2c81cb9290a1",
+              "name": "Dependencies updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies",
+                    ":workspaceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceId",
+                      "description": "(Required) Workspace identifier (PUBLIC or PRIVATE)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dependencies\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c0aeb2f-4175-475c-8fba-3290107ae773",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies",
+                    ":workspaceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceId",
+                      "description": "(Required) Workspace identifier (PUBLIC or PRIVATE)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dependencies\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "188fcd7d-7d85-4f51-81a9-477dd59b2ce7",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies",
+                    ":workspaceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceId",
+                      "description": "(Required) Workspace identifier (PUBLIC or PRIVATE)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dependencies\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e0d5a96-5dce-4c2a-96f3-852d889b8997",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "dependencies",
+                    ":workspaceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceId",
+                      "description": "(Required) Workspace identifier (PUBLIC or PRIVATE)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dependencies\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b9fc3f0-0614-499c-8539-8f05a24b1c06",
+          "name": "Get file parent folders",
+          "request": {
+            "name": "Get file parent folders",
+            "description": {
+              "content": "Retrieves the immediate parent folder(s) of the specified file in the repository hierarchy. Returns the folder path and ID needed to navigate the repository structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":fileid",
+                "parents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "fileid",
+                  "description": "(Required) Unique numeric identifier of the file"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d7af585-39a0-45bb-9307-9e8cf4eee653",
+              "name": "Parent folder information for the file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "parents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"parents\": [\n    {\n      \"id\": 1009,\n      \"parentId\": 4514,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 6379,\n      \"version\": 2641,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"1956-05-02T01:10:58.620Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1988-08-21T04:54:46.069Z\",\n      \"workspaceType\": \"PUBLIC\",\n      \"permission\": {\n        \"delete\": true,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": true,\n        \"view\": true,\n        \"clone\": true\n      }\n    },\n    {\n      \"id\": 8950,\n      \"parentId\": 1965,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"FOLDER\",\n      \"size\": 2204,\n      \"version\": 3028,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"1964-10-25T05:12:56.193Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"2000-08-11T01:15:39.685Z\",\n      \"workspaceType\": \"PRIVATE\",\n      \"permission\": {\n        \"delete\": true,\n        \"download\": true,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": false,\n        \"clone\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18614f48-125b-4f8b-99f6-9bb49fbf41bc",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "parents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd13ce93-386e-42b2-8402-5b2fd8b601d6",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":fileid",
+                    "parents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "fileid",
+                      "description": "(Required) Unique numeric identifier of the file"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "399c39b7-0012-4965-9d4b-ba972a629a8e",
+          "name": "Delete a file",
+          "request": {
+            "name": "Delete a file",
+            "description": {
+              "content": "Permanently deletes a file from the repository. The file must not have active automations running against it. Deleted files cannot be recovered from the API; use with caution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the file to delete"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21a3ca6b-f97d-4883-8c91-ce97970f93ce",
+              "name": "File deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the file to delete"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "177588e7-5a78-4f32-b3ff-af0c8fa14290",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the file to delete"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb8eef2c-597f-4bfc-96f0-6d3820fc3acd",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the file to delete"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92704281-6793-4b2c-80ae-4ec89b8148bc",
+          "name": "Update package versions",
+          "request": {
+            "name": "Update package versions",
+            "description": {
+              "content": "Executes a bulk package version update across one or more bot files, updating the referenced package versions to the latest available in the Control Room. Used during platform upgrades to ensure bots reference current package versions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                "packagesVersionUpdate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fileIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"packageName\": \"<string>\",\n  \"targetVersion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "039688a1-4ff7-43a6-86b3-b2817f2fa5ed",
+              "name": "Package version update initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "packagesVersionUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"packageName\": \"<string>\",\n  \"targetVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8af37342-6c89-4941-b5a6-d64c010106eb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "packagesVersionUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"packageName\": \"<string>\",\n  \"targetVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4be89d4-ca2b-4150-929e-ed526ca3448b",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "packagesVersionUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"packageName\": \"<string>\",\n  \"targetVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "786a0c26-acfa-478b-9ecd-c3d9edd7deda",
+          "name": "Assign production label to bot version",
+          "request": {
+            "name": "Assign production label to bot version",
+            "description": {
+              "content": "Assigns the production label to a specific version of a bot file, marking it as the designated production-ready version. This label is used by deployment processes to identify which version of a bot should be deployed in production environments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                "version",
+                "assignLabel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fileId\": \"<long>\",\n  \"version\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "350abff7-ef51-4cef-a24f-1110df140046",
+              "name": "Production label assigned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "version",
+                    "assignLabel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"<long>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b08e79e-5a5e-4d0f-9903-37a3cc278501",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "version",
+                    "assignLabel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"<long>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a582df0a-cceb-40cd-b2f5-900e8b168bc2",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "version",
+                    "assignLabel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"<long>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4386065-1cd0-48ec-a7e2-958784cf891c",
+              "name": "File or version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "version",
+                    "assignLabel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"<long>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa234d88-7d05-4f03-a346-526d8c22b235",
+          "name": "Recover bots from deleted user repository",
+          "request": {
+            "name": "Recover bots from deleted user repository",
+            "description": {
+              "content": "Recovers bots from the private workspace of a deleted user and moves them to a specified folder in the public workspace. Used by administrators to preserve automation assets when user accounts are removed from the Control Room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<long>\",\n  \"targetFolderId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ce2f880-7e6e-41da-ac23-7e4daf9bed18",
+              "name": "Bots recovered successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\",\n  \"targetFolderId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6dc65d43-f396-45c2-9f5e-82c9f06246ac",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\",\n  \"targetFolderId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3afda4a0-5a22-4071-901a-d659bfdf9643",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<long>\",\n  \"targetFolderId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6f92fe44-b74e-4eea-a41b-540e8c403bba",
+      "name": "Folders",
+      "description": {
+        "content": "Create, update, list, and delete folders in the repository",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c424a6de-5a8e-4a08-aa51-0aa95ab86ab8",
+          "name": "Create a folder",
+          "request": {
+            "name": "Create a folder",
+            "description": {
+              "content": "Creates a new folder at the specified location in the repository hierarchy. The parent folder ID is provided in the path. The new folder inherits permissions from its parent unless explicitly overridden.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                ":folderid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderid",
+                  "description": "(Required) Unique numeric identifier of the folder"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "854f81ce-07ae-481b-a03e-0bb92f78c705",
+              "name": "Folder created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8120,\n  \"parentId\": 7292,\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"type\": \"FILE\",\n  \"size\": 4729,\n  \"version\": 1299,\n  \"lastModifiedBy\": \"string\",\n  \"lastModifiedOn\": \"1971-03-06T13:31:58.332Z\",\n  \"createdBy\": \"string\",\n  \"createdOn\": \"1961-10-25T07:18:55.985Z\",\n  \"workspaceType\": \"PRIVATE\",\n  \"permission\": {\n    \"delete\": false,\n    \"download\": false,\n    \"upload\": true,\n    \"run\": true,\n    \"view\": true,\n    \"clone\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9be0713c-a33e-4492-9a19-9b1ad2405a81",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb8a7988-bc9a-4b23-8c7d-b9029f80ad32",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efbc6ca0-5973-4066-94b8-ff3bdcff3743",
+          "name": "Update a folder",
+          "request": {
+            "name": "Update a folder",
+            "description": {
+              "content": "Updates the name or description of an existing folder in the repository. Folder paths are determined by their position in the hierarchy; renaming a folder updates the paths of all contained files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                ":folderid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderid",
+                  "description": "(Required) Unique numeric identifier of the folder"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a81491f-73c5-480d-ba74-a37b682ef471",
+              "name": "Folder updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8120,\n  \"parentId\": 7292,\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"type\": \"FILE\",\n  \"size\": 4729,\n  \"version\": 1299,\n  \"lastModifiedBy\": \"string\",\n  \"lastModifiedOn\": \"1971-03-06T13:31:58.332Z\",\n  \"createdBy\": \"string\",\n  \"createdOn\": \"1961-10-25T07:18:55.985Z\",\n  \"workspaceType\": \"PRIVATE\",\n  \"permission\": {\n    \"delete\": false,\n    \"download\": false,\n    \"upload\": true,\n    \"run\": true,\n    \"view\": true,\n    \"clone\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d78411ec-6ef3-42ca-9118-b241e25d7ee2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7f5f755-19e9-416e-bea4-efc5557dbf49",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4fce56f-d281-42dd-a459-25af10b33b20",
+              "name": "Folder not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c70d9113-066e-46a5-96d0-a9ede2fc034d",
+          "name": "Delete a folder",
+          "request": {
+            "name": "Delete a folder",
+            "description": {
+              "content": "Permanently deletes a folder and all its contents from the repository. This operation is recursive and will delete all files and subfolders within. Deleted content cannot be recovered.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                ":folderid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderid",
+                  "description": "(Required) Unique numeric identifier of the folder"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd8162aa-c114-450a-a68f-251a8f51fe16",
+              "name": "Folder deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "575c6cb6-3b5a-45b5-a1d2-784b646c682d",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fffb96cb-31fc-4054-bcc1-823e22390adf",
+              "name": "Folder not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d380b34-1d21-4f97-85c6-10f4ae8684a8",
+          "name": "List folder contents",
+          "request": {
+            "name": "List folder contents",
+            "description": {
+              "content": "Returns a paginated, filterable list of files and subfolders within the specified folder. Supports filtering by name, type, and other metadata attributes. Used to navigate the repository hierarchy and discover bot files within specific folders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                ":folderid",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderid",
+                  "description": "(Required) Unique numeric identifier of the folder"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": \"<integer>\",\n    \"length\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ef4d7cf-a808-49ad-af66-c20725042030",
+              "name": "List of files and subfolders in the folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": 9802,\n      \"parentId\": 7304,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 2038,\n      \"version\": 9523,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"1974-04-20T16:45:44.675Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"2026-04-21T00:56:31.346Z\",\n      \"workspaceType\": \"PUBLIC\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": false,\n        \"clone\": true\n      }\n    },\n    {\n      \"id\": 9715,\n      \"parentId\": 2676,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 8428,\n      \"version\": 402,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"2013-11-07T14:26:57.525Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1947-08-02T21:56:01.137Z\",\n      \"workspaceType\": \"PRIVATE\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": true,\n        \"clone\": true\n      }\n    }\n  ],\n  \"page\": {\n    \"offset\": 6450,\n    \"total\": 6701,\n    \"totalFilter\": 2984\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cf86bcb-44f5-4401-a38b-3e7438bc1b0b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da70928f-24ea-4f44-bdb6-4dab8ea61d90",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcb66fd1-d804-497b-902e-2dfe6685a5f3",
+              "name": "Folder not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":folderid",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "03554da3-251b-4fcd-a50d-f9cf506b576e",
+      "name": "Permissions",
+      "description": {
+        "content": "Manage role-based permissions on repository folders",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b2de35d-9da3-49c0-a9ed-dbc98e025cea",
+          "name": "View role permissions for a folder",
+          "request": {
+            "name": "View role permissions for a folder",
+            "description": {
+              "content": "Retrieves the repository permissions granted to a specific role on a specific folder. Returns the set of permitted actions such as view, clone, run, upload, download, and delete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "role",
+                ":roleid",
+                "folder",
+                ":folderid",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "roleid",
+                  "description": "(Required) Unique numeric identifier of the role"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "folderid",
+                  "description": "(Required) Unique numeric identifier of the folder"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "578eca5b-7b22-41e1-8434-841b63968da1",
+              "name": "Role permissions for the specified folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "folder",
+                    ":folderid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"folderId\": 6096,\n  \"permissions\": [\n    \"run\",\n    \"download\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0d9c822-95a6-4461-bde5-303fec83d675",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "folder",
+                    ":folderid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bde978f0-d14a-43b9-8e6d-f99230aba905",
+              "name": "Role or folder not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "folder",
+                    ":folderid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "folderid",
+                      "description": "(Required) Unique numeric identifier of the folder"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c5c861d-7cea-4c43-afda-9b80060275c9",
+          "name": "Update role permissions",
+          "request": {
+            "name": "Update role permissions",
+            "description": {
+              "content": "Adds or updates the repository folder permissions granted to a specific role. Permissions are specified as a list of folder-action pairs, enabling fine-grained access control over which operations a role can perform on each folder.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "role",
+                ":roleid",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "roleid",
+                  "description": "(Required) Unique numeric identifier of the role"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"folderPermissions\": [\n    {\n      \"folderId\": \"<long>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"folderId\": \"<long>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47ec0363-f6ab-42ee-9d0f-6cc28af8a95c",
+              "name": "Role permissions updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderPermissions\": [\n    {\n      \"folderId\": 2117,\n      \"permissions\": [\n        \"delete\",\n        \"run\"\n      ]\n    },\n    {\n      \"folderId\": 4388,\n      \"permissions\": [\n        \"delete\",\n        \"clone\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33c63a17-b4cb-4d64-8a56-4be565f7a18b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderPermissions\": [\n    {\n      \"folderId\": 2117,\n      \"permissions\": [\n        \"delete\",\n        \"run\"\n      ]\n    },\n    {\n      \"folderId\": 4388,\n      \"permissions\": [\n        \"delete\",\n        \"clone\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9951344-5b80-4353-8144-b29de9b55eb7",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderPermissions\": [\n    {\n      \"folderId\": 2117,\n      \"permissions\": [\n        \"delete\",\n        \"run\"\n      ]\n    },\n    {\n      \"folderId\": 4388,\n      \"permissions\": [\n        \"delete\",\n        \"clone\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86ddd170-da4d-4f0a-b0f2-553c95304665",
+              "name": "Role not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "role",
+                    ":roleid",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "roleid",
+                      "description": "(Required) Unique numeric identifier of the role"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderPermissions\": [\n    {\n      \"folderId\": 2117,\n      \"permissions\": [\n        \"delete\",\n        \"run\"\n      ]\n    },\n    {\n      \"folderId\": 4388,\n      \"permissions\": [\n        \"delete\",\n        \"clone\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "31f378c0-fb8f-4c20-86ff-03355b33de35",
+      "name": "Workspaces",
+      "description": {
+        "content": "List and manage content across public and private workspaces",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ea90e93-f2a7-40c5-a7b9-6883d8930fb3",
+          "name": "List workspace files",
+          "request": {
+            "name": "List workspace files",
+            "description": {
+              "content": "Returns a filterable, paginated list of files and folders within a specific workspace type. The workspaceType path parameter selects between the public workspace (shared across all users) and the private workspace (user-specific). Used for workspace-scoped discovery and management operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workspaces",
+                ":workspaceType",
+                "files",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspaceType",
+                  "description": "(Required) Type of workspace to list files from"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": \"<integer>\",\n    \"length\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9af954d-19ca-401b-b336-153fec92798c",
+              "name": "List of files in the specified workspace",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspaceType",
+                    "files",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceType",
+                      "description": "(Required) Type of workspace to list files from"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": 9802,\n      \"parentId\": 7304,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 2038,\n      \"version\": 9523,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"1974-04-20T16:45:44.675Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"2026-04-21T00:56:31.346Z\",\n      \"workspaceType\": \"PUBLIC\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": false,\n        \"clone\": true\n      }\n    },\n    {\n      \"id\": 9715,\n      \"parentId\": 2676,\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"type\": \"BOT\",\n      \"size\": 8428,\n      \"version\": 402,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedOn\": \"2013-11-07T14:26:57.525Z\",\n      \"createdBy\": \"string\",\n      \"createdOn\": \"1947-08-02T21:56:01.137Z\",\n      \"workspaceType\": \"PRIVATE\",\n      \"permission\": {\n        \"delete\": false,\n        \"download\": false,\n        \"upload\": true,\n        \"run\": false,\n        \"view\": true,\n        \"clone\": true\n      }\n    }\n  ],\n  \"page\": {\n    \"offset\": 6450,\n    \"total\": 6701,\n    \"totalFilter\": 2984\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b72b3d-1e65-4ac1-88da-aa9c858418bd",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspaceType",
+                    "files",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceType",
+                      "description": "(Required) Type of workspace to list files from"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97563480-1358-44f5-9832-fcd10eed1e5c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspaces",
+                    ":workspaceType",
+                    "files",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspaceType",
+                      "description": "(Required) Type of workspace to list files from"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": \"<object>\",\n  \"sort\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"page\": {\n    \"offset\": 372,\n    \"length\": 4081\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/v2/repository",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e9afa8e-f126-455b-8345-46cfa3896553",
+    "name": "Automation Anywhere Repository Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere Repository Management API provides programmatic access to the Control Room's bot and file repository. It allows developers and administrators to list, search, upload, and manage bots, folders, and dependent files stored in both the public and private workspaces. This API supports bot lifecycle management use cases including automated promotion of bots between environments, bulk file operations, and integration with source control systems. It is commonly used alongside the BLM (Bot Lifecycle Management) API for exporting and importing bots with all their dependencies. Repository permissions are managed at the folder level through roles.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}
