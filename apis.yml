@@ -9,7 +9,7 @@ apis:
       - Enterprise
       - REST
       - RPA
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -32,7 +32,7 @@ apis:
       - Enterprise
       - Orchestration
       - RPA
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
     properties:
@@ -55,7 +55,7 @@ apis:
       - RPA
       - Work Items
       - Workload Management
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
     properties:
@@ -79,7 +79,7 @@ apis:
       - Business Intelligence
       - Reporting
       - RPA
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: >-
       https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
@@ -102,7 +102,7 @@ apis:
       - Bot Execution
       - Integration
       - RPA
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
     properties:
@@ -123,7 +123,7 @@ apis:
       - RPA
       - Secrets Management
       - Security
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
     properties:
@@ -145,7 +145,7 @@ apis:
       - Extensions
       - Java
       - SDK
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
@@ -166,7 +166,7 @@ apis:
       - File Management
       - Repository
       - RPA
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://automationanywhere-be-prod.automationanywhere.com
     humanURL: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
     properties:
