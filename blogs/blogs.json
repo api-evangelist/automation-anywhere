@@ -3,16 +3,12 @@
   "feeds": [
     {
       "source": "https://www.automationanywhere.com/blog",
-      "feed_url": "https://www.automationanywhere.com/blog",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://support.automationanywhere.com",
-      "error": "URLError"
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 2,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 3,
+  "fetched": "2026-06-27T12:26:19Z",
+  "agent_pulled": "2026-06-27"
 }
