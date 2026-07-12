@@ -1,0 +1,39 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/automation-anywhere-api-task-execution-openapi.yml, openapi/automation-anywhere-bot-deploy-openapi.yml,
+  openapi/automation-anywhere-bot-insight-openapi.yml, openapi/automation-anywhere-control-room-openapi.yml,
+  openapi/automation-anywhere-credential-vault-openapi.yml, openapi/automation-anywhere-repository-management-openapi.yml,
+  openapi/automation-anywhere-workload-management-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT token obtained from the Authentication API
+  sources:
+  - openapi/automation-anywhere-api-task-execution-openapi.yml
+  - openapi/automation-anywhere-bot-deploy-openapi.yml
+  - openapi/automation-anywhere-bot-insight-openapi.yml
+  - openapi/automation-anywhere-control-room-openapi.yml
+  - openapi/automation-anywhere-credential-vault-openapi.yml
+  - openapi/automation-anywhere-repository-management-openapi.yml
+  - openapi/automation-anywhere-workload-management-openapi.yml
+- name: xAuthorization
+  type: apiKey
+  in: header
+  parameter: X-Authorization
+  description: JWT token obtained from the Authentication API
+  sources:
+  - openapi/automation-anywhere-api-task-execution-openapi.yml
+  - openapi/automation-anywhere-bot-deploy-openapi.yml
+  - openapi/automation-anywhere-bot-insight-openapi.yml
+  - openapi/automation-anywhere-control-room-openapi.yml
+  - openapi/automation-anywhere-credential-vault-openapi.yml
+  - openapi/automation-anywhere-repository-management-openapi.yml
+  - openapi/automation-anywhere-workload-management-openapi.yml
