@@ -183,6 +183,8 @@ apis:
       cases including automated promotion of bots between environments, bulk file operations, and integration with
       source control systems.
 common:
+  - type: AgenticAccess
+    url: agentic-access/automation-anywhere-agentic-access.yml
   - type: DomainSecurity
     url: security/automation-anywhere-domain-security.yml
   - type: Authentication
