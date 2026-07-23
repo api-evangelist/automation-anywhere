@@ -1,0 +1,342 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails Folders API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: Folders
+  description: Create, update, list, and delete folders in the repository
+paths:
+  /folders/{folderid}:
+    post:
+      operationId: createFolder
+      summary: Create a folder
+      description: Creates a new folder at the specified location in the repository hierarchy. The parent folder ID is provided in the path. The new folder inherits permissions from its parent unless explicitly overridden.
+      tags:
+      - Folders
+      parameters:
+      - $ref: '#/components/parameters/FolderIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderRequest'
+      responses:
+        '200':
+          description: Folder created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryObject'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateFolder
+      summary: Update a folder
+      description: Updates the name or description of an existing folder in the repository. Folder paths are determined by their position in the hierarchy; renaming a folder updates the paths of all contained files.
+      tags:
+      - Folders
+      parameters:
+      - $ref: '#/components/parameters/FolderIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderRequest'
+      responses:
+        '200':
+          description: Folder updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryObject'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteFolder
+      summary: Delete a folder
+      description: Permanently deletes a folder and all its contents from the repository. This operation is recursive and will delete all files and subfolders within. Deleted content cannot be recovered.
+      tags:
+      - Folders
+      parameters:
+      - $ref: '#/components/parameters/FolderIdParam'
+      responses:
+        '200':
+          description: Folder deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /folders/{folderid}/list:
+    post:
+      operationId: listFolderContents
+      summary: List folder contents
+      description: Returns a paginated, filterable list of files and subfolders within the specified folder. Supports filtering by name, type, and other metadata attributes. Used to navigate the repository hierarchy and discover bot files within specific folders.
+      tags:
+      - Folders
+      parameters:
+      - $ref: '#/components/parameters/FolderIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: List of files and subfolders in the folder
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ObjectPermission:
+      type: object
+      description: Actions the current user can perform on a repository object
+      properties:
+        delete:
+          type: boolean
+          description: Whether the user can delete this object
+        download:
+          type: boolean
+          description: Whether the user can download this object
+        upload:
+          type: boolean
+          description: Whether the user can upload to this location
+        run:
+          type: boolean
+          description: Whether the user can run this bot
+        view:
+          type: boolean
+          description: Whether the user can view this object
+        clone:
+          type: boolean
+          description: Whether the user can clone (copy) this object
+    PageInfo:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Starting index of returned results
+        total:
+          type: integer
+          description: Total number of matching records
+        totalFilter:
+          type: integer
+          description: Total records after filters applied
+    RepositoryObject:
+      type: object
+      description: A file or folder in the Control Room repository
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique numeric identifier of the repository object
+        parentId:
+          type: integer
+          format: int64
+          description: ID of the parent folder containing this object
+        name:
+          type: string
+          description: Display name of the file or folder
+        path:
+          type: string
+          description: Full repository path from the workspace root
+        type:
+          type: string
+          description: Type of repository object
+          enum:
+          - FILE
+          - FOLDER
+          - BOT
+        size:
+          type: integer
+          format: int64
+          description: File size in bytes (0 for folders)
+        version:
+          type: integer
+          description: Version number of the file (for versioned bot files)
+        lastModifiedBy:
+          type: string
+          description: Username of the user who last modified this object
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last modification
+        createdBy:
+          type: string
+          description: Username of the user who created this object
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the object was created
+        workspaceType:
+          type: string
+          description: Workspace containing this object
+          enum:
+          - PUBLIC
+          - PRIVATE
+        permission:
+          $ref: '#/components/schemas/ObjectPermission'
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    FileListResponse:
+      type: object
+      description: Paginated list of repository objects
+      properties:
+        list:
+          type: array
+          description: Array of repository object records
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    FilterRequest:
+      type: object
+      description: Generic filter and pagination request for list endpoints
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                - asc
+                - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    FolderRequest:
+      type: object
+      description: Payload to create or update a folder
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the folder
+        description:
+          type: string
+          description: Optional description of the folder's purpose
+  parameters:
+    FolderIdParam:
+      name: folderid
+      in: path
+      required: true
+      description: Unique numeric identifier of the folder
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

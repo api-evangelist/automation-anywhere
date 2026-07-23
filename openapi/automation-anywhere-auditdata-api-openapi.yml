@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails AuditData API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: AuditData
+  description: Retrieve Control Room audit trail data
+paths:
+  /getaudittraildata/{startIndex}/{startDate}:
+    get:
+      operationId: getAuditTrailData
+      summary: Get audit trail data
+      description: Retrieves Control Room audit trail records capturing administrative and operational events such as user logins, bot deployments, role changes, and configuration updates. Results are paginated at 1000 records per request. Requires Bot Insight Admin or AAE_Admin role.
+      tags:
+      - AuditData
+      parameters:
+      - $ref: '#/components/parameters/StartIndexParam'
+      - $ref: '#/components/parameters/StartDateParam'
+      responses:
+        '200':
+          description: Audit trail records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditTrailResponse'
+        '400':
+          description: Bad request or invalid date format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required or insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    StartIndexParam:
+      name: startIndex
+      in: path
+      required: true
+      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+  schemas:
+    AuditRecord:
+      type: object
+      description: A single Control Room audit trail event record
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the audit record
+        activityType:
+          type: string
+          description: Category of the audit activity (e.g., USER_LOGIN, BOT_DEPLOY)
+        createdBy:
+          type: string
+          description: Username of the user who triggered the audited event
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the audited event
+        detail:
+          type: string
+          description: Detailed description of the audited action
+        environmentName:
+          type: string
+          description: Name of the Control Room environment
+        eventDescription:
+          type: string
+          description: Human-readable description of the event
+        hostName:
+          type: string
+          description: Hostname of the system where the event occurred
+        objectName:
+          type: string
+          description: Name of the resource object affected by the event
+        requestId:
+          type: string
+          description: Unique request identifier for tracing
+        source:
+          type: string
+          description: Source system or interface that triggered the event
+        status:
+          type: string
+          description: Outcome status of the audited action
+        userName:
+          type: string
+          description: Username associated with the event
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    AuditTrailResponse:
+      type: object
+      description: Paginated audit trail records from the Control Room
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of audit records available from the start date
+        auditData:
+          type: array
+          description: List of audit trail records
+          items:
+            $ref: '#/components/schemas/AuditRecord'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

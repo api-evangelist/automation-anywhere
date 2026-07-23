@@ -1,0 +1,268 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails WorkItems API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: WorkItems
+  description: Add, update, and manage individual work items within queues
+paths:
+  /queues/{id}/workitems/{workItemId}:
+    put:
+      operationId: updateWorkItem
+      summary: Update a work item
+      description: Updates the status, result, or JSON data payload of an existing work item in the queue. Used by bots and administrators to mark work items as complete, failed, or deferred, and to store processing results.
+      tags:
+      - WorkItems
+      parameters:
+      - $ref: '#/components/parameters/QueueIdParam'
+      - $ref: '#/components/parameters/WorkItemIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkItemRequest'
+      responses:
+        '200':
+          description: Work item updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkItem'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Queue or work item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /queues/{id}/file:
+    post:
+      operationId: createWorkItemsFromFile
+      summary: Create work items from a file
+      description: Bulk-creates work items in a queue by uploading a CSV or Excel file. Each row in the file becomes a work item mapped to the queue's work item model attributes. This is the recommended approach for high-volume data ingestion into RPA queues.
+      tags:
+      - WorkItems
+      parameters:
+      - $ref: '#/components/parameters/QueueIdParam'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: CSV or Excel file containing work item data rows
+      responses:
+        '200':
+          description: Work items created successfully from file
+        '400':
+          description: Bad request or invalid file format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Queue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    UpdateWorkItemRequest:
+      type: object
+      description: Payload to update a work item's status, result, or data
+      required:
+      - id
+      - queueId
+      - version
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the work item to update
+        queueId:
+          type: integer
+          format: int64
+          description: ID of the queue containing the work item
+        version:
+          type: integer
+          description: Current optimistic locking version number (must match server value)
+        status:
+          type: string
+          description: New processing status for the work item
+          enum:
+          - IN_PROGRESS
+          - FAILED
+          - COMPLETE
+          - DEFERRED
+        result:
+          type: string
+          description: Processing result to record on the work item
+          enum:
+          - SUCCESS
+          - FAILURE
+        json:
+          type: object
+          description: Updated data payload for the work item
+          additionalProperties: true
+    WorkItem:
+      type: object
+      description: A single unit of work in a queue, representing one data record to be processed by a bot
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the work item
+        queueId:
+          type: integer
+          format: int64
+          description: ID of the queue this work item belongs to
+        json:
+          type: object
+          description: Key-value map of the work item's data payload matching the queue's work item model attributes
+          additionalProperties: true
+        status:
+          type: string
+          description: Current processing status of the work item
+          enum:
+          - NEW
+          - IN_PROGRESS
+          - FAILED
+          - COMPLETE
+          - DEFERRED
+        result:
+          type: string
+          description: Processing result set by the bot upon completion
+          enum:
+          - SUCCESS
+          - FAILURE
+        col1:
+          type: string
+          description: Display column 1 value extracted from the work item data
+        col2:
+          type: string
+          description: Display column 2 value extracted from the work item data
+        col3:
+          type: string
+          description: Display column 3 value extracted from the work item data
+        deviceId:
+          type: integer
+          format: int64
+          description: ID of the device that processed this work item
+        deviceUserId:
+          type: integer
+          format: int64
+          description: ID of the user account under which the work item was processed
+        automationId:
+          type: string
+          description: Deployment ID of the automation that processed this work item
+        startTime:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when processing began
+        endTime:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when processing completed
+        comment:
+          type: string
+          description: Optional comment added during processing
+        error:
+          type: string
+          description: Error message if the work item processing failed
+        retryCount:
+          type: integer
+          description: Number of times this work item has been retried
+        deferredUntil:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp until which this work item is deferred
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created this work item
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the work item was created
+        version:
+          type: integer
+          description: Optimistic locking version number
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  parameters:
+    QueueIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the queue
+      schema:
+        type: integer
+        format: int64
+    WorkItemIdParam:
+      name: workItemId
+      in: path
+      required: true
+      description: Unique numeric identifier of the work item
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

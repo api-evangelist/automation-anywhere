@@ -1,0 +1,281 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails AttributeValues API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: AttributeValues
+  description: Manage credential attribute values for individual credentials
+paths:
+  /credentials/{id}/attributevalues:
+    get:
+      operationId: listCredentialAttributeValues
+      summary: List credential attribute values
+      description: Retrieves all attribute values for a specific credential. Returns the current values of each attribute defined on the credential. The credentialAttributeId, userId, and encryptionKey query parameters can be used to filter the returned attribute values.
+      tags:
+      - AttributeValues
+      parameters:
+      - $ref: '#/components/parameters/CredentialIdParam'
+      - $ref: '#/components/parameters/CredentialAttributeIdParam'
+      - $ref: '#/components/parameters/UserIdQueryParam'
+      - $ref: '#/components/parameters/EncryptionKeyParam'
+      responses:
+        '200':
+          description: List of attribute values for the credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialAttributeValueList'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Credential not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createCredentialAttributeValues
+      summary: Create credential attribute values
+      description: Sets or creates new attribute values for a specific credential. Attribute values are the actual secret data (e.g., passwords) stored against credential attribute definitions. Values are encrypted at rest using the Credential Vault key pair.
+      tags:
+      - AttributeValues
+      parameters:
+      - $ref: '#/components/parameters/CredentialIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialAttributeValuePostList'
+      responses:
+        '200':
+          description: Attribute values created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialAttributeValueList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /credentials/{id}/attributevalues/{attributeValueId}:
+    put:
+      operationId: updateCredentialAttributeValue
+      summary: Update a credential attribute value
+      description: Updates the value of a specific attribute on a credential. Used to rotate passwords, API keys, or other secrets without changing the credential's structure. The new value is encrypted and stored securely.
+      tags:
+      - AttributeValues
+      parameters:
+      - $ref: '#/components/parameters/CredentialIdParam'
+      - $ref: '#/components/parameters/AttributeValueIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialAttributeValuePut'
+      responses:
+        '200':
+          description: Attribute value updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialAttributeValue'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Credential or attribute value not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteCredentialAttributeValue
+      summary: Delete a credential attribute value
+      description: Removes a specific attribute value from a credential. After deletion, the attribute definition remains but the stored value is permanently removed from the Credential Vault.
+      tags:
+      - AttributeValues
+      parameters:
+      - $ref: '#/components/parameters/CredentialIdParam'
+      - $ref: '#/components/parameters/AttributeValueIdParam'
+      responses:
+        '200':
+          description: Attribute value deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Credential or attribute value not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    CredentialAttributeValueList:
+      type: object
+      description: List of attribute values for a credential
+      properties:
+        list:
+          type: array
+          description: Array of credential attribute value records
+          items:
+            $ref: '#/components/schemas/CredentialAttributeValue'
+    CredentialAttributeValuePut:
+      type: object
+      description: Payload to update an existing credential attribute value
+      properties:
+        value:
+          type: string
+          description: New value for the credential attribute
+    CredentialAttributeValuePostList:
+      type: object
+      description: Payload to create or set multiple attribute values on a credential
+      properties:
+        attributeValues:
+          type: array
+          description: List of attribute values to create or set
+          items:
+            $ref: '#/components/schemas/CredentialAttributeValuePost'
+    CredentialAttributeValue:
+      type: object
+      description: The stored value for a credential attribute
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the attribute value
+        credentialId:
+          type: integer
+          format: int64
+          description: ID of the credential this value belongs to
+        credentialAttributeId:
+          type: integer
+          format: int64
+          description: ID of the credential attribute definition
+        userId:
+          type: integer
+          format: int64
+          description: User ID if this is a user-provided attribute value
+        value:
+          type: string
+          description: The encrypted attribute value
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    CredentialAttributeValuePost:
+      type: object
+      description: A single attribute value to create on a credential
+      properties:
+        credentialAttributeId:
+          type: integer
+          format: int64
+          description: ID of the credential attribute to set the value for
+        value:
+          type: string
+          description: Value to store for this attribute
+        userId:
+          type: integer
+          format: int64
+          description: User ID for user-provided attribute values
+  parameters:
+    CredentialAttributeIdParam:
+      name: credentialAttributeId
+      in: query
+      required: false
+      description: Filter attribute values by this credential attribute ID
+      schema:
+        type: integer
+        format: int64
+    UserIdQueryParam:
+      name: userId
+      in: query
+      required: false
+      description: Filter attribute values scoped to this user ID
+      schema:
+        type: integer
+        format: int64
+    CredentialIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the credential
+      schema:
+        type: integer
+        format: int64
+    EncryptionKeyParam:
+      name: encryptionKey
+      in: query
+      required: false
+      description: Encryption key identifier for decrypting attribute values
+      schema:
+        type: string
+    AttributeValueIdParam:
+      name: attributeValueId
+      in: path
+      required: true
+      description: Unique numeric identifier of the credential attribute value
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails BotRunData API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: BotRunData
+  description: Retrieve bot execution run data and performance metrics
+paths:
+  /getbotrundata/{startIndex}/{startDate}:
+    get:
+      operationId: getBotRunData
+      summary: Get bot run data
+      description: Retrieves bot execution run records for a specific date or date range. Each record contains details about a single bot run including user, device, start/end times, status, and performance metrics. Results are paginated at 1000 records per request. Dates must be in ISO 8601 format and the date range cannot exceed 60 days.
+      tags:
+      - BotRunData
+      parameters:
+      - $ref: '#/components/parameters/StartIndexParam'
+      - $ref: '#/components/parameters/StartDateParam'
+      responses:
+        '200':
+          description: Bot run data records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BotRunDataResponse'
+        '400':
+          description: Bad request or invalid date format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required or insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    StartIndexParam:
+      name: startIndex
+      in: path
+      required: true
+      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+  schemas:
+    BotRunRecord:
+      type: object
+      description: A single bot execution run record with performance and identity metadata
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the bot run record
+        userName:
+          type: string
+          description: Username of the Control Room user who ran the bot
+        firstName:
+          type: string
+          description: First name of the user who ran the bot
+        lastName:
+          type: string
+          description: Last name of the user who ran the bot
+        email:
+          type: string
+          format: email
+          description: Email address of the user who ran the bot
+        hostName:
+          type: string
+          description: Hostname of the Bot Runner device where the bot executed
+        iPAddress:
+          type: string
+          description: IP address of the Bot Runner device
+        fileName:
+          type: string
+          description: Name of the bot file that was executed
+        startTime:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the bot execution started
+        endTime:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the bot execution ended
+        status:
+          type: string
+          description: Final execution status of the bot run
+          enum:
+          - COMPLETED
+          - FAILED
+          - STOPPED
+          - IN_PROGRESS
+        totalLines:
+          type: integer
+          description: Total number of task lines executed during the run
+        timeTaken:
+          type: integer
+          description: Total execution time in milliseconds
+        successIndicator:
+          type: boolean
+          description: Whether the bot run completed successfully
+    BotRunDataResponse:
+      type: object
+      description: Paginated response containing bot run execution records
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of bot run records available from the start date
+        botRunDataList:
+          type: array
+          description: List of individual bot run records
+          items:
+            $ref: '#/components/schemas/BotRunRecord'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

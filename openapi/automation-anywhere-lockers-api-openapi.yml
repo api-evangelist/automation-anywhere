@@ -1,0 +1,494 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails Lockers API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: Lockers
+  description: Create, retrieve, update, and delete credential lockers
+paths:
+  /lockers:
+    post:
+      operationId: createLocker
+      summary: Create a locker
+      description: Creates a new Locker in the Credential Vault. A Locker is a permission-controlled container that groups credentials and controls which roles (consumers) can use the credentials within it during bot execution. Lockers are the primary access control mechanism for the Credential Vault.
+      tags:
+      - Lockers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockerPost'
+      responses:
+        '200':
+          description: Locker created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Locker'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lockers/list:
+    post:
+      operationId: listLockers
+      summary: Search lockers
+      description: Searches for Lockers that the authenticated user has access to. Returns paginated results with locker metadata. Supports filtering by name and other attributes.
+      tags:
+      - Lockers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: Filtered list of lockers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lockers/{id}:
+    get:
+      operationId: getLocker
+      summary: Get a locker by ID
+      description: Retrieves a specific Locker by its numeric ID, including its name, description, and configuration. Does not include the list of contained credentials; use the locker credentials endpoint for that.
+      tags:
+      - Lockers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      responses:
+        '200':
+          description: Locker details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Locker'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateLocker
+      summary: Update a locker
+      description: Updates an existing Locker's name and description. The caller must have Locker owner permissions to update its details.
+      tags:
+      - Lockers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockerPost'
+      responses:
+        '200':
+          description: Locker updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Locker'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteLocker
+      summary: Delete a locker
+      description: Permanently deletes a Locker. All credential associations within the Locker are removed. The credentials themselves are not deleted; they remain in the Credential Vault but lose Locker-based access.
+      tags:
+      - Lockers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      responses:
+        '200':
+          description: Locker deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lockers/{id}/credentials:
+    get:
+      operationId: listLockerCredentials
+      summary: Get locker credentials
+      description: Retrieves the list of credentials contained within a specific Locker. Returns credential metadata and the attributes available for bot consumption via the Locker's consumer roles.
+      tags:
+      - Lockers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      responses:
+        '200':
+          description: List of credentials in the locker
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerCredentialList'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lockers/{id}/credentials/{credentialId}:
+    put:
+      operationId: updateLockerCredential
+      summary: Update a credential in a locker
+      description: Updates the association or configuration of a credential within a Locker. Used to modify which credential attributes are exposed to consumer roles through this Locker.
+      tags:
+      - Lockers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      - $ref: '#/components/parameters/CredentialIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockerCredentialUpdate'
+      responses:
+        '200':
+          description: Locker credential updated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker or credential not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removeLockerCredential
+      summary: Remove a credential from a locker
+      description: Removes a credential from a Locker, revoking consumer role access to that credential through this Locker. The credential itself remains in the Credential Vault.
+      tags:
+      - Lockers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      - $ref: '#/components/parameters/CredentialIdParam'
+      responses:
+        '200':
+          description: Credential removed from locker successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker or credential not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Credential:
+      type: object
+      description: A credential stored in the Credential Vault with named attributes
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the credential
+        name:
+          type: string
+          description: Human-readable name of the credential
+        description:
+          type: string
+          description: Optional description of the credential's purpose
+        ownerId:
+          type: integer
+          format: int64
+          description: User ID of the credential owner
+        attributes:
+          type: array
+          description: List of attribute definitions associated with this credential
+          items:
+            $ref: '#/components/schemas/CredentialAttribute'
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created this credential
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the credential was created
+        updatedBy:
+          type: integer
+          format: int64
+          description: ID of the user who last modified this credential
+        updatedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last modification
+    Locker:
+      type: object
+      description: A permission-controlled container grouping credentials for bot access. Lockers define which roles (consumer roles) can access the contained credentials during automation execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the locker
+        name:
+          type: string
+          description: Human-readable name of the locker
+        description:
+          type: string
+          description: Optional description of the locker's purpose
+        ownerId:
+          type: integer
+          format: int64
+          description: User ID of the locker owner
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created this locker
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the locker was created
+        updatedBy:
+          type: integer
+          format: int64
+          description: ID of the user who last modified this locker
+        updatedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last modification
+    PageInfo:
+      type: object
+      description: Pagination metadata in list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records available
+        totalFilter:
+          type: integer
+          description: Total records after filter criteria applied
+    LockerPost:
+      type: object
+      description: Payload to create or update a locker
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the locker
+        description:
+          type: string
+          description: Description of the locker's purpose
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    CredentialAttribute:
+      type: object
+      description: An attribute definition associated with a credential
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the attribute
+        name:
+          type: string
+          description: Attribute name (e.g., username, password)
+        description:
+          type: string
+          description: Description of what this attribute contains
+        masked:
+          type: boolean
+          description: Whether this attribute's value should be masked in logs and UI
+        userProvided:
+          type: boolean
+          description: Whether each user provides their own value for this attribute
+    LockerCredentialUpdate:
+      type: object
+      description: Payload to update a credential's configuration within a locker
+      properties:
+        attributes:
+          type: array
+          description: Credential attributes to expose through this locker
+          items:
+            type: integer
+            format: int64
+            description: Credential attribute ID
+    LockerCredentialList:
+      type: object
+      description: List of credentials contained within a locker
+      properties:
+        list:
+          type: array
+          description: Array of credential records in the locker
+          items:
+            $ref: '#/components/schemas/Credential'
+    LockerListResponse:
+      type: object
+      description: Paginated list of lockers
+      properties:
+        list:
+          type: array
+          description: Array of locker records
+          items:
+            $ref: '#/components/schemas/Locker'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    FilterRequest:
+      type: object
+      description: Generic filter, sort, and pagination request for list operations
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria for the result set
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                - asc
+                - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
+  parameters:
+    LockerIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the locker
+      schema:
+        type: integer
+        format: int64
+    CredentialIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the credential
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

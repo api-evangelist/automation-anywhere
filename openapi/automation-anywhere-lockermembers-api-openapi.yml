@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails LockerMembers API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: LockerMembers
+  description: Manage user membership within lockers
+paths:
+  /lockers/{id}/members:
+    get:
+      operationId: listLockerMembers
+      summary: Get locker members
+      description: Returns all users who are members of the specified Locker. Members have management access to the Locker and can add or remove credentials and manage consumer role assignments.
+      tags:
+      - LockerMembers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      responses:
+        '200':
+          description: List of locker members
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerMemberList'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lockers/{id}/members/{userId}:
+    put:
+      operationId: updateLockerMember
+      summary: Update locker member permissions
+      description: Adds a user as a Locker member or updates their membership permissions. Locker members can manage the Locker's contents and access control configuration.
+      tags:
+      - LockerMembers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      - $ref: '#/components/parameters/UserIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockerMemberUpdate'
+      responses:
+        '200':
+          description: Locker member updated successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removeLockerMember
+      summary: Remove a locker member
+      description: Removes a user from Locker membership, revoking their ability to manage the Locker's credentials and access control settings.
+      tags:
+      - LockerMembers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      - $ref: '#/components/parameters/UserIdPathParam'
+      responses:
+        '200':
+          description: Member removed from locker successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker or member not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    LockerIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the locker
+      schema:
+        type: integer
+        format: int64
+    UserIdPathParam:
+      name: userId
+      in: path
+      required: true
+      description: Unique numeric identifier of the user
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    LockerMemberUpdate:
+      type: object
+      description: Payload to update a locker member's permissions
+      properties:
+        permissions:
+          type: array
+          description: Updated set of permissions for this member
+          items:
+            type: string
+    LockerMember:
+      type: object
+      description: A user with management membership in a locker
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: Unique identifier of the member user
+        userName:
+          type: string
+          description: Username of the member
+        permissions:
+          type: array
+          description: List of management permissions granted to this member
+          items:
+            type: string
+    LockerMemberList:
+      type: object
+      description: List of locker members
+      properties:
+        list:
+          type: array
+          description: Array of locker member records
+          items:
+            $ref: '#/components/schemas/LockerMember'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

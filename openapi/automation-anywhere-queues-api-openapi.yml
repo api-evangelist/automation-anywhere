@@ -1,0 +1,338 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails Queues API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: Queues
+  description: Create and manage work item queues and their members
+paths:
+  /queues/{id}:
+    get:
+      operationId: getQueue
+      summary: Get a queue by ID
+      description: Retrieves detailed information about a specific work item queue, including its configuration, associated work item model, processing order, and current status.
+      tags:
+      - Queues
+      parameters:
+      - $ref: '#/components/parameters/QueueIdParam'
+      responses:
+        '200':
+          description: Queue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Queue'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Queue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /queues/{id}/consumers:
+    post:
+      operationId: addQueueConsumer
+      summary: Add a queue consumer
+      description: Adds a role as a consumer of the specified queue. Consumer roles are assigned to bots that will process work items from the queue. Only users with queue management permissions can add consumers.
+      tags:
+      - Queues
+      parameters:
+      - $ref: '#/components/parameters/QueueIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueConsumerRequest'
+      responses:
+        '200':
+          description: Consumer added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueConsumer'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Queue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /queues/{id}/members/{userId}:
+    put:
+      operationId: addOrUpdateQueueMember
+      summary: Add or update a queue member
+      description: Adds a user as a member of the specified queue or updates the existing membership configuration. Queue members are human users who can manage queue operations such as reviewing failed items.
+      tags:
+      - Queues
+      parameters:
+      - $ref: '#/components/parameters/QueueIdParam'
+      - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueMemberRequest'
+      responses:
+        '200':
+          description: Queue member added or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueMember'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Queue or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /queues/{id}/participants:
+    post:
+      operationId: addQueueParticipant
+      summary: Add a queue participant
+      description: Adds a participant to the specified queue. Participants can view queue status and work item data but have limited management permissions compared to queue owners or members.
+      tags:
+      - Queues
+      parameters:
+      - $ref: '#/components/parameters/QueueIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueParticipantRequest'
+      responses:
+        '200':
+          description: Participant added successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Queue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    QueueMemberRequest:
+      type: object
+      description: Request to add or update a user as a queue member
+      properties:
+        role:
+          type: string
+          description: Queue membership role (OWNER, MEMBER, PARTICIPANT)
+          enum:
+          - OWNER
+          - MEMBER
+          - PARTICIPANT
+    QueueMember:
+      type: object
+      description: A user with membership access to a queue
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: ID of the queue member user
+        role:
+          type: string
+          description: Membership role of the user in this queue
+    QueueParticipantRequest:
+      type: object
+      description: Request to add a participant to a queue
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: ID of the user to add as a participant
+    QueueConsumerRequest:
+      type: object
+      description: Request to add a role as a consumer of a queue
+      properties:
+        roleId:
+          type: integer
+          format: int64
+          description: ID of the role to grant consumer access to the queue
+    Queue:
+      type: object
+      description: A work item queue that buffers data items for processing by bots. Each queue is linked to a work item model defining its schema.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the queue
+        name:
+          type: string
+          description: Human-readable name of the queue
+        description:
+          type: string
+          description: Description of the queue's purpose
+        reactivationThreshold:
+          type: integer
+          description: Percentage threshold of remaining work items below which the queue triggers reactivation of additional bot instances
+        manualProcessingTime:
+          type: integer
+          description: Estimated manual processing time per work item for SLA calculations
+        manualProcessingTimeUnit:
+          type: string
+          description: Time unit for manualProcessingTime (e.g., minutes, hours)
+        disallowDuplicate:
+          type: boolean
+          description: Whether duplicate work items based on hash are rejected
+        autoRetryLimit:
+          type: integer
+          description: Maximum number of times a failed work item is automatically retried
+        status:
+          type: string
+          description: Current operational status of the queue
+          enum:
+          - ACTIVE
+          - INACTIVE
+        workItemModelId:
+          type: integer
+          format: int64
+          description: ID of the work item model defining this queue's data schema
+        workItemProcessingOrders:
+          type: array
+          description: Ordered list of field names defining work item processing priority
+          items:
+            type: string
+        expiry:
+          $ref: '#/components/schemas/QueueExpiry'
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created this queue
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the queue was created
+        updatedBy:
+          type: integer
+          format: int64
+          description: ID of the user who last modified this queue
+        updatedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last modification
+        version:
+          type: integer
+          description: Optimistic locking version number
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    QueueConsumer:
+      type: object
+      description: A role with consumer access to a queue
+      properties:
+        roleId:
+          type: integer
+          format: int64
+          description: ID of the consumer role
+        roleName:
+          type: string
+          description: Name of the consumer role
+    QueueExpiry:
+      type: object
+      description: Expiry configuration for work items in the queue
+      properties:
+        type:
+          type: string
+          description: Expiry type (e.g., DURATION, DATE)
+        duration:
+          type: integer
+          description: Duration value before work items expire
+        durationUnit:
+          type: string
+          description: Time unit for the duration (e.g., HOURS, DAYS)
+  parameters:
+    UserIdParam:
+      name: userId
+      in: path
+      required: true
+      description: Unique numeric identifier of the user
+      schema:
+        type: integer
+        format: int64
+    QueueIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the queue
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html

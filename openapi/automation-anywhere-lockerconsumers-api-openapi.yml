@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution AccessDetails LockerConsumers API
+  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+servers:
+- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+  description: Automation Anywhere API Task Orchestrator
+  variables:
+    controlRoomUrl:
+      default: your-control-room.automationanywhere.com
+      description: Your Control Room hostname
+security:
+- bearerAuth: []
+- xAuthorization: []
+tags:
+- name: LockerConsumers
+  description: Manage roles with consumer access to locker credentials
+paths:
+  /lockers/{id}/consumers:
+    get:
+      operationId: listLockerConsumers
+      summary: List locker consumers
+      description: Returns all roles that have consumer access to the credentials in the specified Locker. Consumer roles are used by bots to retrieve credential values during automation execution.
+      tags:
+      - LockerConsumers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      responses:
+        '200':
+          description: List of consumer roles for the locker
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerConsumerList'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: addLockerConsumer
+      summary: Add a locker consumer
+      description: Grants a role consumer access to the credentials in the specified Locker. Bots assigned to this role can then retrieve credential values from this Locker during execution.
+      tags:
+      - LockerConsumers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockerConsumerPost'
+      responses:
+        '200':
+          description: Consumer role added to locker successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerConsumer'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lockers/{id}/consumers/{roleId}:
+    delete:
+      operationId: removeLockerConsumer
+      summary: Remove a locker consumer
+      description: Revokes a role's consumer access to the credentials in the specified Locker. Bots assigned to this role will no longer be able to retrieve credential values through this Locker.
+      tags:
+      - LockerConsumers
+      parameters:
+      - $ref: '#/components/parameters/LockerIdParam'
+      - name: roleId
+        in: path
+        required: true
+        description: Numeric ID of the consumer role to remove
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Consumer role removed from locker successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Locker or consumer role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    LockerIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the locker
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    LockerConsumer:
+      type: object
+      description: A role with consumer access to a locker's credentials
+      properties:
+        roleId:
+          type: integer
+          format: int64
+          description: Unique identifier of the consumer role
+        roleName:
+          type: string
+          description: Name of the consumer role
+    LockerConsumerList:
+      type: object
+      description: List of consumer roles for a locker
+      properties:
+        list:
+          type: array
+          description: Array of consumer role records
+          items:
+            $ref: '#/components/schemas/LockerConsumer'
+    LockerConsumerPost:
+      type: object
+      description: Payload to add a consumer role to a locker
+      required:
+      - roleId
+      properties:
+        roleId:
+          type: integer
+          format: int64
+          description: ID of the role to grant consumer access
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
