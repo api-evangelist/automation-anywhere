@@ -1,0 +1,268 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere API Task Execution API
+  description: >-
+    The Automation Anywhere API Task Execution API enables developers to invoke
+    API Tasks — a specialized type of cloud-based bot designed to be called
+    synchronously from external applications like a REST service. The API
+    provides endpoints to list API Task allocations, generate unique execution
+    URLs and tokens, and execute API Tasks in real time. API Tasks execute
+    on cloud infrastructure without requiring local Bot Runner devices, and
+    are designed for low latency with near-real-time response rates. The
+    execution URL and authorization token are short-lived and must be refreshed
+    periodically to prevent authorization failures.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+externalDocs:
+  description: Automation Anywhere API Task Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+servers:
+  - url: https://{controlRoomUrl}/orchestrator/v1/hotbot
+    description: Automation Anywhere API Task Orchestrator
+    variables:
+      controlRoomUrl:
+        default: your-control-room.automationanywhere.com
+        description: Your Control Room hostname
+tags:
+  - name: AccessDetails
+    description: Generate execution URLs and authorization tokens for API Tasks
+  - name: Allocations
+    description: List and manage API Task allocations within the Control Room
+security:
+  - bearerAuth: []
+  - xAuthorization: []
+paths:
+  /config:
+    post:
+      operationId: listApiTaskAllocations
+      summary: List API Task allocations
+      description: >-
+        Returns a paginated list of all API Tasks that have been allocated
+        (registered) for real-time execution within the Control Room. Administrators
+        must allocate an API Task before developers can generate execution URLs
+        for it. Use this endpoint to verify that a specific API Task is available
+        before requesting access details.
+      tags:
+        - Allocations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListAllocationsRequest'
+      responses:
+        '200':
+          description: Paginated list of API Task allocations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAllocationsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /config/accessdetails:
+    post:
+      operationId: generateApiTaskAccessDetails
+      summary: Generate API Task execution URL and token
+      description: >-
+        Generates a unique execution URL and short-lived authorization token
+        for one or more API Tasks identified by their repository paths. The
+        returned URL is used to invoke the API Task directly without going
+        through the standard Control Room authentication flow. Both the URL
+        and token are time-limited and should be refreshed periodically
+        (recommended every 5 minutes) to prevent authorization failures during
+        long-running integrations.
+      tags:
+        - AccessDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessDetailsRequest'
+      responses:
+        '200':
+          description: Execution URLs and tokens generated for each requested API Task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDetailsResponse'
+        '400':
+          description: Bad request or invalid repository path
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: API Task not found or not allocated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API
+  schemas:
+    ListAllocationsRequest:
+      type: object
+      description: >-
+        Pagination parameters for listing API Task allocations. Omit to
+        retrieve the first page with default settings.
+      properties:
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    ListAllocationsResponse:
+      type: object
+      description: Paginated list of API Task allocations registered in the Control Room
+      properties:
+        list:
+          type: array
+          description: Array of API Task allocation records
+          items:
+            $ref: '#/components/schemas/ApiTaskAllocation'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    ApiTaskAllocation:
+      type: object
+      description: A single API Task allocation record indicating an allocated real-time API Task
+      properties:
+        fileId:
+          type: integer
+          description: Numeric file ID of the API Task bot in the repository
+        filePath:
+          type: string
+          description: Repository path of the allocated API Task (e.g., /Automation/MyApiTask)
+        fileName:
+          type: string
+          description: Display name of the API Task file
+        runAsUserOrNone:
+          type: integer
+          description: >-
+            User ID under which the API Task executes, or null if using the
+            caller's credentials
+        concurrencyLimit:
+          type: integer
+          description: >-
+            Maximum number of concurrent instances allowed for this API Task
+            in real-time execution mode
+    AccessDetailsRequest:
+      type: object
+      description: >-
+        Request to generate execution URLs and tokens for one or more API Tasks
+        identified by their repository paths.
+      required:
+        - botRepositoryPath
+      properties:
+        botRepositoryPath:
+          type: array
+          description: >-
+            List of repository paths for the API Tasks to generate access details
+            for. Each path must correspond to an allocated API Task.
+          items:
+            type: string
+            description: Repository path of an API Task (e.g., /Automation/MyApiTask)
+    AccessDetailsResponse:
+      type: object
+      description: Map of API Task repository paths to their generated execution URLs and tokens
+      properties:
+        accessDetails:
+          type: object
+          description: >-
+            Map where each key is a bot repository path and the value contains
+            the execution URL and authorization token for that API Task.
+          additionalProperties:
+            $ref: '#/components/schemas/ApiTaskAccessDetail'
+        errors:
+          type: object
+          description: >-
+            Map of repository paths to error messages for any API Tasks that
+            could not have access details generated.
+          additionalProperties:
+            type: string
+    ApiTaskAccessDetail:
+      type: object
+      description: Execution URL and authorization token for a single API Task
+      properties:
+        url:
+          type: string
+          format: uri
+          description: >-
+            Unique execution URL for invoking the API Task directly. POST
+            to this URL with the task's input parameters to trigger execution.
+        headers:
+          $ref: '#/components/schemas/ApiTaskHeaders'
+    ApiTaskHeaders:
+      type: object
+      description: Authorization headers required when calling the API Task execution URL
+      properties:
+        X-Authorization:
+          type: string
+          description: >-
+            Short-lived authorization token to include in the X-Authorization
+            header when invoking the API Task execution URL. Must be refreshed
+            periodically to prevent expiry.
+    PageRequest:
+      type: object
+      description: Pagination parameters for list requests
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index of the result page
+          minimum: 0
+          default: 0
+        length:
+          type: integer
+          description: Number of records to return per page
+          minimum: 1
+          maximum: 100
+          default: 100
+    PageInfo:
+      type: object
+      description: Pagination metadata in list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of API Task allocations
+        totalFilter:
+          type: integer
+          description: Total records after any filter criteria
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description

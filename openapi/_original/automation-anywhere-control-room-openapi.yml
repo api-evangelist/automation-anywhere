@@ -1,0 +1,893 @@
+openapi: 3.1.0
+info:
+  title: Automation Anywhere Control Room API
+  description: >-
+    The Automation Anywhere Control Room API is a comprehensive set of RESTful
+    APIs that enable programmatic management and administration of the
+    Automation 360 RPA platform. It provides endpoints across multiple versioned
+    groups covering authentication, user management, role management, credential
+    vault, repository management, device pools, licensing, policy management,
+    and scheduled automations. Developers can use these APIs to integrate
+    Control Room operations into external applications, CI/CD pipelines, and
+    enterprise systems. All requests require JWT-based authentication obtained
+    through the Authentication API.
+  version: '2019'
+  contact:
+    name: Automation Anywhere Support
+    url: https://support.automationanywhere.com
+  termsOfService: https://www.automationanywhere.com/terms-of-service
+externalDocs:
+  description: Automation Anywhere Control Room API Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
+servers:
+  - url: https://{controlRoomUrl}
+    description: Automation Anywhere Control Room Instance
+    variables:
+      controlRoomUrl:
+        default: your-control-room.automationanywhere.com
+        description: Your Control Room hostname
+tags:
+  - name: Authentication
+    description: Generate, refresh, validate, and revoke JWT tokens for API access
+  - name: Roles
+    description: Create, list, retrieve, update, and delete user roles
+  - name: Users
+    description: Create, list, retrieve, update, and delete Control Room users
+security:
+  - bearerAuth: []
+  - xAuthorization: []
+paths:
+  /v2/authentication:
+    post:
+      operationId: authenticate
+      summary: Authenticate and generate JWT
+      description: >-
+        Authenticates a Control Room user using username and password or
+        username and API key, and returns a JSON Web Token (JWT) for use in
+        subsequent API calls. The token is valid for 20 minutes by default
+        and must be included in the X-Authorization or Authorization header
+        of all subsequent requests.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+      responses:
+        '200':
+          description: Authentication successful, JWT returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/authentication/token:
+    get:
+      operationId: validateToken
+      summary: Validate a JWT token
+      description: >-
+        Verifies whether the provided JWT token is currently valid. Returns
+        a boolean indicating validity. The token can be passed via the
+        X-Authorization header or as a query parameter (deprecated).
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/TokenQueryParam'
+      responses:
+        '200':
+          description: Token validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenValidationResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/authentication/logout:
+    post:
+      operationId: logout
+      summary: Logout and invalidate JWT
+      description: >-
+        Immediately invalidates the current JWT token, logging the user out
+        of the Control Room API session. After calling this endpoint, the
+        token can no longer be used for authenticated requests.
+      tags:
+        - Authentication
+      responses:
+        '204':
+          description: Logout successful, token invalidated
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/usermanagement/users:
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: >-
+        Creates a new user in the Control Room with the specified username,
+        email, roles, and other attributes. The caller must have the
+        AAE_Admin or user management permissions to invoke this endpoint.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/usermanagement/users/list:
+    post:
+      operationId: listUsers
+      summary: List users
+      description: >-
+        Retrieves a paginated, filterable list of Control Room users. Supports
+        filtering by username, email, role, and other attributes. The response
+        includes user metadata and assigned roles.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/usermanagement/users/{uid}:
+    get:
+      operationId: getUser
+      summary: Get user by ID
+      description: >-
+        Retrieves detailed information about a specific Control Room user,
+        including their roles, permissions, license assignments, and account
+        status.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateUser
+      summary: Update a user
+      description: >-
+        Updates an existing Control Room user's attributes including email,
+        roles, license type, and enabled/disabled status. Replaces the full
+        user record with the provided values.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteUser
+      summary: Delete a user
+      description: >-
+        Permanently deletes a Control Room user account. This action cannot be
+        undone. All automations associated with the user's private workspace
+        may need to be recovered separately using the repository recovery API.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '204':
+          description: User deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/usermanagement/roles:
+    post:
+      operationId: createRole
+      summary: Create a role
+      description: >-
+        Creates a new role in the Control Room with the specified name,
+        description, and set of permissions. Roles are used to grant users
+        access to specific features, folders, and API operations.
+      tags:
+        - Roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '201':
+          description: Role created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/usermanagement/roles/list:
+    post:
+      operationId: listRoles
+      summary: List roles
+      description: >-
+        Retrieves a paginated, filterable list of Control Room roles. Supports
+        filtering by name and other attributes. Returns role metadata including
+        permissions and member counts.
+      tags:
+        - Roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterRequest'
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v2/usermanagement/roles/{id}:
+    get:
+      operationId: getRole
+      summary: Get role by ID
+      description: >-
+        Retrieves detailed information about a specific role, including its
+        name, description, permissions, and the list of users assigned to it.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/RoleIdParam'
+      responses:
+        '200':
+          description: Role details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateRole
+      summary: Update a role
+      description: >-
+        Updates an existing role's name, description, and permission set.
+        Changes apply immediately to all users assigned to the role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/RoleIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+      responses:
+        '201':
+          description: Role updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteRole
+      summary: Delete a role
+      description: >-
+        Permanently deletes a Control Room role. Users assigned only to this
+        role will lose associated permissions. System roles (AAE_Admin,
+        AAE_Basic) cannot be deleted.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/RoleIdParam'
+      responses:
+        '204':
+          description: Role deleted successfully
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Authentication API, passed as Authorization Bearer header
+    xAuthorization:
+      type: apiKey
+      in: header
+      name: X-Authorization
+      description: JWT token obtained from the Authentication API, passed as X-Authorization header
+  parameters:
+    UserIdParam:
+      name: uid
+      in: path
+      required: true
+      description: Unique numeric identifier of the user
+      schema:
+        type: integer
+        format: int64
+    RoleIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the role
+      schema:
+        type: integer
+        format: int64
+    TokenQueryParam:
+      name: token
+      in: query
+      required: false
+      description: JWT token to validate (deprecated; use X-Authorization header instead)
+      schema:
+        type: string
+  schemas:
+    AuthenticationRequest:
+      type: object
+      description: >-
+        Credentials for authenticating a Control Room user. Provide either
+        password or apiKey along with the username.
+      required:
+        - username
+      properties:
+        username:
+          type: string
+          description: The Control Room username
+        password:
+          type: string
+          description: The user's password (use instead of apiKey for password-based auth)
+        apiKey:
+          type: string
+          description: The user's API key (use instead of password for key-based auth)
+        multipleLogin:
+          type: boolean
+          description: Whether to allow multiple concurrent sessions for this user
+    AuthenticationResponse:
+      type: object
+      description: Response containing the JWT token for authenticated API access
+      properties:
+        token:
+          type: string
+          description: JWT token string to include in subsequent API request headers
+        user:
+          $ref: '#/components/schemas/UserSummary'
+    TokenValidationResponse:
+      type: object
+      description: Result of a token validity check
+      properties:
+        valid:
+          type: boolean
+          description: Whether the provided token is currently valid
+    CreateUserRequest:
+      type: object
+      description: Payload to create a new Control Room user account
+      required:
+        - username
+        - email
+        - password
+      properties:
+        username:
+          type: string
+          description: Unique username for the new user
+        email:
+          type: string
+          format: email
+          description: Email address associated with the user account
+        password:
+          type: string
+          description: Initial password for the user (not required for SSO-only users)
+        firstName:
+          type: string
+          description: User's first name
+        lastName:
+          type: string
+          description: User's last name
+        roles:
+          type: array
+          description: List of role IDs to assign to the user
+          items:
+            $ref: '#/components/schemas/RoleRef'
+        licenseFeatures:
+          type: array
+          description: License feature types assigned to the user (e.g., ATTENDED, UNATTENDED)
+          items:
+            type: string
+        enabled:
+          type: boolean
+          description: Whether the user account is active and can log in
+    UpdateUserRequest:
+      type: object
+      description: Payload to update an existing Control Room user account
+      properties:
+        email:
+          type: string
+          format: email
+          description: Updated email address for the user
+        firstName:
+          type: string
+          description: Updated first name
+        lastName:
+          type: string
+          description: Updated last name
+        roles:
+          type: array
+          description: Updated list of role assignments; replaces existing assignments
+          items:
+            $ref: '#/components/schemas/RoleRef'
+        licenseFeatures:
+          type: array
+          description: Updated license feature types
+          items:
+            type: string
+        enabled:
+          type: boolean
+          description: Whether the user account is active
+        password:
+          type: string
+          description: New password for the user
+    UserResponse:
+      type: object
+      description: Full user record returned from create, read, or update operations
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique numeric identifier of the user
+        username:
+          type: string
+          description: The user's login username
+        email:
+          type: string
+          format: email
+          description: The user's email address
+        firstName:
+          type: string
+          description: User's first name
+        lastName:
+          type: string
+          description: User's last name
+        roles:
+          type: array
+          description: Roles assigned to the user
+          items:
+            $ref: '#/components/schemas/RoleRef'
+        licenseFeatures:
+          type: array
+          description: License features assigned to the user
+          items:
+            type: string
+        enabled:
+          type: boolean
+          description: Whether the user account is currently active
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created this account
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the user was created
+        updatedBy:
+          type: integer
+          format: int64
+          description: ID of the user who last updated this account
+        updatedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last update
+    UserListResponse:
+      type: object
+      description: Paginated list of user records
+      properties:
+        list:
+          type: array
+          description: Array of user records matching the filter criteria
+          items:
+            $ref: '#/components/schemas/UserResponse'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    UserSummary:
+      type: object
+      description: Abbreviated user object returned within authentication responses
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique numeric identifier of the user
+        username:
+          type: string
+          description: The user's login username
+        email:
+          type: string
+          format: email
+          description: The user's email address
+        roles:
+          type: array
+          description: Roles assigned to the user
+          items:
+            $ref: '#/components/schemas/RoleRef'
+    CreateRoleRequest:
+      type: object
+      description: Payload to create a new Control Room role
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Unique name for the new role
+        description:
+          type: string
+          description: Human-readable description of the role's purpose
+        permissions:
+          type: array
+          description: List of permission objects granting access to features
+          items:
+            $ref: '#/components/schemas/Permission'
+    UpdateRoleRequest:
+      type: object
+      description: Payload to update an existing Control Room role
+      properties:
+        name:
+          type: string
+          description: Updated name for the role
+        description:
+          type: string
+          description: Updated description of the role's purpose
+        permissions:
+          type: array
+          description: Updated set of permissions; replaces existing permissions
+          items:
+            $ref: '#/components/schemas/Permission'
+    RoleResponse:
+      type: object
+      description: Full role record returned from create, read, or update operations
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique numeric identifier of the role
+        name:
+          type: string
+          description: Role name
+        description:
+          type: string
+          description: Role description
+        permissions:
+          type: array
+          description: Permissions granted by this role
+          items:
+            $ref: '#/components/schemas/Permission'
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created the role
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the role was created
+        updatedBy:
+          type: integer
+          format: int64
+          description: ID of the user who last modified the role
+        updatedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last update
+    RoleListResponse:
+      type: object
+      description: Paginated list of role records
+      properties:
+        list:
+          type: array
+          description: Array of role records matching the filter criteria
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    RoleRef:
+      type: object
+      description: Reference to a role by its numeric ID
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Numeric identifier of the referenced role
+        name:
+          type: string
+          description: Name of the referenced role
+    Permission:
+      type: object
+      description: A single permission entry granting access to a specific feature or resource
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the permission
+        action:
+          type: string
+          description: The action permitted (e.g., view, create, run, edit, delete)
+        resourceType:
+          type: string
+          description: The type of resource this permission applies to
+        resourceId:
+          type: integer
+          format: int64
+          description: Specific resource ID if this is a resource-scoped permission
+    FilterRequest:
+      type: object
+      description: >-
+        Generic filtering, pagination, and sorting request body used across
+        list endpoints throughout the Control Room API.
+      properties:
+        filter:
+          $ref: '#/components/schemas/FilterExpression'
+        fields:
+          type: array
+          description: List of field names to include in the response
+          items:
+            type: string
+        sort:
+          type: array
+          description: Sorting criteria for the result set
+          items:
+            $ref: '#/components/schemas/SortCriteria'
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    FilterExpression:
+      type: object
+      description: Logical filter expression for querying resources
+      properties:
+        operator:
+          type: string
+          description: Logical operator combining child filters (and, or, not)
+          enum:
+            - and
+            - or
+            - not
+            - eq
+            - ne
+            - lt
+            - le
+            - gt
+            - ge
+            - substring
+            - startswith
+        operands:
+          type: array
+          description: Child filter expressions or field/value pairs
+          items:
+            $ref: '#/components/schemas/FilterOperand'
+    FilterOperand:
+      type: object
+      description: A single operand in a filter expression, either a field reference or a nested expression
+      properties:
+        field:
+          type: string
+          description: Field name to filter on
+        value:
+          type: string
+          description: Value to compare against
+    SortCriteria:
+      type: object
+      description: Sorting direction and field for list results
+      properties:
+        field:
+          type: string
+          description: Field name to sort by
+        direction:
+          type: string
+          description: Sort direction
+          enum:
+            - asc
+            - desc
+    PageRequest:
+      type: object
+      description: Pagination parameters for list requests
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index of the result page
+          minimum: 0
+        length:
+          type: integer
+          description: Maximum number of results to return per page
+          minimum: 1
+          maximum: 1000
+    PageInfo:
+      type: object
+      description: Pagination metadata returned with list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records matching the query
+        totalFilter:
+          type: integer
+          description: Total number of records after filters are applied
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails
+      properties:
+        code:
+          type: string
+          description: Error code identifying the error type
+        message:
+          type: string
+          description: Human-readable description of the error
+        details:
+          type: array
+          description: Additional error context or field-level validation errors
+          items:
+            type: string
