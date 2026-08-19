@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails LockerMembers API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LockerMembers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get locker members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ]
+          },
+          "docs": "Returns all users who are members of the specified Locker. Members have management access to the Locker and can add or remove credentials and manage consumer role assignments."
+        },
+        {
+          "info": {
+            "name": "Update locker member permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/members/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user as a Locker member or updates their membership permissions. Locker members can manage the Locker's contents and access control configuration."
+        },
+        {
+          "info": {
+            "name": "Remove a locker member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/members/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ]
+          },
+          "docs": "Removes a user from Locker membership, revoking their ability to manage the Locker's credentials and access control settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

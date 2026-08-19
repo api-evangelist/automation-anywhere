@@ -1,0 +1,306 @@
+{
+  "item": [
+    {
+      "id": "9a3adfed-a14e-4a36-a428-69a5fe8c24eb",
+      "name": "BotRunData",
+      "description": {
+        "content": "Retrieve bot execution run data and performance metrics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98950c15-5514-4c58-8268-3dedc28ff8ea",
+          "name": "Get bot run data",
+          "request": {
+            "name": "Get bot run data",
+            "description": {
+              "content": "Retrieves bot execution run records for a specific date or date range. Each record contains details about a single bot run including user, device, start/end times, status, and performance metrics. Results are paginated at 1000 records per request. Dates must be in ISO 8601 format and the date range cannot exceed 60 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getbotrundata",
+                ":startIndex",
+                ":startDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "startIndex",
+                  "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "813b330b-3fa4-47a8-83af-13091bbf6a9b",
+              "name": "Bot run data records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getbotrundata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRecords\": 134,\n  \"botRunDataList\": [\n    {\n      \"id\": 1614,\n      \"userName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"aFsGVD0gzj4@VhJcnFwGcsBkZQDzVyj.uf\",\n      \"hostName\": \"string\",\n      \"iPAddress\": \"string\",\n      \"fileName\": \"string\",\n      \"startTime\": \"1947-02-19T15:43:45.700Z\",\n      \"endTime\": \"1989-12-29T21:17:57.799Z\",\n      \"status\": \"COMPLETED\",\n      \"totalLines\": 6118,\n      \"timeTaken\": 4412,\n      \"successIndicator\": true\n    },\n    {\n      \"id\": 91,\n      \"userName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"2Imj8o0dWuhTeh@gWsFRckfPqZarghUAPZxNnuMfVXawXQH.iswq\",\n      \"hostName\": \"string\",\n      \"iPAddress\": \"string\",\n      \"fileName\": \"string\",\n      \"startTime\": \"1952-09-24T06:08:10.785Z\",\n      \"endTime\": \"2006-10-14T09:42:56.984Z\",\n      \"status\": \"IN_PROGRESS\",\n      \"totalLines\": 4774,\n      \"timeTaken\": 6427,\n      \"successIndicator\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd01e2ff-0602-4b39-8233-8d603e18cfba",
+              "name": "Bad request or invalid date format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getbotrundata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c08ed827-572e-4058-a896-57f3fff5bfc2",
+              "name": "Authentication required or insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getbotrundata",
+                    ":startIndex",
+                    ":startDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "startIndex",
+                      "description": "(Required) Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/orchestrator/v1/hotbot",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a328d7a-5a10-46f2-93a7-3d6dfc8b98e8",
+    "name": "Automation Anywhere API Task Execution AccessDetails BotRunData API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

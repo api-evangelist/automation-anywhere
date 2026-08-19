@@ -1,0 +1,503 @@
+{
+  "item": [
+    {
+      "id": "ed04b451-4168-4239-b9e8-48ec55bb5606",
+      "name": "WorkItemModels",
+      "description": {
+        "content": "Create and retrieve work item data models defining queue schema",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18546981-7b02-4e06-9f36-47cc271c4b64",
+          "name": "Create a work item model",
+          "request": {
+            "name": "Create a work item model",
+            "description": {
+              "content": "Creates a new work item model that defines the data schema for work items in associated queues. A work item model specifies the attribute names and types that each work item must contain, enabling structured data processing by bots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workitemmodels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72d3bf2c-bde5-40a5-b55e-2ec924552489",
+              "name": "Work item model created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 7365,\n      \"name\": \"string\",\n      \"type\": \"DATE\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4386,\n      \"name\": \"string\",\n      \"type\": \"NUMBER\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6558,\n  \"name\": \"string\",\n  \"attributes\": [\n    {\n      \"id\": 9335,\n      \"name\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 5930,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": 8598,\n  \"createdOn\": \"1972-05-04T07:55:49.067Z\",\n  \"updatedBy\": 5040,\n  \"updatedOn\": \"1954-04-04T17:23:26.148Z\",\n  \"version\": 6950,\n  \"tenantId\": 5813,\n  \"tenantUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e8b123c-35cb-4eef-be83-ef4ad11cc20f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 7365,\n      \"name\": \"string\",\n      \"type\": \"DATE\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4386,\n      \"name\": \"string\",\n      \"type\": \"NUMBER\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef5c15ca-0ac3-4ae9-a948-999d099a46b6",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 7365,\n      \"name\": \"string\",\n      \"type\": \"DATE\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 4386,\n      \"name\": \"string\",\n      \"type\": \"NUMBER\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": \"<long>\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedBy\": \"<long>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"version\": \"<integer>\",\n  \"tenantId\": \"<long>\",\n  \"tenantUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bd6fa16-92dd-43ee-9377-0132f3ab36fd",
+          "name": "Get a work item model by ID",
+          "request": {
+            "name": "Get a work item model by ID",
+            "description": {
+              "content": "Retrieves a specific work item model by its numeric identifier, including the full list of attributes defining the model's data schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workitemmodels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Unique numeric identifier of the work item model"
+                },
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d57a8ab-18df-4eef-9a06-6b9efdf9aa77",
+              "name": "Work item model details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the work item model"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6558,\n  \"name\": \"string\",\n  \"attributes\": [\n    {\n      \"id\": 9335,\n      \"name\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"isRequired\": false\n    },\n    {\n      \"id\": 5930,\n      \"name\": \"string\",\n      \"type\": \"TEXT\",\n      \"isRequired\": true\n    }\n  ],\n  \"createdBy\": 8598,\n  \"createdOn\": \"1972-05-04T07:55:49.067Z\",\n  \"updatedBy\": 5040,\n  \"updatedOn\": \"1954-04-04T17:23:26.148Z\",\n  \"version\": 6950,\n  \"tenantId\": 5813,\n  \"tenantUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6505e0f6-7c8b-46d4-93be-8b489e949cc5",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the work item model"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3da86d17-c834-461f-a632-e6d185ea7e35",
+              "name": "Work item model not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workitemmodels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Unique numeric identifier of the work item model"
+                    },
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/orchestrator/v1/hotbot",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5008e262-ac9f-4ab5-9624-8b2737b7b421",
+    "name": "Automation Anywhere API Task Execution AccessDetails WorkItemModels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

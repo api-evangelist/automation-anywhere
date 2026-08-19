@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Files API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List files in the repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/file/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a paginated, filterable list of bots, folders, and files stored in the repository. Supports filtering by name, path, type, and modification date. Returns metadata for each file including ID, name, path, size, version, and permissions. Used to discover and locate bot files programmatically."
+        },
+        {
+          "info": {
+            "name": "Download file contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/:fileid/content",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              }
+            ]
+          },
+          "docs": "Downloads the binary content of a specific file from the repository by its numeric file ID. Returns the file as a binary stream suitable for saving locally or processing programmatically. Requires view or download permission on the file."
+        },
+        {
+          "info": {
+            "name": "View file dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/:fileid/dependencies",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of files that the specified bot depends on, including shared automation components, templates, and other bots referenced within the automation workflow. Useful for understanding the full dependency tree before exporting or migrating a bot."
+        },
+        {
+          "info": {
+            "name": "Update manual file dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/:fileid/dependencies/:workspaceId",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              },
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace identifier (PUBLIC or PRIVATE)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the manually specified dependency list for a bot file within a given workspace. Used when automatic dependency detection is insufficient and dependencies must be declared explicitly."
+        },
+        {
+          "info": {
+            "name": "Get file parent folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/:fileid/parents",
+            "params": [
+              {
+                "name": "fileid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file"
+              }
+            ]
+          },
+          "docs": "Retrieves the immediate parent folder(s) of the specified file in the repository hierarchy. Returns the folder path and ID needed to navigate the repository structure."
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the file to delete"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a file from the repository. The file must not have active automations running against it. Deleted files cannot be recovered from the API; use with caution."
+        },
+        {
+          "info": {
+            "name": "Update package versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/packagesVersionUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a bulk package version update across one or more bot files, updating the referenced package versions to the latest available in the Control Room. Used during platform upgrades to ensure bots reference current package versions."
+        },
+        {
+          "info": {
+            "name": "Assign production label to bot version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/files/version/assignLabel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns the production label to a specific version of a bot file, marking it as the designated production-ready version. This label is used by deployment processes to identify which version of a bot should be deployed in production environments."
+        },
+        {
+          "info": {
+            "name": "Recover bots from deleted user repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/recover",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Recovers bots from the private workspace of a deleted user and moves them to a specified folder in the public workspace. Used by administrators to preserve automation assets when user accounts are removed from the Control Room."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails AuditData API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuditData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get audit trail data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/getaudittraildata/:startIndex/:startDate",
+            "params": [
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "path",
+                "description": "Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path",
+                "description": "Start date for the data query in ISO 8601 format (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieves Control Room audit trail records capturing administrative and operational events such as user logins, bot deployments, role changes, and configuration updates. Results are paginated at 1000 records per request. Requires Bot Insight Admin or AAE_Admin role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

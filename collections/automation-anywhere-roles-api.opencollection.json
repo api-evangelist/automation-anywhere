@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Roles API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new role in the Control Room with the specified name, description, and set of permissions. Roles are used to grant users access to specific features, folders, and API operations."
+        },
+        {
+          "info": {
+            "name": "List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/roles/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a paginated, filterable list of Control Room roles. Supports filtering by name and other attributes. Returns role metadata including permissions and member counts."
+        },
+        {
+          "info": {
+            "name": "Get role by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific role, including its name, description, permissions, and the list of users assigned to it."
+        },
+        {
+          "info": {
+            "name": "Update a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing role's name, description, and permission set. Changes apply immediately to all users assigned to the role."
+        },
+        {
+          "info": {
+            "name": "Delete a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Control Room role. Users assigned only to this role will lose associated permissions. System roles (AAE_Admin, AAE_Basic) cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

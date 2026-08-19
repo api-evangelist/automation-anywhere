@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "075ced5e-9ace-4802-8437-b632ba12dc3c",
+      "name": "Deployments",
+      "description": {
+        "content": "Deploy bots to Bot Runner devices and monitor deployment status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ab35433-0489-47eb-9937-677d10eb2f1a",
+          "name": "Deploy a bot",
+          "request": {
+            "name": "Deploy a bot",
+            "description": {
+              "content": "Deploys an automation bot from the public workspace to one or more Bot Runner devices. Supports unattended deployment (to devices linked to a specified user), attended deployment (to any device accessible to the user), and headless deployment (to On-Demand Bot Runner devices). Returns a deploymentId that can be used to monitor the execution status. Input variables can be passed at runtime via the botInput field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                "deploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Control Room hostname",
+                  "type": "any",
+                  "value": "{{controlRoomUrl}}",
+                  "key": "controlRoomUrl"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"botId\": \"<integer>\",\n  \"automationName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"botLabel\": \"<string>\",\n  \"runElevated\": \"<boolean>\",\n  \"hideBotAgentUi\": \"<boolean>\",\n  \"callbackInfo\": {\n    \"url\": \"<uri>\",\n    \"headers\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  \"automationPriority\": \"<string>\",\n  \"botInput\": {\n    \"key_0\": {\n      \"type\": \"<string>\",\n      \"string\": \"<string>\",\n      \"number\": \"<string>\",\n      \"boolean\": \"<boolean>\",\n      \"list\": \"<object>\",\n      \"dictionary\": \"<object>\"\n    },\n    \"key_1\": {\n      \"type\": \"<string>\",\n      \"string\": \"<string>\",\n      \"number\": \"<string>\",\n      \"boolean\": \"<boolean>\",\n      \"list\": \"<object>\",\n      \"dictionary\": \"<object>\"\n    },\n    \"key_2\": {\n      \"type\": \"<string>\",\n      \"string\": \"<string>\",\n      \"number\": \"<string>\",\n      \"boolean\": \"<boolean>\",\n      \"list\": \"<object>\",\n      \"dictionary\": \"<object>\"\n    }\n  },\n  \"unattendedRequest\": {\n    \"runAsUsers\": [\n      {\n        \"id\": \"<integer>\"\n      },\n      {\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"poolIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"attendedRequest\": {\n    \"currentUserDeviceId\": \"<integer>\"\n  },\n  \"headlessRequest\": {\n    \"numOfRunAsUsersToUse\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c053f0de-5173-45ec-beb5-8829fc89a17d",
+              "name": "Bot deployment initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botId\": \"<integer>\",\n  \"automationName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"botLabel\": \"<string>\",\n  \"runElevated\": \"<boolean>\",\n  \"hideBotAgentUi\": \"<boolean>\",\n  \"callbackInfo\": {\n    \"url\": \"http://RPOLkmNSgBblpB.eyt5Ds0VpZLU2,+Kb3rnq9v8OFTxU3cnf5VW4W6dxB6bd6Rl+dD-e\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"automationPriority\": \"<string>\",\n  \"botInput\": {\n    \"key_0\": {\n      \"type\": \"DATETIME\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    },\n    \"key_1\": {\n      \"type\": \"DICTIONARY\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    }\n  },\n  \"unattendedRequest\": {\n    \"runAsUsers\": [\n      {\n        \"id\": 388\n      },\n      {\n        \"id\": 2756\n      }\n    ],\n    \"poolIds\": [\n      2927,\n      1951\n    ]\n  },\n  \"attendedRequest\": {\n    \"currentUserDeviceId\": 229\n  },\n  \"headlessRequest\": {\n    \"numOfRunAsUsersToUse\": 5355\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deploymentId\": \"5498472a-d8c3-49c7-43a5-7534960811e9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9190a9e-5351-4264-b3b0-412271702cfa",
+              "name": "Bad request — invalid parameters or bot not found in workspace",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botId\": \"<integer>\",\n  \"automationName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"botLabel\": \"<string>\",\n  \"runElevated\": \"<boolean>\",\n  \"hideBotAgentUi\": \"<boolean>\",\n  \"callbackInfo\": {\n    \"url\": \"http://RPOLkmNSgBblpB.eyt5Ds0VpZLU2,+Kb3rnq9v8OFTxU3cnf5VW4W6dxB6bd6Rl+dD-e\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"automationPriority\": \"<string>\",\n  \"botInput\": {\n    \"key_0\": {\n      \"type\": \"DATETIME\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    },\n    \"key_1\": {\n      \"type\": \"DICTIONARY\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    }\n  },\n  \"unattendedRequest\": {\n    \"runAsUsers\": [\n      {\n        \"id\": 388\n      },\n      {\n        \"id\": 2756\n      }\n    ],\n    \"poolIds\": [\n      2927,\n      1951\n    ]\n  },\n  \"attendedRequest\": {\n    \"currentUserDeviceId\": 229\n  },\n  \"headlessRequest\": {\n    \"numOfRunAsUsersToUse\": 5355\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02769402-3164-448b-bfcb-6ce535a866da",
+              "name": "Authentication required — missing or invalid JWT token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botId\": \"<integer>\",\n  \"automationName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"botLabel\": \"<string>\",\n  \"runElevated\": \"<boolean>\",\n  \"hideBotAgentUi\": \"<boolean>\",\n  \"callbackInfo\": {\n    \"url\": \"http://RPOLkmNSgBblpB.eyt5Ds0VpZLU2,+Kb3rnq9v8OFTxU3cnf5VW4W6dxB6bd6Rl+dD-e\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"automationPriority\": \"<string>\",\n  \"botInput\": {\n    \"key_0\": {\n      \"type\": \"DATETIME\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    },\n    \"key_1\": {\n      \"type\": \"DICTIONARY\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    }\n  },\n  \"unattendedRequest\": {\n    \"runAsUsers\": [\n      {\n        \"id\": 388\n      },\n      {\n        \"id\": 2756\n      }\n    ],\n    \"poolIds\": [\n      2927,\n      1951\n    ]\n  },\n  \"attendedRequest\": {\n    \"currentUserDeviceId\": 229\n  },\n  \"headlessRequest\": {\n    \"numOfRunAsUsersToUse\": 5355\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36b7a209-956c-490d-b0ad-024f1bed8baf",
+              "name": "Bot or device not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botId\": \"<integer>\",\n  \"automationName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"botLabel\": \"<string>\",\n  \"runElevated\": \"<boolean>\",\n  \"hideBotAgentUi\": \"<boolean>\",\n  \"callbackInfo\": {\n    \"url\": \"http://RPOLkmNSgBblpB.eyt5Ds0VpZLU2,+Kb3rnq9v8OFTxU3cnf5VW4W6dxB6bd6Rl+dD-e\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"automationPriority\": \"<string>\",\n  \"botInput\": {\n    \"key_0\": {\n      \"type\": \"DATETIME\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    },\n    \"key_1\": {\n      \"type\": \"DICTIONARY\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    }\n  },\n  \"unattendedRequest\": {\n    \"runAsUsers\": [\n      {\n        \"id\": 388\n      },\n      {\n        \"id\": 2756\n      }\n    ],\n    \"poolIds\": [\n      2927,\n      1951\n    ]\n  },\n  \"attendedRequest\": {\n    \"currentUserDeviceId\": 229\n  },\n  \"headlessRequest\": {\n    \"numOfRunAsUsersToUse\": 5355\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3843346a-079b-4ed0-bc00-69a897022617",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Control Room hostname",
+                      "type": "any",
+                      "value": "{{controlRoomUrl}}",
+                      "key": "controlRoomUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"botId\": \"<integer>\",\n  \"automationName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"botLabel\": \"<string>\",\n  \"runElevated\": \"<boolean>\",\n  \"hideBotAgentUi\": \"<boolean>\",\n  \"callbackInfo\": {\n    \"url\": \"http://RPOLkmNSgBblpB.eyt5Ds0VpZLU2,+Kb3rnq9v8OFTxU3cnf5VW4W6dxB6bd6Rl+dD-e\",\n    \"headers\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"automationPriority\": \"<string>\",\n  \"botInput\": {\n    \"key_0\": {\n      \"type\": \"DATETIME\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    },\n    \"key_1\": {\n      \"type\": \"DICTIONARY\",\n      \"string\": \"string\",\n      \"number\": \"string\",\n      \"boolean\": true,\n      \"list\": {},\n      \"dictionary\": {}\n    }\n  },\n  \"unattendedRequest\": {\n    \"runAsUsers\": [\n      {\n        \"id\": 388\n      },\n      {\n        \"id\": 2756\n      }\n    ],\n    \"poolIds\": [\n      2927,\n      1951\n    ]\n  },\n  \"attendedRequest\": {\n    \"currentUserDeviceId\": 229\n  },\n  \"headlessRequest\": {\n    \"numOfRunAsUsersToUse\": 5355\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Control Room hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-control-room.automationanywhere.com",
+      "key": "controlRoomUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://{{controlRoomUrl}}/orchestrator/v1/hotbot",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dda7860b-d303-4194-986d-cd2d316cf030",
+    "name": "Automation Anywhere API Task Execution AccessDetails Deployments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.\n\nContact Support:\n Name: Automation Anywhere Support",
+      "type": "text/plain"
+    }
+  }
+}

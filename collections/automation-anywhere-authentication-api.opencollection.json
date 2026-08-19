@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Authentication API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and generate JWT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/authentication",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a Control Room user using username and password or username and API key, and returns a JSON Web Token (JWT) for use in subsequent API calls. The token is valid for 20 minutes by default and must be included in the X-Authorization or Authorization header of all subsequent requests."
+        },
+        {
+          "info": {
+            "name": "Validate a JWT token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v1/authentication/token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token to validate (deprecated; use X-Authorization header instead)"
+              }
+            ]
+          },
+          "docs": "Verifies whether the provided JWT token is currently valid. Returns a boolean indicating validity. The token can be passed via the X-Authorization header or as a query parameter (deprecated)."
+        },
+        {
+          "info": {
+            "name": "Logout and invalidate JWT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v1/authentication/logout"
+          },
+          "docs": "Immediately invalidates the current JWT token, logging the user out of the Control Room API session. After calling this endpoint, the token can no longer be used for authenticated requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

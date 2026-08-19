@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Users API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user in the Control Room with the specified username, email, roles, and other attributes. The caller must have the AAE_Admin or user management permissions to invoke this endpoint."
+        },
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/users/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a paginated, filterable list of Control Room users. Supports filtering by username, email, role, and other attributes. The response includes user metadata and assigned roles."
+        },
+        {
+          "info": {
+            "name": "Get user by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific Control Room user, including their roles, permissions, license assignments, and account status."
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Control Room user's attributes including email, roles, license type, and enabled/disabled status. Replaces the full user record with the provided values."
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/v2/usermanagement/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the user"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Control Room user account. This action cannot be undone. All automations associated with the user's private workspace may need to be recovered separately using the repository recovery API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

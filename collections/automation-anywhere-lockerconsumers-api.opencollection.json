@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails LockerConsumers API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LockerConsumers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List locker consumers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/consumers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ]
+          },
+          "docs": "Returns all roles that have consumer access to the credentials in the specified Locker. Consumer roles are used by bots to retrieve credential values during automation execution."
+        },
+        {
+          "info": {
+            "name": "Add a locker consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/consumers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grants a role consumer access to the credentials in the specified Locker. Bots assigned to this role can then retrieve credential values from this Locker during execution."
+        },
+        {
+          "info": {
+            "name": "Remove a locker consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/consumers/:roleId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID of the consumer role to remove"
+              }
+            ]
+          },
+          "docs": "Revokes a role's consumer access to the credentials in the specified Locker. Bots assigned to this role will no longer be able to retrieve credential values through this Locker."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

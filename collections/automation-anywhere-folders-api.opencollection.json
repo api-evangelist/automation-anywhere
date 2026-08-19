@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Folders API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/folders/:folderid",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new folder at the specified location in the repository hierarchy. The parent folder ID is provided in the path. The new folder inherits permissions from its parent unless explicitly overridden."
+        },
+        {
+          "info": {
+            "name": "Update a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/folders/:folderid",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name or description of an existing folder in the repository. Folder paths are determined by their position in the hierarchy; renaming a folder updates the paths of all contained files."
+        },
+        {
+          "info": {
+            "name": "Delete a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/folders/:folderid",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a folder and all its contents from the repository. This operation is recursive and will delete all files and subfolders within. Deleted content cannot be recovered."
+        },
+        {
+          "info": {
+            "name": "List folder contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/folders/:folderid/list",
+            "params": [
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a paginated, filterable list of files and subfolders within the specified folder. Supports filtering by name, type, and other metadata attributes. Used to navigate the repository hierarchy and discover bot files within specific folders."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

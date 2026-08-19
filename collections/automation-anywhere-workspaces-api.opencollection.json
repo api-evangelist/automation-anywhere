@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Workspaces API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workspace files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/workspaces/:workspaceType/files/list",
+            "params": [
+              {
+                "name": "workspaceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of workspace to list files from"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a filterable, paginated list of files and folders within a specific workspace type. The workspaceType path parameter selects between the public workspace (shared across all users) and the private workspace (user-specific). Used for workspace-scoped discovery and management operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

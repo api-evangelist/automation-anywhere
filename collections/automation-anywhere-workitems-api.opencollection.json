@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails WorkItems API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WorkItems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a work item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/queues/:id/workitems/:workItemId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the queue"
+              },
+              {
+                "name": "workItemId",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the work item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status, result, or JSON data payload of an existing work item in the queue. Used by bots and administrators to mark work items as complete, failed, or deferred, and to store processing results."
+        },
+        {
+          "info": {
+            "name": "Create work items from a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/queues/:id/file",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the queue"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Bulk-creates work items in a queue by uploading a CSV or Excel file. Each row in the file becomes a work item mapped to the queue's work item model attributes. This is the recommended approach for high-volume data ingestion into RPA queues."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

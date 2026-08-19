@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Lockers API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lockers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a locker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Locker in the Credential Vault. A Locker is a permission-controlled container that groups credentials and controls which roles (consumers) can use the credentials within it during bot execution. Lockers are the primary access control mechanism for the Credential Vault."
+        },
+        {
+          "info": {
+            "name": "Search lockers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for Lockers that the authenticated user has access to. Returns paginated results with locker metadata. Supports filtering by name and other attributes."
+        },
+        {
+          "info": {
+            "name": "Get a locker by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ]
+          },
+          "docs": "Retrieves a specific Locker by its numeric ID, including its name, description, and configuration. Does not include the list of contained credentials; use the locker credentials endpoint for that."
+        },
+        {
+          "info": {
+            "name": "Update a locker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Locker's name and description. The caller must have Locker owner permissions to update its details."
+        },
+        {
+          "info": {
+            "name": "Delete a locker",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a Locker. All credential associations within the Locker are removed. The credentials themselves are not deleted; they remain in the Credential Vault but lose Locker-based access."
+        },
+        {
+          "info": {
+            "name": "Get locker credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/credentials",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of credentials contained within a specific Locker. Returns credential metadata and the attributes available for bot consumption via the Locker's consumer roles."
+        },
+        {
+          "info": {
+            "name": "Update a credential in a locker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/credentials/:credentialId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the association or configuration of a credential within a Locker. Used to modify which credential attributes are exposed to consumer roles through this Locker."
+        },
+        {
+          "info": {
+            "name": "Remove a credential from a locker",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/lockers/:id/credentials/:credentialId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the locker"
+              }
+            ]
+          },
+          "docs": "Removes a credential from a Locker, revoking consumer role access to that credential through this Locker. The credential itself remains in the Credential Vault."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

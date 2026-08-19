@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails Permissions API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View role permissions for a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/role/:roleid/folder/:folderid/permissions",
+            "params": [
+              {
+                "name": "roleid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              },
+              {
+                "name": "folderid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the folder"
+              }
+            ]
+          },
+          "docs": "Retrieves the repository permissions granted to a specific role on a specific folder. Returns the set of permitted actions such as view, clone, run, upload, download, and delete."
+        },
+        {
+          "info": {
+            "name": "Update role permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/role/:roleid/permissions",
+            "params": [
+              {
+                "name": "roleid",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the role"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds or updates the repository folder permissions granted to a specific role. Permissions are specified as a list of folder-action pairs, enabling fine-grained access control over which operations a role can perform on each folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

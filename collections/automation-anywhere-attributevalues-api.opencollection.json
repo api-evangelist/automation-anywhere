@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Automation Anywhere API Task Execution AccessDetails AttributeValues API",
+    "version": "2019"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AttributeValues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List credential attribute values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/credentials/:id/attributevalues",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the credential"
+              },
+              {
+                "name": "credentialAttributeId",
+                "value": "",
+                "type": "query",
+                "description": "Filter attribute values by this credential attribute ID"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "Filter attribute values scoped to this user ID"
+              },
+              {
+                "name": "encryptionKey",
+                "value": "",
+                "type": "query",
+                "description": "Encryption key identifier for decrypting attribute values"
+              }
+            ]
+          },
+          "docs": "Retrieves all attribute values for a specific credential. Returns the current values of each attribute defined on the credential. The credentialAttributeId, userId, and encryptionKey query parameters can be used to filter the returned attribute values."
+        },
+        {
+          "info": {
+            "name": "Create credential attribute values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/credentials/:id/attributevalues",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the credential"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or creates new attribute values for a specific credential. Attribute values are the actual secret data (e.g., passwords) stored against credential attribute definitions. Values are encrypted at rest using the Credential Vault key pair."
+        },
+        {
+          "info": {
+            "name": "Update a credential attribute value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/credentials/:id/attributevalues/:attributeValueId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the credential"
+              },
+              {
+                "name": "attributeValueId",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the credential attribute value"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the value of a specific attribute on a credential. Used to rotate passwords, API keys, or other secrets without changing the credential's structure. The new value is encrypted and stored securely."
+        },
+        {
+          "info": {
+            "name": "Delete a credential attribute value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{controlRoomUrl}/orchestrator/v1/hotbot/credentials/:id/attributevalues/:attributeValueId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the credential"
+              },
+              {
+                "name": "attributeValueId",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier of the credential attribute value"
+              }
+            ]
+          },
+          "docs": "Removes a specific attribute value from a credential. After deletion, the attribute definition remains but the stored value is permanently removed from the Credential Vault."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
