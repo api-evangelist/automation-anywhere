@@ -118,6 +118,8 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
+  - Attribute Values
+  tags_raw:
   - AttributeValues
   properties:
   - type: OpenAPI
@@ -303,6 +305,8 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -340,6 +344,8 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -673,6 +679,8 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -747,6 +755,8 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
+  - Work Items
+  tags_raw:
   - WorkItems
   properties:
   - type: OpenAPI
