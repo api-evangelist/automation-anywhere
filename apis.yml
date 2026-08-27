@@ -1,4 +1,5 @@
 aid: automation-anywhere
+name: "Automation Anywhere"
 specificationVersion: '0.23'
 accessModel:
   pricing: freemium
