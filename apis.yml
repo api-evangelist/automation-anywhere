@@ -131,7 +131,7 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
-  - AttributeValues
+  - Attribute Values
   tags_raw:
   - AttributeValues
   properties:
@@ -768,7 +768,7 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
-  - WorkItems
+  - Work Items
   tags_raw:
   - WorkItems
   properties:
