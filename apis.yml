@@ -125,45 +125,6 @@ apis:
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
-- aid: automation-anywhere:automation-anywhere-attributevalues-api
-  name: automation-anywhere AttributeValues API
-  description: Manage credential attribute values for individual credentials
-  humanURL: >-
-    https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
-  tags:
-  - Attribute Values
-  tags_raw:
-  - AttributeValues
-  properties:
-  - type: OpenAPI
-    url: openapi/automation-anywhere-attributevalues-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
-  - type: JSONSchema
-    url: json-schema/automation-anywhere-deployment-schema.json
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
-  - type: JSONSchema
-    url: json-schema/automation-anywhere-work-item-schema.json
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
-  - type: Documentation
-    url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
-  - type: JSONSchema
-    url: json-schema/automation-anywhere-bot-schema.json
 - aid: automation-anywhere:automation-anywhere-auditdata-api
   name: automation-anywhere AuditData API
   description: Retrieve Control Room audit trail data
@@ -649,43 +610,6 @@ apis:
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
-- aid: automation-anywhere:automation-anywhere-taskdata-api
-  name: automation-anywhere TaskData API
-  description: Retrieve task metadata, variable profiles, and task-level logs
-  humanURL: >-
-    https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
-  tags:
-  - TaskData
-  properties:
-  - type: OpenAPI
-    url: openapi/automation-anywhere-taskdata-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
-  - type: JSONSchema
-    url: json-schema/automation-anywhere-deployment-schema.json
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
-  - type: JSONSchema
-    url: json-schema/automation-anywhere-work-item-schema.json
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
-  - type: Documentation
-    url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
-  - type: Documentation
-    url: >-
-      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
-  - type: JSONSchema
-    url: json-schema/automation-anywhere-bot-schema.json
 - aid: automation-anywhere:automation-anywhere-users-api
   name: automation-anywhere Users API
   description: Create, list, retrieve, update, and delete Control Room users
@@ -762,19 +686,17 @@ apis:
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
-- aid: automation-anywhere:automation-anywhere-workitems-api
-  name: automation-anywhere WorkItems API
-  description: Add, update, and manage individual work items within queues
+- aid: automation-anywhere:automation-anywhere-workspaces-api
+  name: automation-anywhere Workspaces API
+  description: List and manage content across public and private workspaces
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
   baseURL: https://automationanywhere-be-prod.automationanywhere.com
   tags:
-  - Work Items
-  tags_raw:
-  - WorkItems
+  - Workspaces
   properties:
   - type: OpenAPI
-    url: openapi/automation-anywhere-workitems-api-openapi.yml
+    url: openapi/automation-anywhere-workspaces-api-openapi.yml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -801,17 +723,91 @@ apis:
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
-- aid: automation-anywhere:automation-anywhere-workspaces-api
-  name: automation-anywhere Workspaces API
-  description: List and manage content across public and private workspaces
+- aid: automation-anywhere:automation-anywhere-attribute-values-api
+  name: Automation Anywhere Attribute Values API
+  description: Manage credential attribute values for individual credentials
   humanURL: >-
-    https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+    https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
+  baseURL: https://api.example.com
   tags:
-  - Workspaces
+  - Attribute Values
   properties:
   - type: OpenAPI
-    url: openapi/automation-anywhere-workspaces-api-openapi.yml
+    url: openapi/automation-anywhere-attribute-values-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
+  - type: JSONSchema
+    url: json-schema/automation-anywhere-deployment-schema.json
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
+  - type: JSONSchema
+    url: json-schema/automation-anywhere-work-item-schema.json
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+  - type: Documentation
+    url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
+  - type: JSONSchema
+    url: json-schema/automation-anywhere-bot-schema.json
+- aid: automation-anywhere:automation-anywhere-task-data-api
+  name: Automation Anywhere Task Data API
+  description: Retrieve task metadata, variable profiles, and task-level logs
+  humanURL: >-
+    https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
+  baseURL: https://api.example.com
+  tags:
+  - Task Data
+  properties:
+  - type: OpenAPI
+    url: openapi/automation-anywhere-task-data-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html
+  - type: JSONSchema
+    url: json-schema/automation-anywhere-deployment-schema.json
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html
+  - type: JSONSchema
+    url: json-schema/automation-anywhere-work-item-schema.json
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+  - type: Documentation
+    url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html
+  - type: Documentation
+    url: >-
+      https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html
+  - type: JSONSchema
+    url: json-schema/automation-anywhere-bot-schema.json
+- aid: automation-anywhere:automation-anywhere-work-items-api
+  name: Automation Anywhere Work Items API
+  description: Add, update, and manage individual work items within queues
+  humanURL: >-
+    https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
+  baseURL: https://api.example.com
+  tags:
+  - Work Items
+  properties:
+  - type: OpenAPI
+    url: openapi/automation-anywhere-work-items-api-openapi.yml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
