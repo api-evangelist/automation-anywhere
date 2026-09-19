@@ -1,5 +1,27 @@
 aid: automation-anywhere
 name: "Automation Anywhere"
+tags:
+  - RPA
+  - Robotic Process Automation
+  - Intelligent Automation
+  - Agentic Process Automation
+  - AI Agents
+  - Workflow-Automation
+  - Document Automation
+  - Process Orchestration
+  - Enterprise Automation
+  - Bots
+tags_raw:
+  - RPA
+  - Robotic Process Automation
+  - Intelligent Automation
+  - Agentic Process Automation
+  - AI Agents
+  - Workflow Automation
+  - Document Automation
+  - Process Orchestration
+  - Enterprise Automation
+  - Bots
 deliveryModel:
   model: saas
   open_source: false
@@ -39,7 +61,7 @@ apis:
   - Java
   - SDK
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.example.com
+  baseURL: https://{controlRoomUrl}
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
   properties:
@@ -56,12 +78,14 @@ apis:
   description: Generate execution URLs and authorization tokens for API Tasks
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/orchestrator/v1/hotbot
   tags:
   - AccessDetails
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-accessdetails-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-accessdetails-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -93,12 +117,14 @@ apis:
   description: List and manage API Task allocations within the Control Room
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/orchestrator/v1/hotbot
   tags:
   - Allocations
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-allocations-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-allocations-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -130,12 +156,14 @@ apis:
   description: Retrieve Control Room audit trail data
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/botinsight/data/api
   tags:
   - AuditData
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-auditdata-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-auditdata-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -167,12 +195,14 @@ apis:
   description: Generate, refresh, validate, and revoke JWT tokens for API access
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}
   tags:
   - Authentication
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-authentication-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-authentication-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -204,12 +234,14 @@ apis:
   description: Retrieve bot execution run data and performance metrics
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/botinsight/data/api
   tags:
   - BotRunData
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-botrundata-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-botrundata-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -241,12 +273,14 @@ apis:
   description: Create, retrieve, update, delete, and search credentials
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/credentialvault
   tags:
   - Credentials
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-credentials-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-credentials-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -278,7 +312,7 @@ apis:
   description: Deploy bots to Bot Runner devices and monitor deployment status
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v4
   tags:
   - Deployment
   tags_raw:
@@ -286,6 +320,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-deployments-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-deployments-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -317,7 +353,7 @@ apis:
   description: Manage individual bot files and their dependencies in the repository
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/repository
   tags:
   - File
   tags_raw:
@@ -325,6 +361,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-files-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-files-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -356,12 +394,14 @@ apis:
   description: Create, update, list, and delete folders in the repository
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/repository
   tags:
   - Folders
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-folders-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-folders-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -393,12 +433,14 @@ apis:
   description: Manage roles with consumer access to locker credentials
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/credentialvault
   tags:
   - LockerConsumers
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-lockerconsumers-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-lockerconsumers-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -430,12 +472,14 @@ apis:
   description: Manage user membership within lockers
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/credentialvault
   tags:
   - LockerMembers
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-lockermembers-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-lockermembers-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -467,12 +511,14 @@ apis:
   description: Create, retrieve, update, and delete credential lockers
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/credentialvault
   tags:
   - Lockers
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-lockers-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-lockers-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -504,12 +550,14 @@ apis:
   description: Manage role-based permissions on repository folders
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/repository
   tags:
   - Permissions
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-permissions-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-permissions-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -541,12 +589,14 @@ apis:
   description: Create and manage work item queues and their members
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v4/wlm
   tags:
   - Queues
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-queues-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-queues-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -578,12 +628,14 @@ apis:
   description: Create, list, retrieve, update, and delete user roles
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}
   tags:
   - Roles
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-roles-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-roles-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -615,7 +667,7 @@ apis:
   description: Create, list, retrieve, update, and delete Control Room users
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}
   tags:
   - User
   tags_raw:
@@ -623,6 +675,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-users-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-users-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -654,12 +708,14 @@ apis:
   description: Create and retrieve work item data models defining queue schema
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v4/wlm
   tags:
   - WorkItemModels
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-workitemmodels-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-workitemmodels-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -691,12 +747,16 @@ apis:
   description: List and manage content across public and private workspaces
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
-  baseURL: https://automationanywhere-be-prod.automationanywhere.com
+  baseURL: https://{controlRoomUrl}/v2/repository
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-workspaces-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-workspaces-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -728,12 +788,14 @@ apis:
   description: Manage credential attribute values for individual credentials
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
-  baseURL: https://api.example.com
+  baseURL: https://{controlRoomUrl}/v2/credentialvault
   tags:
   - Attribute Values
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-attribute-values-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-attribute-values-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -765,12 +827,16 @@ apis:
   description: Retrieve task metadata, variable profiles, and task-level logs
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
-  baseURL: https://api.example.com
+  baseURL: https://{controlRoomUrl}/v2/botinsight/data/api
   tags:
+  - TaskData
+  tags_raw:
   - Task Data
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-task-data-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-task-data-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -802,12 +868,14 @@ apis:
   description: Add, update, and manage individual work items within queues
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
-  baseURL: https://api.example.com
+  baseURL: https://{controlRoomUrl}/v4/wlm
   tags:
   - Work Items
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-work-items-api-openapi.yml
+  - type: Overlay
+    url: overlays/automation-anywhere-work-items-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -835,6 +903,79 @@ apis:
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
 common:
+  - type: Rules
+    url: rules/automation-anywhere-jsonschema-spectral-rules.yml
+  - type: SLA
+    url: https://www.automationanywhere.com/legal/uptime-availability-sla
+  - type: DeveloperPortal
+    url: https://pathfinder.automationanywhere.com/
+  - type: Community
+    url: https://apeople.automationanywhere.com/
+  - type: SignUp
+    url: https://www.automationanywhere.com/products/enterprise/community-edition
+  - type: GettingStarted
+    url: https://ai-kb.automationanywhere.com/getting-started/create-first-agent
+  - type: APIReference
+    url: https://docs.automationanywhere.com/r/control-room-apis/cloud-control-room-apis
+  - type: Vocabulary
+    url: vocabulary/automation-anywhere-vocabulary.yml
+  - type: FinOps
+    url: finops/automation-anywhere-finops.yml
+  - type: RateLimits
+    url: rate-limits/automation-anywhere-rate-limits.yml
+  - type: Plans
+    url: plans/automation-anywhere-plans-pricing.yml
+  - type: Webhooks
+    url: asyncapi/automation-anywhere-webhooks.yml
+  - type: DataModel
+    url: data-model/automation-anywhere-data-model.yml
+  - type: Components
+    url: components/automation-anywhere-components.yml
+  - type: Sandbox
+    url: sandbox/automation-anywhere-sandbox.yml
+  - type: OAuthScopes
+    url: scopes/automation-anywhere-scopes.yml
+  - type: Conventions
+    url: conventions/automation-anywhere-conventions.yml
+  - type: ErrorCatalog
+    url: errors/automation-anywhere-problem-types.yml
+  - type: Security
+    url: https://www.automationanywhere.com/legal/vulnerability-disclosure-policy
+  - type: VulnerabilityDisclosure
+    url: security/automation-anywhere-vulnerability-disclosure.yml
+  - type: TrustCenter
+    url: security/automation-anywhere-trust-center.yml
+  - type: Compliance
+    url: https://www.automationanywhere.com/compliance-portal
+  - type: Conformance
+    url: conformance/automation-anywhere-conformance.yml
+  - type: ChangeLog
+    url: changelog/automation-anywhere-changelog.yml
+  - type: Deprecation
+    url: https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/deprecations-overview
+  - type: StatusPage
+    url: https://status.automationanywhere.digital/
+  - type: Lifecycle
+    url: lifecycle/automation-anywhere-lifecycle.yml
+  - type: Packages
+    url: packages/automation-anywhere-packages.yml
+  - type: SDKs
+    url: packages/automation-anywhere-packages.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: WellKnown
+    url: well-known/automation-anywhere-well-known.yml
+  - type: ToolCrosswalk
+    url: mcp/automation-anywhere-tool-crosswalk.yml
+  - type: MCPServer
+    url: mcp/automation-anywhere-mcp.yml
+  - type: AgentCard
+    url: a2a/automation-anywhere-a2a.yml
+  - type: LLMsTxt
+    url: llms/automation-anywhere-llms.txt
+  - type: LLMsTxt
+    name: llms.txt (Enterprise Knowledge docs)
+    url: llms/automation-anywhere-ekb-llms.txt
   - type: AgenticAccess
     url: agentic-access/automation-anywhere-agentic-access.yml
   - type: DomainSecurity
@@ -857,9 +998,9 @@ common:
   - type: TermsOfService
     url: https://www.automationanywhere.com/legal/terms
   - type: PrivacyPolicy
-    url: https://www.automationanywhere.com/legal/privacy-policy
+    url: https://www.automationanywhere.com/legal/privacy
   - type: Support
-    url: https://support.automationanywhere.com
+    url: https://apeople.automationanywhere.com/
   - type: Blog
     url: https://www.automationanywhere.com/blog
   - type: JSONLD
@@ -938,7 +1079,8 @@ common:
           compatibility tooling.
   - type: Integrations
     url: https://www.automationanywhere.com/integrations
-modified: '2026-05-19'
+created: '2026-05-04'
+modified: '2026-09-17'
 description: >-
   Automation Anywhere is an enterprise robotic process automation (RPA) platform that enables organizations to automate
   business processes using software bots. Their developer platform, centered around the Automation 360 Control Room,
@@ -947,3 +1089,11 @@ description: >-
 integrations:
   - name: Become a Partner
   - name: Partner Portal
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-17'
+  status: enriched
+  artifacts_added: 45
+  pass: local-v3
