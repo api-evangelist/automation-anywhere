@@ -1,0 +1,22 @@
+generated: '2026-09-17'
+method: searched
+source: https://ai-kb.automationanywhere.com/.well-known/agent-skills/automationanywhere/skill.md
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: >-
+  Automation Anywhere publishes an Agent Skill of its own at the well-known
+  agent-skills path on its EKB documentation host, and advertises it from its A2A
+  agent card. It is saved here verbatim; nothing in this directory was authored
+  by this pipeline.
+skills:
+  - file: automation-anywhere-ekb-platform.md
+    name: automationanywhere
+    method: searched
+    source: https://ai-kb.automationanywhere.com/.well-known/agent-skills/automationanywhere/skill.md
+    http_status: 200
+    fetched: '2026-09-17'
+    description: >-
+      Use when building AI agents, creating workflows, configuring knowledge
+      bases, integrating third-party services, or automating business processes
+      on the Automation Anywhere EKB platform.
+    advertised_by: a2a/automation-anywhere-agent-card.json

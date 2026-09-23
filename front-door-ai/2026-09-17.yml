@@ -1,0 +1,32 @@
+# Front Door AI Index — automation-anywhere — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: automation-anywhere
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.automationanywhere.com
+  final_host: www.automationanywhere.com
+  ownership: own
+  owner: automation-anywhere
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 82
+  host_score: 82
+  density: 64.92
+  words: 1263
+  tiers:
+    agentic: 40
+    core: 42
+    model: 0
+  ambiguous: 62
+  top_terms:
+    automation: 48
+    AI: 41
+    agentic: 29
+    agent: 13
+    AI agent: 9
+    copilot: 2
+    generative ai: 1
+    smart: 1

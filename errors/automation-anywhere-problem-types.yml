@@ -1,0 +1,143 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://ai-kb.automationanywhere.com/general/api-errors,
+  https://ai-kb.automationanywhere.com/tools/direct-execution-api, openapi/
+provider: Automation Anywhere
+providerId: automation-anywhere
+format: custom
+media_type: application/json
+summary: >-
+  Automation Anywhere publishes a real error-code registry for Enterprise
+  Knowledge -- 24 named codes across 400/401/403/404/429/500/503 with causes and
+  remediation. It is not RFC 9457: the envelope is a custom object. The
+  Automation 360 Control Room specs in openapi/ return an Error/ErrorMessage
+  schema with no named code registry.
+envelope:
+  shape: |
+    {
+      "status_code": 400,
+      "error": { "code": "ERROR_CODE", "message": "Human-readable error message" },
+      "detail": "Additional error details (optional)"
+    }
+  optional_fields:
+    - error_id
+    - invalid_fields
+  source: https://ai-kb.automationanywhere.com/general/api-errors
+problem_types:
+  - code: VALIDATION_ERROR
+    status: 400
+    title: Request validation failed
+    remediation: Read invalid_fields, check required fields, types and formats.
+  - code: INVALID_API_KEY
+    status: 400
+    title: API key invalid or malformed
+    remediation: Verify the key in My Account > API Keys; regenerate if needed.
+  - code: INVALID_CREDENTIALS
+    status: 400
+    title: Authentication credentials invalid
+  - code: INVALID_OR_EXPIRED_JWT_TOKEN
+    status: 400
+    title: JWT invalid, expired or malformed
+  - code: AUTHENTICATION
+    status: 401
+    title: Authentication required
+  - code: INVALID_BEARER_TOKEN
+    status: 401
+    title: Bearer token invalid
+    remediation: 'Verify the header format: Bearer <token>; regenerate the token.'
+  - code: EMAIL_IS_NOT_VERIFIED
+    status: 401
+    title: Account email not verified
+  - code: AUTHORIZATION
+    status: 403
+    title: Not authorized for this resource
+  - code: PERMISSION_DENIED
+    status: 403
+    title: Permission denied
+  - code: DOMAIN_NOT_ALLOWED
+    status: 403
+    title: Calling domain not allowed
+  - code: ENTITY_NOT_FOUND
+    status: 404
+    title: Entity not found
+  - code: FILE_NOT_FOUND
+    status: 404
+    title: File not found
+  - code: FLOW_NOT_FOUND
+    status: 404
+    title: Flow not found
+  - code: CONFIG_NOT_FOUND
+    status: 404
+    title: Configuration not found
+  - code: RATE_LIMITED
+    status: 429
+    title: API rate limit exceeded
+    remediation: >-
+      Wait for the window to reset, read the rate-limit headers on the response,
+      back off, or move to a plan with higher limits.
+    aliases: [ratelimited]
+  - code: ENGINE_OPERATION_FAILURE
+    status: 500
+    title: Engine operation failed
+  - code: EXTERNAL_SERVICE
+    status: 500
+    title: External service failure
+  - code: INFRASTRUCTURE
+    status: 500
+    title: Infrastructure failure
+  - code: OPEN_AI_FAILED
+    status: 500
+    title: Model provider call failed
+  - code: EXECUTION_TIMEOUT
+    status: 503
+    title: Execution timed out
+  - code: QUOTA_EXCEEDED
+    status: 503
+    title: Credit or usage quota exceeded
+  - code: FEATURE_DISABLED
+    status: 503
+    title: Feature disabled for this team
+  - code: FLOW_IN_USE
+    status: 503
+    title: Flow is in use
+  - code: EXISTING_USER
+    status: 503
+    title: User already exists
+  - code: INVALID_APP_CONNECTION
+    status: 503
+    title: App connection invalid
+  - code: INVALID_SAML_RESPONSE
+    status: 503
+    title: SAML response invalid
+direct_execution_statuses:
+  source: https://ai-kb.automationanywhere.com/tools/direct-execution-api
+  endpoint: POST /tools/execute-workflow
+  statuses:
+    - status: 401
+      meaning: API key or secret missing, invalid or revoked.
+    - status: 402
+      meaning: The team does not have sufficient credits.
+    - status: 403
+      meaning: The API user is not a project member or cannot execute Flows.
+    - status: 404
+      meaning: tool_id does not exist or does not belong to the project.
+    - status: 422
+      meaning: A required request field is missing or has an invalid type.
+    - status: 200
+      meaning: >-
+        Accepted but a Flow node failed when the body carries "success": false --
+        inspect error, node_results and execution_id.
+control_room_responses:
+  derived_from: openapi/
+  note: >-
+    Response-code distribution across the 69 Control Room operations; the specs
+    carry an Error / ErrorMessage schema but no named code registry.
+  counts:
+    '200': 63
+    '201': 3
+    '204': 3
+    '400': 43
+    '401': 67
+    '404': 46
+    '500': 3

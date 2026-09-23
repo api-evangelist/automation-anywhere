@@ -1,9 +1,12 @@
-generated: '2026-07-11'
+generated: '2026-09-17'
 method: derived
-source: openapi/automation-anywhere-api-task-execution-openapi.yml, openapi/automation-anywhere-bot-deploy-openapi.yml,
-  openapi/automation-anywhere-bot-insight-openapi.yml, openapi/automation-anywhere-control-room-openapi.yml,
-  openapi/automation-anywhere-credential-vault-openapi.yml, openapi/automation-anywhere-repository-management-openapi.yml,
-  openapi/automation-anywhere-workload-management-openapi.yml
+source: openapi/automation-anywhere-accessdetails-api-openapi.yml, openapi/automation-anywhere-allocations-api-openapi.yml,
+  openapi/automation-anywhere-attribute-values-api-openapi.yml, openapi/automation-anywhere-auditdata-api-openapi.yml,
+  openapi/automation-anywhere-authentication-api-openapi.yml, openapi/automation-anywhere-botrundata-api-openapi.yml,
+  openapi/automation-anywhere-credentials-api-openapi.yml, openapi/automation-anywhere-deployments-api-openapi.yml,
+  openapi/automation-anywhere-files-api-openapi.yml, openapi/automation-anywhere-folders-api-openapi.yml,
+  openapi/automation-anywhere-lockerconsumers-api-openapi.yml, openapi/automation-anywhere-lockermembers-api-openapi.yml
+  ...
 summary:
   types:
   - apiKey
@@ -17,23 +20,90 @@ schemes:
   bearerFormat: JWT
   description: JWT token obtained from the Authentication API
   sources:
-  - openapi/automation-anywhere-api-task-execution-openapi.yml
-  - openapi/automation-anywhere-bot-deploy-openapi.yml
-  - openapi/automation-anywhere-bot-insight-openapi.yml
-  - openapi/automation-anywhere-control-room-openapi.yml
-  - openapi/automation-anywhere-credential-vault-openapi.yml
-  - openapi/automation-anywhere-repository-management-openapi.yml
-  - openapi/automation-anywhere-workload-management-openapi.yml
+  - openapi/automation-anywhere-accessdetails-api-openapi.yml
+  - openapi/automation-anywhere-allocations-api-openapi.yml
+  - openapi/automation-anywhere-attribute-values-api-openapi.yml
+  - openapi/automation-anywhere-auditdata-api-openapi.yml
+  - openapi/automation-anywhere-authentication-api-openapi.yml
+  - openapi/automation-anywhere-botrundata-api-openapi.yml
+  - openapi/automation-anywhere-credentials-api-openapi.yml
+  - openapi/automation-anywhere-deployments-api-openapi.yml
+  - openapi/automation-anywhere-files-api-openapi.yml
+  - openapi/automation-anywhere-folders-api-openapi.yml
+  - openapi/automation-anywhere-lockerconsumers-api-openapi.yml
+  - openapi/automation-anywhere-lockermembers-api-openapi.yml
+  - openapi/automation-anywhere-lockers-api-openapi.yml
+  - openapi/automation-anywhere-permissions-api-openapi.yml
+  - openapi/automation-anywhere-queues-api-openapi.yml
+  - openapi/automation-anywhere-roles-api-openapi.yml
+  - openapi/automation-anywhere-task-data-api-openapi.yml
+  - openapi/automation-anywhere-users-api-openapi.yml
+  - openapi/automation-anywhere-work-items-api-openapi.yml
+  - openapi/automation-anywhere-workitemmodels-api-openapi.yml
+  - openapi/automation-anywhere-workspaces-api-openapi.yml
 - name: xAuthorization
   type: apiKey
   in: header
   parameter: X-Authorization
   description: JWT token obtained from the Authentication API
   sources:
-  - openapi/automation-anywhere-api-task-execution-openapi.yml
-  - openapi/automation-anywhere-bot-deploy-openapi.yml
-  - openapi/automation-anywhere-bot-insight-openapi.yml
-  - openapi/automation-anywhere-control-room-openapi.yml
-  - openapi/automation-anywhere-credential-vault-openapi.yml
-  - openapi/automation-anywhere-repository-management-openapi.yml
-  - openapi/automation-anywhere-workload-management-openapi.yml
+  - openapi/automation-anywhere-accessdetails-api-openapi.yml
+  - openapi/automation-anywhere-allocations-api-openapi.yml
+  - openapi/automation-anywhere-attribute-values-api-openapi.yml
+  - openapi/automation-anywhere-auditdata-api-openapi.yml
+  - openapi/automation-anywhere-authentication-api-openapi.yml
+  - openapi/automation-anywhere-botrundata-api-openapi.yml
+  - openapi/automation-anywhere-credentials-api-openapi.yml
+  - openapi/automation-anywhere-deployments-api-openapi.yml
+  - openapi/automation-anywhere-files-api-openapi.yml
+  - openapi/automation-anywhere-folders-api-openapi.yml
+  - openapi/automation-anywhere-lockerconsumers-api-openapi.yml
+  - openapi/automation-anywhere-lockermembers-api-openapi.yml
+  - openapi/automation-anywhere-lockers-api-openapi.yml
+  - openapi/automation-anywhere-permissions-api-openapi.yml
+  - openapi/automation-anywhere-queues-api-openapi.yml
+  - openapi/automation-anywhere-roles-api-openapi.yml
+  - openapi/automation-anywhere-task-data-api-openapi.yml
+  - openapi/automation-anywhere-users-api-openapi.yml
+  - openapi/automation-anywhere-work-items-api-openapi.yml
+  - openapi/automation-anywhere-workitemmodels-api-openapi.yml
+  - openapi/automation-anywhere-workspaces-api-openapi.yml
+
+# --- 2026-09-17 enrichment pass: upgraded from derived to searched ---
+docs:
+  control_room: https://docs.automationanywhere.com/r/control-room-apis/cloud-authentication
+  ekb_api_keys: https://ai-kb.automationanywhere.com/my-account/api-keys
+  ekb_oauth: https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication
+  sso: https://ai-kb.automationanywhere.com/general/authentication/sso
+searched:
+  control_room:
+    model: JWT bearer
+    obtain: >-
+      POST to the Authentication API with username + password or an API key to
+      receive a JWT; send it on subsequent calls as Authorization: Bearer <token>
+      or in the X-Authorization header.
+    token_validation: A validate endpoint and a logout endpoint are published alongside authenticate.
+    roles: >-
+      Access to individual APIs is gated by Control Room roles (for example
+      AAE_Admin, AAE_Bot Insight Admin) and folder-level permissions.
+  enterprise_knowledge:
+    model: API key pair
+    headers: [X-API-KEY, X-API-SECRET]
+    key_types: [user-level, project-scoped]
+    management: My Account > API Keys, and per-project API keys under Project Settings.
+    oauth:
+      model: OAuth 2.0 authorization code with PKCE (S256)
+      issuer: https://api.getodin.ai
+      scopes: [odin:build, odin:use]
+      dynamic_client_registration: true
+      metadata: well-known/automation-anywhere-ekb-oauth-authorization-server.json
+      cross_link: scopes/automation-anywhere-scopes.yml
+  sso:
+    protocols: [SAML]
+    providers: [Azure AD, Okta, Google, custom]
+  community_identity:
+    host: apeople.automationanywhere.com
+    openid_configuration: well-known/automation-anywhere-apeople-openid-configuration.json
+    note: >-
+      OpenID Connect discovery document for the APeople community identity
+      provider; it authenticates community users, not API callers.

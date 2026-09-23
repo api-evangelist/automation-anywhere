@@ -1,0 +1,431 @@
+# Automation Anywhere EKB Docs
+
+## Get Started!
+
+- [Welcome to EKB](https://ai-kb.automationanywhere.com/index.md): Meet Automation Anywhere Enterprise Knowledge Base (EKB) - RAG, agents, workflows, automation, and enterprise security & compliance.
+- [Create Your First AI Agent](https://ai-kb.automationanywhere.com/getting-started/create-first-agent.md): Create a project in EKB and configure your first custom AI Agent with models, toolkits, and prompts.
+
+## Offerings
+
+### Cloud
+
+- [Overview](https://ai-kb.automationanywhere.com/offerings/cloud/overview.md): EKB cloud overview—AWS regions, static egress IPs, and frontend and app server URLs for firewall and proxy allowlists.
+- [Cloud Licensing](https://ai-kb.automationanywhere.com/offerings/cloud/licensing.md): How EKB cloud licenses are issued, how you receive your key, and how to redeem it in the EKB portal.
+
+### On-Premise
+
+- [Overview](https://ai-kb.automationanywhere.com/offerings/on-premise/overview.md): EKB in your environment—who it is for, how it differs from cloud, and links to licensing and installation.
+- [On-Premise Licensing](https://ai-kb.automationanywhere.com/offerings/on-premise/licensing.md): How On-Premise licenses are issued, how you receive your key, and how to coordinate installation with Automation Anywhere.
+- [On-Premise Installation Guide](https://ai-kb.automationanywhere.com/offerings/on-premise/installation.md): Requirements for installing the EKB platform in your environment.
+
+#### EKS Deployment
+
+- [EKB - AWS EKS (Services and Infrastructure) Guide](https://ai-kb.automationanywhere.com/offerings/on-premise/kubernetes-deployment/aws-architecture.md): Architecture overview, component descriptions, and data flow for the EKB services infrastructure on AWS EKS.
+- [EKS Deployment Prerequisites](https://ai-kb.automationanywhere.com/offerings/on-premise/kubernetes-deployment/eks-deployment-prerequisites.md): Pre-deployment checklist to complete and review with the customer before deploying the EKB EKS infrastructure on their AWS account.
+- [EKB Terraform Infrastructure](https://ai-kb.automationanywhere.com/offerings/on-premise/kubernetes-deployment/terraform-infrastructure.md): Terraform and Terragrunt IaC for managing the EKB platform on AWS EKS, with support stubs for GKE, AKS, and bare-metal Kubernetes.
+- [Terragrunt Deployment Guide](https://ai-kb.automationanywhere.com/offerings/on-premise/kubernetes-deployment/terragrunt-deployment.md): Step-by-step commands for deploying the complete EKB EKS infrastructure using Terragrunt, including dry run validation and actual deployment.
+- [Disaster Recovery & RTO/RPO Guide](https://ai-kb.automationanywhere.com/offerings/on-premise/kubernetes-deployment/disaster-recovery-guide.md): DR strategy, RTO/RPO targets, backup systems, auto-recovery mechanisms, and recovery procedures for the EKB AWS/EKS infrastructure.
+
+## Autopilot
+
+- [Overview](https://ai-kb.automationanywhere.com/autopilot/autopilot-overview.md): Your AI orchestration assistant, built into Enterprise Knowledge.
+- [How Autopilot Works](https://ai-kb.automationanywhere.com/autopilot/autopilot-how-it-works.md): Learn how Autopilot's project-based workspace, plan-first approach, and built-in quality checks come together to deliver reliable AI solutions in Enterprise Knowledge (EKB).
+- [Autopilot Modes](https://ai-kb.automationanywhere.com/autopilot/autopilot-modes.md): Switch between Agent mode and Build mode so Autopilot can either act or author
+
+## Chat
+
+- [Chats](https://ai-kb.automationanywhere.com/chat/chat.md): Contextual AI Interactions with Flexible Agents
+- [Chat with Documents](https://ai-kb.automationanywhere.com/chat/chat-kb.md): Enhance Interactions with Specific Context
+
+## Agents
+
+- [Overview](https://ai-kb.automationanywhere.com/agents/agents.md): Get Started Setting Up AI Agents
+- [Agent Templates](https://ai-kb.automationanywhere.com/agents/agent-templates.md): Launch role-based AI agents for finance, procurement, legal, HR, and IT workflows
+- [Predefined and Custom Models](https://ai-kb.automationanywhere.com/agents/models.md): Configure LLM models for your agents - use default models or bring your own API keys
+- [Tools](https://ai-kb.automationanywhere.com/agents/tools.md): Add custom tools and workflows to your agents
+- [MCP (Model Context Protocol)](https://ai-kb.automationanywhere.com/agents/mcp.md): Connect agents to external systems and tools using the Model Context Protocol
+- [Bidirectional Agent-to-Agent (A2A)](https://ai-kb.automationanywhere.com/agents/agent-to-agent.md): Call external A2A agents from EKB, and let external systems invoke your EKB agents
+- [Agent Settings](https://ai-kb.automationanywhere.com/agents/settings.md): Configure context handling, user identification, prompt improvement, and related options for your agent.
+- [Outputs](https://ai-kb.automationanywhere.com/agents/outputs.md): Define JSON schemas to structure agent responses in a consistent format
+- [Best Practices and Tips](https://ai-kb.automationanywhere.com/agents/best-practices.md): Best practices for implementation and orchestration of agents on the Automation Anywhere EKB platform
+
+### Toolkits
+
+- [Overview](https://ai-kb.automationanywhere.com/agents/toolkits/overview.md): Pre-built integrations that extend your AI agents with data access, code execution, automation, and messaging capabilities
+
+#### Knowledge & Content
+
+- [Knowledge Base Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/knowledge-base.md): RAG-powered retrieval from your proprietary data and documents
+- [Image Generation Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/image-generation.md): Generate high-fidelity images on demand using DALL-E 3
+- [Web Search Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/web-search.md): Real-time information access via search and web scraping
+- [Document Manager Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/document-manager.md): Create and edit documents directly within chat conversations
+- [PDF Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/pdf.md): Extract text from PDFs, convert pages to images, and generate PDFs from text or images
+- [File Helpers Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/file-helpers.md): Save, read, re-encode, and inspect files for agents and workflows
+
+#### Data & Analytics
+
+- [Database Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/database.md): Query, analyze, and visualize data from SQL databases and Smart Tables
+- [Smart Table Manager Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/smart-table-manager.md): Manage structure and data of internal Smart Tables with NoSQL-style capabilities
+- [New Relic Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/newrelic.md): Query NRQL metrics, explore entities, and review alerts through New Relic NerdGraph
+- [Airtable Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/airtable.md): Create, find, update, and delete Airtable records, and attach files with a personal access token
+- [AITable Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/aitable.md): Manage AITable spaces, datasheets, views, fields, and records with an API token
+- [Crypto Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/crypto.md): Hash text, create HMAC signatures, and generate secure random passwords locally
+- [Databricks Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/databricks.md): Query Unity Catalog tables, run warehouse SQL, inspect lineage and notebooks with a Databricks PAT or service principal
+- [Datadog Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/datadog.md): Connect Datadog to agents and workflows to monitor infrastructure, manage incidents, query metrics and logs, and inspect hosts and dashboards.
+
+#### Code & Development
+
+- [Agent Manager Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/agent-manager.md): Create, list, update, clone, validate, and test agents in a project from Autopilot or an agent that has Agent Manager enabled
+- [Python Code Execution Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/python.md): Execute Python code in secure sandbox with file uploads and analysis
+- [Node.js Execution Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/nodejs.md): Optimized for JavaScript/TypeScript workloads
+- [Bitbucket Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/bitbucket.md): Browse workspaces and repositories, read files, and manage pull requests and issues in Bitbucket via OAuth
+- [GitLab Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/gitlab.md): Connects GitLab projects to EKB agents and workflows for managing projects, merge requests, issues, repositories, and CI/CD pipelines.
+
+#### Planning & Productivity
+
+- [Todo Manager Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/to-do-manager.md): Create and update a structured todo list during a conversation
+- [Ask User Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/ask-user.md): Enable agents to request structured input from users at any point in a workflow
+- [Trello Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/trello.md): List boards and lists, create and update cards, and search Trello with an API key and token
+- [Linear Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/linear.md): Connect Linear to agents and workflows to manage issues, projects, teams, cycles, labels, and comments.
+- [Smartsheet](https://ai-kb.automationanywhere.com/agents/toolkits/smartsheet.md): Connect Smartsheet to agents and workflows to search workspaces, read and update sheet rows, manage reports and dashboards, and handle attachments and discussions.
+
+#### Finance
+
+- [Yahoo Finance](https://ai-kb.automationanywhere.com/agents/toolkits/yahoo-finance.md): Market data, quotes, and financial analysis
+
+#### Automation & Workflows
+
+- [Team Info Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/team-info.md): Count and search members of the team assigned to the current project
+- [Workflow Manager Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/workflow-manager.md): Design and execute deterministic workflows for automation
+- [Platform Actions Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/platform-actions.md): Invite users, manage projects, run crawlers, and manage Knowledge Base files using the signed-in user's permissions
+
+#### Integrations & APIs
+
+- [Agent Communication Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/agent-communication.md): Multi-Agent Systems - delegate tasks to specialized worker agents
+- [Google Cloud Platform Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/google-cloud-platform.md): Connect your agent to BigQuery, Cloud Run, and Cloud SQL using a service-account connection.
+- [Google Chat Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/google-chat.md): Connect Google Chat to agents and workflows to search, send, and manage messages, spaces, and members.
+- [YouTube Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/youtube.md): Call the YouTube Data API v3 with the connected Google account — manage videos, channels, playlists, and uploads
+- [ClickUp Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/clickup.md): Manage ClickUp workspaces, spaces, lists, tasks, goals, and time tracking via OAuth
+- [Slack Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/slack.md): List channels and users, send messages, search history, and manage Slack workspace actions via OAuth
+- [Discord Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/discord.md): Send messages, manage channels and roles, and moderate Discord servers with a bot token
+- [Telegram Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/telegram.md): Connect your Telegram bot to agents and workflows to send messages, manage chats, and trigger automations from incoming messages.
+- [WhatsApp Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/whatsapp.md): Send outbound messages, media, and pre-approved templates through the WhatsApp Business API from your agents and workflows.
+- [Twilio Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/twilio.md): Connects Twilio to EKB agents and workflows to send SMS messages through a Twilio account.
+- [Typeform Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/typeform.md): List and create Typeform forms, retrieve responses, and configure webhooks with a personal access token
+- [Zoho People Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/zoho-people.md): Manage Zoho People attendance, employees, and leave — check-in/out, reports, and custom API calls via OAuth
+- [BambooHR Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/bamboo-hr.md): Connect BambooHR to agents and workflows to look up employees, managers, PTO balances, and who is out.
+- [Zoho Desk Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/zoho-desk.md): Connect Zoho Desk to EKB agents and workflows to manage tickets, contacts, agents, and help-center articles.
+- [Notion Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/notion.md): Search, read, create, update, and append content to Notion pages and databases from your agents and workflows.
+- [Freshservice Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/freshservice.md): Manage Freshservice tickets, requesters, agents, and groups — create, update, search, and custom API calls
+- [PagerDuty Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/pagerduty.md): Connect PagerDuty to agents and workflows to manage incidents, inspect services, find on-call responders, and look up users.
+- [Amazon S3 Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/amazon-s3.md): Upload, read, list, copy, and delete objects in Amazon S3 or S3-compatible storage; generate presigned URLs
+- [Microsoft 365](https://ai-kb.automationanywhere.com/agents/toolkits/microsoft-365.md): Email, calendar, OneDrive, and SharePoint integration via Azure AD
+- [Gmail](https://ai-kb.automationanywhere.com/agents/toolkits/gmail.md): Email management with Gmail API and OAuth 2.0
+- [Google Docs](https://ai-kb.automationanywhere.com/agents/toolkits/google-docs.md): Read, create, edit, and manage Google Docs with formatting, tables, and templates via OAuth
+- [Google Sheets](https://ai-kb.automationanywhere.com/agents/toolkits/google-sheets.md): Read, write, and manipulate spreadsheet data
+- [Google Drive](https://ai-kb.automationanywhere.com/agents/toolkits/google-drive.md): File storage, sharing, and management
+- [Google Slides](https://ai-kb.automationanywhere.com/agents/toolkits/google-slides.md): Create and modify presentations
+- [Google Calendar](https://ai-kb.automationanywhere.com/agents/toolkits/google-calendar.md): List, create, update, and delete Google Calendar events and check free/busy availability via OAuth
+- [Google Forms](https://ai-kb.automationanywhere.com/agents/toolkits/google-forms.md): Create and update Google Forms, add questions, and retrieve responses via OAuth
+- [Google Tasks](https://ai-kb.automationanywhere.com/agents/toolkits/google-tasks.md): List task lists and create, update, complete, and delete Google Tasks via OAuth
+- [Facebook Pages Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/facebook-pages.md): List managed Facebook Pages and create text, photo, and video posts via OAuth
+- [Microsoft Excel](https://ai-kb.automationanywhere.com/agents/toolkits/microsoft-excel.md): Workbook management, data operations, and analysis
+- [Microsoft Word](https://ai-kb.automationanywhere.com/agents/toolkits/microsoft-word.md): Document creation and editing
+- [Dropbox](https://ai-kb.automationanywhere.com/agents/toolkits/dropbox.md): File storage and sharing
+- [Asana](https://ai-kb.automationanywhere.com/agents/toolkits/asana.md): Project and task management
+- [Jira](https://ai-kb.automationanywhere.com/agents/toolkits/jira.md): Issue tracking and project workflows
+- [Confluence](https://ai-kb.automationanywhere.com/agents/toolkits/confluence.md): Use Confluence spaces, pages, search, and attachments from an agent
+- [Salesforce CRM](https://ai-kb.automationanywhere.com/agents/toolkits/salesforce.md): CRM data and operations
+- [HubSpot](https://ai-kb.automationanywhere.com/agents/toolkits/hubspot.md): Contacts, companies, deals, and tickets
+- [Odoo ERP](https://ai-kb.automationanywhere.com/agents/toolkits/odoo-erp.md): ERP capabilities including inventory, sales, and accounting
+- [Azure Active Directory](https://ai-kb.automationanywhere.com/agents/toolkits/azure-active-directory.md): User provisioning and directory management
+- [GitHub](https://ai-kb.automationanywhere.com/agents/toolkits/github.md): Repository management, issues, and pull requests
+- [WordPress Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/wordpress.md): Connect WordPress to EKB Platform agents and workflows to create, edit, publish, and manage pages, posts, media, and taxonomy.
+- [SMTP Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/smtp.md): Send email through any SMTP server using host, port, and optional login credentials
+- [Box Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/box.md): Search, read, upload, and manage Box files and folders via OAuth
+- [DocuSign Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/docusign.md): List envelopes and templates and inspect DocuSign account details via OAuth
+- [ElevenLabs Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/elevenlabs.md): Convert text to speech with an ElevenLabs API key
+- [LinkedIn Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/linkedin.md): Read the connected LinkedIn profile and create posts via OAuth
+- [Zoom Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/zoom.md): Manage Zoom users, meetings, webinars, and recordings with Server-to-Server OAuth credentials
+- [ServiceNow Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/servicenow.md): List, create, update, and search ServiceNow cases with username/password credentials
+- [Jenkins Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/jenkins.md): Manage Jenkins jobs, builds, nodes, and pipelines with username and API token auth
+- [Odin AI Tools](https://ai-kb.automationanywhere.com/agents/toolkits/odin-ai-tools.md): Summarize, search, extract, classify, and manage documents and Knowledge Base content with Odin API credentials
+
+### Memory
+
+- [Agent Memory Overview](https://ai-kb.automationanywhere.com/agents/memory.md): Learn how your agent remembers user preferences, facts, and context across conversations.
+- [Managing Memories](https://ai-kb.automationanywhere.com/agents/memory-managing.md): View, approve, reject, and delete agent memories from the Memory Management panel.
+- [Memory API Reference](https://ai-kb.automationanywhere.com/agents/memory-api-reference.md): Manage agent memories and approval workflows programmatically using the EKB REST API.
+
+### Agent Skills
+
+- [Agent Skills Overview](https://ai-kb.automationanywhere.com/agents/skills/agent-skills-overview.md): A standardized way to give AI agents new capabilities and expertise.
+- [Getting Started with Agent Skills](https://ai-kb.automationanywhere.com/agents/skills/agent-skills-getting-started.md): Enable skills on your agent, create your first custom skill, or add a pre-built skill.
+- [Agent Skills Library](https://ai-kb.automationanywhere.com/agents/skills/agent-skills-library.md): Browse all pre-built skills available out of the box
+
+## EKB as MCP
+
+- [Overview](https://ai-kb.automationanywhere.com/ekb-as-mcp/overview.md): Use Claude, Cursor, ChatGPT, and other MCP clients to build and run EKB
+- [Connect a Client](https://ai-kb.automationanywhere.com/ekb-as-mcp/connect-a-client.md): Point Claude, Cursor, ChatGPT, or another MCP client at EKB
+- [EKB Builder](https://ai-kb.automationanywhere.com/ekb-as-mcp/builder.md): Build agents, workflows, tables, and more from an MCP client
+- [EKB Runtime](https://ai-kb.automationanywhere.com/ekb-as-mcp/runtime.md): Ask agents, run published tools, and search knowledge from an MCP client
+- [Authentication](https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication.md): OAuth consent, build vs use scopes, and API keys for CI
+
+## Knowledge Base
+
+- [Overview](https://ai-kb.automationanywhere.com/knowledge-base/kb-overview.md): Centralized repository for files, guidance, crawlers, and Smart Tables used by AI agents
+- [Uploading Files to the Knowledge Base](https://ai-kb.automationanywhere.com/knowledge-base/upload-files.md): How to Upload Files to the Knowledge Base
+- [Tags & Custom Metadata](https://ai-kb.automationanywhere.com/knowledge-base/tags-and-custom-metadata.md): Control document visibility with Access Tags and organize content with Custom Metadata
+- [Using Web Crawlers](https://ai-kb.automationanywhere.com/knowledge-base/kb-crawler.md): Index Web Pages for Smart AI Search
+- [Add Confluence Content to the Knowledge Base](https://ai-kb.automationanywhere.com/knowledge-base/kb-connectors-confluence.md): After Confluence is connected, add pages and spaces to the Knowledge Base by URL or Explore
+- [Add Google Drive Content to the Knowledge Base](https://ai-kb.automationanywhere.com/knowledge-base/kb-connectors-google-drive.md): After Google Drive is connected, add files and folders to the Knowledge Base by URL
+- [Knowledge Base Templates](https://ai-kb.automationanywhere.com/knowledge-base/templates.md): Create and manage templates to guide AI agents with FAQs, response templates, and examples
+- [Smart Tables](https://ai-kb.automationanywhere.com/knowledge-base/smart-tables.md): Learn how to use Smart Tables to store and look up data
+
+## Workflows
+
+- [Workflows](https://ai-kb.automationanywhere.com/tools/workflows-overview.md): Automate processes by connecting agents, tools, and external services into repeatable workflows.
+- [Workflow Builder V2](https://ai-kb.automationanywhere.com/tools/workflows-v2.md): Create automations from user inputs, file uploads, emails, or on a schedule.
+- [Visual and Python Workflows](https://ai-kb.automationanywhere.com/tools/visual-and-python-workflows.md): Choose Visual or Python workflows, use Autopilot in the editor, and read flowchart summaries
+- [Workflow Failure Notifications](https://ai-kb.automationanywhere.com/tools/workflow-failure-notification.md): Receive automated email alerts whenever a workflow execution fails.
+- [Workflow V1 Migration Tool](https://ai-kb.automationanywhere.com/tools/migrate-v1-workflows.md): Migrate your existing Workflows V1 to Workflows V2 using the in-platform migration tool.
+- [Direct Execution API for V2 Flows](https://ai-kb.automationanywhere.com/tools/direct-execution-api.md): Trigger a V2 Flow directly via API, and update integrations that previously called a V1 workflow this way.
+
+### V2 Nodes
+
+#### Trigger Nodes
+
+- [Overview](https://ai-kb.automationanywhere.com/tools/nodes/triggers/triggers-overview.md): Every workflow starts with a trigger. Triggers define how and when a workflow is initiated — whether manually, on a schedule, via an HTTP request, or in response to an external event.
+- [Core Triggers](https://ai-kb.automationanywhere.com/tools/nodes/triggers/core-triggers.md): General-purpose triggers for manual runs, scheduled execution, HTTP requests, and file uploads.
+- [Communication Triggers](https://ai-kb.automationanywhere.com/tools/nodes/triggers/communication-triggers.md): Triggers that fire in response to incoming emails, the end of an EKB-recorded meeting, or a Telegram bot message.
+- [Google Triggers](https://ai-kb.automationanywhere.com/tools/nodes/triggers/google-triggers.md): Triggers that react to activity in Google Forms and Google Sheets.
+
+#### Core Nodes
+
+- [Overview](https://ai-kb.automationanywhere.com/tools/nodes/core/core-nodes-overview.md): Core utilities for API calls, data storage, web extraction, flow control, and output handling.
+- [API](https://ai-kb.automationanywhere.com/tools/nodes/core/api.md): Make HTTP requests to external APIs and services from within a workflow.
+- [Datastore](https://ai-kb.automationanywhere.com/tools/nodes/core/datastore.md): Store, retrieve, or delete values that persist across workflow executions.
+- [Extract Website Content](https://ai-kb.automationanywhere.com/tools/nodes/core/extract-website-content.md): Scrape and extract content from a web page URL.
+- [Final Output](https://ai-kb.automationanywhere.com/tools/nodes/core/final-output.md): Define the final response returned by the workflow.
+- [Return Response](https://ai-kb.automationanywhere.com/tools/nodes/core/return-response.md): Return a custom HTTP response with a status code, headers, and JSON body.
+- [Call Flow](https://ai-kb.automationanywhere.com/tools/nodes/core/call-flow.md): Trigger another workflow in the project as a child flow.
+- [Get Flow Result](https://ai-kb.automationanywhere.com/tools/nodes/core/get-flow-result.md): Wait for a child workflow to complete and retrieve its result.
+
+#### AI Nodes
+
+- [Overview](https://ai-kb.automationanywhere.com/tools/nodes/ai/ai-nodes-overview.md): Agent and large language model tools for AI-powered workflow steps.
+- [LLM](https://ai-kb.automationanywhere.com/tools/nodes/ai/llm.md): Send a prompt to a language model and return the generated response.
+- [Agent](https://ai-kb.automationanywhere.com/tools/nodes/ai/agent.md): Run a task using one of your configured AI agents.
+- [Email Creator](https://ai-kb.automationanywhere.com/tools/nodes/ai/email-creator.md): Generate a formatted email using AI based on instructions and sender details.
+
+#### Flow Nodes
+
+- [Overview](https://ai-kb.automationanywhere.com/tools/nodes/flow/flow-nodes-overview.md): Branching, conditions, loops, delays, and approval handling for workflow control.
+- [If/Else](https://ai-kb.automationanywhere.com/tools/nodes/flow/if-else.md): Branch the workflow based on one or more conditions.
+- [Loop](https://ai-kb.automationanywhere.com/tools/nodes/flow/loop.md): Repeat a set of steps until a condition is met or an array is fully iterated.
+- [Delay](https://ai-kb.automationanywhere.com/tools/nodes/flow/delay.md): Pause workflow execution for a fixed duration or until a specific date and time.
+- [Wait for Approval](https://ai-kb.automationanywhere.com/tools/nodes/flow/wait-for-approval.md): Pause the workflow and wait for a user to approve or disapprove before continuing.
+- [Create Approval Link](https://ai-kb.automationanywhere.com/tools/nodes/flow/create-approval-link.md): Generate approval and disapproval URLs without pausing the workflow.
+
+#### Toolkit Nodes
+
+- [Overview](https://ai-kb.automationanywhere.com/tools/nodes/toolkits/toolkits-overview.md): Apps and integrations to connect your workflows with external services and platforms.
+- [Asana Toolkit](https://ai-kb.automationanywhere.com/tools/nodes/toolkits/asana.md): Interact with Asana projects, tasks, and users from within a workflow.
+- [Automation Anywhere Toolkit](https://ai-kb.automationanywhere.com/tools/nodes/toolkits/automation-anywhere.md): Deploy and manage Automation Anywhere bots from within a workflow.
+- [Confluence Toolkit](https://ai-kb.automationanywhere.com/tools/nodes/toolkits/confluence.md): Interact with Confluence spaces, pages, and content from within a workflow.
+- [Database Toolkit](https://ai-kb.automationanywhere.com/tools/nodes/toolkits/database.md): Connect to a SQL database and run queries, inspect schemas, and validate SQL from within a workflow.
+- [WhatsApp Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/whatsapp.md): Send outbound messages, media, and pre-approved templates through the WhatsApp Business API from your agents and workflows.
+- [Notion Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/notion.md): Search, read, create, update, and append content to Notion pages and databases from your agents and workflows.
+- [Telegram Toolkit](https://ai-kb.automationanywhere.com/agents/toolkits/telegram.md): Connect your Telegram bot to agents and workflows to send messages, manage chats, and trigger automations from incoming messages.
+
+## Interfaces
+
+- [Create Custom Interfaces For Your Project](https://ai-kb.automationanywhere.com/documentation/interfaces-v2.md): Build custom, multi-page app experiences on top of your project resources using a no-code drag-and-drop builder.
+
+## Public Chatbot
+
+- [Public Chatbot](https://ai-kb.automationanywhere.com/public-chatbot/chatbot-public.md): Create and Brand Your EKB Chatbot
+- [Chatbot Configuration](https://ai-kb.automationanywhere.com/public-chatbot/chatbot-configuration.md): How to configure your public chatbot within EKB
+- [Integrate EKB Chatbot to Your Website & Apps](https://ai-kb.automationanywhere.com/public-chatbot/chatbot-integration.md): Seamless Integration, Anywhere You Need
+- [Integrate EKB Chatbot to Google Workspace](https://ai-kb.automationanywhere.com/public-chatbot/chatbot-google-chat.md): Bring EKB to Google Chat
+- [Integrate EKB Chatbot to MS Teams](https://ai-kb.automationanywhere.com/public-chatbot/chatbot-teams.md): Bring EKB to MS Teams
+- [Integrate EKB Chatbot to Slack](https://ai-kb.automationanywhere.com/public-chatbot/chatbot-slack.md): Bring EKB to Slack
+
+## Project Settings
+
+- [General](https://ai-kb.automationanywhere.com/project-settings/general.md): Configure your project's name, visibility, sharing, and core settings.
+- [Export Project](https://ai-kb.automationanywhere.com/project-settings/export-project.md): Download a zip archive of your project with configurable components.
+- [Analytics](https://ai-kb.automationanywhere.com/project-settings/analytics.md): Monitor project usage, user activity, feedback, and LLM performance metrics.
+- [Members](https://ai-kb.automationanywhere.com/project-settings/members.md): Add, manage, and remove project members and control their access levels.
+- [Billing](https://ai-kb.automationanywhere.com/project-settings/billing.md): Monitor credit usage and billing information for your project.
+- [Roles](https://ai-kb.automationanywhere.com/project-settings/roles.md): Configure project-level role-based access control to manage what users can view and do within your project.
+- [API Keys](https://ai-kb.automationanywhere.com/project-settings/api-keys.md): Generate and manage API keys to connect to your project programmatically.
+- [Library](https://ai-kb.automationanywhere.com/project-settings/library.md): Browse, manage, and export prompts from all levels of your project.
+- [Datastore](https://ai-kb.automationanywhere.com/project-settings/datastore.md): Manage datastore values and encrypted vault secrets for your project.
+- [Integrations](https://ai-kb.automationanywhere.com/project-settings/integrations.md): Manage the authenticated apps and services connected to your project.
+- [History](https://ai-kb.automationanywhere.com/project-settings/history.md): View, filter, and export a record of all chat interactions within your project.
+- [Logs](https://ai-kb.automationanywhere.com/project-settings/logs.md): Track and audit all activity within your project using the Logs page.
+- [Agent Interactions](https://ai-kb.automationanywhere.com/project-settings/agent-interactions.md): Per-message debug log of chat interactions with full tool calls and trace details.
+
+### Knowledge Base Settings
+
+- [Settings](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-settings.md): Configure how your knowledge base processes and embeds documents.
+- [Sync & Schedule](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-sync-schedule.md): Configure automatic syncing and manage your knowledge base updates.
+
+#### Connections
+
+- [Connections](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-connections.md): Connect and sync data from third-party applications and databases into your knowledge base.
+
+##### Cloud Storage & Documentation
+
+- [Connect Google Drive to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-google-drive.md): Connect Google Drive with OAuth so you can sync files and folders into the Knowledge Base
+- [Connect SharePoint to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-sharepoint.md): Sync SharePoint documents and libraries with the Knowledge Base.
+- [Connect Confluence to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-confluence.md): Connect Confluence Cloud or On-Premise so you can sync spaces and pages into the Knowledge Base
+- [Connect Zoomin to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-zoomin.md): Connect Zoomin so agents can search product documentation, manuals, and release notes.
+
+##### Databases
+
+- [Connect MySQL to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-my-sql.md): Connect to MySQL databases to make your data accessible to AI agents.
+- [Connect Microsoft SQL to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-microsoft-sql.md): Connect to SQL Server databases to make your data accessible to AI agents.
+- [Connect Oracle to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-oracle.md): Connect to Oracle databases to make your data accessible to AI agents.
+- [Connect Generic SQL to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-generic-sql.md): Connect to Snowflake or other SQL databases using a connection string.
+
+##### Business Applications
+
+- [Connect Odoo to the Knowledge Base](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-odoo.md): Connect Odoo ERP for business data access.
+
+##### Cloud Platforms
+
+- [Google Cloud Platform Connection](https://ai-kb.automationanywhere.com/project-settings/kb-settings/kb-connections/kb-google-cloud-platform.md): Connect a GCP service account for BigQuery, Cloud Run, and Cloud SQL access.
+
+## My Account
+
+- [General](https://ai-kb.automationanywhere.com/my-account/general.md)
+- [API Keys](https://ai-kb.automationanywhere.com/my-account/api-keys.md): Manage secure API keys for integrating external applications and automating tasks
+- [Dashboard](https://ai-kb.automationanywhere.com/my-account/dashboard.md): Overview of your billing, subscription plan, and total credits available
+- [Account Settings](https://ai-kb.automationanywhere.com/my-account/account-settings.md): Configure team access, security, collaboration, and user credit limits
+- [Sub-teams](https://ai-kb.automationanywhere.com/my-account/sub-teams.md): Nest teams under a shared license, allocate seats, and set credit ceilings
+- [Credit Consumption](https://ai-kb.automationanywhere.com/my-account/credit-consumption.md): Monitor credit usage across your team and its sub-teams
+- [Team SSO](https://ai-kb.automationanywhere.com/my-account/team-sso.md): Connect your own identity provider for a team or sub-team
+- [Tags](https://ai-kb.automationanywhere.com/my-account/tags.md): Create and manage the team Access Tag catalog used for members and documents
+- [Members](https://ai-kb.automationanywhere.com/my-account/team-members.md): Platform-Wide Roles and Permissions for Secure Team Governance
+- [Usage](https://ai-kb.automationanywhere.com/my-account/usage.md): View Your Team's Token Consumption and Usage Analytics
+
+## Platform Admin
+
+### Super Admin Dashboard
+
+- [Overview](https://ai-kb.automationanywhere.com/super-admin/sa-dashboard.md): Discover the features of our Super Admin interface for On-Premise installations.
+- [General](https://ai-kb.automationanywhere.com/super-admin/sa-general.md): Learn how to monitor your EKB instance
+- [Agents](https://ai-kb.automationanywhere.com/super-admin/sa-agents.md): Audit and inspect every agent across all teams and projects from a single system-wide view.
+- [Users](https://ai-kb.automationanywhere.com/super-admin/sa-users.md): Manage individual users — see who’s on the platform, grant/revoke admin rights, track usage, and understand user distribution across teams.
+- [System](https://ai-kb.automationanywhere.com/super-admin/sa-system.md): Super Admins can configure and manage the AI models that power EKB’s automations and workflows. Control which LLMs are available, manage costs, and fine-tune access for your organization.
+- [Email Configuration (SMTP)](https://ai-kb.automationanywhere.com/super-admin/sa-email-configuration.md): Manage multiple SMTP providers, set a platform default, and assign senders per team
+- [Admin Assistant](https://ai-kb.automationanywhere.com/super-admin/sa-admin-assistant.md): Use the in-product Super Admin assistant to inspect platform state and build shareable custom toolkits
+- [Knowledge Base](https://ai-kb.automationanywhere.com/super-admin/sa-kb.md): Super Admins can view, search, and manage all documents, files, and URLs uploaded to EKB projects. Monitor file status, troubleshoot sync issues, and ensure your AI agents have the best knowledge foundation.
+- [Task Monitor](https://ai-kb.automationanywhere.com/super-admin/sa-task-monitor.md): Super Admins can monitor, filter, and analyze all background tasks and automations in EKB. Track performance, spot issues, and optimize system reliability.
+- [SAML Access Controls](https://ai-kb.automationanywhere.com/super-admin/sa-access-controls.md): Gate who can sign in or register in EK using SAML metadata attributes.
+- [Admin Roles & Permissions (RBAC)](https://ai-kb.automationanywhere.com/super-admin/sa-rbac.md): Delegate parts of the Super Admin dashboard through role-based access control, without handing out full super-admin rights.
+- [Encrypted File Ingestion via an External Decryption Service](https://ai-kb.automationanywhere.com/super-admin/sa-kb-decryption-service.md): Configure AAEKB to hand encrypted uploads to an external decryption service you host, then ingest the decrypted content.
+
+#### Teams
+
+- [Teams](https://ai-kb.automationanywhere.com/super-admin/sa-teams.md): View, manage, and configure all teams within the EKB On-Premise system.
+- [Automated Management](https://ai-kb.automationanywhere.com/super-admin/sa-automated-management.md): Automatically place SSO users into the correct team and projects based on their SAML metadata attributes.
+
+#### Projects
+
+- [Project Automated Management](https://ai-kb.automationanywhere.com/super-admin/sa-projects-automated-management.md): Automatically add SSO users to specific projects with the right project role based on SAML metadata attributes.
+
+### SSO Integrations
+
+- [SSO Integration Overview](https://ai-kb.automationanywhere.com/super-admin/sso/sso-integration-overview.md): Learn how EK supports SAML 2.0 SSO for on-premise deployments and find the right setup path for your organization.
+- [SAML SSO in EK — How It Works](https://ai-kb.automationanywhere.com/super-admin/sso/saml-sso-how-it-works.md): Understand how EK integrates with your Identity Provider for SAML 2.0 SSO before you begin configuration.
+- [SSO Metadata Setup Guide](https://ai-kb.automationanywhere.com/super-admin/sso/saml-sso-metadata-setup-guide.md): Step-by-step instructions for enabling SAML 2.0 SSO on your on-premise EK instance by registering your IdP and uploading its metadata.
+- [SP Metadata Endpoint](https://ai-kb.automationanywhere.com/super-admin/sso/sp-metadata-endpoint.md): Technical reference for the EK Service Provider metadata endpoint used during SAML SSO configuration.
+- [SSO Troubleshooting & Reference](https://ai-kb.automationanywhere.com/super-admin/sso/saml-sso-troubleshooting.md): Permissions, quick reference URLs, and troubleshooting guidance for SAML SSO on your on-premise EK instance.
+- [Setting Up Okta for EK SSO](https://ai-kb.automationanywhere.com/super-admin/sso/okta-sso-config.md): Configure Okta as a SAML 2.0 Identity Provider for your on-premise EK instance.
+- [Setting Up Azure AD for EK SSO](https://ai-kb.automationanywhere.com/super-admin/sso/azure-sso-config.md): Configure Azure Active Directory (Entra ID) as a SAML 2.0 Identity Provider for your on-premise EK instance.
+
+## SDK
+
+- [SDK Overview](https://ai-kb.automationanywhere.com/sdk/overview.md): Integrate EKB Into Your Applications Using Our TypeScript SDK
+- [Chat SDK](https://ai-kb.automationanywhere.com/sdk/chat.md): Integrate conversational AI interfaces into your application using the EKB Chat SDK.
+- [Smart Tables SDK](https://ai-kb.automationanywhere.com/sdk/smart-tables.md): Create and manage structured data tables with advanced querying, filtering, and AI-powered data processing.
+- [Voice SDK](https://ai-kb.automationanywhere.com/sdk/voice.md): Create voice-enabled applications and AI Agents.
+
+## General Information
+
+- [Security & Data Practices](https://ai-kb.automationanywhere.com/general/security-data-practices.md): How EKB Protects Your Data and Keeps Your Information Secure
+- [Security & Compliance](https://ai-kb.automationanywhere.com/general/security-compliance.md): EKB Supports Industry Standards Of Security And Regulatory Compliance
+- [Status Monitoring](https://ai-kb.automationanywhere.com/general/status-monitoring.md): Monitor live system status and track issues in real-time
+- [Credits](https://ai-kb.automationanywhere.com/general/credits.md): Understanding How Credits Are Consumed in EKB
+- [On-Premise Troubleshooting](https://ai-kb.automationanywhere.com/general/on-premise-troubleshooting.md): L1 diagnostic steps for troubleshooting On-Premise EKB deployments
+- [On-Premise SDLC Best Practices](https://ai-kb.automationanywhere.com/general/on-premise-sdlc-best-practices.md): Best Practices on SDLC and Promotion of EKB from Non-Production to Production (On-Premise)
+- [Best Practices: Dev to Prod Migration in EK Cloud (Single Tenant)](https://ai-kb.automationanywhere.com/general/cloud-sdlc-best-practices.md): Dev-to-prod migration best practices for single-tenant EK Cloud environments.
+- [Common API Errors](https://ai-kb.automationanywhere.com/general/api-errors.md): Troubleshooting Advice For API Errors
+
+### Authentication
+
+- [Single Sign-On (SSO)](https://ai-kb.automationanywhere.com/general/authentication/sso.md): Overview of enterprise SSO options for EKB — Okta, Azure AD, custom SAML, and team-owned IdPs
+- [Email-Password Sign-In](https://ai-kb.automationanywhere.com/general/authentication/email-password.md): Use EKB's Built-In, Secure, Email-Password Authentication To Sign-In
+- [Google Sign-In](https://ai-kb.automationanywhere.com/general/authentication/google-sign-in.md): Use Your Google Account To Sign-In
+- [Okta Single Sign-On (SSO)](https://ai-kb.automationanywhere.com/general/authentication/okta-sso.md): Configure SSO Authentication With Okta
+- [Azure AD Single Sign-On (SSO)](https://ai-kb.automationanywhere.com/general/authentication/azure-ad-sso.md): Configure SSO Authentication With Azure AD
+- [Custom Single Sign-On (SSO)](https://ai-kb.automationanywhere.com/general/authentication/custom-sso.md): Configure SSO Using Your Custom Provider
+
+## Change Logs
+
+- [Overview](https://ai-kb.automationanywhere.com/changelogs/overview.md): Release history and what changed in each version
+- [Deployment Windows](https://ai-kb.automationanywhere.com/general/deployment-windows.md): Scheduled maintenance and deployment windows for Automation Anywhere EKB across all regions.
+- [Upcoming Feature Deprecations](https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/deprecations-overview.md): Features scheduled for deprecation in Enterprise Knowledge. Review this page to plan your transitions before the listed removal dates.
+
+### By version
+
+- [2.4.0](https://ai-kb.automationanywhere.com/changelogs/2.4.0.md): Released September 7, 2026
+- [2.3.0](https://ai-kb.automationanywhere.com/changelogs/2.3.0.md): Released August 3, 2026
+- [2.2.1](https://ai-kb.automationanywhere.com/changelogs/2.2.1.md): Released July 20, 2026
+- [2.2.0](https://ai-kb.automationanywhere.com/changelogs/2.2.0.md): Released July 6, 2026
+- [2.1.1](https://ai-kb.automationanywhere.com/changelogs/2.1.1.md): Released June 15, 2026
+- [2.1.0](https://ai-kb.automationanywhere.com/changelogs/2.1.0.md): Released June 1, 2026
+- [2.0.3](https://ai-kb.automationanywhere.com/changelogs/2.0.3.md): Released 2026-05-21
+- [2.0.2](https://ai-kb.automationanywhere.com/changelogs/2.0.2.md): Released 2026-05-14
+- [2.0.1](https://ai-kb.automationanywhere.com/changelogs/2.0.1.md): Released 2026-05-04
+- [2.0.0](https://ai-kb.automationanywhere.com/changelogs/2.0.0.md): Released 2026-04-01
+- [1.9.1](https://ai-kb.automationanywhere.com/changelogs/1.9.1.md): Released 2026-03-08
+- [1.9.0](https://ai-kb.automationanywhere.com/changelogs/1.9.0.md): Released 2026-02-04
+- [1.8.0](https://ai-kb.automationanywhere.com/changelogs/1.8.0.md): Released 2026-01-05
+- [1.7.0](https://ai-kb.automationanywhere.com/changelogs/1.7.0.md): Released 2025-11-11
+- [1.6.0](https://ai-kb.automationanywhere.com/changelogs/1.6.0.md): Released 2025-10-08
+- [1.5.3](https://ai-kb.automationanywhere.com/changelogs/1.5.3.md): Released 2025-08-31
+- [1.5.2](https://ai-kb.automationanywhere.com/changelogs/1.5.2.md): Released 2025-08-24
+- [1.5.1](https://ai-kb.automationanywhere.com/changelogs/1.5.1.md): Released 2025-08-04
+- [1.5.0](https://ai-kb.automationanywhere.com/changelogs/1.5.0.md): Released 2025-07-30
+- [1.4.0](https://ai-kb.automationanywhere.com/changelogs/1.4.0.md): Released 2025-07-06
+- [1.3.1](https://ai-kb.automationanywhere.com/changelogs/1.3.1.md): Released 2025-06-19
+- [1.3.0](https://ai-kb.automationanywhere.com/changelogs/1.3.0.md): Released 2025-06-16
+- [1.2.3](https://ai-kb.automationanywhere.com/changelogs/1.2.3.md): Released 2025-06-12
+- [1.2.2](https://ai-kb.automationanywhere.com/changelogs/1.2.2.md): Released 2025-06-04
+- [1.2.1](https://ai-kb.automationanywhere.com/changelogs/1.2.1.md): Released 2025-05-28
+- [1.2.0](https://ai-kb.automationanywhere.com/changelogs/1.2.0.md): Released 2025-05-24
+
+### By feature
+
+- [Workflows V1 Deprecation](https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/workflows-v1-deprecation.md): Workflows V1 was removed on September 7, 2026 — what changed and how to migrate remaining workflows to V2
+- [Agent V1 Deprecation](https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/agent-v1-deprecation.md): What you need to know about the deprecation of Agent V1 and how to migrate to Agent V2
+- [Default Model Change — GPT-5.4 nano](https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/default-model-change.md): On June 15th, 2026, GPT-5.4 nano becomes the default system model in Enterprise Knowledge
+
+## OpenAPI Specs
+
+- [openapi](/api-reference/openapi.json)
+
+> The links below point to documentation indexes. Follow each `/_llms/` index recursively until you reach documentation pages.
+
+## Indexes
+
+- [French (204 pages)](https://ai-kb.automationanywhere.com/_llms/fr.md): Documentation for French.
+- [Japanese (204 pages)](https://ai-kb.automationanywhere.com/_llms/ja.md): Documentation for Japanese.
+- [Korean (166 pages)](https://ai-kb.automationanywhere.com/_llms/ko.md): Documentation for Korean.
+- [Brazilian Portuguese (203 pages)](https://ai-kb.automationanywhere.com/_llms/pt-br.md): Documentation for Brazilian Portuguese.
+- [Spanish (204 pages)](https://ai-kb.automationanywhere.com/_llms/es.md): Documentation for Spanish.
+- [Hindi (203 pages)](https://ai-kb.automationanywhere.com/_llms/hi.md): Documentation for Hindi.

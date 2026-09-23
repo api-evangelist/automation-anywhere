@@ -1,0 +1,315 @@
+generated: '2026-09-17'
+method: derived
+source: openapi/ (21 Automation 360 Control Room specs, 91 component schemas, 69 operations)
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: 'Entity graph of the Automation 360 Control Room API, computed from $ref links between component
+  schemas. Three shapes dominate: a paged list envelope (list[] + PageInfo) repeated across every collection,
+  the credential vault tree (Locker -> Credential -> CredentialAttribute -> CredentialAttributeValue),
+  and the repository tree (RepositoryObject with parents, dependencies and an ObjectPermission).'
+entity_count: 91
+relationship_count: 49
+core_entities:
+- Credential
+- Locker
+- LockerMember
+- LockerConsumer
+- RepositoryObject
+- UserSummary
+- UserResponse
+- RoleResponse
+- Queue
+- WorkItem
+- ApiTaskAllocation
+- DeploymentRequest
+- AuditRecord
+- BotRunRecord
+relationships:
+- from: ApiTaskAccessDetail
+  type: has_one
+  to: ApiTaskHeaders
+  via: headers
+- from: ListAllocationsRequest
+  type: has_one
+  to: PageRequest
+  via: page
+- from: ListAllocationsResponse
+  type: has_many
+  to: ApiTaskAllocation
+  via: list
+- from: ListAllocationsResponse
+  type: has_one
+  to: PageInfo
+  via: page
+- from: CredentialAttributeValueList
+  type: has_many
+  to: CredentialAttributeValue
+  via: list
+- from: CredentialAttributeValuePostList
+  type: has_many
+  to: CredentialAttributeValuePost
+  via: attributeValues
+- from: AuditTrailResponse
+  type: has_many
+  to: AuditRecord
+  via: auditData
+- from: UserSummary
+  type: has_many
+  to: RoleRef
+  via: roles
+- from: AuthenticationResponse
+  type: has_one
+  to: UserSummary
+  via: user
+- from: BotRunDataResponse
+  type: has_many
+  to: BotRunRecord
+  via: botRunDataList
+- from: FilterRequest
+  type: has_one
+  to: PageRequest
+  via: page
+- from: CredentialFilterResponse
+  type: has_many
+  to: Credential
+  via: list
+- from: CredentialFilterResponse
+  type: has_one
+  to: PageInfo
+  via: page
+- from: CredentialPost
+  type: has_many
+  to: CredentialAttributePost
+  via: attributes
+- from: Credential
+  type: has_many
+  to: CredentialAttribute
+  via: attributes
+- from: UnattendedRequest
+  type: has_many
+  to: RunAsUser
+  via: runAsUsers
+- from: DeploymentRequest
+  type: has_one
+  to: CallbackInfo
+  via: callbackInfo
+- from: DeploymentRequest
+  type: has_one
+  to: UnattendedRequest
+  via: unattendedRequest
+- from: DeploymentRequest
+  type: has_one
+  to: AttendedRequest
+  via: attendedRequest
+- from: DeploymentRequest
+  type: has_one
+  to: HeadlessRequest
+  via: headlessRequest
+- from: FileParentsResponse
+  type: has_many
+  to: RepositoryObject
+  via: parents
+- from: FileDependencyResponse
+  type: has_many
+  to: RepositoryObject
+  via: dependencies
+- from: FileListResponse
+  type: has_many
+  to: RepositoryObject
+  via: list
+- from: FileListResponse
+  type: has_one
+  to: PageInfo
+  via: page
+- from: RepositoryObject
+  type: has_one
+  to: ObjectPermission
+  via: permission
+- from: LockerConsumerList
+  type: has_many
+  to: LockerConsumer
+  via: list
+- from: LockerMemberList
+  type: has_many
+  to: LockerMember
+  via: list
+- from: LockerListResponse
+  type: has_many
+  to: Locker
+  via: list
+- from: LockerListResponse
+  type: has_one
+  to: PageInfo
+  via: page
+- from: LockerCredentialList
+  type: has_many
+  to: Credential
+  via: list
+- from: PermissionsUpdateRequest
+  type: has_many
+  to: RepositoryPermissions
+  via: folderPermissions
+- from: Queue
+  type: has_one
+  to: QueueExpiry
+  via: expiry
+- from: FilterExpression
+  type: has_many
+  to: FilterOperand
+  via: operands
+- from: FilterRequest
+  type: has_one
+  to: FilterExpression
+  via: filter
+- from: FilterRequest
+  type: has_many
+  to: SortCriteria
+  via: sort
+- from: CreateRoleRequest
+  type: has_many
+  to: Permission
+  via: permissions
+- from: RoleResponse
+  type: has_many
+  to: Permission
+  via: permissions
+- from: UpdateRoleRequest
+  type: has_many
+  to: Permission
+  via: permissions
+- from: RoleListResponse
+  type: has_many
+  to: RoleResponse
+  via: list
+- from: RoleListResponse
+  type: has_one
+  to: PageInfo
+  via: page
+- from: TaskVariableProfileResponse
+  type: has_many
+  to: VariableProfile
+  via: profiles
+- from: TaskMetadataResponse
+  type: has_many
+  to: TaskVariable
+  via: variables
+- from: TaskLogDataResponse
+  type: has_many
+  to: TaskLogRecord
+  via: logData
+- from: UserListResponse
+  type: has_many
+  to: UserResponse
+  via: list
+- from: UserListResponse
+  type: has_one
+  to: PageInfo
+  via: page
+- from: CreateUserRequest
+  type: has_many
+  to: RoleRef
+  via: roles
+- from: UserResponse
+  type: has_many
+  to: RoleRef
+  via: roles
+- from: UpdateUserRequest
+  type: has_many
+  to: RoleRef
+  via: roles
+- from: WorkItemModel
+  type: has_many
+  to: WorkItemAttribute
+  via: attributes
+identifier_fields:
+  ApiTaskAllocation:
+  - fileId
+  AssignLabelRequest:
+  - fileId
+  AttendedRequest:
+  - currentUserDeviceId
+  AuditRecord:
+  - id
+  - requestId
+  BotRunRecord:
+  - id
+  Credential:
+  - id
+  - ownerId
+  CredentialAttribute:
+  - id
+  CredentialAttributeValue:
+  - credentialAttributeId
+  - credentialId
+  - id
+  - userId
+  CredentialAttributeValuePost:
+  - credentialAttributeId
+  - userId
+  DeploymentRequest:
+  - botId
+  DeploymentResponse:
+  - deploymentId
+  Locker:
+  - id
+  - ownerId
+  LockerConsumer:
+  - roleId
+  LockerConsumerPost:
+  - roleId
+  LockerMember:
+  - userId
+  Permission:
+  - id
+  - resourceId
+  Queue:
+  - id
+  - workItemModelId
+  QueueConsumer:
+  - roleId
+  QueueConsumerRequest:
+  - roleId
+  QueueMember:
+  - userId
+  QueueParticipantRequest:
+  - userId
+  RecoverRequest:
+  - targetFolderId
+  - userId
+  RepositoryObject:
+  - id
+  - parentId
+  RepositoryPermissions:
+  - folderId
+  RoleRef:
+  - id
+  RoleResponse:
+  - id
+  RunAsUser:
+  - id
+  TaskLogRecord:
+  - id
+  UpdateWorkItemRequest:
+  - id
+  - queueId
+  UserResponse:
+  - id
+  UserSummary:
+  - id
+  WorkItem:
+  - automationId
+  - deviceId
+  - deviceUserId
+  - id
+  - queueId
+  WorkItemAttribute:
+  - id
+  WorkItemModel:
+  - id
+  - tenantId
+conventions:
+  list_envelope: list[] plus a PageInfo object on every paged collection response.
+  filter_envelope: FilterRequest = filter (FilterExpression -> FilterOperand[]) + sort (SortCriteria[])
+    + page (PageRequest).
+  identifiers: String ids on every entity; no prefixed id scheme is published.
+render: null

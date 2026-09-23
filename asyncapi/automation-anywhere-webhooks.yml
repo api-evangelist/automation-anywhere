@@ -1,0 +1,53 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  openapi/automation-anywhere-deployments-api-openapi.yml,
+  https://docs.automationanywhere.com/r/control-room-apis/deploy-api-supported-v4,
+  https://ai-kb.automationanywhere.com/tools/nodes/triggers/core-triggers,
+  https://ai-kb.automationanywhere.com/tools/nodes/triggers/triggers-overview,
+  https://ai-kb.automationanywhere.com/tools/nodes/core/return-response
+provider: Automation Anywhere
+providerId: automation-anywhere
+asyncapi_spec: null
+summary: >-
+  Automation Anywhere publishes no AsyncAPI document, but it does run two real
+  webhook surfaces in opposite directions: the Control Room calls a customer URL
+  when a bot deployment finishes, and an EKB workflow can be started by an
+  inbound HTTP request to a generated webhook URL. Both are documented; neither
+  is described by a machine-readable event contract.
+outbound_webhooks:
+  - name: Deployment callback
+    direction: provider-to-customer
+    trigger: A bot deployment completes or fails.
+    configured_by: >-
+      callbackInfo on the POST /v4/automations/deploy request body (CallbackInfo
+      schema: url, headers).
+    schema_ref: openapi/automation-anywhere-deployments-api-openapi.yml#/components/schemas/CallbackInfo
+    delivery: HTTP request to the caller-supplied URL with optional custom headers.
+    signing: >-
+      No signature scheme is documented. Authentication of the callback is left to
+      the headers the caller supplies when creating the deployment.
+    retries: Not documented.
+inbound_webhooks:
+  - name: EKB Webhook trigger
+    direction: customer-to-provider
+    description: >-
+      Starts a V2 Flow from an incoming HTTP request. The trigger exposes
+      trigger.webhook_url (the full endpoint URL to hand to the calling system);
+      the accepted HTTP method defaults to POST and an authentication method can
+      be set per trigger (default None).
+    response_control: >-
+      The Return Response node sets the status, headers and body returned to the
+      caller of a webhook-triggered workflow.
+    docs: https://ai-kb.automationanywhere.com/tools/nodes/triggers/core-triggers
+  - name: Communication triggers
+    direction: third-party-to-provider
+    description: >-
+      Platform triggers that receive third-party webhooks (for example Telegram
+      POSTs bot updates to EKB to start a workflow).
+    docs: https://ai-kb.automationanywhere.com/tools/nodes/triggers/communication-triggers
+event_catalog_published: false
+note: >-
+  Nothing here was generated. No AsyncAPI was written, because Automation
+  Anywhere does not publish one and an authored one would assert an event
+  contract the provider has never committed to.

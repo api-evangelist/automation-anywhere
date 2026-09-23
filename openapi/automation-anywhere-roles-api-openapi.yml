@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Automation Anywhere API Task Execution AccessDetails Roles API
-  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  title: Automation Anywhere Control Room Roles API
+  description: The Automation Anywhere Control Room API is a comprehensive set of RESTful APIs that enable programmatic management and administration of the Automation 360 RPA platform.
   version: '2019'
   contact:
     name: Automation Anywhere Support
     url: https://support.automationanywhere.com
   termsOfService: https://www.automationanywhere.com/terms-of-service
 servers:
-- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
-  description: Automation Anywhere API Task Orchestrator
+- url: https://{controlRoomUrl}
+  description: Automation Anywhere Control Room Instance
   variables:
     controlRoomUrl:
       default: your-control-room.automationanywhere.com
@@ -190,103 +190,6 @@ components:
         totalFilter:
           type: integer
           description: Total number of records after filters are applied
-    RoleListResponse:
-      type: object
-      description: Paginated list of role records
-      properties:
-        list:
-          type: array
-          description: Array of role records matching the filter criteria
-          items:
-            $ref: '#/components/schemas/RoleResponse'
-        page:
-          $ref: '#/components/schemas/PageInfo'
-    SortCriteria:
-      type: object
-      description: Sorting direction and field for list results
-      properties:
-        field:
-          type: string
-          description: Field name to sort by
-        direction:
-          type: string
-          description: Sort direction
-          enum:
-          - asc
-          - desc
-    FilterOperand:
-      type: object
-      description: A single operand in a filter expression, either a field reference or a nested expression
-      properties:
-        field:
-          type: string
-          description: Field name to filter on
-        value:
-          type: string
-          description: Value to compare against
-    PageRequest:
-      type: object
-      description: Pagination parameters for list requests
-      properties:
-        offset:
-          type: integer
-          description: Zero-based starting index of the result page
-          minimum: 0
-        length:
-          type: integer
-          description: Maximum number of results to return per page
-          minimum: 1
-          maximum: 1000
-    Permission:
-      type: object
-      description: A single permission entry granting access to a specific feature or resource
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier of the permission
-        action:
-          type: string
-          description: The action permitted (e.g., view, create, run, edit, delete)
-        resourceType:
-          type: string
-          description: The type of resource this permission applies to
-        resourceId:
-          type: integer
-          format: int64
-          description: Specific resource ID if this is a resource-scoped permission
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails
-      properties:
-        code:
-          type: string
-          description: Error code identifying the error type
-        message:
-          type: string
-          description: Human-readable description of the error
-        details:
-          type: array
-          description: Additional error context or field-level validation errors
-          items:
-            type: string
-    CreateRoleRequest:
-      type: object
-      description: Payload to create a new Control Room role
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Unique name for the new role
-        description:
-          type: string
-          description: Human-readable description of the role's purpose
-        permissions:
-          type: array
-          description: List of permission objects granting access to features
-          items:
-            $ref: '#/components/schemas/Permission'
     FilterExpression:
       type: object
       description: Logical filter expression for querying resources
@@ -311,6 +214,54 @@ components:
           description: Child filter expressions or field/value pairs
           items:
             $ref: '#/components/schemas/FilterOperand'
+    FilterRequest:
+      type: object
+      description: Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.
+      properties:
+        filter:
+          $ref: '#/components/schemas/FilterExpression'
+        fields:
+          type: array
+          description: List of field names to include in the response
+          items:
+            type: string
+        sort:
+          type: array
+          description: Sorting criteria for the result set
+          items:
+            $ref: '#/components/schemas/SortCriteria'
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    SortCriteria:
+      type: object
+      description: Sorting direction and field for list results
+      properties:
+        field:
+          type: string
+          description: Field name to sort by
+        direction:
+          type: string
+          description: Sort direction
+          enum:
+          - asc
+          - desc
+    CreateRoleRequest:
+      type: object
+      description: Payload to create a new Control Room role
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Unique name for the new role
+        description:
+          type: string
+          description: Human-readable description of the role's purpose
+        permissions:
+          type: array
+          description: List of permission objects granting access to features
+          items:
+            $ref: '#/components/schemas/Permission'
     RoleResponse:
       type: object
       description: Full role record returned from create, read, or update operations
@@ -346,6 +297,34 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update
+    FilterOperand:
+      type: object
+      description: A single operand in a filter expression, either a field reference or a nested expression
+      properties:
+        field:
+          type: string
+          description: Field name to filter on
+        value:
+          type: string
+          description: Value to compare against
+    Permission:
+      type: object
+      description: A single permission entry granting access to a specific feature or resource
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the permission
+        action:
+          type: string
+          description: The action permitted (e.g., view, create, run, edit, delete)
+        resourceType:
+          type: string
+          description: The type of resource this permission applies to
+        resourceId:
+          type: integer
+          format: int64
+          description: Specific resource ID if this is a resource-scoped permission
     UpdateRoleRequest:
       type: object
       description: Payload to update an existing Control Room role
@@ -361,24 +340,45 @@ components:
           description: Updated set of permissions; replaces existing permissions
           items:
             $ref: '#/components/schemas/Permission'
-    FilterRequest:
+    RoleListResponse:
       type: object
-      description: Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.
+      description: Paginated list of role records
       properties:
-        filter:
-          $ref: '#/components/schemas/FilterExpression'
-        fields:
+        list:
           type: array
-          description: List of field names to include in the response
+          description: Array of role records matching the filter criteria
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    PageRequest:
+      type: object
+      description: Pagination parameters for list requests
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index of the result page
+          minimum: 0
+        length:
+          type: integer
+          description: Maximum number of results to return per page
+          minimum: 1
+          maximum: 1000
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails
+      properties:
+        code:
+          type: string
+          description: Error code identifying the error type
+        message:
+          type: string
+          description: Human-readable description of the error
+        details:
+          type: array
+          description: Additional error context or field-level validation errors
           items:
             type: string
-        sort:
-          type: array
-          description: Sorting criteria for the result set
-          items:
-            $ref: '#/components/schemas/SortCriteria'
-        page:
-          $ref: '#/components/schemas/PageRequest'
   parameters:
     RoleIdParam:
       name: id
@@ -393,12 +393,12 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: JWT token obtained from the Authentication API
+      description: JWT token obtained from the Authentication API, passed as Authorization Bearer header
     xAuthorization:
       type: apiKey
       in: header
       name: X-Authorization
-      description: JWT token obtained from the Authentication API
+      description: JWT token obtained from the Authentication API, passed as X-Authorization header
 externalDocs:
-  description: Automation Anywhere API Task Documentation
-  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+  description: Automation Anywhere Control Room API Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html

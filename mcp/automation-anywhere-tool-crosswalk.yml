@@ -1,0 +1,120 @@
+generated: '2026-09-17'
+method: derived
+source: >-
+  mcp/automation-anywhere-mcp.yml, openapi/*.yml (21 Automation 360 Control Room
+  specs, 69 operations)
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: >-
+  The honest result of binding Automation Anywhere's MCP tools to its OpenAPI
+  operations is that they do not overlap. The MCP tools published today belong to
+  Enterprise Knowledge Base (EKB) and to the EKB documentation site; the OpenAPI
+  operations in this repo describe the Automation 360 Control Room API. No MCP
+  tool wraps a Control Room operation, and no Control Room operation is exposed
+  as a named MCP tool — Control Room's own MCP inbound surface exposes a
+  customer's automations and AI Agents, which are tenant objects rather than
+  catalog operations.
+surfaces:
+  openapi:
+    path: openapi/
+    files: 21
+    operations: 69
+    product: Automation 360 Control Room
+    gated: false
+  mcp:
+    - url: https://ai-kb.automationanywhere.com/mcp
+      product: EKB documentation
+      gated: false
+    - url: https://mcp.getodin.ai/runtime/mcp
+      product: EKB Runtime
+      gated: true
+      gate: OAuth (odin:use); documented example host did not resolve on probe
+    - url: https://mcp.getodin.ai/builder/mcp
+      product: EKB Builder
+      gated: true
+      gate: OAuth (odin:build); documented example host did not resolve on probe
+    - url: null
+      product: Automation 360 MCP inbound tools
+      gated: true
+      gate: per-tenant Control Room host, authenticated
+  graphql: null
+crosswalk: []
+mcp_only:
+  - tool: search_automation_anywhere_ekb_docs
+    reason: Documentation search; no public REST operation.
+  - tool: query_docs_filesystem_automation_anywhere_ekb_docs
+    reason: Documentation filesystem query; no public REST operation.
+  - tool: submit_feedback
+    reason: Docs feedback channel; no public REST operation.
+  - tool: list_odin_projects
+    reason: EKB platform object; EKB has no public OpenAPI in this repo.
+  - tool: search_knowledge
+    reason: EKB knowledge base retrieval; different product from Control Room.
+  - tool: query_smart_table
+    reason: EKB smart tables; different product from Control Room.
+  - tool: ask_<agent_name>
+    reason: Dynamic per-agent tool generated from customer objects.
+  - tool: run_<tool_name>
+    reason: Dynamic per-published-workflow tool generated from customer objects.
+  - tool: get_odin_build_guide
+    reason: EKB Builder authoring helper.
+  - tool: create_agent_from_config
+    reason: EKB Builder write tool; no public REST equivalent published.
+  - tool: add_and_verify_node_to_workflow
+    reason: EKB Builder write tool; no public REST equivalent published.
+  - tool: workflow_manager
+    reason: EKB Builder write tool; no public REST equivalent published.
+rest_only:
+  note: >-
+    All 69 Control Room operations are REST-only. Grouped by tag rather than
+    listed one by one; the operationIds are in openapi/.
+  groups:
+    - tag: Files
+      operations: 9
+    - tag: Lockers
+      operations: 8
+    - tag: Credentials
+      operations: 6
+    - tag: Roles
+      operations: 5
+    - tag: Users
+      operations: 5
+    - tag: Attribute Values
+      operations: 4
+    - tag: Folders
+      operations: 4
+    - tag: Queues
+      operations: 4
+    - tag: Authentication
+      operations: 3
+    - tag: LockerConsumers
+      operations: 3
+    - tag: LockerMembers
+      operations: 3
+    - tag: Task Data
+      operations: 3
+    - tag: Permissions
+      operations: 2
+    - tag: WorkItemModels
+      operations: 2
+    - tag: Work Items
+      operations: 2
+    - tag: AccessDetails
+      operations: 1
+    - tag: Allocations
+      operations: 1
+    - tag: AuditData
+      operations: 1
+    - tag: BotRunData
+      operations: 1
+    - tag: Deployments
+      operations: 1
+    - tag: Workspaces
+      operations: 1
+coverage:
+  mcp_tools: 12
+  bound_to_rest: 0
+  mcp_only: 12
+  rest_operations: 69
+  rest_only: 69
+  binding_rate: 0.0

@@ -1,0 +1,40 @@
+generated: '2026-09-17'
+method: searched
+source: https://www.automationanywhere.com/trust-center
+provider: Automation Anywhere
+providerId: automation-anywhere
+trust_center:
+  url: https://www.automationanywhere.com/trust-center
+  http_status: 200
+  verified: '2026-09-17'
+  compliance_portal: https://www.automationanywhere.com/compliance-portal
+  status_page: https://status.automationanywhere.digital/
+certifications:
+  - name: ISO 27001
+    scope: Information security management
+  - name: ISO 9001
+    scope: Quality management
+  - name: ISO 42001
+    scope: AI management systems
+  - name: ISO 22301
+    scope: Business continuity management
+  - name: SOC 1
+    scope: Service organization controls (financial reporting)
+  - name: SOC 2
+    scope: Service organization controls (trust services); Type II for EKB
+  - name: HIPAA
+    scope: Protected health information
+  - name: HITRUST
+    scope: Healthcare information security
+  - name: Cyber Essentials
+    scope: UK cybersecurity baseline
+regulations:
+  - GDPR
+  - CCPA
+  - EU AI Act guidance (https://www.automationanywhere.com/company/eu-ai-act)
+reports_available:
+  - Vendor penetration test reports (via compliance portal)
+  - Veracode application security reports (via compliance portal)
+  - Black Duck / OSS reports (via compliance portal)
+reports_note: Report documents themselves sit behind the compliance portal request flow.
+sla: https://www.automationanywhere.com/legal/uptime-availability-sla

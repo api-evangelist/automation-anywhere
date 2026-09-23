@@ -6,8 +6,8 @@ providerId: automation-anywhere
 created: '2026-05-04'
 # Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
 # bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
+method: searched
+modified: '2026-09-17'
 reconciled: false
 notes: Automation Anywhere does not publish public per-second / per-minute rate limits for the Control
   Room API. Limits are enforced per Control Room tenant and varied by edition (Cloud vs on-prem) and
@@ -50,3 +50,28 @@ policies:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+# --- 2026-09-17 enrichment pass: searched the published docs for real limits ---
+limit_count: 0
+verified:
+  generated: '2026-09-17'
+  method: searched
+  sources:
+    - https://ai-kb.automationanywhere.com/general/api-errors
+    - https://docs.automationanywhere.com/r/control-room-apis/cloud-control-room-apis
+  findings:
+    - >-
+      Enterprise Knowledge publishes a RATE_LIMITED error code returned with HTTP
+      429 and a QUOTA_EXCEEDED code returned with 503, but publishes no numeric
+      limit, window or burst for any scope.
+    - >-
+      The same error reference tells callers to "check rate limit headers in
+      response" without naming a single header, so no RateLimit-* or
+      X-RateLimit-* header can be recorded as documented.
+    - >-
+      No published numeric throttle was found for the Automation 360 Control Room
+      API; throughput is bounded by licensed bot count and Control Room sizing.
+  response_headers_documented: []
+  exhaustion_status: 429
+  error_code: RATE_LIMITED
+  quota_error_code: QUOTA_EXCEEDED

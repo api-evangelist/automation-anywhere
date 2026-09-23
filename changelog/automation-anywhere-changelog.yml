@@ -1,0 +1,42 @@
+generated: '2026-09-17'
+method: searched
+source: https://ai-kb.automationanywhere.com/changelogs/overview
+provider: Automation Anywhere
+providerId: automation-anywhere
+name: Enterprise Knowledge (EKB) release notes
+scheme: semantic
+current_version: 2.4.0
+cadence: Patch releases deploy monthly during the first business week of the month.
+url: https://ai-kb.automationanywhere.com/changelogs/overview
+note: >-
+  The dated, per-version changelog Automation Anywhere publishes is for
+  Enterprise Knowledge. Automation 360 release notes are published inside the
+  Fluid Topics documentation portal, which renders client-side and exposes no
+  dated feed that could be read here.
+versions_published: 26
+entries:
+  - version: 2.4.0
+    date: '2026-09-07'
+    additions:
+      - Visual and Python workflow builder
+      - Autopilot Agent mode
+      - Nested sub-teams with seat allocation and credit controls
+      - Bidirectional Agent-to-Agent (A2A) communication
+      - iframe embedding for published interfaces
+      - 17 new toolkits and 6 new skills
+    breaking:
+      - V1 Automator deprecation
+  - version: 2.3.0
+    date: '2026-08-03'
+    additions:
+      - Test and Live environments for workflows and agents
+      - Custom toolkits
+      - Workflow builder upgrades and code-mode workflows
+      - SQL-powered dashboard widgets
+      - Snowflake connector
+      - Confluence re-sync
+      - Korean language support
+    breaking: []
+  - version: 2.2.1
+    date: null
+    note: Earlier releases are listed under "By version" in the sidebar; dates not published on the overview page.

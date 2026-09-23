@@ -1,0 +1,47 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://api.getodin.ai/.well-known/oauth-authorization-server,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/overview
+provider: Automation Anywhere
+providerId: automation-anywhere
+docs: https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication
+summary: >-
+  OAuth scopes exist on one Automation Anywhere surface: the Enterprise Knowledge
+  MCP servers. The authorization server metadata advertises exactly two, and the
+  product deliberately keeps them on separate audiences so a "use" grant cannot
+  escalate into a "build" grant. The Automation 360 Control Room API is JWT
+  bearer with role-based permissions and has no OAuth scope surface, so none is
+  derived for it.
+authorization_server: https://api.getodin.ai
+metadata_document: well-known/automation-anywhere-ekb-oauth-authorization-server.json
+flows:
+  - type: authorization_code
+    pkce: S256
+    dynamic_client_registration: https://api.getodin.ai/oauth/mcp/register
+  - type: refresh_token
+scopes:
+  - name: odin:build
+    consent_label: Build in your workspace
+    audience: /builder/mcp
+    description: >-
+      Create and modify agents, workflows, smart tables, interfaces and knowledge
+      bases -- the same toolkit surface Autopilot uses.
+  - name: odin:use
+    consent_label: Use your agents and tools
+    audience: /runtime/mcp
+    description: >-
+      Ask existing agents, run published tools, search a knowledge base and query
+      smart tables.
+constraints:
+  - A token issued for Runtime is rejected by Builder and vice versa (audience binding).
+  - The MCP service holds no credentials of its own; every call forwards the user's token or API key.
+  - Project membership, roles and knowledge-base Access Tags still apply on top of the scope.
+  - Denied consent returns error=access_denied to the client.
+control_room:
+  oauth_scopes: false
+  model: >-
+    JWT bearer plus Control Room roles and permissions (for example AAE_Admin,
+    AAE_Bot Insight Admin); permissions are granted per role and per folder, not
+    per OAuth scope.

@@ -1,0 +1,76 @@
+# Automation Anywhere
+ 
+> The #1 provider of agentic automation for the Autonomous Enterprise. Automation Anywhere provides agentic automation that empowers employees to focus on what matters most, orchestrating AI agents, bots, automations, and human decision points into unified, end-to-end business processes.
+ 
+The Agentic Process Automation (APA) platform orchestrates the world's instruments of work, AI agents, bots, automations, and human decision points into unified, end-to-end processes across any system, fully platform-agnostic. Powered by metadata from 450M+ executions across every industry and use case, APA applies proven patterns with enterprise-grade governance and observability across every agent, step, and decision. The result: an expanded automation frontier, lower-cost execution through right-fit tool choice, and higher resilience through smarter escalations, compounding into end-to-end business outcomes.
+
+Automation Anywhere is recognized as a Leader in the Gartner Magic Quadrant for Robotic Process Automation for the eighth year in a row, and is committed to responsible, human-centered AI, with ISO 27001, ISO 9001, ISO 42001, ISO 22301, SOC 1, SOC 2, HIPAA, and HITRUST certifications, enabling organizations to innovate confidently without compromising control or compliance.
+ 
+## Platform & Products
+ 
+- [Agentic Process Automation (APA) Platform](https://www.automationanywhere.com/products/agentic-process-automation-system): Core platform orchestrating AI agents, automations, and people.
+- [AI Agent Studio](https://www.automationanywhere.com/products/ai-agent-studio): Build, test, and deploy AI agents for business processes.
+- [Mozart Orchestrator](https://www.automationanywhere.com/products/mozart-orchestrator): Orchestration engine coordinating agents, bots, and human tasks.
+- [Process Reasoning Engine](https://www.automationanywhere.com/products/process-reasoning-engine): AI reasoning layer that understands and adapts to business processes.
+- [AI Governance](https://www.automationanywhere.com/ai/governance): Controls for safe, compliant, auditable use of AI agents at scale.
+- [Automation Co-Pilot](https://www.automationanywhere.com/products/automation-co-pilot): AI assistant embedded in workflows to support employees.
+- [Document Automation](https://www.automationanywhere.com/products/document-automation): Extracts and processes data from unstructured documents.
+- [Robotic Process Automation (RPA) Software](https://www.automationanywhere.com/products/robotic-process-automation-system): Core RPA engine for rule-based task automation.
+- [Community Edition](https://www.automationanywhere.com/products/enterprise/community-edition): Free automation access for individual developers and students.
+- [All Products](https://www.automationanywhere.com/products): Full product catalog.
+ 
+## Solutions
+ 
+- [Financial Services](https://www.automationanywhere.com/solutions/financial-services): Agentic automation for banking and financial operations.
+- [Healthcare](https://www.automationanywhere.com/solutions/healthcare): Automation for clinical, administrative, and patient workflows.
+- [Manufacturing](https://www.automationanywhere.com/solutions/manufacturing): Agentic automation for manufacturing operations and uptime.
+- [Life Sciences](https://www.automationanywhere.com/solutions/life-sciences): Automation for pharma and life sciences operations.
+- [Insurance](https://www.automationanywhere.com/solutions/insurance): Agentic automation for insurance operations.
+- [Customer Service](https://www.automationanywhere.com/solutions/customer-service): AI agents for customer support and service operations.
+- [Finance & Accounting](https://www.automationanywhere.com/solutions/finance-accounting): Automation for accounts payable and finance operations.
+- [Accounts Payable Automation](https://www.automationanywhere.com/solutions/agentic-solutions/accounts-payable): AI agents driving straight-through AP processing.
+- [Human Resources](https://www.automationanywhere.com/solutions/human-resources): Automation for HR processes and employee experience.
+- [IT](https://www.automationanywhere.com/solutions/it): Agentic AI for IT service desk, ITSM, and AIOps.
+- [Service Operations](https://www.automationanywhere.com/solutions/service-operations): Automation for shared service operations.
+- [All Solutions](https://www.automationanywhere.com/solutions): Full solutions catalog by industry and function.
+ 
+## Automation 101 (Education & Concepts)
+ 
+- [What is Agentic Process Automation?](https://www.automationanywhere.com/rpa/agentic-process-automation): Explains APA and how it differs from traditional automation.
+- [What is Agentic AI?](https://www.automationanywhere.com/rpa/agentic-ai): Introduction to agentic AI concepts.
+- [What are AI Agents?](https://www.automationanywhere.com/rpa/ai-agents): Explains AI agents and their business use.
+- [What is Autonomous Enterprise?](https://www.automationanywhere.com/rpa/autonomous-enterprise): Explains the Autonomous Enterprise concept.
+- [What is Robotic Process Automation (RPA)?](https://www.automationanywhere.com/rpa/robotic-process-automation): Introduction to RPA fundamentals.
+- [Hyperautomation](https://www.automationanywhere.com/rpa/hyperautomation): Explains the hyperautomation concept.
+- [Intelligent Automation](https://www.automationanywhere.com/rpa/intelligent-automation): Explains AI-enhanced automation beyond rule-based RPA.
+- [Workflow Automation](https://www.automationanywhere.com/rpa/workflow-automation): Explains automating multi-step business workflows.
+- [Intelligent Document Processing](https://www.automationanywhere.com/rpa/intelligent-document-processing): Explains AI-based document data extraction.
+- [Explore all Automation 101 topics](https://www.automationanywhere.com/rpa): Full educational hub index.
+ 
+## Blog Highlights
+ 
+- [AI Agent Examples](https://www.automationanywhere.com/company/blog/ai-agents-examples): Real-world AI agent examples by type and industry.
+- [Best AI Tools for Finance](https://www.automationanywhere.com/company/blog/best-ai-tools-for-finance): Overview of AI tools for finance teams.
+- [Best AI Tools for Customer Support](https://www.automationanywhere.com/company/blog/best-ai-tools-for-customer-support): Overview of AI tools for customer support teams.
+- [HIPAA-Compliant AI Tools](https://www.automationanywhere.com/company/blog/hipaa-compliant-ai-tools): Requirements and use cases for HIPAA-compliant AI.
+- [AI in HR](https://www.automationanywhere.com/company/blog/ai-in-hr): Applications of AI in human resources.
+- [AI Agent Benchmarks](https://www.automationanywhere.com/company/blog/ai-agent-benchmarks): Benchmarking AI agent performance.
+- [AI Accounts Payable](https://www.automationanywhere.com/company/blog/automation-ai/ai-accounts-payable-how-ai-transforms-ap): How AI transforms accounts payable.
+- [AI Business Process Automation](https://www.automationanywhere.com/company/blog/automation-ai/ai-business-process-automation-what-it-and-how-it-works): What AI-driven business process automation is and how it works.
+- [Visit the Blog](https://www.automationanywhere.com/company/blog): Full blog index.
+ 
+## Resources
+ 
+- [Customer Stories](https://www.automationanywhere.com/resources/customer-stories): Case studies from enterprise customers.
+- [Gartner Magic Quadrant Report](https://www.automationanywhere.com/lp/gartner-magic-quadrant): Download the Gartner Magic Quadrant for RPA report.
+ 
+## Developer & Community
+ 
+- [Product Documentation](https://docs.automationanywhere.com): Official technical documentation for the platform.
+- [Community](https://community.automationanywhere.com): User community, forums, and peer support.
+ 
+## Company
+ 
+- [About Us](https://www.automationanywhere.com/company/about-us): Company overview and mission.
+- [Trust Center](https://www.automationanywhere.com/trust-center): Security, compliance, and certification information.
+- [Press Room](https://www.automationanywhere.com/company/press-room): Company news and press releases.

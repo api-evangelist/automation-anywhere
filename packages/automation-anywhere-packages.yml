@@ -1,0 +1,83 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://registry.npmjs.org/@odin-ai-staging%2Fsdk,
+  https://ai-kb.automationanywhere.com/sdk/overview,
+  https://docs.automationanywhere.com/r/automation-360/cloud-create-package-overview,
+  https://github.com/AutomationAnywhere, https://pypi.org/pypi/automation-anywhere/json
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: >-
+  Automation Anywhere publishes one first-party client library to a public
+  registry -- the EKB TypeScript SDK on npm -- and it is stale and
+  staging-scoped: version 0.0.2, last published 2025-06-23, two versions total,
+  with a placeholder repository field (github.com/your-org/chat-sdk). The
+  Automation 360 Package SDK is a Java toolkit distributed from the Control Room
+  rather than from Maven Central, so it has no registry metadata to read. Every
+  other client library found for Automation 360 is third-party.
+packages:
+  - name: '@odin-ai-staging/sdk'
+    official: true
+    registry: npm
+    url: https://www.npmjs.com/package/@odin-ai-staging/sdk
+    language: TypeScript
+    version: 0.0.2
+    published: '2025-06-23'
+    versions_published: 2
+    install: npm install @odin-ai-staging/sdk
+    description: >-
+      EKB SDK -- ChatSDK, SmartTablesSDK and VoiceSDK for embedding EKB chat,
+      smart tables and voice into applications.
+    docs: https://ai-kb.automationanywhere.com/sdk/overview
+    note: >-
+      Marked official because Automation Anywhere's own EKB documentation calls
+      it "the EKB SDK" and gives this exact install command. Two caveats a
+      consumer should see: the npm scope is @odin-ai-staging (Odin AI is the
+      platform behind EKB), and the published package still carries the template
+      repository URL git+https://github.com/your-org/chat-sdk.git. The latest
+      release predates every 2026 EKB release recorded in
+      changelog/automation-anywhere-changelog.yml.
+  - name: Automation 360 Package SDK
+    official: true
+    registry: none
+    language: Java
+    version: null
+    published: null
+    url: https://docs.automationanywhere.com/r/automation-360/cloud-create-package-overview
+    description: >-
+      Java toolkit for building custom action packages and triggers for the
+      Automation 360 bot editor; the built JAR is uploaded to the Control Room.
+    note: >-
+      Checked, nothing to record: the SDK is downloaded from the Control Room /
+      documentation rather than published to Maven Central under a
+      com.automationanywhere group, so there is no registry metadata endpoint to
+      read a version or release date from.
+  - name: automation-anywhere
+    official: false
+    registry: pypi
+    url: https://pypi.org/project/automation-anywhere/
+    language: Python
+    version: 2.1.7
+    published: null
+    description: Third-party Python package for deploying tasks on Automation 360.
+    note: >-
+      Not first-party: the PyPI metadata carries no author and no home page, and
+      the package is not referenced from any Automation Anywhere documentation.
+      published left null -- the JSON metadata endpoint answered but carries no
+      usable release date for the latest version.
+  - name: n8n-nodes-automation-anywhere
+    official: false
+    registry: npm
+    url: https://www.npmjs.com/package/n8n-nodes-automation-anywhere
+    language: TypeScript
+    version: 0.6.2-458faea
+    published: '2025-04-06'
+    description: Community n8n node for Automation Anywhere; publisher self-describes it as a work in progress.
+source_repositories:
+  - url: https://github.com/AutomationAnywhere
+    repositories: 80
+    note: >-
+      The official GitHub organization holds bot templates, sample frameworks and
+      custom Java action packages (Salesforce, Apigee, JSON, Credential Manager,
+      SLM utility package) rather than client SDKs. None is published to a
+      package registry.

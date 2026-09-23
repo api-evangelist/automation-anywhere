@@ -1,0 +1,107 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://api.getodin.ai/.well-known/oauth-authorization-server,
+  https://apeople.automationanywhere.com/.well-known/openid-configuration,
+  https://www.automationanywhere.com/trust-center,
+  https://ai-kb.automationanywhere.com/general/security-compliance,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication,
+  openapi/
+provider: Automation Anywhere
+providerId: automation-anywhere
+conformance:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      https://api.getodin.ai/.well-known/oauth-authorization-server -- RFC 8414
+      authorization server metadata, authorization_code + refresh_token grants,
+      S256 PKCE, dynamic client registration endpoint, scopes odin:build and
+      odin:use.
+  - id: rfc8414
+    conforms: true
+    evidence: https://api.getodin.ai/.well-known/oauth-authorization-server (HTTP 200, application/json)
+  - id: pkce
+    conforms: true
+    evidence: code_challenge_methods_supported ["S256"] in the authorization server metadata.
+  - id: oidc
+    conforms: true
+    evidence: >-
+      https://apeople.automationanywhere.com/.well-known/openid-configuration --
+      OpenID Connect discovery for the APeople community identity provider
+      (Salesforce Experience Cloud).
+  - id: mcp
+    conforms: true
+    evidence: >-
+      https://ai-kb.automationanywhere.com/mcp answers a JSON-RPC tools/list with
+      three tools over text/event-stream; EKB additionally publishes Builder and
+      Runtime MCP servers with separate OAuth audiences and scopes.
+  - id: a2a
+    conforms: true
+    evidence: >-
+      https://ai-kb.automationanywhere.com/.well-known/agent-card.json -- A2A
+      agent card, graded conformant in a2a/automation-anywhere-a2a.yml. EKB also
+      supports inbound and outbound A2A per
+      https://ai-kb.automationanywhere.com/agents/agent-to-agent.
+  - id: jwt
+    conforms: true
+    evidence: >-
+      Control Room authentication issues a JWT bearer token
+      (components.securitySchemes.bearerAuth, bearerFormat JWT) across the 21
+      specs in openapi/.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      EKB errors use a custom envelope {status_code, error:{code,message},
+      detail} rather than application/problem+json
+      (https://ai-kb.automationanywhere.com/general/api-errors); the Control Room
+      specs return an Error/ErrorMessage schema, not a problem document.
+  - id: rfc8594
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation response header is documented on any surface; the
+      deprecation policy is a documentation page only.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header or replay-safe write contract is documented for
+      the Control Room API or for EKB.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Control Room list endpoints take a POST filter/sort/page request body
+      (FilterRequest / FilterExpression in openapi/); Bot Insight paginates in
+      sets of 1000 records.
+  - id: sso-saml
+    conforms: true
+    evidence: >-
+      https://ai-kb.automationanywhere.com/general/authentication/sso -- SAML SSO
+      with Azure AD, Okta, Google and custom identity providers.
+domain_standard:
+  applicable: false
+  note: >-
+    Robotic / agentic process automation has no published cross-vendor
+    interoperability standard for its own market. The nearest things Automation
+    Anywhere does implement -- MCP and A2A -- are recorded above as
+    cross-cutting agent standards rather than as a domain standard, so no
+    domain_standard_conformance claim is made.
+compliance:
+  certifications:
+    - ISO 27001
+    - ISO 9001
+    - ISO 42001
+    - ISO 22301
+    - SOC 1
+    - SOC 2
+    - HIPAA
+    - HITRUST
+    - Cyber Essentials
+  regulations:
+    - GDPR
+    - CCPA
+    - EU AI Act (guidance published)
+  evidence: >-
+    https://www.automationanywhere.com/trust-center (HTTP 200) and
+    https://www.automationanywhere.com/llms.txt; EKB separately publishes HIPAA,
+    AICPA SOC 2 Type II, ISO 27001, GDPR and CCPA at
+    https://ai-kb.automationanywhere.com/general/security-compliance.
+  portal: https://www.automationanywhere.com/compliance-portal

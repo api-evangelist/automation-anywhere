@@ -1,0 +1,38 @@
+{
+  "name": "Automation Anywhere EKB Docs",
+  "url": "https://ai-kb.automationanywhere.com/",
+  "version": "1.0.0",
+  "protocolVersion": "0.3",
+  "preferredTransport": "HTTP+JSON",
+  "supportedInterfaces": [
+    {
+      "url": "https://ai-kb.automationanywhere.com/",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "0.3"
+    }
+  ],
+  "provider": {
+    "url": "https://ai-kb.automationanywhere.com/",
+    "organization": "Automation Anywhere EKB Docs"
+  },
+  "documentationUrl": "https://ai-kb.automationanywhere.com/",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "automationanywhere",
+      "name": "automationanywhere",
+      "description": "Use when building AI agents, creating workflows, configuring knowledge bases, integrating third-party services, or automating business processes. Reach for this skill when agents need to query databases, search the web, execute code, manage documents, or interact with enterprise systems like Salesforce, Jira, or Microsoft 365.",
+      "tags": [],
+      "url": "https://ai-kb.automationanywhere.com/.well-known/agent-skills/automationanywhere/skill.md"
+    }
+  ]
+}

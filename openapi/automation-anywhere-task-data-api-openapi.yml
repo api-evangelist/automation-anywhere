@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Automation Anywhere API Task Execution AccessDetails TaskData API
-  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  title: Automation Anywhere Bot Insight Task Data API
+  description: The Automation Anywhere Bot Insight API exposes real-time business process analytics and operational intelligence data collected during bot execution.
   version: '2019'
   contact:
     name: Automation Anywhere Support
     url: https://support.automationanywhere.com
   termsOfService: https://www.automationanywhere.com/terms-of-service
 servers:
-- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
-  description: Automation Anywhere API Task Orchestrator
+- url: https://{controlRoomUrl}/v2/botinsight/data/api
+  description: Automation Anywhere Bot Insight API
   variables:
     controlRoomUrl:
       default: your-control-room.automationanywhere.com
@@ -18,7 +18,7 @@ security:
 - bearerAuth: []
 - xAuthorization: []
 tags:
-- name: TaskData
+- name: Task Data
   description: Retrieve task metadata, variable profiles, and task-level logs
 paths:
   /gettaskmetadata/{taskName}:
@@ -27,7 +27,7 @@ paths:
       summary: Get task metadata
       description: Retrieves metadata for a specific bot task including its configured KPI variables, data types, and analytics dimensions. The task name must match the Analytics display name configured in the Bot Insight dashboard for the task.
       tags:
-      - TaskData
+      - Task Data
       parameters:
       - $ref: '#/components/parameters/TaskNameParam'
       responses:
@@ -61,7 +61,7 @@ paths:
       summary: Get task variable profile
       description: Retrieves the variable profile (analytics KPI data) for a specific bot task within a given date range. Returns aggregated values for each KPI variable tracked during bot execution. Dates are provided as query parameters in ISO 8601 format.
       tags:
-      - TaskData
+      - Task Data
       parameters:
       - $ref: '#/components/parameters/TaskNameParam'
       - $ref: '#/components/parameters/FromDateParam'
@@ -91,7 +91,7 @@ paths:
       summary: Get task log data
       description: Retrieves detailed execution log data for a specific bot task, including per-run KPI variable values. Results are paginated at 1000 records per request starting from the given index. Used to extract raw bot analytics data for integration with external BI tools and data warehouses.
       tags:
-      - TaskData
+      - Task Data
       parameters:
       - $ref: '#/components/parameters/TaskNameParam'
       - $ref: '#/components/parameters/StartIndexParam'
@@ -116,86 +116,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    StartIndexParam:
-      name: startIndex
-      in: path
-      required: true
-      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    ToDateParam:
-      name: to
-      in: query
-      required: false
-      description: End of the date range in ISO 8601 format (YYYY-MM-DD). Must not be more than 60 days after the from date.
-      schema:
-        type: string
-        format: date
-    TaskNameParam:
-      name: taskName
-      in: path
-      required: true
-      description: Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., "Analytics_ATM Reconciliation")
-      schema:
-        type: string
-    StartDateParam:
-      name: startDate
-      in: path
-      required: true
-      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
-      schema:
-        type: string
-        format: date
-    FromDateParam:
-      name: from
-      in: query
-      required: false
-      description: Start of the date range in ISO 8601 format (YYYY-MM-DD)
-      schema:
-        type: string
-        format: date
   schemas:
-    VariableProfile:
-      type: object
-      description: Aggregated profile data for a single KPI variable
-      properties:
-        variableName:
-          type: string
-          description: Name of the KPI variable
-        totalValue:
-          type: string
-          description: Aggregated total value across all runs in the date range
-        runCount:
-          type: integer
-          description: Number of bot runs contributing to this profile
-    TaskVariable:
-      type: object
-      description: A single KPI variable tracked during bot task execution
-      properties:
-        name:
-          type: string
-          description: Variable name as defined in the bot
-        type:
-          type: string
-          description: Data type of the variable (e.g., STRING, NUMBER, DATE)
-        displayName:
-          type: string
-          description: Human-readable display name for dashboards
-    TaskLogDataResponse:
-      type: object
-      description: Paginated task-level log data records with per-run KPI values
-      properties:
-        totalRecords:
-          type: integer
-          description: Total number of log records available
-        logData:
-          type: array
-          description: List of task log records
-          items:
-            $ref: '#/components/schemas/TaskLogRecord'
     TaskVariableProfileResponse:
       type: object
       description: Aggregated variable profile data for a task over a date range
@@ -228,16 +149,6 @@ components:
           description: KPI variables tracked for this task
           items:
             $ref: '#/components/schemas/TaskVariable'
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     TaskLogRecord:
       type: object
       description: A single task execution log entry with KPI variable values
@@ -258,6 +169,95 @@ components:
           description: Map of KPI variable names to their recorded values for this run
           additionalProperties:
             type: string
+    TaskLogDataResponse:
+      type: object
+      description: Paginated task-level log data records with per-run KPI values
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of log records available
+        logData:
+          type: array
+          description: List of task log records
+          items:
+            $ref: '#/components/schemas/TaskLogRecord'
+    TaskVariable:
+      type: object
+      description: A single KPI variable tracked during bot task execution
+      properties:
+        name:
+          type: string
+          description: Variable name as defined in the bot
+        type:
+          type: string
+          description: Data type of the variable (e.g., STRING, NUMBER, DATE)
+        displayName:
+          type: string
+          description: Human-readable display name for dashboards
+    VariableProfile:
+      type: object
+      description: Aggregated profile data for a single KPI variable
+      properties:
+        variableName:
+          type: string
+          description: Name of the KPI variable
+        totalValue:
+          type: string
+          description: Aggregated total value across all runs in the date range
+        runCount:
+          type: integer
+          description: Number of bot runs contributing to this profile
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  parameters:
+    TaskNameParam:
+      name: taskName
+      in: path
+      required: true
+      description: Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., "Analytics_ATM Reconciliation")
+      schema:
+        type: string
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+    StartIndexParam:
+      name: startIndex
+      in: path
+      required: true
+      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FromDateParam:
+      name: from
+      in: query
+      required: false
+      description: Start of the date range in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+    ToDateParam:
+      name: to
+      in: query
+      required: false
+      description: End of the date range in ISO 8601 format (YYYY-MM-DD). Must not be more than 60 days after the from date.
+      schema:
+        type: string
+        format: date
   securitySchemes:
     bearerAuth:
       type: http
@@ -270,5 +270,5 @@ components:
       name: X-Authorization
       description: JWT token obtained from the Authentication API
 externalDocs:
-  description: Automation Anywhere API Task Documentation
-  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+  description: Automation Anywhere Bot Insight API Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html

@@ -120,3 +120,39 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+# --- 2026-09-17 enrichment pass: evidence added, tier names left as previously generated ---
+plan_count: 1
+published_pricing: false
+verified:
+  generated: '2026-09-17'
+  method: searched
+  note: >-
+    Automation Anywhere publishes no public price for any commercial edition. The
+    only plan with a published, verifiable price is Community Edition, which is
+    free. The four commercial editions listed above were written by a 2026-05-04
+    bulk sweep from marketing copy, carry price "contact sales", and could not be
+    confirmed against any published pricing page during this pass -- treat their
+    names as unverified.
+  probes:
+    - url: https://www.automationanywhere.com/products/enterprise/community-edition
+      status: 200
+      finding: Free Community Edition, self-serve, published.
+    - url: https://www.automationanywhere.com/pricing
+      status: 404
+    - url: https://www.automationanywhere.com/products/pricing
+      status: 404
+    - url: https://www.automationanywhere.com/lp/pricing
+      status: 404
+  usage_metering:
+    product: Enterprise Knowledge (EKB)
+    model: credits
+    description: >-
+      EKB usage is billed in credits: flat-rate Platform Action Credits for
+      discrete operations plus variable LLM Token Credits based on tokens
+      processed. Credit consumption tables and per-model input/output rates are
+      published; the price of a credit is not.
+    docs: https://ai-kb.automationanywhere.com/general/credits
+    note: >-
+      On-premises deployments do not consume billed credits; there credits act as
+      a governance cap that super admins assign per team.

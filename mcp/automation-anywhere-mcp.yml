@@ -1,0 +1,165 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://ai-kb.automationanywhere.com/mcp (probed),
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/overview,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/connect-a-client,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/runtime,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication,
+  https://docs.automationanywhere.com/r/automation-360/mcp-tools-in-automation-anywhere
+provider: Automation Anywhere
+providerId: automation-anywhere
+name: Automation Anywhere MCP servers
+summary: >-
+  Automation Anywhere ships MCP on three distinct surfaces: a public, anonymous
+  documentation MCP server on its Enterprise Knowledge Base (EKB) docs host that
+  this pipeline called directly; two authenticated product MCP servers (EKB
+  Builder and EKB Runtime) whose URLs are documented but whose published example
+  hostname does not resolve publicly; and MCP inbound tools inside an Automation
+  360 Control Room, which are reachable only on a customer's own tenant host.
+deployment:
+  mode: remote
+  endpoint: https://ai-kb.automationanywhere.com/mcp
+  auth: none
+  verified: probed
+  note: >-
+    The endpoint recorded here is the one a client can POST to today without
+    credentials. The product servers below are remote as well but are per
+    deployment and authenticated; see servers[].
+servers:
+  - id: ekb-docs
+    name: Automation Anywhere EKB Docs
+    mode: remote
+    endpoint: https://ai-kb.automationanywhere.com/mcp
+    transport: http
+    auth: none
+    verified: probed
+    status: live
+    evidence:
+      url: https://ai-kb.automationanywhere.com/mcp
+      method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+      http_status: 200
+      content_type: text/event-stream
+      fetched: '2026-09-17'
+    server_version: '1.0.0'
+    tools:
+      - name: search_automation_anywhere_ekb_docs
+        title: Search documentation
+        description: >-
+          Search the Automation Anywhere EKB Docs knowledge base for guides, API
+          references and code examples; returns contextual content with titles
+          and links.
+        input_schema_fields: [query, language]
+        read_only: true
+      - name: query_docs_filesystem_automation_anywhere_ekb_docs
+        description: >-
+          Read-only shell-like query (rg/grep/find/tree/ls/cat/head/jq and
+          friends) over a virtualized in-memory filesystem containing only the
+          public EKB documentation pages and the site's OpenAPI files.
+        read_only: true
+      - name: submit_feedback
+        description: >-
+          Report a documentation problem (incorrect, outdated, confusing or
+          incomplete page) back to the docs team.
+        note: Named in the server instructions block returned by the live server.
+  - id: ekb-runtime
+    name: EKB Runtime
+    mode: remote
+    endpoint: https://mcp.getodin.ai/runtime/mcp
+    endpoint_status: documented-example
+    transport: http
+    auth: oauth
+    scopes: [odin:use]
+    verified: searched
+    consent_label: Use your agents and tools
+    evidence:
+      url: https://ai-kb.automationanywhere.com/ekb-as-mcp/connect-a-client
+      http_status: 200
+      fetched: '2026-09-17'
+    probe:
+      url: https://mcp.getodin.ai/runtime/mcp
+      result: dns-nxdomain
+      note: >-
+        mcp.getodin.ai did not resolve when probed on 2026-09-17. The docs call
+        this a "production-style example" and say the hostname depends on the
+        deployment, so this is recorded as documented rather than verified.
+    tools:
+      - name: list_odin_projects
+        description: Discover project ids, names and descriptions.
+      - name: search_knowledge
+        description: Search a project knowledge base and return matching passages with sources.
+        inputs: [query, project_id, max_results]
+      - name: query_smart_table
+        description: Read rows from a smart table by name or id.
+        inputs: [table, project_id, search, limit, page, sort_column, sort_direction]
+      - name: ask_<agent_name>
+        dynamic: true
+        description: Ask a reachable EKB agent; returns a chat_id for continuation.
+        inputs: [message, chat_id]
+      - name: run_<tool_name>
+        dynamic: true
+        description: >-
+          Run a published custom tool or workflow; inputs mirror the tool's
+          declared schema. Drafts are never exposed.
+  - id: ekb-builder
+    name: EKB Builder
+    mode: remote
+    endpoint: https://mcp.getodin.ai/builder/mcp
+    endpoint_status: documented-example
+    transport: http
+    auth: oauth
+    scopes: [odin:build]
+    verified: searched
+    consent_label: Build in your workspace
+    evidence:
+      url: https://ai-kb.automationanywhere.com/ekb-as-mcp/builder
+      http_status: 200
+      fetched: '2026-09-17'
+    tools:
+      - name: list_odin_projects
+      - name: get_odin_build_guide
+      - name: create_agent_from_config
+      - name: add_and_verify_node_to_workflow
+      - name: workflow_manager
+    note: >-
+      Tool names read from the Builder page; the page documents the surface in
+      prose rather than publishing a machine-readable manifest, and the live
+      server could not be introspected (see the Runtime probe note).
+  - id: automation-360-mcp-inbound
+    name: Automation 360 MCP inbound tools
+    mode: remote
+    endpoint: null
+    endpoint_status: per-tenant
+    auth: oauth
+    verified: searched
+    evidence:
+      url: https://docs.automationanywhere.com/r/automation-360/mcp-tools-in-automation-anywhere
+      http_status: 200
+      fetched: '2026-09-17'
+    description: >-
+      Control Room exposes automations, processes and AI Agents to third-party
+      MCP clients (Microsoft Copilot is the documented example). The MCP server
+      endpoint lives on the customer's own Control Room host, so there is no
+      single public URL to record. OAuth 2.0 support for MCP inbound tools is
+      documented separately.
+    note: >-
+      Available to all cloud customers; Process Reasoning Engine integration, AI
+      governance and prebuilt static tools require an Enterprise, AP Pro or AP
+      Essential license.
+oauth:
+  authorization_server_metadata: well-known/automation-anywhere-ekb-oauth-authorization-server.json
+  issuer: https://api.getodin.ai
+  scopes_supported: [odin:build, odin:use]
+  pkce: S256
+  dynamic_client_registration: true
+  note: >-
+    Fetched anonymously from https://api.getodin.ai/.well-known/oauth-authorization-server
+    (HTTP 200). api.getodin.ai is the API host Automation Anywhere's own EKB
+    documentation names for EKB runtime calls.
+third_party_servers:
+  - name: AutomationAnywhere-MCP (aakashR37)
+    official: false
+    note: Community project listed on Glama/LobeHub; not published by Automation Anywhere.
+  - name: aa-mcp-server (vankprogramminganddesign)
+    official: false
+    note: Community project; requires AA_CONTROL_ROOM_URL + AA_API_KEY to run locally.

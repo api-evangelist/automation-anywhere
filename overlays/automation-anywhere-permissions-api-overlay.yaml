@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Automation Anywhere Repository Management Permissions API
+  version: 1.0.0
+extends: ./../openapi/automation-anywhere-permissions-api-openapi.yml
+x-generated: '2026-09-17'
+x-method: generated
+x-source: apis.yml + this repository's derived artifacts; no provider content is modified
+actions:
+- target: $.info
+  description: Attach the API Evangelist artifact cross-links for this contract.
+  update:
+    x-apis-io:
+      provider: automation-anywhere
+      artifacts:
+        authentication: authentication/automation-anywhere-authentication.yml
+        conventions: conventions/automation-anywhere-conventions.yml
+        errors: errors/automation-anywhere-problem-types.yml
+        lifecycle: lifecycle/automation-anywhere-lifecycle.yml
+        rate_limits: rate-limits/automation-anywhere-rate-limits.yml
+        data_model: data-model/automation-anywhere-data-model.yml
+        webhooks: asyncapi/automation-anywhere-webhooks.yml
+- target: $.info
+  description: Record the runtime semantics measured for this provider (idempotency none, reversibility
+    documented).
+  update:
+    x-runtime-semantics:
+      idempotency: none
+      reversibility: documented
+      dry_run: false
+      source: conventions/automation-anywhere-conventions.yml

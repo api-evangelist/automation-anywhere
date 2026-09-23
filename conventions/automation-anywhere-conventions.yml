@@ -1,0 +1,132 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  openapi/ (21 Automation 360 Control Room specs),
+  https://docs.automationanywhere.com/r/control-room-apis/cloud-control-room-apis,
+  https://ai-kb.automationanywhere.com/general/api-errors,
+  https://ai-kb.automationanywhere.com/tools/direct-execution-api,
+  https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication
+provider: Automation Anywhere
+providerId: automation-anywhere
+scope: >-
+  Two surfaces are described here because Automation Anywhere runs two: the
+  Automation 360 Control Room API (per-tenant host, JWT) and Enterprise Knowledge
+  (EKB), whose runtime API base is documented as https://api.getodin.ai.
+authentication:
+  control_room:
+    style: JWT bearer
+    flow: >-
+      POST /v1/authentication with username + password or API key returns a JWT;
+      send it as Authorization / X-Authorization on subsequent calls.
+    schemes_in_spec: [bearerAuth, xAuthorization]
+    docs: https://docs.automationanywhere.com/r/control-room-apis/cloud-authentication
+  ekb:
+    style: API key pair
+    headers: [X-API-KEY, X-API-SECRET]
+    oauth: >-
+      OAuth 2.0 authorization code with PKCE for MCP clients; scopes odin:build
+      and odin:use, separate audiences per server.
+    docs: https://ai-kb.automationanywhere.com/ekb-as-mcp/authentication
+  cross_link: authentication/automation-anywhere-authentication.yml
+idempotency:
+  supported: false
+  coverage: none
+  header: null
+  scope: []
+  note: >-
+    No Idempotency-Key header, no replay window and no request-fingerprint
+    contract is documented for either surface. Retrying POST /v4/automations/deploy
+    or POST /tools/execute-workflow starts new work. The only replay-safety guidance
+    published anywhere is "implement retry with backoff", which is not a
+    de-duplication mechanism.
+  cross_link: errors/automation-anywhere-problem-types.yml
+reversibility:
+  grade: documented
+  write_surfaces:
+    - operation: deployBot
+      surface: Control Room Bot Deploy v4
+      reversal: null
+      window: null
+      note: >-
+        No cancel or abort operation is published for a deployment once it is
+        created. Deployment status is returned to the caller through the optional
+        callbackInfo webhook.
+    - operation: deleteFile
+      surface: Control Room Repository Management
+      reversal: null
+      window: null
+      note: >-
+        The spec states plainly that deleted files cannot be recovered through
+        the API.
+    - operation: recoverBots
+      surface: Control Room Repository Management
+      reversal: true
+      reverses: deletion of a Control Room user account
+      window: null
+      note: >-
+        POST /recover moves bots out of a deleted user's private workspace into a
+        named public-workspace folder. It is a genuine reversal path for the loss
+        of a user's automations, but no retention window is published for how long
+        after user deletion it keeps working.
+    - operation: deleteUser / deleteRole / deleteLocker / deleteCredential / deleteFolder
+      surface: Control Room
+      reversal: null
+      window: null
+    - operation: POST /tools/execute-workflow
+      surface: EKB Direct Execution API
+      reversal: null
+      window: null
+      note: >-
+        Flow executions are not cancellable or reversible through the documented
+        API; the call returns execution_id and node_results only.
+  note: >-
+    Graded `documented` rather than `verified`: one real reversal path exists
+    (recoverBots) but Automation Anywhere publishes no window for it, and no
+    window is stated for any other write. No window has been invented here.
+dry_run_mode:
+  supported: false
+  note: >-
+    No preview, validate-only or dry-run parameter is documented on any write
+    operation. EKB offers Test and Live environments for workflows (2.3.0), which
+    is environment separation rather than a per-request dry run.
+pagination:
+  control_room:
+    style: POST filter body
+    request_fields: [filter, sort, page]
+    schemas: [FilterRequest, FilterExpression, FilterOperand]
+    note: >-
+      List endpoints are POST /list calls carrying a filter/sort/page object
+      rather than GET query parameters.
+  bot_insight:
+    style: fixed page size
+    page_size: 1000
+    note: Results are returned in sets of 1000 records and filtered by ISO 8601 date range.
+versioning:
+  style: path
+  examples: ['/v1', '/v2', '/v3', '/v4', '/v2/botinsight/data/api']
+  cross_link: lifecycle/automation-anywhere-lifecycle.yml
+error_envelope:
+  control_room: Error / ErrorMessage schema; no named code registry.
+  ekb: 'Custom object: {status_code, error:{code,message}, detail}'
+  rfc9457: false
+  cross_link: errors/automation-anywhere-problem-types.yml
+rate_limit_signaling:
+  documented_headers: false
+  exhaustion_status: 429
+  error_code: RATE_LIMITED
+  note: >-
+    The EKB error reference tells callers to "check rate limit headers in
+    response" but never names them, and publishes no numeric limit. No
+    RateLimit-* or X-RateLimit-* header is documented.
+  cross_link: rate-limits/automation-anywhere-rate-limits.yml
+request_tracing:
+  request_id_header: null
+  error_id: >-
+    EKB error bodies may carry error_id, a unique identifier for tracking the
+    error with support.
+metadata_and_expansion:
+  field_expansion: false
+  sparse_fields: false
+  custom_metadata: >-
+    EKB knowledge bases support tags and custom metadata on documents
+    (https://ai-kb.automationanywhere.com/knowledge-base/tags-and-custom-metadata).

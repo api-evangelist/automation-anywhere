@@ -1,0 +1,42 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://www.automationanywhere.com/products/enterprise/community-edition,
+  https://docs.automationanywhere.com/r/control-room-apis/cloud-control-room-apis,
+  https://ai-kb.automationanywhere.com/changelogs/2.3.0
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: >-
+  Automation Anywhere's developer-accessible environment is Community Edition -- a
+  free, self-serve Automation 360 Control Room for individuals, which is what a
+  developer uses to get a real Control Room host and call the Control Room API.
+  There is no test-mode key prefix, no published test fixtures, and no simulated
+  data set.
+environments:
+  - name: Community Edition
+    type: free tier / developer environment
+    url: https://www.automationanywhere.com/products/enterprise/community-edition
+    http_status: 200
+    self_serve: true
+    note: >-
+      Provides a cloud Control Room and bot editor at no cost for individual
+      developers and students. Community Edition tenants receive their own
+      Control Room hostname, which is also the API host and the Swagger UI host
+      (<control-room>/swagger/).
+  - name: EKB Test and Live environments
+    type: environment separation
+    url: https://ai-kb.automationanywhere.com/changelogs/2.3.0
+    note: >-
+      Enterprise Knowledge 2.3.0 introduced Test and Live environments for
+      workflows and agents; a Flow executes against the published version only
+      when the request carries "environment": "live".
+test_credentials:
+  published: false
+  note: >-
+    No test API keys, no test-mode key prefix, no magic identifiers and no
+    fixture data are published. Nothing was invented to fill this section.
+api_console:
+  url: <your-control-room-host>/swagger/
+  note: >-
+    Each Control Room serves a Swagger UI for its own API at /swagger/. It is
+    tenant-scoped, so there is no public console URL to record.

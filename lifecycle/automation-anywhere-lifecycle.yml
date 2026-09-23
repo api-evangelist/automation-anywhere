@@ -1,0 +1,80 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://status.automationanywhere.digital/,
+  https://ai-kb.automationanywhere.com/general/status-monitoring,
+  https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/deprecations-overview,
+  https://ai-kb.automationanywhere.com/changelogs/overview,
+  https://www.automationanywhere.com/legal/uptime-availability-sla
+provider: Automation Anywhere
+providerId: automation-anywhere
+status_page:
+  url: https://status.automationanywhere.digital/
+  http_status: 200
+  verified: '2026-09-17'
+  covers: >-
+    Component status by service and region, incident history, and scheduled
+    maintenance windows. EKB status is published here too.
+sla:
+  url: https://www.automationanywhere.com/legal/uptime-availability-sla
+  http_status: 200
+  name: Cloud Service-Level Agreement (uptime and availability)
+release_cadence:
+  patch: Monthly, deployed during the first business week of each month (EKB).
+  source: https://ai-kb.automationanywhere.com/changelogs/overview
+versioning:
+  control_room_api: >-
+    Path-versioned per service -- v1/v2/v3/v4 segments (for example /v4 for Bot
+    Deploy, /v2/botinsight/data/api for Bot Insight). Version is chosen per
+    endpoint, not by a global header.
+  ekb: Semantic product releases (2.4.0, 2.3.0, ...) with monthly patch windows.
+deprecation_policy:
+  published: true
+  url: https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/deprecations-overview
+  stages:
+    - name: Announced
+      meaning: Deprecation publicly documented with a planned removal date; feature fully functional.
+    - name: Deprecated
+      meaning: >-
+        Flagged in the product UI and in API responses; new customers cannot
+        enable it; existing customers may use it until the removal date.
+    - name: Removed
+      meaning: No longer available; dependent workflows must have been migrated.
+  note: >-
+    The policy is published for Enterprise Knowledge; it states that Automation
+    Anywhere periodically retires features and names the replacement for each.
+    Dates are explicitly subject to change. No RFC 8594 Sunset/Deprecation
+    response headers are documented on any API surface.
+deprecations:
+  - feature: Workflows V1 (EKB)
+    status: removed
+    date: '2026-09-07'
+    replacement: Workflows V2
+    migration_tool: https://ai-kb.automationanywhere.com/tools/migrate-v1-workflows
+    api_note: >-
+      V1 executed through POST /actions/execute/direct; V2 executes through POST
+      /tools/execute-workflow with tool_id and plain runtime inputs.
+    source: https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/workflows-v1-deprecation
+  - feature: Agent V1 (EKB)
+    status: deprecated
+    date: '2026-12-07'
+    replacement: Agent V2
+    reason: Agent V1 does not support tool calling or multiple tool calls per agent.
+    source: https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/agent-v1-deprecation
+  - feature: Default system model GPT-4.1 mini (EKB)
+    status: changed
+    date: '2026-06-15'
+    replacement: GPT-5.4 nano
+    action_required: None unless opting out.
+    source: https://ai-kb.automationanywhere.com/changelogs/feature-deprecations/default-model-change
+  - feature: V1 Automator
+    status: deprecated
+    date: '2026-09-07'
+    source: https://ai-kb.automationanywhere.com/changelogs/2.4.0
+deprecated_operations:
+  derived_from: openapi/
+  count: 0
+  note: "No operation in the 21 Control Room specs carries deprecated: true."
+support:
+  email: support@automationanywhere.com
+  community: https://apeople.automationanywhere.com/

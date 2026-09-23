@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Automation Anywhere API Task Execution AccessDetails Lockers API
-  description: The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of cloud-based bot designed to be called synchronously from external applications like a REST service. The API provides endpoints to list API Task allocations, generate unique execution URLs and tokens, and execute API Tasks in real time. API Tasks execute on cloud infrastructure without requiring local Bot Runner devices, and are designed for low latency with near-real-time response rates. The execution URL and authorization token are short-lived and must be refreshed periodically to prevent authorization failures.
+  title: Automation Anywhere Credential Vault Lockers API
+  description: The Automation Anywhere Credential Vault API provides programmatic access to the Control Room's centralized secrets management system.
   version: '2019'
   contact:
     name: Automation Anywhere Support
     url: https://support.automationanywhere.com
   termsOfService: https://www.automationanywhere.com/terms-of-service
 servers:
-- url: https://{controlRoomUrl}/orchestrator/v1/hotbot
-  description: Automation Anywhere API Task Orchestrator
+- url: https://{controlRoomUrl}/v2/credentialvault
+  description: Automation Anywhere Control Room Credential Vault API v2
   variables:
     controlRoomUrl:
       default: your-control-room.automationanywhere.com
@@ -266,6 +266,104 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PageInfo:
+      type: object
+      description: Pagination metadata in list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records available
+        totalFilter:
+          type: integer
+          description: Total records after filter criteria applied
+    LockerListResponse:
+      type: object
+      description: Paginated list of lockers
+      properties:
+        list:
+          type: array
+          description: Array of locker records
+          items:
+            $ref: '#/components/schemas/Locker'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    FilterRequest:
+      type: object
+      description: Generic filter, sort, and pagination request for list operations
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria for the result set
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                - asc
+                - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    LockerCredentialList:
+      type: object
+      description: List of credentials contained within a locker
+      properties:
+        list:
+          type: array
+          description: Array of credential records in the locker
+          items:
+            $ref: '#/components/schemas/Credential'
+    LockerCredentialUpdate:
+      type: object
+      description: Payload to update a credential's configuration within a locker
+      properties:
+        attributes:
+          type: array
+          description: Credential attributes to expose through this locker
+          items:
+            type: integer
+            format: int64
+            description: Credential attribute ID
+    CredentialAttribute:
+      type: object
+      description: An attribute definition associated with a credential
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the attribute
+        name:
+          type: string
+          description: Attribute name (e.g., username, password)
+        description:
+          type: string
+          description: Description of what this attribute contains
+        masked:
+          type: boolean
+          description: Whether this attribute's value should be masked in logs and UI
+        userProvided:
+          type: boolean
+          description: Whether each user provides their own value for this attribute
     Credential:
       type: object
       description: A credential stored in the Credential Vault with named attributes
@@ -339,31 +437,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last modification
-    PageInfo:
-      type: object
-      description: Pagination metadata in list responses
-      properties:
-        offset:
-          type: integer
-          description: Starting index of the returned results
-        total:
-          type: integer
-          description: Total number of records available
-        totalFilter:
-          type: integer
-          description: Total records after filter criteria applied
-    LockerPost:
-      type: object
-      description: Payload to create or update a locker
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name for the locker
-        description:
-          type: string
-          description: Description of the locker's purpose
     PageRequest:
       type: object
       description: Pagination parameters
@@ -376,91 +449,18 @@ components:
           type: integer
           description: Number of records per page
           minimum: 1
-    CredentialAttribute:
+    LockerPost:
       type: object
-      description: An attribute definition associated with a credential
+      description: Payload to create or update a locker
+      required:
+      - name
       properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier of the attribute
         name:
           type: string
-          description: Attribute name (e.g., username, password)
+          description: Name for the locker
         description:
           type: string
-          description: Description of what this attribute contains
-        masked:
-          type: boolean
-          description: Whether this attribute's value should be masked in logs and UI
-        userProvided:
-          type: boolean
-          description: Whether each user provides their own value for this attribute
-    LockerCredentialUpdate:
-      type: object
-      description: Payload to update a credential's configuration within a locker
-      properties:
-        attributes:
-          type: array
-          description: Credential attributes to expose through this locker
-          items:
-            type: integer
-            format: int64
-            description: Credential attribute ID
-    LockerCredentialList:
-      type: object
-      description: List of credentials contained within a locker
-      properties:
-        list:
-          type: array
-          description: Array of credential records in the locker
-          items:
-            $ref: '#/components/schemas/Credential'
-    LockerListResponse:
-      type: object
-      description: Paginated list of lockers
-      properties:
-        list:
-          type: array
-          description: Array of locker records
-          items:
-            $ref: '#/components/schemas/Locker'
-        page:
-          $ref: '#/components/schemas/PageInfo'
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
-    FilterRequest:
-      type: object
-      description: Generic filter, sort, and pagination request for list operations
-      properties:
-        filter:
-          type: object
-          description: Filter expression for narrowing results
-        sort:
-          type: array
-          description: Sort criteria for the result set
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field to sort by
-              direction:
-                type: string
-                enum:
-                - asc
-                - desc
-                description: Sort direction
-        page:
-          $ref: '#/components/schemas/PageRequest'
+          description: Description of the locker's purpose
   parameters:
     LockerIdParam:
       name: id
@@ -490,5 +490,5 @@ components:
       name: X-Authorization
       description: JWT token obtained from the Authentication API
 externalDocs:
-  description: Automation Anywhere API Task Documentation
-  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html
+  description: Automation Anywhere Credential Vault API Documentation
+  url: https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html

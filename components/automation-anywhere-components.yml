@@ -1,0 +1,50 @@
+generated: '2026-09-17'
+method: searched
+source: >-
+  https://ai-kb.automationanywhere.com/sdk/overview,
+  https://ai-kb.automationanywhere.com/sdk/chat,
+  https://ai-kb.automationanywhere.com/sdk/smart-tables,
+  https://ai-kb.automationanywhere.com/sdk/voice,
+  https://ai-kb.automationanywhere.com/public-chatbot/chatbot-configuration,
+  https://ai-kb.automationanywhere.com/changelogs/2.4.0
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: >-
+  Enterprise Knowledge ships embeddable client-side surfaces: a TypeScript SDK
+  with three component families, a configurable public chatbot that can be
+  embedded in a website, Slack, Microsoft Teams or Google Workspace, and (from
+  2.4.0) iframe embedding for published interfaces.
+families:
+  - name: ChatSDK
+    kind: SDK component
+    description: >-
+      Conversational interface primitives -- chat creation, message handling and
+      streaming responses.
+    loader: '@odin-ai-staging/sdk'
+    docs: https://ai-kb.automationanywhere.com/sdk/chat
+  - name: SmartTablesSDK
+    kind: SDK component
+    description: Structured data tables with querying, filtering and AI-assisted processing.
+    loader: '@odin-ai-staging/sdk'
+    docs: https://ai-kb.automationanywhere.com/sdk/smart-tables
+  - name: VoiceSDK
+    kind: SDK component
+    description: Voice conversations with automatic chat integration and React hooks.
+    loader: '@odin-ai-staging/sdk'
+    docs: https://ai-kb.automationanywhere.com/sdk/voice
+  - name: Public Chatbot
+    kind: hosted embeddable surface
+    description: >-
+      Configurable public chatbot embeddable in a website or app, and integrable
+      with Slack, Microsoft Teams and Google Workspace.
+    docs: https://ai-kb.automationanywhere.com/public-chatbot/chatbot-configuration
+  - name: Published interfaces (iframe embedding)
+    kind: hosted embeddable surface
+    description: Custom interfaces built in EKB, embeddable by iframe since release 2.4.0.
+    docs: https://ai-kb.automationanywhere.com/documentation/interfaces-v2
+loader_libraries:
+  - registry: npm
+    package: '@odin-ai-staging/sdk'
+    version: 0.0.2
+    published: '2025-06-23'
+    cross_link: packages/automation-anywhere-packages.yml

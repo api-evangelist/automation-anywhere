@@ -1,0 +1,133 @@
+generated: '2026-09-17'
+method: probed
+source: live anonymous probes, 2026-09-17
+provider: Automation Anywhere
+providerId: automation-anywhere
+summary: 'Three real documents are served across Automation Anywhere''s hosts: an A2A agent card on the
+  EKB documentation host, an OpenID Connect discovery document on the APeople community host, and an OAuth
+  2.0 authorization server metadata document on the EKB API host named by Automation Anywhere''s own documentation.
+  No security.txt and no api-catalog is served anywhere. docs.automationanywhere.com is excluded from
+  the table below because it answers HTTP 200 with the Fluid Topics application shell for every path,
+  including every /.well-known/* path -- a soft 200, not a document.'
+hosts:
+- host: www.automationanywhere.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    file: llms/automation-anywhere-llms.txt
+- host: ai-kb.automationanywhere.com
+  note: Enterprise Knowledge Base (EKB) documentation host.
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: a2a/automation-anywhere-agent-card.json
+  - path: /.well-known/agent-skills/automationanywhere/skill.md
+    status: 200
+    content_type: text/markdown
+    file: skills/automation-anywhere-ekb-platform.md
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    file: llms/automation-anywhere-ekb-llms.txt
+- host: apeople.automationanywhere.com
+  note: APeople community, running on Salesforce Experience Cloud. Every /.well-known/* path other than
+    openid-configuration answers 401.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: automation-anywhere-apeople-openid-configuration.json
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/ai-plugin.json
+    status: 401
+  - path: /.well-known/agent-card.json
+    status: 401
+- host: community.automationanywhere.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: api.getodin.ai
+  note: EKB runtime API host. Automation Anywhere's own EKB documentation (https://ai-kb.automationanywhere.com/tools/direct-execution-api)
+    names https://api.getodin.ai as the base for EKB flow execution, which is why a non-automationanywhere.com
+    host is probed here.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: automation-anywhere-ekb-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: docs.automationanywhere.com
+  note: 'EXCLUDED FROM CREDIT. Fluid Topics SPA: /.well-known/security.txt, /.well-known/openid-configuration,
+    /.well-known/oauth-authorization-server, /.well-known/api-catalog, /.well-known/ai-plugin.json, /.well-known/agent-card.json,
+    /.well-known/agent.json, /llms.txt, /openapi.json, /swagger.json and /api-docs all return HTTP 200
+    with the same "Loading application..." HTML shell. Recorded as misses.'
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    soft_200: true
+  - path: /.well-known/api-catalog
+    status: 200
+    soft_200: true
+  - path: /.well-known/agent-card.json
+    status: 200
+    soft_200: true
