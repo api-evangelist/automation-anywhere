@@ -291,15 +291,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    FileParentsResponse:
-      type: object
-      description: Parent folder information for a repository object
-      properties:
-        parents:
-          type: array
-          description: List of parent folders in the hierarchy
-          items:
-            $ref: '#/components/schemas/RepositoryObject'
     FileDependencyResponse:
       type: object
       description: Dependency information for a bot file
@@ -309,55 +300,6 @@ components:
           description: List of files this bot depends on
           items:
             $ref: '#/components/schemas/RepositoryObject'
-    AssignLabelRequest:
-      type: object
-      description: Payload to assign the production label to a specific bot version
-      required:
-      - fileId
-      - version
-      properties:
-        fileId:
-          type: integer
-          format: int64
-          description: Numeric ID of the bot file
-        version:
-          type: integer
-          description: Version number to assign the production label to
-    FilterRequest:
-      type: object
-      description: Generic filter and pagination request for list endpoints
-      properties:
-        filter:
-          type: object
-          description: Filter expression for narrowing results
-        sort:
-          type: array
-          description: Sort criteria
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field to sort by
-              direction:
-                type: string
-                enum:
-                - asc
-                - desc
-                description: Sort direction
-        page:
-          $ref: '#/components/schemas/PageRequest'
-    FileListResponse:
-      type: object
-      description: Paginated list of repository objects
-      properties:
-        list:
-          type: array
-          description: Array of repository object records
-          items:
-            $ref: '#/components/schemas/RepositoryObject'
-        page:
-          $ref: '#/components/schemas/PageInfo'
     PageInfo:
       type: object
       description: Pagination metadata
@@ -371,43 +313,6 @@ components:
         totalFilter:
           type: integer
           description: Total records after filters applied
-    RecoverRequest:
-      type: object
-      description: Payload to recover bots from a deleted user's private workspace
-      required:
-      - userId
-      properties:
-        userId:
-          type: integer
-          format: int64
-          description: Numeric ID of the deleted user whose bots should be recovered
-        targetFolderId:
-          type: integer
-          format: int64
-          description: Folder ID in the public workspace where recovered bots will be moved
-    DependencyUpdateRequest:
-      type: object
-      description: Payload to update manual dependencies for a file
-      properties:
-        dependencies:
-          type: array
-          description: List of file IDs to set as manual dependencies
-          items:
-            type: integer
-            format: int64
-            description: Numeric file ID of a dependency
-    PageRequest:
-      type: object
-      description: Pagination parameters
-      properties:
-        offset:
-          type: integer
-          description: Zero-based starting index
-          minimum: 0
-        length:
-          type: integer
-          description: Number of records per page
-          minimum: 1
     PackageVersionUpdateRequest:
       type: object
       description: Payload to trigger package version updates on bot files
@@ -479,6 +384,101 @@ components:
           - PRIVATE
         permission:
           $ref: '#/components/schemas/ObjectPermission'
+    FilterRequest:
+      type: object
+      description: Generic filter and pagination request for list endpoints
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                - asc
+                - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    FileParentsResponse:
+      type: object
+      description: Parent folder information for a repository object
+      properties:
+        parents:
+          type: array
+          description: List of parent folders in the hierarchy
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+    FileListResponse:
+      type: object
+      description: Paginated list of repository objects
+      properties:
+        list:
+          type: array
+          description: Array of repository object records
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    DependencyUpdateRequest:
+      type: object
+      description: Payload to update manual dependencies for a file
+      properties:
+        dependencies:
+          type: array
+          description: List of file IDs to set as manual dependencies
+          items:
+            type: integer
+            format: int64
+            description: Numeric file ID of a dependency
+    AssignLabelRequest:
+      type: object
+      description: Payload to assign the production label to a specific bot version
+      required:
+      - fileId
+      - version
+      properties:
+        fileId:
+          type: integer
+          format: int64
+          description: Numeric ID of the bot file
+        version:
+          type: integer
+          description: Version number to assign the production label to
+    RecoverRequest:
+      type: object
+      description: Payload to recover bots from a deleted user's private workspace
+      required:
+      - userId
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: Numeric ID of the deleted user whose bots should be recovered
+        targetFolderId:
+          type: integer
+          format: int64
+          description: Folder ID in the public workspace where recovered bots will be moved
     Error:
       type: object
       description: Standard error response

@@ -111,6 +111,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    LockerIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the locker
+      schema:
+        type: integer
+        format: int64
+    UserIdPathParam:
+      name: userId
+      in: path
+      required: true
+      description: Unique numeric identifier of the user
+      schema:
+        type: integer
+        format: int64
   schemas:
     LockerMemberUpdate:
       type: object
@@ -121,15 +138,6 @@ components:
           description: Updated set of permissions for this member
           items:
             type: string
-    LockerMemberList:
-      type: object
-      description: List of locker members
-      properties:
-        list:
-          type: array
-          description: Array of locker member records
-          items:
-            $ref: '#/components/schemas/LockerMember'
     LockerMember:
       type: object
       description: A user with management membership in a locker
@@ -146,6 +154,15 @@ components:
           description: List of management permissions granted to this member
           items:
             type: string
+    LockerMemberList:
+      type: object
+      description: List of locker members
+      properties:
+        list:
+          type: array
+          description: Array of locker member records
+          items:
+            $ref: '#/components/schemas/LockerMember'
     Error:
       type: object
       description: Standard error response
@@ -156,23 +173,6 @@ components:
         message:
           type: string
           description: Human-readable error description
-  parameters:
-    UserIdPathParam:
-      name: userId
-      in: path
-      required: true
-      description: Unique numeric identifier of the user
-      schema:
-        type: integer
-        format: int64
-    LockerIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the locker
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     bearerAuth:
       type: http

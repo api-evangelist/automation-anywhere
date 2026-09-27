@@ -88,15 +88,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PermissionsUpdateRequest:
-      type: object
-      description: Payload to update role permissions across one or more folders
-      properties:
-        folderPermissions:
-          type: array
-          description: List of folder permission assignments
-          items:
-            $ref: '#/components/schemas/RepositoryPermissions'
     RepositoryPermissions:
       type: object
       description: Permission set for a role on a repository folder
@@ -117,6 +108,15 @@ components:
             - delete
             - run
             - view
+    PermissionsUpdateRequest:
+      type: object
+      description: Payload to update role permissions across one or more folders
+      properties:
+        folderPermissions:
+          type: array
+          description: List of folder permission assignments
+          items:
+            $ref: '#/components/schemas/RepositoryPermissions'
     Error:
       type: object
       description: Standard error response
@@ -128,19 +128,19 @@ components:
           type: string
           description: Human-readable error description
   parameters:
-    FolderIdParam:
-      name: folderid
-      in: path
-      required: true
-      description: Unique numeric identifier of the folder
-      schema:
-        type: integer
-        format: int64
     RoleIdParam:
       name: roleid
       in: path
       required: true
       description: Unique numeric identifier of the role
+      schema:
+        type: integer
+        format: int64
+    FolderIdParam:
+      name: folderid
+      in: path
+      required: true
+      description: Unique numeric identifier of the folder
       schema:
         type: integer
         format: int64

@@ -2,15 +2,15 @@ aid: automation-anywhere
 name: "Automation Anywhere"
 tags:
   - RPA
-  - Robotic Process Automation
   - Intelligent Automation
   - Agentic Process Automation
   - AI Agents
-  - Workflow-Automation
+  - Workflow Automation
   - Document Automation
   - Process Orchestration
   - Enterprise Automation
   - Bots
+  - A2A
 tags_raw:
   - RPA
   - Robotic Process Automation
@@ -22,6 +22,8 @@ tags_raw:
   - Process Orchestration
   - Enterprise Automation
   - Bots
+  - Workflow-Automation
+  - A2A
 deliveryModel:
   model: saas
   open_source: false
@@ -788,14 +790,12 @@ apis:
   description: Manage credential attribute values for individual credentials
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
-  baseURL: https://{controlRoomUrl}/v2/credentialvault
+  baseURL: https://{controlRoomUrl}
   tags:
   - Attribute Values
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-attribute-values-api-openapi.yml
-  - type: Overlay
-    url: overlays/automation-anywhere-attribute-values-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -827,16 +827,12 @@ apis:
   description: Retrieve task metadata, variable profiles, and task-level logs
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
-  baseURL: https://{controlRoomUrl}/v2/botinsight/data/api
+  baseURL: https://{controlRoomUrl}
   tags:
-  - TaskData
-  tags_raw:
   - Task Data
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-task-data-api-openapi.yml
-  - type: Overlay
-    url: overlays/automation-anywhere-task-data-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -868,14 +864,12 @@ apis:
   description: Add, update, and manage individual work items within queues
   humanURL: >-
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
-  baseURL: https://{controlRoomUrl}/v4/wlm
+  baseURL: https://{controlRoomUrl}
   tags:
   - Work Items
   properties:
   - type: OpenAPI
     url: openapi/automation-anywhere-work-items-api-openapi.yml
-  - type: Overlay
-    url: overlays/automation-anywhere-work-items-api-overlay.yaml
   - type: Documentation
     url: >-
       https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html
@@ -903,6 +897,12 @@ apis:
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
 common:
+  - type: Overlay
+    url: overlays/automation-anywhere-attribute-values-api-overlay.yaml
+  - type: Overlay
+    url: overlays/automation-anywhere-task-data-api-overlay.yaml
+  - type: Overlay
+    url: overlays/automation-anywhere-work-items-api-overlay.yaml
   - type: Rules
     url: rules/automation-anywhere-jsonschema-spectral-rules.yml
   - type: SLA

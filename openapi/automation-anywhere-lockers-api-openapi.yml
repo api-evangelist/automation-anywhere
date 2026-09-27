@@ -266,84 +266,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PageInfo:
-      type: object
-      description: Pagination metadata in list responses
-      properties:
-        offset:
-          type: integer
-          description: Starting index of the returned results
-        total:
-          type: integer
-          description: Total number of records available
-        totalFilter:
-          type: integer
-          description: Total records after filter criteria applied
-    LockerListResponse:
-      type: object
-      description: Paginated list of lockers
-      properties:
-        list:
-          type: array
-          description: Array of locker records
-          items:
-            $ref: '#/components/schemas/Locker'
-        page:
-          $ref: '#/components/schemas/PageInfo'
-    FilterRequest:
-      type: object
-      description: Generic filter, sort, and pagination request for list operations
-      properties:
-        filter:
-          type: object
-          description: Filter expression for narrowing results
-        sort:
-          type: array
-          description: Sort criteria for the result set
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field to sort by
-              direction:
-                type: string
-                enum:
-                - asc
-                - desc
-                description: Sort direction
-        page:
-          $ref: '#/components/schemas/PageRequest'
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
-    LockerCredentialList:
-      type: object
-      description: List of credentials contained within a locker
-      properties:
-        list:
-          type: array
-          description: Array of credential records in the locker
-          items:
-            $ref: '#/components/schemas/Credential'
-    LockerCredentialUpdate:
-      type: object
-      description: Payload to update a credential's configuration within a locker
-      properties:
-        attributes:
-          type: array
-          description: Credential attributes to expose through this locker
-          items:
-            type: integer
-            format: int64
-            description: Credential attribute ID
     CredentialAttribute:
       type: object
       description: An attribute definition associated with a credential
@@ -403,6 +325,97 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last modification
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    LockerListResponse:
+      type: object
+      description: Paginated list of lockers
+      properties:
+        list:
+          type: array
+          description: Array of locker records
+          items:
+            $ref: '#/components/schemas/Locker'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    PageInfo:
+      type: object
+      description: Pagination metadata in list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records available
+        totalFilter:
+          type: integer
+          description: Total records after filter criteria applied
+    FilterRequest:
+      type: object
+      description: Generic filter, sort, and pagination request for list operations
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria for the result set
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                - asc
+                - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    LockerCredentialList:
+      type: object
+      description: List of credentials contained within a locker
+      properties:
+        list:
+          type: array
+          description: Array of credential records in the locker
+          items:
+            $ref: '#/components/schemas/Credential'
+    LockerPost:
+      type: object
+      description: Payload to create or update a locker
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the locker
+        description:
+          type: string
+          description: Description of the locker's purpose
     Locker:
       type: object
       description: A permission-controlled container grouping credentials for bot access. Lockers define which roles (consumer roles) can access the contained credentials during automation execution.
@@ -437,30 +450,17 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last modification
-    PageRequest:
+    LockerCredentialUpdate:
       type: object
-      description: Pagination parameters
+      description: Payload to update a credential's configuration within a locker
       properties:
-        offset:
-          type: integer
-          description: Zero-based starting index
-          minimum: 0
-        length:
-          type: integer
-          description: Number of records per page
-          minimum: 1
-    LockerPost:
-      type: object
-      description: Payload to create or update a locker
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name for the locker
-        description:
-          type: string
-          description: Description of the locker's purpose
+        attributes:
+          type: array
+          description: Credential attributes to expose through this locker
+          items:
+            type: integer
+            format: int64
+            description: Credential attribute ID
   parameters:
     LockerIdParam:
       name: id

@@ -51,25 +51,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    StartDateParam:
-      name: startDate
-      in: path
-      required: true
-      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
-      schema:
-        type: string
-        format: date
-    StartIndexParam:
-      name: startIndex
-      in: path
-      required: true
-      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
+    BotRunDataResponse:
+      type: object
+      description: Paginated response containing bot run execution records
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of bot run records available from the start date
+        botRunDataList:
+          type: array
+          description: List of individual bot run records
+          items:
+            $ref: '#/components/schemas/BotRunRecord'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
     BotRunRecord:
       type: object
       description: A single bot execution run record with performance and identity metadata
@@ -125,28 +129,24 @@ components:
         successIndicator:
           type: boolean
           description: Whether the bot run completed successfully
-    BotRunDataResponse:
-      type: object
-      description: Paginated response containing bot run execution records
-      properties:
-        totalRecords:
-          type: integer
-          description: Total number of bot run records available from the start date
-        botRunDataList:
-          type: array
-          description: List of individual bot run records
-          items:
-            $ref: '#/components/schemas/BotRunRecord'
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
+  parameters:
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+    StartIndexParam:
+      name: startIndex
+      in: path
+      required: true
+      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

@@ -67,57 +67,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    BotInputVariable:
+    AttendedRequest:
       type: object
-      description: Typed input variable value to pass to a bot at deployment time
+      description: Deployment configuration for attended bot execution. The bot runs on a device where the target user is currently logged in, with the user present to observe or interact.
       properties:
-        type:
-          type: string
-          description: Data type of the variable. Must match the variable type defined in the bot (e.g., STRING, NUMBER, BOOLEAN, LIST, DICTIONARY, DATETIME).
-          enum:
-          - STRING
-          - NUMBER
-          - BOOLEAN
-          - LIST
-          - DICTIONARY
-          - DATETIME
-          - CREDENTIAL
-        string:
-          type: string
-          description: String value for STRING type variables
-        number:
-          type: string
-          description: Numeric value as a string for NUMBER type variables
-        boolean:
-          type: boolean
-          description: Boolean value for BOOLEAN type variables
-        list:
-          type: object
-          description: List structure for LIST type variables
-        dictionary:
-          type: object
-          description: Key-value map for DICTIONARY type variables
-    CallbackInfo:
-      type: object
-      description: Optional callback configuration for receiving execution status notifications at a webhook endpoint when the deployment completes or fails.
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the callback endpoint to notify upon completion
-        headers:
-          type: object
-          description: Optional HTTP headers to include in the callback request
-          additionalProperties:
-            type: string
-    DeploymentResponse:
-      type: object
-      description: Response returned when a bot deployment is successfully initiated
-      properties:
-        deploymentId:
-          type: string
-          format: uuid
-          description: Unique UUID identifier for this deployment instance. Use this ID to query automation activity and monitor execution status via the Bot Execution Orchestrator API.
+        currentUserDeviceId:
+          type: integer
+          description: Device ID of the currently logged-in user's machine on which to run the attended bot.
     UnattendedRequest:
       type: object
       description: Deployment configuration for unattended bot execution. The bot runs on the device(s) associated with the specified runAsUser account, without requiring a logged-in Windows session.
@@ -133,6 +89,19 @@ components:
           items:
             type: integer
             description: Numeric ID of a device pool
+    CallbackInfo:
+      type: object
+      description: Optional callback configuration for receiving execution status notifications at a webhook endpoint when the deployment completes or fails.
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the callback endpoint to notify upon completion
+        headers:
+          type: object
+          description: Optional HTTP headers to include in the callback request
+          additionalProperties:
+            type: string
     ErrorMessage:
       type: object
       description: Detailed error response including additional context
@@ -143,6 +112,21 @@ components:
         errorCode:
           type: string
           description: Specific error code for programmatic handling
+    DeploymentResponse:
+      type: object
+      description: Response returned when a bot deployment is successfully initiated
+      properties:
+        deploymentId:
+          type: string
+          format: uuid
+          description: Unique UUID identifier for this deployment instance. Use this ID to query automation activity and monitor execution status via the Bot Execution Orchestrator API.
+    RunAsUser:
+      type: object
+      description: Reference to a user account whose device will run the bot
+      properties:
+        id:
+          type: integer
+          description: Numeric user ID of the run-as user
     DeploymentRequest:
       type: object
       description: 'Request payload to deploy a bot. Requires the botId and one of the deployment type objects: unattended, attended, or headless.'
@@ -187,13 +171,6 @@ components:
           $ref: '#/components/schemas/AttendedRequest'
         headlessRequest:
           $ref: '#/components/schemas/HeadlessRequest'
-    AttendedRequest:
-      type: object
-      description: Deployment configuration for attended bot execution. The bot runs on a device where the target user is currently logged in, with the user present to observe or interact.
-      properties:
-        currentUserDeviceId:
-          type: integer
-          description: Device ID of the currently logged-in user's machine on which to run the attended bot.
     HeadlessRequest:
       type: object
       description: Deployment configuration for headless bot execution on On-Demand Bot Runner cloud devices without a persistent session.
@@ -201,13 +178,6 @@ components:
         numOfRunAsUsersToUse:
           type: integer
           description: Number of On-Demand Bot Runner instances to allocate for parallel headless execution.
-    RunAsUser:
-      type: object
-      description: Reference to a user account whose device will run the bot
-      properties:
-        id:
-          type: integer
-          description: Numeric user ID of the run-as user
     Error:
       type: object
       description: Standard error response
@@ -218,6 +188,36 @@ components:
         message:
           type: string
           description: Human-readable description of the error
+    BotInputVariable:
+      type: object
+      description: Typed input variable value to pass to a bot at deployment time
+      properties:
+        type:
+          type: string
+          description: Data type of the variable. Must match the variable type defined in the bot (e.g., STRING, NUMBER, BOOLEAN, LIST, DICTIONARY, DATETIME).
+          enum:
+          - STRING
+          - NUMBER
+          - BOOLEAN
+          - LIST
+          - DICTIONARY
+          - DATETIME
+          - CREDENTIAL
+        string:
+          type: string
+          description: String value for STRING type variables
+        number:
+          type: string
+          description: Numeric value as a string for NUMBER type variables
+        boolean:
+          type: boolean
+          description: Boolean value for BOOLEAN type variables
+        list:
+          type: object
+          description: List structure for LIST type variables
+        dictionary:
+          type: object
+          description: Key-value map for DICTIONARY type variables
   securitySchemes:
     bearerAuth:
       type: http

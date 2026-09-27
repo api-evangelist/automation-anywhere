@@ -117,6 +117,31 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    TaskVariable:
+      type: object
+      description: A single KPI variable tracked during bot task execution
+      properties:
+        name:
+          type: string
+          description: Variable name as defined in the bot
+        type:
+          type: string
+          description: Data type of the variable (e.g., STRING, NUMBER, DATE)
+        displayName:
+          type: string
+          description: Human-readable display name for dashboards
+    TaskMetadataResponse:
+      type: object
+      description: Metadata about a specific bot task's analytics configuration
+      properties:
+        taskName:
+          type: string
+          description: Analytics display name of the task
+        variables:
+          type: array
+          description: KPI variables tracked for this task
+          items:
+            $ref: '#/components/schemas/TaskVariable'
     TaskVariableProfileResponse:
       type: object
       description: Aggregated variable profile data for a task over a date range
@@ -137,18 +162,19 @@ components:
           description: Aggregated values for each KPI variable
           items:
             $ref: '#/components/schemas/VariableProfile'
-    TaskMetadataResponse:
+    VariableProfile:
       type: object
-      description: Metadata about a specific bot task's analytics configuration
+      description: Aggregated profile data for a single KPI variable
       properties:
-        taskName:
+        variableName:
           type: string
-          description: Analytics display name of the task
-        variables:
-          type: array
-          description: KPI variables tracked for this task
-          items:
-            $ref: '#/components/schemas/TaskVariable'
+          description: Name of the KPI variable
+        totalValue:
+          type: string
+          description: Aggregated total value across all runs in the date range
+        runCount:
+          type: integer
+          description: Number of bot runs contributing to this profile
     TaskLogRecord:
       type: object
       description: A single task execution log entry with KPI variable values
@@ -181,32 +207,6 @@ components:
           description: List of task log records
           items:
             $ref: '#/components/schemas/TaskLogRecord'
-    TaskVariable:
-      type: object
-      description: A single KPI variable tracked during bot task execution
-      properties:
-        name:
-          type: string
-          description: Variable name as defined in the bot
-        type:
-          type: string
-          description: Data type of the variable (e.g., STRING, NUMBER, DATE)
-        displayName:
-          type: string
-          description: Human-readable display name for dashboards
-    VariableProfile:
-      type: object
-      description: Aggregated profile data for a single KPI variable
-      properties:
-        variableName:
-          type: string
-          description: Name of the KPI variable
-        totalValue:
-          type: string
-          description: Aggregated total value across all runs in the date range
-        runCount:
-          type: integer
-          description: Number of bot runs contributing to this profile
     Error:
       type: object
       description: Standard error response
@@ -218,21 +218,6 @@ components:
           type: string
           description: Human-readable error description
   parameters:
-    TaskNameParam:
-      name: taskName
-      in: path
-      required: true
-      description: Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., "Analytics_ATM Reconciliation")
-      schema:
-        type: string
-    StartDateParam:
-      name: startDate
-      in: path
-      required: true
-      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
-      schema:
-        type: string
-        format: date
     StartIndexParam:
       name: startIndex
       in: path
@@ -242,6 +227,14 @@ components:
         type: integer
         minimum: 0
         default: 0
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
     FromDateParam:
       name: from
       in: query
@@ -258,6 +251,13 @@ components:
       schema:
         type: string
         format: date
+    TaskNameParam:
+      name: taskName
+      in: path
+      required: true
+      description: Analytics display name of the bot task as configured in the Bot Insight dashboard (e.g., "Analytics_ATM Reconciliation")
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

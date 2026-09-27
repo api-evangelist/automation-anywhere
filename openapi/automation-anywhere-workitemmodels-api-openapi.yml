@@ -93,28 +93,6 @@ components:
         message:
           type: string
           description: Human-readable error description
-    WorkItemAttribute:
-      type: object
-      description: A single named attribute in a work item model
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier of the attribute
-        name:
-          type: string
-          description: Attribute name used as the column identifier in work items
-        type:
-          type: string
-          description: Data type of the attribute value
-          enum:
-          - TEXT
-          - NUMBER
-          - DATE
-          - BOOLEAN
-        isRequired:
-          type: boolean
-          description: Whether this attribute must be provided when creating a work item
     WorkItemModel:
       type: object
       description: Schema definition for work items in a queue, specifying the attributes (columns) and their data types that each work item must contain.
@@ -157,6 +135,28 @@ components:
         tenantUuid:
           type: string
           description: UUID of the tenant
+    WorkItemAttribute:
+      type: object
+      description: A single named attribute in a work item model
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the attribute
+        name:
+          type: string
+          description: Attribute name used as the column identifier in work items
+        type:
+          type: string
+          description: Data type of the attribute value
+          enum:
+          - TEXT
+          - NUMBER
+          - DATE
+          - BOOLEAN
+        isRequired:
+          type: boolean
+          description: Whether this attribute must be provided when creating a work item
   parameters:
     ModelIdParam:
       name: id

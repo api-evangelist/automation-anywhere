@@ -177,17 +177,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    UserListResponse:
-      type: object
-      description: Paginated list of user records
-      properties:
-        list:
-          type: array
-          description: Array of user records matching the filter criteria
-          items:
-            $ref: '#/components/schemas/UserResponse'
-        page:
-          $ref: '#/components/schemas/PageInfo'
     RoleRef:
       type: object
       description: Reference to a role by its numeric ID
@@ -199,61 +188,16 @@ components:
         name:
           type: string
           description: Name of the referenced role
-    PageInfo:
+    FilterOperand:
       type: object
-      description: Pagination metadata returned with list responses
+      description: A single operand in a filter expression, either a field reference or a nested expression
       properties:
-        offset:
-          type: integer
-          description: Starting index of the returned results
-        total:
-          type: integer
-          description: Total number of records matching the query
-        totalFilter:
-          type: integer
-          description: Total number of records after filters are applied
-    FilterExpression:
-      type: object
-      description: Logical filter expression for querying resources
-      properties:
-        operator:
+        field:
           type: string
-          description: Logical operator combining child filters (and, or, not)
-          enum:
-          - and
-          - or
-          - not
-          - eq
-          - ne
-          - lt
-          - le
-          - gt
-          - ge
-          - substring
-          - startswith
-        operands:
-          type: array
-          description: Child filter expressions or field/value pairs
-          items:
-            $ref: '#/components/schemas/FilterOperand'
-    FilterRequest:
-      type: object
-      description: Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.
-      properties:
-        filter:
-          $ref: '#/components/schemas/FilterExpression'
-        fields:
-          type: array
-          description: List of field names to include in the response
-          items:
-            type: string
-        sort:
-          type: array
-          description: Sorting criteria for the result set
-          items:
-            $ref: '#/components/schemas/SortCriteria'
-        page:
-          $ref: '#/components/schemas/PageRequest'
+          description: Field name to filter on
+        value:
+          type: string
+          description: Value to compare against
     SortCriteria:
       type: object
       description: Sorting direction and field for list results
@@ -267,6 +211,19 @@ components:
           enum:
           - asc
           - desc
+    PageInfo:
+      type: object
+      description: Pagination metadata returned with list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records matching the query
+        totalFilter:
+          type: integer
+          description: Total number of records after filters are applied
     CreateUserRequest:
       type: object
       description: Payload to create a new Control Room user account
@@ -304,6 +261,48 @@ components:
         enabled:
           type: boolean
           description: Whether the user account is active and can log in
+    UserListResponse:
+      type: object
+      description: Paginated list of user records
+      properties:
+        list:
+          type: array
+          description: Array of user records matching the filter criteria
+          items:
+            $ref: '#/components/schemas/UserResponse'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    FilterRequest:
+      type: object
+      description: Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.
+      properties:
+        filter:
+          $ref: '#/components/schemas/FilterExpression'
+        fields:
+          type: array
+          description: List of field names to include in the response
+          items:
+            type: string
+        sort:
+          type: array
+          description: Sorting criteria for the result set
+          items:
+            $ref: '#/components/schemas/SortCriteria'
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    PageRequest:
+      type: object
+      description: Pagination parameters for list requests
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index of the result page
+          minimum: 0
+        length:
+          type: integer
+          description: Maximum number of results to return per page
+          minimum: 1
+          maximum: 1000
     UserResponse:
       type: object
       description: Full user record returned from create, read, or update operations
@@ -354,16 +353,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update
-    FilterOperand:
-      type: object
-      description: A single operand in a filter expression, either a field reference or a nested expression
-      properties:
-        field:
-          type: string
-          description: Field name to filter on
-        value:
-          type: string
-          description: Value to compare against
     UpdateUserRequest:
       type: object
       description: Payload to update an existing Control Room user account
@@ -394,19 +383,30 @@ components:
         password:
           type: string
           description: New password for the user
-    PageRequest:
+    FilterExpression:
       type: object
-      description: Pagination parameters for list requests
+      description: Logical filter expression for querying resources
       properties:
-        offset:
-          type: integer
-          description: Zero-based starting index of the result page
-          minimum: 0
-        length:
-          type: integer
-          description: Maximum number of results to return per page
-          minimum: 1
-          maximum: 1000
+        operator:
+          type: string
+          description: Logical operator combining child filters (and, or, not)
+          enum:
+          - and
+          - or
+          - not
+          - eq
+          - ne
+          - lt
+          - le
+          - gt
+          - ge
+          - substring
+          - startswith
+        operands:
+          type: array
+          description: Child filter expressions or field/value pairs
+          items:
+            $ref: '#/components/schemas/FilterOperand'
     Error:
       type: object
       description: Standard error response returned when an API request fails
