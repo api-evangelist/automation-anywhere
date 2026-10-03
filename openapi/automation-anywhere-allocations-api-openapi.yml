@@ -55,6 +55,42 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ListAllocationsResponse:
+      type: object
+      description: Paginated list of API Task allocations registered in the Control Room
+      properties:
+        list:
+          type: array
+          description: Array of API Task allocation records
+          items:
+            $ref: '#/components/schemas/ApiTaskAllocation'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    PageRequest:
+      type: object
+      description: Pagination parameters for list requests
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index of the result page
+          minimum: 0
+          default: 0
+        length:
+          type: integer
+          description: Number of records to return per page
+          minimum: 1
+          maximum: 100
+          default: 100
     ApiTaskAllocation:
       type: object
       description: A single API Task allocation record indicating an allocated real-time API Task
@@ -74,12 +110,6 @@ components:
         concurrencyLimit:
           type: integer
           description: Maximum number of concurrent instances allowed for this API Task in real-time execution mode
-    ListAllocationsRequest:
-      type: object
-      description: Pagination parameters for listing API Task allocations. Omit to retrieve the first page with default settings.
-      properties:
-        page:
-          $ref: '#/components/schemas/PageRequest'
     PageInfo:
       type: object
       description: Pagination metadata in list responses
@@ -93,42 +123,12 @@ components:
         totalFilter:
           type: integer
           description: Total records after any filter criteria
-    PageRequest:
+    ListAllocationsRequest:
       type: object
-      description: Pagination parameters for list requests
+      description: Pagination parameters for listing API Task allocations. Omit to retrieve the first page with default settings.
       properties:
-        offset:
-          type: integer
-          description: Zero-based starting index of the result page
-          minimum: 0
-          default: 0
-        length:
-          type: integer
-          description: Number of records to return per page
-          minimum: 1
-          maximum: 100
-          default: 100
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
-    ListAllocationsResponse:
-      type: object
-      description: Paginated list of API Task allocations registered in the Control Room
-      properties:
-        list:
-          type: array
-          description: Array of API Task allocation records
-          items:
-            $ref: '#/components/schemas/ApiTaskAllocation'
         page:
-          $ref: '#/components/schemas/PageInfo'
+          $ref: '#/components/schemas/PageRequest'
   securitySchemes:
     bearerAuth:
       type: http

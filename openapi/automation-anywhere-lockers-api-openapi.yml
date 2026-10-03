@@ -265,7 +265,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    CredentialIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the credential
+      schema:
+        type: integer
+        format: int64
+    LockerIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the locker
+      schema:
+        type: integer
+        format: int64
   schemas:
+    LockerPost:
+      type: object
+      description: Payload to create or update a locker
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the locker
+        description:
+          type: string
+          description: Description of the locker's purpose
     CredentialAttribute:
       type: object
       description: An attribute definition associated with a credential
@@ -286,6 +315,84 @@ components:
         userProvided:
           type: boolean
           description: Whether each user provides their own value for this attribute
+    LockerCredentialList:
+      type: object
+      description: List of credentials contained within a locker
+      properties:
+        list:
+          type: array
+          description: Array of credential records in the locker
+          items:
+            $ref: '#/components/schemas/Credential'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    Locker:
+      type: object
+      description: A permission-controlled container grouping credentials for bot access. Lockers define which roles (consumer roles) can access the contained credentials during automation execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the locker
+        name:
+          type: string
+          description: Human-readable name of the locker
+        description:
+          type: string
+          description: Optional description of the locker's purpose
+        ownerId:
+          type: integer
+          format: int64
+          description: User ID of the locker owner
+        createdBy:
+          type: integer
+          format: int64
+          description: ID of the user who created this locker
+        createdOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the locker was created
+        updatedBy:
+          type: integer
+          format: int64
+          description: ID of the user who last modified this locker
+        updatedOn:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last modification
+    PageInfo:
+      type: object
+      description: Pagination metadata in list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records available
+        totalFilter:
+          type: integer
+          description: Total records after filter criteria applied
     Credential:
       type: object
       description: A credential stored in the Credential Vault with named attributes
@@ -325,40 +432,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last modification
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
-    LockerListResponse:
-      type: object
-      description: Paginated list of lockers
-      properties:
-        list:
-          type: array
-          description: Array of locker records
-          items:
-            $ref: '#/components/schemas/Locker'
-        page:
-          $ref: '#/components/schemas/PageInfo'
-    PageInfo:
-      type: object
-      description: Pagination metadata in list responses
-      properties:
-        offset:
-          type: integer
-          description: Starting index of the returned results
-        total:
-          type: integer
-          description: Total number of records available
-        totalFilter:
-          type: integer
-          description: Total records after filter criteria applied
     FilterRequest:
       type: object
       description: Generic filter, sort, and pagination request for list operations
@@ -383,73 +456,17 @@ components:
                 description: Sort direction
         page:
           $ref: '#/components/schemas/PageRequest'
-    PageRequest:
+    LockerListResponse:
       type: object
-      description: Pagination parameters
-      properties:
-        offset:
-          type: integer
-          description: Zero-based starting index
-          minimum: 0
-        length:
-          type: integer
-          description: Number of records per page
-          minimum: 1
-    LockerCredentialList:
-      type: object
-      description: List of credentials contained within a locker
+      description: Paginated list of lockers
       properties:
         list:
           type: array
-          description: Array of credential records in the locker
+          description: Array of locker records
           items:
-            $ref: '#/components/schemas/Credential'
-    LockerPost:
-      type: object
-      description: Payload to create or update a locker
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name for the locker
-        description:
-          type: string
-          description: Description of the locker's purpose
-    Locker:
-      type: object
-      description: A permission-controlled container grouping credentials for bot access. Lockers define which roles (consumer roles) can access the contained credentials during automation execution.
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier of the locker
-        name:
-          type: string
-          description: Human-readable name of the locker
-        description:
-          type: string
-          description: Optional description of the locker's purpose
-        ownerId:
-          type: integer
-          format: int64
-          description: User ID of the locker owner
-        createdBy:
-          type: integer
-          format: int64
-          description: ID of the user who created this locker
-        createdOn:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the locker was created
-        updatedBy:
-          type: integer
-          format: int64
-          description: ID of the user who last modified this locker
-        updatedOn:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of the last modification
+            $ref: '#/components/schemas/Locker'
+        page:
+          $ref: '#/components/schemas/PageInfo'
     LockerCredentialUpdate:
       type: object
       description: Payload to update a credential's configuration within a locker
@@ -461,23 +478,6 @@ components:
             type: integer
             format: int64
             description: Credential attribute ID
-  parameters:
-    LockerIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the locker
-      schema:
-        type: integer
-        format: int64
-    CredentialIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the credential
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     bearerAuth:
       type: http

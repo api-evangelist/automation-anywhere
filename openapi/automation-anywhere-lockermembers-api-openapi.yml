@@ -129,15 +129,16 @@ components:
         type: integer
         format: int64
   schemas:
-    LockerMemberUpdate:
+    Error:
       type: object
-      description: Payload to update a locker member's permissions
+      description: Standard error response
       properties:
-        permissions:
-          type: array
-          description: Updated set of permissions for this member
-          items:
-            type: string
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
     LockerMember:
       type: object
       description: A user with management membership in a locker
@@ -163,16 +164,15 @@ components:
           description: Array of locker member records
           items:
             $ref: '#/components/schemas/LockerMember'
-    Error:
+    LockerMemberUpdate:
       type: object
-      description: Standard error response
+      description: Payload to update a locker member's permissions
       properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
+        permissions:
+          type: array
+          description: Updated set of permissions for this member
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http

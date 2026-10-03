@@ -94,17 +94,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    RoleRef:
-      type: object
-      description: Reference to a role by its numeric ID
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Numeric identifier of the referenced role
-        name:
-          type: string
-          description: Name of the referenced role
     AuthenticationRequest:
       type: object
       description: Credentials for authenticating a Control Room user. Provide either password or apiKey along with the username.
@@ -145,6 +134,17 @@ components:
           description: Additional error context or field-level validation errors
           items:
             type: string
+    RoleRef:
+      type: object
+      description: Reference to a role by its numeric ID
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Numeric identifier of the referenced role
+        name:
+          type: string
+          description: Name of the referenced role
     UserSummary:
       type: object
       description: Abbreviated user object returned within authentication responses

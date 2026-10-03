@@ -130,15 +130,6 @@ components:
         type: integer
         format: int64
   schemas:
-    LockerConsumerList:
-      type: object
-      description: List of consumer roles for a locker
-      properties:
-        list:
-          type: array
-          description: Array of consumer role records
-          items:
-            $ref: '#/components/schemas/LockerConsumer'
     Error:
       type: object
       description: Standard error response
@@ -170,6 +161,15 @@ components:
         roleName:
           type: string
           description: Name of the consumer role
+    LockerConsumerList:
+      type: object
+      description: List of consumer roles for a locker
+      properties:
+        list:
+          type: array
+          description: Array of consumer role records
+          items:
+            $ref: '#/components/schemas/LockerConsumer'
   securitySchemes:
     bearerAuth:
       type: http

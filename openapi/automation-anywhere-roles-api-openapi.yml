@@ -176,108 +176,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    RoleIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the role
+      schema:
+        type: integer
+        format: int64
   schemas:
-    FilterOperand:
-      type: object
-      description: A single operand in a filter expression, either a field reference or a nested expression
-      properties:
-        field:
-          type: string
-          description: Field name to filter on
-        value:
-          type: string
-          description: Value to compare against
-    UpdateRoleRequest:
-      type: object
-      description: Payload to update an existing Control Room role
-      properties:
-        name:
-          type: string
-          description: Updated name for the role
-        description:
-          type: string
-          description: Updated description of the role's purpose
-        permissions:
-          type: array
-          description: Updated set of permissions; replaces existing permissions
-          items:
-            $ref: '#/components/schemas/Permission'
-    Error:
-      type: object
-      description: Standard error response returned when an API request fails
-      properties:
-        code:
-          type: string
-          description: Error code identifying the error type
-        message:
-          type: string
-          description: Human-readable description of the error
-        details:
-          type: array
-          description: Additional error context or field-level validation errors
-          items:
-            type: string
-    CreateRoleRequest:
-      type: object
-      description: Payload to create a new Control Room role
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Unique name for the new role
-        description:
-          type: string
-          description: Human-readable description of the role's purpose
-        permissions:
-          type: array
-          description: List of permission objects granting access to features
-          items:
-            $ref: '#/components/schemas/Permission'
-    SortCriteria:
-      type: object
-      description: Sorting direction and field for list results
-      properties:
-        field:
-          type: string
-          description: Field name to sort by
-        direction:
-          type: string
-          description: Sort direction
-          enum:
-          - asc
-          - desc
-    PageInfo:
-      type: object
-      description: Pagination metadata returned with list responses
-      properties:
-        offset:
-          type: integer
-          description: Starting index of the returned results
-        total:
-          type: integer
-          description: Total number of records matching the query
-        totalFilter:
-          type: integer
-          description: Total number of records after filters are applied
-    FilterRequest:
-      type: object
-      description: Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.
-      properties:
-        filter:
-          $ref: '#/components/schemas/FilterExpression'
-        fields:
-          type: array
-          description: List of field names to include in the response
-          items:
-            type: string
-        sort:
-          type: array
-          description: Sorting criteria for the result set
-          items:
-            $ref: '#/components/schemas/SortCriteria'
-        page:
-          $ref: '#/components/schemas/PageRequest'
     Permission:
       type: object
       description: A single permission entry granting access to a specific feature or resource
@@ -296,17 +204,6 @@ components:
           type: integer
           format: int64
           description: Specific resource ID if this is a resource-scoped permission
-    RoleListResponse:
-      type: object
-      description: Paginated list of role records
-      properties:
-        list:
-          type: array
-          description: Array of role records matching the filter criteria
-          items:
-            $ref: '#/components/schemas/RoleResponse'
-        page:
-          $ref: '#/components/schemas/PageInfo'
     PageRequest:
       type: object
       description: Pagination parameters for list requests
@@ -344,6 +241,19 @@ components:
           description: Child filter expressions or field/value pairs
           items:
             $ref: '#/components/schemas/FilterOperand'
+    PageInfo:
+      type: object
+      description: Pagination metadata returned with list responses
+      properties:
+        offset:
+          type: integer
+          description: Starting index of the returned results
+        total:
+          type: integer
+          description: Total number of records matching the query
+        totalFilter:
+          type: integer
+          description: Total number of records after filters are applied
     RoleResponse:
       type: object
       description: Full role record returned from create, read, or update operations
@@ -379,15 +289,105 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update
-  parameters:
-    RoleIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the role
-      schema:
-        type: integer
-        format: int64
+    SortCriteria:
+      type: object
+      description: Sorting direction and field for list results
+      properties:
+        field:
+          type: string
+          description: Field name to sort by
+        direction:
+          type: string
+          description: Sort direction
+          enum:
+          - asc
+          - desc
+    UpdateRoleRequest:
+      type: object
+      description: Payload to update an existing Control Room role
+      properties:
+        name:
+          type: string
+          description: Updated name for the role
+        description:
+          type: string
+          description: Updated description of the role's purpose
+        permissions:
+          type: array
+          description: Updated set of permissions; replaces existing permissions
+          items:
+            $ref: '#/components/schemas/Permission'
+    FilterRequest:
+      type: object
+      description: Generic filtering, pagination, and sorting request body used across list endpoints throughout the Control Room API.
+      properties:
+        filter:
+          $ref: '#/components/schemas/FilterExpression'
+        fields:
+          type: array
+          description: List of field names to include in the response
+          items:
+            type: string
+        sort:
+          type: array
+          description: Sorting criteria for the result set
+          items:
+            $ref: '#/components/schemas/SortCriteria'
+        page:
+          $ref: '#/components/schemas/PageRequest'
+    Error:
+      type: object
+      description: Standard error response returned when an API request fails
+      properties:
+        code:
+          type: string
+          description: Error code identifying the error type
+        message:
+          type: string
+          description: Human-readable description of the error
+        details:
+          type: array
+          description: Additional error context or field-level validation errors
+          items:
+            type: string
+    FilterOperand:
+      type: object
+      description: A single operand in a filter expression, either a field reference or a nested expression
+      properties:
+        field:
+          type: string
+          description: Field name to filter on
+        value:
+          type: string
+          description: Value to compare against
+    RoleListResponse:
+      type: object
+      description: Paginated list of role records
+      properties:
+        list:
+          type: array
+          description: Array of role records matching the filter criteria
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    CreateRoleRequest:
+      type: object
+      description: Payload to create a new Control Room role
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Unique name for the new role
+        description:
+          type: string
+          description: Human-readable description of the role's purpose
+        permissions:
+          type: array
+          description: List of permission objects granting access to features
+          items:
+            $ref: '#/components/schemas/Permission'
   securitySchemes:
     bearerAuth:
       type: http

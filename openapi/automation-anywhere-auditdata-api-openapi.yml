@@ -52,6 +52,28 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    AuditTrailResponse:
+      type: object
+      description: Paginated audit trail records from the Control Room
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of audit records available from the start date
+        auditData:
+          type: array
+          description: List of audit trail records
+          items:
+            $ref: '#/components/schemas/AuditRecord'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
     AuditRecord:
       type: object
       description: A single Control Room audit trail event record
@@ -97,37 +119,7 @@ components:
         userName:
           type: string
           description: Username associated with the event
-    AuditTrailResponse:
-      type: object
-      description: Paginated audit trail records from the Control Room
-      properties:
-        totalRecords:
-          type: integer
-          description: Total number of audit records available from the start date
-        auditData:
-          type: array
-          description: List of audit trail records
-          items:
-            $ref: '#/components/schemas/AuditRecord'
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
   parameters:
-    StartDateParam:
-      name: startDate
-      in: path
-      required: true
-      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
-      schema:
-        type: string
-        format: date
     StartIndexParam:
       name: startIndex
       in: path
@@ -137,6 +129,14 @@ components:
         type: integer
         minimum: 0
         default: 0
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
   securitySchemes:
     bearerAuth:
       type: http

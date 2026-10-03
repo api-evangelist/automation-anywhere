@@ -83,16 +83,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     WorkItemModel:
       type: object
       description: Schema definition for work items in a queue, specifying the attributes (columns) and their data types that each work item must contain.
@@ -135,6 +125,16 @@ components:
         tenantUuid:
           type: string
           description: UUID of the tenant
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
     WorkItemAttribute:
       type: object
       description: A single named attribute in a work item model
