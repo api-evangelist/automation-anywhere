@@ -829,6 +829,8 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
   baseURL: https://{controlRoomUrl}
   tags:
+  - TaskData
+  tags_raw:
   - Task Data
   properties:
   - type: OpenAPI
@@ -897,6 +899,9 @@ apis:
   - type: JSONSchema
     url: json-schema/automation-anywhere-bot-schema.json
 common:
+  - type: CapabilityMap
+    url: capabilities/automation-anywhere-capability-edges.yml
+    name: Automation Anywhere Business Capability Map
   - type: Overlay
     url: overlays/automation-anywhere-attribute-values-api-overlay.yaml
   - type: Overlay
