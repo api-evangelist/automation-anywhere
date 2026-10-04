@@ -51,29 +51,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    StartIndexParam:
+      name: startIndex
+      in: path
+      required: true
+      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    StartDateParam:
+      name: startDate
+      in: path
+      required: true
+      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
   schemas:
-    AuditTrailResponse:
-      type: object
-      description: Paginated audit trail records from the Control Room
-      properties:
-        totalRecords:
-          type: integer
-          description: Total number of audit records available from the start date
-        auditData:
-          type: array
-          description: List of audit trail records
-          items:
-            $ref: '#/components/schemas/AuditRecord'
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     AuditRecord:
       type: object
       description: A single Control Room audit trail event record
@@ -119,24 +115,28 @@ components:
         userName:
           type: string
           description: Username associated with the event
-  parameters:
-    StartIndexParam:
-      name: startIndex
-      in: path
-      required: true
-      description: Zero-based record index for pagination. Set to 0 to retrieve the first page of 1000 records, then increment by 1000 for subsequent pages.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    StartDateParam:
-      name: startDate
-      in: path
-      required: true
-      description: Start date for the data query in ISO 8601 format (YYYY-MM-DD)
-      schema:
-        type: string
-        format: date
+    AuditTrailResponse:
+      type: object
+      description: Paginated audit trail records from the Control Room
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of audit records available from the start date
+        auditData:
+          type: array
+          description: List of audit trail records
+          items:
+            $ref: '#/components/schemas/AuditRecord'
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
   securitySchemes:
     bearerAuth:
       type: http

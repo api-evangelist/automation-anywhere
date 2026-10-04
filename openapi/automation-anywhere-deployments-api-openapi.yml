@@ -67,13 +67,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    AttendedRequest:
+    HeadlessRequest:
       type: object
-      description: Deployment configuration for attended bot execution. The bot runs on a device where the target user is currently logged in, with the user present to observe or interact.
+      description: Deployment configuration for headless bot execution on On-Demand Bot Runner cloud devices without a persistent session.
       properties:
-        currentUserDeviceId:
+        numOfRunAsUsersToUse:
           type: integer
-          description: Device ID of the currently logged-in user's machine on which to run the attended bot.
+          description: Number of On-Demand Bot Runner instances to allocate for parallel headless execution.
     CallbackInfo:
       type: object
       description: Optional callback configuration for receiving execution status notifications at a webhook endpoint when the deployment completes or fails.
@@ -87,16 +87,36 @@ components:
           description: Optional HTTP headers to include in the callback request
           additionalProperties:
             type: string
-    Error:
+    BotInputVariable:
       type: object
-      description: Standard error response
+      description: Typed input variable value to pass to a bot at deployment time
       properties:
-        code:
+        type:
           type: string
-          description: Error code identifying the type of failure
-        message:
+          description: Data type of the variable. Must match the variable type defined in the bot (e.g., STRING, NUMBER, BOOLEAN, LIST, DICTIONARY, DATETIME).
+          enum:
+          - STRING
+          - NUMBER
+          - BOOLEAN
+          - LIST
+          - DICTIONARY
+          - DATETIME
+          - CREDENTIAL
+        string:
           type: string
-          description: Human-readable description of the error
+          description: String value for STRING type variables
+        number:
+          type: string
+          description: Numeric value as a string for NUMBER type variables
+        boolean:
+          type: boolean
+          description: Boolean value for BOOLEAN type variables
+        list:
+          type: object
+          description: List structure for LIST type variables
+        dictionary:
+          type: object
+          description: Key-value map for DICTIONARY type variables
     RunAsUser:
       type: object
       description: Reference to a user account whose device will run the bot
@@ -104,6 +124,46 @@ components:
         id:
           type: integer
           description: Numeric user ID of the run-as user
+    AttendedRequest:
+      type: object
+      description: Deployment configuration for attended bot execution. The bot runs on a device where the target user is currently logged in, with the user present to observe or interact.
+      properties:
+        currentUserDeviceId:
+          type: integer
+          description: Device ID of the currently logged-in user's machine on which to run the attended bot.
+    UnattendedRequest:
+      type: object
+      description: Deployment configuration for unattended bot execution. The bot runs on the device(s) associated with the specified runAsUser account, without requiring a logged-in Windows session.
+      properties:
+        runAsUsers:
+          type: array
+          description: List of user IDs whose associated Bot Runner devices will execute the bot. Each user must have an unattended Bot Runner license.
+          items:
+            $ref: '#/components/schemas/RunAsUser'
+        poolIds:
+          type: array
+          description: List of device pool IDs to target for execution. The bot will be dispatched to an available device in the specified pools.
+          items:
+            type: integer
+            description: Numeric ID of a device pool
+    ErrorMessage:
+      type: object
+      description: Detailed error response including additional context
+      properties:
+        message:
+          type: string
+          description: Human-readable description of the error
+        errorCode:
+          type: string
+          description: Specific error code for programmatic handling
+    DeploymentResponse:
+      type: object
+      description: Response returned when a bot deployment is successfully initiated
+      properties:
+        deploymentId:
+          type: string
+          format: uuid
+          description: Unique UUID identifier for this deployment instance. Use this ID to query automation activity and monitor execution status via the Bot Execution Orchestrator API.
     DeploymentRequest:
       type: object
       description: 'Request payload to deploy a bot. Requires the botId and one of the deployment type objects: unattended, attended, or headless.'
@@ -148,76 +208,16 @@ components:
           $ref: '#/components/schemas/AttendedRequest'
         headlessRequest:
           $ref: '#/components/schemas/HeadlessRequest'
-    DeploymentResponse:
+    Error:
       type: object
-      description: Response returned when a bot deployment is successfully initiated
+      description: Standard error response
       properties:
-        deploymentId:
+        code:
           type: string
-          format: uuid
-          description: Unique UUID identifier for this deployment instance. Use this ID to query automation activity and monitor execution status via the Bot Execution Orchestrator API.
-    HeadlessRequest:
-      type: object
-      description: Deployment configuration for headless bot execution on On-Demand Bot Runner cloud devices without a persistent session.
-      properties:
-        numOfRunAsUsersToUse:
-          type: integer
-          description: Number of On-Demand Bot Runner instances to allocate for parallel headless execution.
-    BotInputVariable:
-      type: object
-      description: Typed input variable value to pass to a bot at deployment time
-      properties:
-        type:
-          type: string
-          description: Data type of the variable. Must match the variable type defined in the bot (e.g., STRING, NUMBER, BOOLEAN, LIST, DICTIONARY, DATETIME).
-          enum:
-          - STRING
-          - NUMBER
-          - BOOLEAN
-          - LIST
-          - DICTIONARY
-          - DATETIME
-          - CREDENTIAL
-        string:
-          type: string
-          description: String value for STRING type variables
-        number:
-          type: string
-          description: Numeric value as a string for NUMBER type variables
-        boolean:
-          type: boolean
-          description: Boolean value for BOOLEAN type variables
-        list:
-          type: object
-          description: List structure for LIST type variables
-        dictionary:
-          type: object
-          description: Key-value map for DICTIONARY type variables
-    ErrorMessage:
-      type: object
-      description: Detailed error response including additional context
-      properties:
+          description: Error code identifying the type of failure
         message:
           type: string
           description: Human-readable description of the error
-        errorCode:
-          type: string
-          description: Specific error code for programmatic handling
-    UnattendedRequest:
-      type: object
-      description: Deployment configuration for unattended bot execution. The bot runs on the device(s) associated with the specified runAsUser account, without requiring a logged-in Windows session.
-      properties:
-        runAsUsers:
-          type: array
-          description: List of user IDs whose associated Bot Runner devices will execute the bot. Each user must have an unattended Bot Runner license.
-          items:
-            $ref: '#/components/schemas/RunAsUser'
-        poolIds:
-          type: array
-          description: List of device pool IDs to target for execution. The bot will be dispatched to an available device in the specified pools.
-          items:
-            type: integer
-            description: Numeric ID of a device pool
   securitySchemes:
     bearerAuth:
       type: http

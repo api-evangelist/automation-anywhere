@@ -829,8 +829,6 @@ apis:
     https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html
   baseURL: https://{controlRoomUrl}
   tags:
-  - TaskData
-  tags_raw:
   - Task Data
   properties:
   - type: OpenAPI

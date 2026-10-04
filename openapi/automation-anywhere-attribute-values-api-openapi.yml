@@ -152,14 +152,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    CredentialIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the credential
-      schema:
-        type: integer
-        format: int64
     CredentialAttributeIdParam:
       name: credentialAttributeId
       in: query
@@ -168,11 +160,11 @@ components:
       schema:
         type: integer
         format: int64
-    AttributeValueIdParam:
-      name: attributeValueId
+    CredentialIdParam:
+      name: id
       in: path
       required: true
-      description: Unique numeric identifier of the credential attribute value
+      description: Unique numeric identifier of the credential
       schema:
         type: integer
         format: int64
@@ -191,16 +183,15 @@ components:
       schema:
         type: integer
         format: int64
+    AttributeValueIdParam:
+      name: attributeValueId
+      in: path
+      required: true
+      description: Unique numeric identifier of the credential attribute value
+      schema:
+        type: integer
+        format: int64
   schemas:
-    CredentialAttributeValuePostList:
-      type: object
-      description: Payload to create or set multiple attribute values on a credential
-      properties:
-        attributeValues:
-          type: array
-          description: List of attribute values to create or set
-          items:
-            $ref: '#/components/schemas/CredentialAttributeValuePost'
     CredentialAttributeValue:
       type: object
       description: The stored value for a credential attribute
@@ -224,6 +215,39 @@ components:
         value:
           type: string
           description: The encrypted attribute value
+    CredentialAttributeValueList:
+      type: object
+      description: List of attribute values for a credential
+      properties:
+        list:
+          type: array
+          description: Array of credential attribute value records
+          items:
+            $ref: '#/components/schemas/CredentialAttributeValue'
+    CredentialAttributeValuePostList:
+      type: object
+      description: Payload to create or set multiple attribute values on a credential
+      properties:
+        attributeValues:
+          type: array
+          description: List of attribute values to create or set
+          items:
+            $ref: '#/components/schemas/CredentialAttributeValuePost'
+    CredentialAttributeValuePost:
+      type: object
+      description: A single attribute value to create on a credential
+      properties:
+        credentialAttributeId:
+          type: integer
+          format: int64
+          description: ID of the credential attribute to set the value for
+        value:
+          type: string
+          description: Value to store for this attribute
+        userId:
+          type: integer
+          format: int64
+          description: User ID for user-provided attribute values
     CredentialAttributeValuePut:
       type: object
       description: Payload to update an existing credential attribute value
@@ -241,30 +265,6 @@ components:
         message:
           type: string
           description: Human-readable error description
-    CredentialAttributeValueList:
-      type: object
-      description: List of attribute values for a credential
-      properties:
-        list:
-          type: array
-          description: Array of credential attribute value records
-          items:
-            $ref: '#/components/schemas/CredentialAttributeValue'
-    CredentialAttributeValuePost:
-      type: object
-      description: A single attribute value to create on a credential
-      properties:
-        credentialAttributeId:
-          type: integer
-          format: int64
-          description: ID of the credential attribute to set the value for
-        value:
-          type: string
-          description: Value to store for this attribute
-        userId:
-          type: integer
-          format: int64
-          description: User ID for user-provided attribute values
   securitySchemes:
     bearerAuth:
       type: http

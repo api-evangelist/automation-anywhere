@@ -104,6 +104,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    WorkItemIdParam:
+      name: workItemId
+      in: path
+      required: true
+      description: Unique numeric identifier of the work item
+      schema:
+        type: integer
+        format: int64
+    QueueIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the queue
+      schema:
+        type: integer
+        format: int64
   schemas:
     WorkItem:
       type: object
@@ -188,16 +205,6 @@ components:
         version:
           type: integer
           description: Optimistic locking version number
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     UpdateWorkItemRequest:
       type: object
       description: Payload to update a work item's status, result, or data
@@ -235,23 +242,16 @@ components:
           type: object
           description: Updated data payload for the work item
           additionalProperties: true
-  parameters:
-    QueueIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the queue
-      schema:
-        type: integer
-        format: int64
-    WorkItemIdParam:
-      name: workItemId
-      in: path
-      required: true
-      description: Unique numeric identifier of the work item
-      schema:
-        type: integer
-        format: int64
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
   securitySchemes:
     bearerAuth:
       type: http

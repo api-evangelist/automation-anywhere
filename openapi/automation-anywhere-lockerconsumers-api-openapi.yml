@@ -120,26 +120,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    LockerIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the locker
-      schema:
-        type: integer
-        format: int64
   schemas:
-    Error:
+    LockerConsumerList:
       type: object
-      description: Standard error response
+      description: List of consumer roles for a locker
       properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
+        list:
+          type: array
+          description: Array of consumer role records
+          items:
+            $ref: '#/components/schemas/LockerConsumer'
     LockerConsumerPost:
       type: object
       description: Payload to add a consumer role to a locker
@@ -161,15 +151,25 @@ components:
         roleName:
           type: string
           description: Name of the consumer role
-    LockerConsumerList:
+    Error:
       type: object
-      description: List of consumer roles for a locker
+      description: Standard error response
       properties:
-        list:
-          type: array
-          description: Array of consumer role records
-          items:
-            $ref: '#/components/schemas/LockerConsumer'
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  parameters:
+    LockerIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the locker
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     bearerAuth:
       type: http

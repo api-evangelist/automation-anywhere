@@ -291,36 +291,39 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    FileDependencyResponse:
+    ObjectPermission:
       type: object
-      description: Dependency information for a bot file
+      description: Actions the current user can perform on a repository object
+      properties:
+        delete:
+          type: boolean
+          description: Whether the user can delete this object
+        download:
+          type: boolean
+          description: Whether the user can download this object
+        upload:
+          type: boolean
+          description: Whether the user can upload to this location
+        run:
+          type: boolean
+          description: Whether the user can run this bot
+        view:
+          type: boolean
+          description: Whether the user can view this object
+        clone:
+          type: boolean
+          description: Whether the user can clone (copy) this object
+    DependencyUpdateRequest:
+      type: object
+      description: Payload to update manual dependencies for a file
       properties:
         dependencies:
           type: array
-          description: List of files this bot depends on
+          description: List of file IDs to set as manual dependencies
           items:
-            $ref: '#/components/schemas/RepositoryObject'
-    FileParentsResponse:
-      type: object
-      description: Parent folder information for a repository object
-      properties:
-        parents:
-          type: array
-          description: List of parent folders in the hierarchy
-          items:
-            $ref: '#/components/schemas/RepositoryObject'
-    PageRequest:
-      type: object
-      description: Pagination parameters
-      properties:
-        offset:
-          type: integer
-          description: Zero-based starting index
-          minimum: 0
-        length:
-          type: integer
-          description: Number of records per page
-          minimum: 1
+            type: integer
+            format: int64
+            description: Numeric file ID of a dependency
     PageInfo:
       type: object
       description: Pagination metadata
@@ -334,6 +337,18 @@ components:
         totalFilter:
           type: integer
           description: Total records after filters applied
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
     RecoverRequest:
       type: object
       description: Payload to recover bots from a deleted user's private workspace
@@ -348,6 +363,50 @@ components:
           type: integer
           format: int64
           description: Folder ID in the public workspace where recovered bots will be moved
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    FileListResponse:
+      type: object
+      description: Paginated list of repository objects
+      properties:
+        list:
+          type: array
+          description: Array of repository object records
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    AssignLabelRequest:
+      type: object
+      description: Payload to assign the production label to a specific bot version
+      required:
+      - fileId
+      - version
+      properties:
+        fileId:
+          type: integer
+          format: int64
+          description: Numeric ID of the bot file
+        version:
+          type: integer
+          description: Version number to assign the production label to
+    FileDependencyResponse:
+      type: object
+      description: Dependency information for a bot file
+      properties:
+        dependencies:
+          type: array
+          description: List of files this bot depends on
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
     PackageVersionUpdateRequest:
       type: object
       description: Payload to trigger package version updates on bot files
@@ -365,17 +424,6 @@ components:
         targetVersion:
           type: string
           description: Target version to update to (omit to use latest available)
-    FileListResponse:
-      type: object
-      description: Paginated list of repository objects
-      properties:
-        list:
-          type: array
-          description: Array of repository object records
-          items:
-            $ref: '#/components/schemas/RepositoryObject'
-        page:
-          $ref: '#/components/schemas/PageInfo'
     FilterRequest:
       type: object
       description: Generic filter and pagination request for list endpoints
@@ -400,38 +448,15 @@ components:
                 description: Sort direction
         page:
           $ref: '#/components/schemas/PageRequest'
-    Error:
+    FileParentsResponse:
       type: object
-      description: Standard error response
+      description: Parent folder information for a repository object
       properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
-    ObjectPermission:
-      type: object
-      description: Actions the current user can perform on a repository object
-      properties:
-        delete:
-          type: boolean
-          description: Whether the user can delete this object
-        download:
-          type: boolean
-          description: Whether the user can download this object
-        upload:
-          type: boolean
-          description: Whether the user can upload to this location
-        run:
-          type: boolean
-          description: Whether the user can run this bot
-        view:
-          type: boolean
-          description: Whether the user can view this object
-        clone:
-          type: boolean
-          description: Whether the user can clone (copy) this object
+        parents:
+          type: array
+          description: List of parent folders in the hierarchy
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
     RepositoryObject:
       type: object
       description: A file or folder in the Control Room repository
@@ -486,40 +511,7 @@ components:
           - PRIVATE
         permission:
           $ref: '#/components/schemas/ObjectPermission'
-    AssignLabelRequest:
-      type: object
-      description: Payload to assign the production label to a specific bot version
-      required:
-      - fileId
-      - version
-      properties:
-        fileId:
-          type: integer
-          format: int64
-          description: Numeric ID of the bot file
-        version:
-          type: integer
-          description: Version number to assign the production label to
-    DependencyUpdateRequest:
-      type: object
-      description: Payload to update manual dependencies for a file
-      properties:
-        dependencies:
-          type: array
-          description: List of file IDs to set as manual dependencies
-          items:
-            type: integer
-            format: int64
-            description: Numeric file ID of a dependency
   parameters:
-    FileDeleteIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the file to delete
-      schema:
-        type: integer
-        format: int64
     FileIdParam:
       name: fileid
       in: path
@@ -538,6 +530,14 @@ components:
         enum:
         - PUBLIC
         - PRIVATE
+    FileDeleteIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the file to delete
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     bearerAuth:
       type: http

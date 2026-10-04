@@ -167,32 +167,50 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    UserIdParam:
-      name: userId
-      in: path
-      required: true
-      description: Unique numeric identifier of the user
-      schema:
-        type: integer
-        format: int64
-    QueueIdParam:
-      name: id
-      in: path
-      required: true
-      description: Unique numeric identifier of the queue
-      schema:
-        type: integer
-        format: int64
   schemas:
-    QueueParticipantRequest:
+    QueueConsumerRequest:
       type: object
-      description: Request to add a participant to a queue
+      description: Request to add a role as a consumer of a queue
       properties:
-        userId:
+        roleId:
           type: integer
           format: int64
-          description: ID of the user to add as a participant
+          description: ID of the role to grant consumer access to the queue
+    QueueExpiry:
+      type: object
+      description: Expiry configuration for work items in the queue
+      properties:
+        type:
+          type: string
+          description: Expiry type (e.g., DURATION, DATE)
+        duration:
+          type: integer
+          description: Duration value before work items expire
+        durationUnit:
+          type: string
+          description: Time unit for the duration (e.g., HOURS, DAYS)
+    QueueMemberRequest:
+      type: object
+      description: Request to add or update a user as a queue member
+      properties:
+        role:
+          type: string
+          description: Queue membership role (OWNER, MEMBER, PARTICIPANT)
+          enum:
+          - OWNER
+          - MEMBER
+          - PARTICIPANT
+    QueueConsumer:
+      type: object
+      description: A role with consumer access to a queue
+      properties:
+        roleId:
+          type: integer
+          format: int64
+          description: ID of the consumer role
+        roleName:
+          type: string
+          description: Name of the consumer role
     Queue:
       type: object
       description: A work item queue that buffers data items for processing by bots. Each queue is linked to a work item model defining its schema.
@@ -258,40 +276,6 @@ components:
         version:
           type: integer
           description: Optimistic locking version number
-    QueueConsumer:
-      type: object
-      description: A role with consumer access to a queue
-      properties:
-        roleId:
-          type: integer
-          format: int64
-          description: ID of the consumer role
-        roleName:
-          type: string
-          description: Name of the consumer role
-    QueueExpiry:
-      type: object
-      description: Expiry configuration for work items in the queue
-      properties:
-        type:
-          type: string
-          description: Expiry type (e.g., DURATION, DATE)
-        duration:
-          type: integer
-          description: Duration value before work items expire
-        durationUnit:
-          type: string
-          description: Time unit for the duration (e.g., HOURS, DAYS)
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     QueueMember:
       type: object
       description: A user with membership access to a queue
@@ -303,25 +287,41 @@ components:
         role:
           type: string
           description: Membership role of the user in this queue
-    QueueConsumerRequest:
+    QueueParticipantRequest:
       type: object
-      description: Request to add a role as a consumer of a queue
+      description: Request to add a participant to a queue
       properties:
-        roleId:
+        userId:
           type: integer
           format: int64
-          description: ID of the role to grant consumer access to the queue
-    QueueMemberRequest:
+          description: ID of the user to add as a participant
+    Error:
       type: object
-      description: Request to add or update a user as a queue member
+      description: Standard error response
       properties:
-        role:
+        code:
           type: string
-          description: Queue membership role (OWNER, MEMBER, PARTICIPANT)
-          enum:
-          - OWNER
-          - MEMBER
-          - PARTICIPANT
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+  parameters:
+    UserIdParam:
+      name: userId
+      in: path
+      required: true
+      description: Unique numeric identifier of the user
+      schema:
+        type: integer
+        format: int64
+    QueueIdParam:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier of the queue
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     bearerAuth:
       type: http

@@ -61,30 +61,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    AccessDetailsResponse:
-      type: object
-      description: Map of API Task repository paths to their generated execution URLs and tokens
-      properties:
-        accessDetails:
-          type: object
-          description: Map where each key is a bot repository path and the value contains the execution URL and authorization token for that API Task.
-          additionalProperties:
-            $ref: '#/components/schemas/ApiTaskAccessDetail'
-        errors:
-          type: object
-          description: Map of repository paths to error messages for any API Tasks that could not have access details generated.
-          additionalProperties:
-            type: string
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     AccessDetailsRequest:
       type: object
       description: Request to generate execution URLs and tokens for one or more API Tasks identified by their repository paths.
@@ -114,6 +90,30 @@ components:
         X-Authorization:
           type: string
           description: Short-lived authorization token to include in the X-Authorization header when invoking the API Task execution URL. Must be refreshed periodically to prevent expiry.
+    AccessDetailsResponse:
+      type: object
+      description: Map of API Task repository paths to their generated execution URLs and tokens
+      properties:
+        accessDetails:
+          type: object
+          description: Map where each key is a bot repository path and the value contains the execution URL and authorization token for that API Task.
+          additionalProperties:
+            $ref: '#/components/schemas/ApiTaskAccessDetail'
+        errors:
+          type: object
+          description: Map of repository paths to error messages for any API Tasks that could not have access details generated.
+          additionalProperties:
+            type: string
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
   securitySchemes:
     bearerAuth:
       type: http

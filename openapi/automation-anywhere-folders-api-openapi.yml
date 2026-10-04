@@ -159,88 +159,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
-    PageRequest:
-      type: object
-      description: Pagination parameters
-      properties:
-        offset:
-          type: integer
-          description: Zero-based starting index
-          minimum: 0
-        length:
-          type: integer
-          description: Number of records per page
-          minimum: 1
-    PageInfo:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Starting index of returned results
-        total:
-          type: integer
-          description: Total number of matching records
-        totalFilter:
-          type: integer
-          description: Total records after filters applied
-    FileListResponse:
-      type: object
-      description: Paginated list of repository objects
-      properties:
-        list:
-          type: array
-          description: Array of repository object records
-          items:
-            $ref: '#/components/schemas/RepositoryObject'
-        page:
-          $ref: '#/components/schemas/PageInfo'
-    FilterRequest:
-      type: object
-      description: Generic filter and pagination request for list endpoints
-      properties:
-        filter:
-          type: object
-          description: Filter expression for narrowing results
-        sort:
-          type: array
-          description: Sort criteria
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field to sort by
-              direction:
-                type: string
-                enum:
-                - asc
-                - desc
-                description: Sort direction
-        page:
-          $ref: '#/components/schemas/PageRequest'
-    FolderRequest:
-      type: object
-      description: Payload to create or update a folder
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name for the folder
-        description:
-          type: string
-          description: Optional description of the folder's purpose
     ObjectPermission:
       type: object
       description: Actions the current user can perform on a repository object
@@ -263,6 +181,19 @@ components:
         clone:
           type: boolean
           description: Whether the user can clone (copy) this object
+    PageInfo:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Starting index of returned results
+        total:
+          type: integer
+          description: Total number of matching records
+        totalFilter:
+          type: integer
+          description: Total records after filters applied
     RepositoryObject:
       type: object
       description: A file or folder in the Control Room repository
@@ -317,6 +248,75 @@ components:
           - PRIVATE
         permission:
           $ref: '#/components/schemas/ObjectPermission'
+    PageRequest:
+      type: object
+      description: Pagination parameters
+      properties:
+        offset:
+          type: integer
+          description: Zero-based starting index
+          minimum: 0
+        length:
+          type: integer
+          description: Number of records per page
+          minimum: 1
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+    FileListResponse:
+      type: object
+      description: Paginated list of repository objects
+      properties:
+        list:
+          type: array
+          description: Array of repository object records
+          items:
+            $ref: '#/components/schemas/RepositoryObject'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    FolderRequest:
+      type: object
+      description: Payload to create or update a folder
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the folder
+        description:
+          type: string
+          description: Optional description of the folder's purpose
+    FilterRequest:
+      type: object
+      description: Generic filter and pagination request for list endpoints
+      properties:
+        filter:
+          type: object
+          description: Filter expression for narrowing results
+        sort:
+          type: array
+          description: Sort criteria
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field to sort by
+              direction:
+                type: string
+                enum:
+                - asc
+                - desc
+                description: Sort direction
+        page:
+          $ref: '#/components/schemas/PageRequest'
   parameters:
     FolderIdParam:
       name: folderid

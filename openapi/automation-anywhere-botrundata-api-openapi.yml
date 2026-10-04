@@ -52,16 +52,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error description
     BotRunDataResponse:
       type: object
       description: Paginated response containing bot run execution records
@@ -129,6 +119,16 @@ components:
         successIndicator:
           type: boolean
           description: Whether the bot run completed successfully
+    Error:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
   parameters:
     StartIndexParam:
       name: startIndex
