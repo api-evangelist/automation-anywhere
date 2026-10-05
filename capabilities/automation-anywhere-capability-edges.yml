@@ -1,0 +1,77 @@
+slug: automation-anywhere
+provider: Automation Anywhere
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Roles
+  spec_file: automation-anywhere-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /v2/usermanagement/roles createRole 'Create a role'; schemas Permission, RoleListResponse
+  reason: User-management role lifecycle with permission schemas is plainly role-based access administration
+    — Identity & Access Management.
+- tag: Users
+  spec_file: automation-anywhere-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /v2/usermanagement/users createUser 'Create a user'; DELETE /v2/usermanagement/users/{uid};
+    schema RoleRef
+  reason: Platform user account lifecycle with role references is user/identity administration (joiners-movers-leavers),
+    mapping to Identity & Access Management rather than HR employee records.
+- tag: Permissions
+  spec_file: automation-anywhere-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: GET /role/{roleid}/folder/{folderid}/permissions 'View role permissions for a folder'; PUT
+    /role/{roleid}/permissions 'Update role permissions'
+  reason: Operations read and write role-based authorisation over repository folders — role/permission
+    administration, i.e. access management, not a business-domain capability.
+- tag: LockerMembers
+  spec_file: automation-anywhere-lockermembers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: PUT /lockers/{id}/members/{userId} updateLockerMember 'Update locker member permissions';
+    schema LockerMemberUpdate
+  reason: Managing user membership and permissions on credential-vault lockers is access administration
+    over secrets — Identity & Access Management (including privileged credential access).
+- tag: LockerConsumers
+  spec_file: automation-anywhere-lockerconsumers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /lockers/{id}/consumers addLockerConsumer 'Add a locker consumer'; DELETE /lockers/{id}/consumers/{roleId};
+    'centralized secrets management system'
+  reason: Operations grant and revoke role-based access to credential-vault lockers — credential/privileged
+    access administration, which falls under Identity & Access Management (IAM/PAM). Not a product-engineering
+    or billing surface; confidence tempered because it is a narrow access-grant sub-resource of a secrets
+    vault.
+- tag: Lockers
+  spec_file: automation-anywhere-lockers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '''The Automation Anywhere Credential Vault API provides programmatic access to the Control
+    Room''s centralized secrets management system''; GET /lockers/{id}/credentials listLockerCredentials'
+  reason: CRUD over credential vault lockers and the credentials they hold is a centralized secrets/privileged-credential
+    store, best read as Identity & Access Management (PAM-style credential custody). Alternative reading
+    as runtime secrets management for a SaaS product is possible, hence moderate confidence.
