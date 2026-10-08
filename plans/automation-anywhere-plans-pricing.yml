@@ -156,3 +156,44 @@ verified:
     note: >-
       On-premises deployments do not consume billed credits; there credits act as
       a governance cap that super admins assign per team.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - seat
+  - subscription
+  units:
+  - seat
+  plans:
+  - name: Community Edition
+    access: freemium
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Cloud Starter
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: Cloud Pro
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: Enterprise (Automation 360)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - year
