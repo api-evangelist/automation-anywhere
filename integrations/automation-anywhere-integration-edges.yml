@@ -1,0 +1,51 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=719bc343-4233-4c4b-8321-f8f4ce06afcc
+  listing_count: 1
+  apps:
+  - Agentic Process Automation System (Now Certified for WorkSpaces)
+  seller_name: Automation Anywhere, Inc.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=eda67ec2-0af5-4f60-857d-f9448d1675b9
+  listing_count: 1
+  apps:
+  - Agentic Solutions by Aisera acquired by Automation Anywhere
+  seller_name: Automation Anywhere, Inc.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-qoot4t5e65z7a
+  listing_count: 1
+  apps:
+  - Agentic Process Automation System (Certified for WorkSpaces) - IN
+  seller_name: AutomationAnywhere India Private Limited
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
