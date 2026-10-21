@@ -72,3 +72,63 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: automation-anywhere-klippa
+  label: Klippa
+  partner: klippa
+  partner_name: Klippa
+  category: RPA marketplace listing
+  type: marketplace
+  marketplace: automation-anywhere-bot-store
+  channel: partner-built
+  evidence: https://botstore.automationanywhere.com/vendor/klippaappbv/
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Automation Anywhere Agentic App Store (Bot Store)
+    spec_file: null
+    role: bot-store-vendor
+    registered_name: Klippa App BV
+    matched_domain: klippa.com
+    matched_by: domain
+    detected_by: sweep-rpa-document-ai.py
+    detected: '2026-10-20'
+    signal_note: one edge per (provider, platform); listing alone = participation. Listing, download and connector
+      counts are context, never counted
+    apps:
+    - Data Extraction with the Klippa OCR API Package
+    vendor_page: https://botstore.automationanywhere.com/vendor/klippaappbv/
+    automation_types:
+    - Package
+    builder: provider (listed under the vendor's own Bot Store vendor page, vendor support email)
+  status: not-a-workflow
+  arazzo: null
+- slug: automation-anywhere-ocrolus
+  label: Ocrolus
+  partner: ocrolus
+  partner_name: Ocrolus
+  category: RPA marketplace listing
+  type: marketplace
+  marketplace: automation-anywhere-bot-store
+  channel: partner-built
+  evidence: https://botstore.automationanywhere.com/vendor/ocrolus/
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Automation Anywhere Agentic App Store (Bot Store)
+    spec_file: null
+    role: bot-store-vendor
+    registered_name: Ocrolus, Inc
+    matched_domain: ocrolus.com
+    matched_by: domain
+    detected_by: sweep-rpa-document-ai.py
+    detected: '2026-10-20'
+    signal_note: one edge per (provider, platform); listing alone = participation. Listing, download and connector
+      counts are context, never counted
+    apps:
+    - Bank Statement Analyzer
+    vendor_page: https://botstore.automationanywhere.com/vendor/ocrolus/
+    automation_types:
+    - Bot
+    builder: provider (listed under the vendor's own Bot Store vendor page, vendor support email)
+  status: not-a-workflow
+  arazzo: null
