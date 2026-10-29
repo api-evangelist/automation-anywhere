@@ -1,4 +1,4 @@
-# automation-anywhere (automation-anywhere)
+# Automation Anywhere
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,221 +66,278 @@
 
 Automation Anywhere is an enterprise robotic process automation (RPA) platform that enables organizations to automate business processes using software bots. Their developer platform, centered around the Automation 360 Control Room, provides a comprehensive suite of REST APIs for managing bot deployment, workload queues, credentials, repositories, and analytics, as well as an SDK for building custom action packages.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/automation-anywhere/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/automation-anywhere/refs/heads/main/apis.yml)
+**Areas:** RPA · Intelligent Automation · Agentic Process Automation · AI Agents · Workflow Automation · Document Automation · Process Orchestration · Enterprise Automation · Bots · A2A
 
-## Timestamps
+## Automation Anywhere on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Automation Anywhere is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/automation-anywhere/](https://apis.io/providers/automation-anywhere/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (22)
 
-### Automation Anywhere Control Room API
+- [Automation Anywhere Package SDK](https://apis.io/apis/automation-anywhere/package-sdk/) — The Automation Anywhere Package SDK is a Java-based development toolkit that enables developers to build custom action packages and triggers for the…
+- [automation-anywhere AccessDetails API](https://apis.io/apis/automation-anywhere/automation-anywhere-accessdetails-api/) — Generate execution URLs and authorization tokens for API Tasks
+- [automation-anywhere Allocations API](https://apis.io/apis/automation-anywhere/automation-anywhere-allocations-api/) — List and manage API Task allocations within the Control Room
+- [automation-anywhere AuditData API](https://apis.io/apis/automation-anywhere/automation-anywhere-auditdata-api/) — Retrieve Control Room audit trail data
+- [automation-anywhere Authentication API](https://apis.io/apis/automation-anywhere/automation-anywhere-authentication-api/) — Generate, refresh, validate, and revoke JWT tokens for API access
+- [automation-anywhere BotRunData API](https://apis.io/apis/automation-anywhere/automation-anywhere-botrundata-api/) — Retrieve bot execution run data and performance metrics
+- [automation-anywhere Credentials API](https://apis.io/apis/automation-anywhere/automation-anywhere-credentials-api/) — Create, retrieve, update, delete, and search credentials
+- [automation-anywhere Deployments API](https://apis.io/apis/automation-anywhere/automation-anywhere-deployments-api/) — Deploy bots to Bot Runner devices and monitor deployment status
+- [automation-anywhere Files API](https://apis.io/apis/automation-anywhere/automation-anywhere-files-api/) — Manage individual bot files and their dependencies in the repository
+- [automation-anywhere Folders API](https://apis.io/apis/automation-anywhere/automation-anywhere-folders-api/) — Create, update, list, and delete folders in the repository
+- [automation-anywhere LockerConsumers API](https://apis.io/apis/automation-anywhere/automation-anywhere-lockerconsumers-api/) — Manage roles with consumer access to locker credentials
+- [automation-anywhere LockerMembers API](https://apis.io/apis/automation-anywhere/automation-anywhere-lockermembers-api/) — Manage user membership within lockers
+- [automation-anywhere Lockers API](https://apis.io/apis/automation-anywhere/automation-anywhere-lockers-api/) — Create, retrieve, update, and delete credential lockers
+- [automation-anywhere Permissions API](https://apis.io/apis/automation-anywhere/automation-anywhere-permissions-api/) — Manage role-based permissions on repository folders
+- [automation-anywhere Queues API](https://apis.io/apis/automation-anywhere/automation-anywhere-queues-api/) — Create and manage work item queues and their members
+- [automation-anywhere Roles API](https://apis.io/apis/automation-anywhere/automation-anywhere-roles-api/) — Create, list, retrieve, update, and delete user roles
+- [automation-anywhere Users API](https://apis.io/apis/automation-anywhere/automation-anywhere-users-api/) — Create, list, retrieve, update, and delete Control Room users
+- [automation-anywhere WorkItemModels API](https://apis.io/apis/automation-anywhere/automation-anywhere-workitemmodels-api/) — Create and retrieve work item data models defining queue schema
+- [automation-anywhere Workspaces API](https://apis.io/apis/automation-anywhere/automation-anywhere-workspaces-api/) — List and manage content across public and private workspaces
+- [Automation Anywhere Attribute Values API](https://apis.io/apis/automation-anywhere/automation-anywhere-attribute-values-api/) — Manage credential attribute values for individual credentials
+- [Automation Anywhere Task Data API](https://apis.io/apis/automation-anywhere/automation-anywhere-task-data-api/) — Retrieve task metadata, variable profiles, and task-level logs
+- [Automation Anywhere Work Items API](https://apis.io/apis/automation-anywhere/automation-anywhere-work-items-api/) — Add, update, and manage individual work items within queues
 
-The Automation Anywhere Control Room API is a comprehensive set of RESTful APIs that enable programmatic management and administration of the Automation 360 RPA platform. It provides endpoints across multiple versioned groups covering authentication, user management, credential vault, repository management, device pools, licensing, policy management, and scheduled automations.
+### Published properties
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### AsyncAPI (1)
 
-- Automation
-- Bot Management
-- Enterprise
-- REST
-- RPA
+Event-driven and webhook contracts.
 
-#### Properties
+- [Automation Anywhere Webhooks](https://apis.io/asyncapis/automation-anywhere/automation-anywhere-webhooks/)
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-control-room-apis.html)
-- [OpenAPI](openapi/automation-anywhere-control-room-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-control-room.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-control-room.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### MCP servers (1)
 
-### Automation Anywhere Bot Deploy API
+Model Context Protocol servers that expose the API to agents.
 
-The Automation Anywhere Bot Deploy API (v3/v4) enables external applications and workflows to programmatically trigger the deployment of bots to unattended Bot Runner devices. It supports deploying bots from the public workspace, specifying target devices or device pools, and passing input variables at runtime. This API is typically combined with the Authentication API to obtain a JWT token before invoking deployment endpoints.
+- [Automation Anywhere MCP servers](https://apis.io/servers/automation-anywhere/automation-anywhere-mcp-servers/)
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Automation
-- Bot Deployment
-- Enterprise
-- Orchestration
-- RPA
+- [Automation Anywhere Agentic Access](https://apis.io/agentic-access/automation-anywhere/automation-anywhere-agentic-access/)
 
-#### Properties
+#### JSON Schema (94)
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/deploy-api-supported-v4.html)
-- [OpenAPI](openapi/automation-anywhere-bot-deploy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-bot-deploy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-bot-deploy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/automation-anywhere-deployment-schema.json) — [JSON Schema](https://json-schema.org/specification)
+The data models the API reads and writes.
 
-### Automation Anywhere Workload Management API
+- [AccessDetailsRequest](https://apis.io/schemas/automation-anywhere/automation-anywhere-accessdetailsrequest/)
+- [AccessDetailsResponse](https://apis.io/schemas/automation-anywhere/automation-anywhere-accessdetailsresponse/)
+- [ApiTaskAccessDetail](https://apis.io/schemas/automation-anywhere/automation-anywhere-apitaskaccessdetail/)
+- [ApiTaskAllocation](https://apis.io/schemas/automation-anywhere/automation-anywhere-apitaskallocation/)
+- [ApiTaskHeaders](https://apis.io/schemas/automation-anywhere/automation-anywhere-apitaskheaders/)
+- [AssignLabelRequest](https://apis.io/schemas/automation-anywhere/automation-anywhere-assignlabelrequest/)
+- [AttendedRequest](https://apis.io/schemas/automation-anywhere/automation-anywhere-attendedrequest/)
+- [AuditRecord](https://apis.io/schemas/automation-anywhere/automation-anywhere-auditrecord/)
+- [AuditTrailResponse](https://apis.io/schemas/automation-anywhere/automation-anywhere-audittrailresponse/)
+- [AuthenticationRequest](https://apis.io/schemas/automation-anywhere/automation-anywhere-authenticationrequest/)
+- [AuthenticationResponse](https://apis.io/schemas/automation-anywhere/automation-anywhere-authenticationresponse/)
+- [Automation Anywhere Bot](https://apis.io/schemas/automation-anywhere/automation-anywhere-bot/)
+- [BotInputVariable](https://apis.io/schemas/automation-anywhere/automation-anywhere-botinputvariable/)
+- [BotRunDataResponse](https://apis.io/schemas/automation-anywhere/automation-anywhere-botrundataresponse/)
+- [BotRunRecord](https://apis.io/schemas/automation-anywhere/automation-anywhere-botrunrecord/)
+- [CallbackInfo](https://apis.io/schemas/automation-anywhere/automation-anywhere-callbackinfo/)
+- [CreateRoleRequest](https://apis.io/schemas/automation-anywhere/automation-anywhere-createrolerequest/)
+- [CreateUserRequest](https://apis.io/schemas/automation-anywhere/automation-anywhere-createuserrequest/)
+- [Credential](https://apis.io/schemas/automation-anywhere/automation-anywhere-credential/)
+- [CredentialAttribute](https://apis.io/schemas/automation-anywhere/automation-anywhere-credentialattribute/)
+- [CredentialAttributePost](https://apis.io/schemas/automation-anywhere/automation-anywhere-credentialattributepost/)
+- [CredentialAttributeValue](https://apis.io/schemas/automation-anywhere/automation-anywhere-credentialattributevalue/)
+- [CredentialAttributeValueList](https://apis.io/schemas/automation-anywhere/automation-anywhere-credentialattributevaluelist/)
+- [CredentialAttributeValuePost](https://apis.io/schemas/automation-anywhere/automation-anywhere-credentialattributevaluepost/)
+- [CredentialAttributeValuePostList](https://apis.io/schemas/automation-anywhere/automation-anywhere-credentialattributevaluepostlist/)
+- …and 69 more published on APIs.io
 
-The Automation Anywhere Workload Management API provides programmatic control over work item queues used to distribute high-volume automation workloads across multiple Bot Runner devices. Developers can create and manage work item models and queues, add or update individual work items, and retrieve queue status and processing results. This API enables enterprise systems such as ERP, CRM, and BPM platforms to feed structured data into RPA queues and track processing outcomes in real time.
+#### JSON Structure (1)
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Automation Anywhere Structure](https://apis.io/json-structure/automation-anywhere/automation-anywhere-structure/)
 
-- Automation
-- Queues
-- RPA
-- Work Items
-- Workload Management
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/wlm-api-supported-v4.html)
-- [OpenAPI](openapi/automation-anywhere-workload-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-workload-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-workload-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/automation-anywhere-work-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Automation Anywhere Context](https://apis.io/jsonld/automation-anywhere/automation-anywhere-context/)
 
-### Automation Anywhere Bot Insight API
+#### Vocabulary (1)
 
-The Automation Anywhere Bot Insight API exposes real-time business process analytics and operational intelligence data collected during bot execution. It allows developers to retrieve KPIs, bot run histories, performance rankings, and failure analytics from the Control Room programmatically. Results are paginated in sets of 1000 records and can be filtered by date ranges in ISO 8601 format.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html](https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
+- [Automation-Anywhere Domain Vocabulary](https://apis.io/vocabularies/automation-anywhere/automation-anywhere-vocabulary/)
 
-#### Tags
+#### Collections (28)
 
-- Analytics
-- Bot Monitoring
-- Business Intelligence
-- Reporting
-- RPA
+Postman and Open Collection request collections.
 
-#### Properties
+- [Automation Anywhere API Task Execution AccessDetails API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-accessdetails-api/)
+- [Automation Anywhere API Task Execution AccessDetails Allocations API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-allocations-api/)
+- [Automation Anywhere API Task Execution API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-api-task-execution/)
+- [Automation Anywhere API Task Execution AccessDetails AttributeValues API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-attributevalues-api/)
+- [Automation Anywhere API Task Execution AccessDetails AuditData API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-auditdata-api/)
+- [Automation Anywhere API Task Execution AccessDetails Authentication API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-authentication-api/)
+- [Automation Anywhere Bot Deploy API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-bot-deploy/)
+- [Automation Anywhere Bot Insight API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-bot-insight/)
+- [Automation Anywhere API Task Execution AccessDetails BotRunData API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-botrundata-api/)
+- [Automation Anywhere Control Room API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-control-room/)
+- [Automation Anywhere Credential Vault API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-credential-vault/)
+- [Automation Anywhere API Task Execution AccessDetails Credentials API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-credentials-api/)
+- [Automation Anywhere API Task Execution AccessDetails Deployments API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-deployments-api/)
+- [Automation Anywhere API Task Execution AccessDetails Files API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-files-api/)
+- [Automation Anywhere API Task Execution AccessDetails Folders API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-folders-api/)
+- [Automation Anywhere API Task Execution AccessDetails LockerConsumers API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-lockerconsumers-api/)
+- [Automation Anywhere API Task Execution AccessDetails LockerMembers API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-lockermembers-api/)
+- [Automation Anywhere API Task Execution AccessDetails Lockers API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-lockers-api/)
+- [Automation Anywhere API Task Execution AccessDetails Permissions API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-permissions-api/)
+- [Automation Anywhere API Task Execution AccessDetails Queues API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-queues-api/)
+- [Automation Anywhere Repository Management API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-repository-management/)
+- [Automation Anywhere API Task Execution AccessDetails Roles API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-roles-api/)
+- [Automation Anywhere API Task Execution AccessDetails TaskData API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-taskdata-api/)
+- [Automation Anywhere API Task Execution AccessDetails Users API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-users-api/)
+- [Automation Anywhere API Task Execution AccessDetails WorkItemModels API](https://apis.io/collections/automation-anywhere/open-automation-anywhere-workitemmodels-api/)
+- …and 3 more published on APIs.io
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v11.3/page/enterprise/topics/bot-insight/user/bot-insight-apis.html)
-- [OpenAPI](openapi/automation-anywhere-bot-insight-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-bot-insight.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-bot-insight.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Overlays (42)
 
-### Automation Anywhere API Task Execution API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-The Automation Anywhere API Task Execution API enables developers to invoke API Tasks — a specialized type of bot designed to be called synchronously from external applications like a REST service. It generates execution URLs and tokens that allow applications to trigger a bot task, pass input parameters, and receive output values in a single request-response cycle.
+- [Automation Anywhere Accessdetails Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-accessdetails-api-overlay/)
+- [Automation Anywhere Accessdetails Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-accessdetails-api-phrasing-overlay/)
+- [Automation Anywhere Allocations Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-allocations-api-overlay/)
+- [Automation Anywhere Allocations Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-allocations-api-phrasing-overlay/)
+- [Automation Anywhere Attribute Values Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-attribute-values-api-overlay/)
+- [Automation Anywhere Attribute Values Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-attribute-values-api-phrasing-overlay/)
+- [Automation Anywhere Auditdata Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-auditdata-api-overlay/)
+- [Automation Anywhere Auditdata Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-auditdata-api-phrasing-overlay/)
+- [Automation Anywhere Authentication Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-authentication-api-overlay/)
+- [Automation Anywhere Authentication Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-authentication-api-phrasing-overlay/)
+- [Automation Anywhere Botrundata Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-botrundata-api-overlay/)
+- [Automation Anywhere Botrundata Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-botrundata-api-phrasing-overlay/)
+- [Automation Anywhere Credentials Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-credentials-api-overlay/)
+- [Automation Anywhere Credentials Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-credentials-api-phrasing-overlay/)
+- [Automation Anywhere Deployments Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-deployments-api-overlay/)
+- [Automation Anywhere Deployments Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-deployments-api-phrasing-overlay/)
+- [Automation Anywhere Files Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-files-api-overlay/)
+- [Automation Anywhere Files Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-files-api-phrasing-overlay/)
+- [Automation Anywhere Folders Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-folders-api-overlay/)
+- [Automation Anywhere Folders Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-folders-api-phrasing-overlay/)
+- [Automation Anywhere Lockerconsumers Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-lockerconsumers-api-overlay/)
+- [Automation Anywhere Lockerconsumers Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-lockerconsumers-api-phrasing-overlay/)
+- [Automation Anywhere Lockermembers Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-lockermembers-api-overlay/)
+- [Automation Anywhere Lockermembers Api Phrasing Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-lockermembers-api-phrasing-overlay/)
+- [Automation Anywhere Lockers Api Overlay](https://apis.io/overlays/automation-anywhere/automation-anywhere-lockers-api-overlay/)
+- …and 17 more published on APIs.io
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
+#### Governance rules (1)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- API Task
-- Automation
-- Bot Execution
-- Integration
-- RPA
+- [Automation Anywhere — jsonschema rules](https://apis.io/rules/automation-anywhere/automation-anywhere-jsonschema-spectral-rules/)
 
-#### Properties
+#### Security (4)
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/api-task-real-time-endpoint.html)
-- [OpenAPI](openapi/automation-anywhere-api-task-execution-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-api-task-execution.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-api-task-execution.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Automation Anywhere Credential Vault API
+- [Automation Anywhere Authentication](https://apis.io/security/automation-anywhere/automation-anywhere-authentication/)
+- [Automation Anywhere Domain Security](https://apis.io/security/automation-anywhere/automation-anywhere-domain-security/)
+- [Automation Anywhere Trust Center](https://apis.io/security/automation-anywhere/automation-anywhere-trust-center/)
+- [Automation Anywhere Vulnerability Disclosure](https://apis.io/security/automation-anywhere/automation-anywhere-vulnerability-disclosure/)
 
-The Automation Anywhere Credential Vault API provides programmatic access to the Control Room's centralized secrets management system. It supports creating, reading, updating, and deleting credentials, credential attributes, Lockers, and Locker Keys used by bots during execution. Credentials stored in the Vault are encrypted and access-controlled through role-based permissions, ensuring bots can retrieve sensitive values such as passwords and API keys without exposing them in automation scripts.
+#### OAuth scopes (1)
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
+The permissions the API asks for.
 
-#### Tags
+- [Automation Anywhere Scopes](https://apis.io/scopes/automation-anywhere/automation-anywhere-scopes/)
 
-- Credentials
-- Enterprise
-- RPA
-- Secrets Management
-- Security
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/cv-api-supported.html)
-- [OpenAPI](openapi/automation-anywhere-credential-vault-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-credential-vault.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-credential-vault.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Automation Anywhere Plans Pricing](https://apis.io/plans/automation-anywhere/automation-anywhere-plans-pricing/)
 
-### Automation Anywhere Package SDK
+#### Rate limits (1)
 
-The Automation Anywhere Package SDK is a Java-based development toolkit that enables developers to build custom action packages and triggers for the Automation 360 bot editor. Developers use the SDK in a Java IDE to implement custom actions, compile the code into a JAR file, and upload the resulting package to the Control Room for use in bot workflows.
+Published request limits.
 
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html)
-- **Base URL:** `https://api.example.com`
+- [Automation Anywhere Rate Limits](https://apis.io/rate-limits/automation-anywhere/automation-anywhere-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Bot Development
-- Custom Packages
-- Extensions
-- Java
-- SDK
+What the API costs to run, by operation.
 
-#### Properties
+- [Automation Anywhere Finops](https://apis.io/finops/automation-anywhere/automation-anywhere-finops/)
 
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/developer/cloud-create-package-overview.html)
-- [Postman Collection](collections/automation-anywhere-api-task-execution.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-api-task-execution.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/automation-anywhere-bot-deploy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-bot-deploy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/automation-anywhere-bot-insight.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-bot-insight.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/automation-anywhere-control-room.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-control-room.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/automation-anywhere-credential-vault.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-credential-vault.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/automation-anywhere-repository-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-repository-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/automation-anywhere-workload-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-workload-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### Automation Anywhere Repository Management API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-The Automation Anywhere Repository Management API provides programmatic access to the Control Room's bot and file repository. It allows developers and administrators to list, search, upload, and manage bots, folders, and dependent files stored in both the public and private workspaces. This API supports bot lifecycle management use cases including automated promotion of bots between environments, bulk file operations, and integration with source control systems.
-
-- **Human URL:** [https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html)
-- **Base URL:** `https://automationanywhere-be-prod.automationanywhere.com`
-
-#### Tags
-
-- Bot Lifecycle
-- DevOps
-- File Management
-- Repository
-- RPA
-
-#### Properties
-
-- [Documentation](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/repository-management-api.html)
-- [OpenAPI](openapi/automation-anywhere-repository-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/automation-anywhere-repository-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/automation-anywhere-repository-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/automation-anywhere-bot-schema.json) — [JSON Schema](https://json-schema.org/specification)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/AutomationAnywhere)
-- [LinkedIn](https://www.linkedin.com/company/automation-anywhere)
-- [Portal](https://developer.automationanywhere.com)
 - [Website](https://www.automationanywhere.com)
 - [Documentation](https://docs.automationanywhere.com)
-- [Authentication](https://docs.automationanywhere.com/bundle/enterprise-v2019/page/enterprise-cloud/topics/control-room/control-room-api/cloud-authentication.html)
-- [Terms of Service](https://www.automationanywhere.com/legal/terms)
-- [Privacy Policy](https://www.automationanywhere.com/legal/privacy-policy)
-- [Support](https://support.automationanywhere.com)
+- [Getting started](https://ai-kb.automationanywhere.com/getting-started/create-first-agent)
+- [API reference](https://docs.automationanywhere.com/r/control-room-apis/cloud-control-room-apis)
+- [Sign up](https://www.automationanywhere.com/products/enterprise/community-edition)
+- [Support](https://apeople.automationanywhere.com/)
 - [Blog](https://www.automationanywhere.com/blog)
-- [JSON-LD](json-ld/automation-anywhere-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/automation-anywhere-bot-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/automation-anywhere-deployment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/automation-anywhere-work-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://www.automationanywhere.com/integrations)
+- [Security](https://www.automationanywhere.com/legal/vulnerability-disclosure-policy)
+- [Compliance](https://www.automationanywhere.com/compliance-portal)
+- [Terms of service](https://www.automationanywhere.com/legal/terms)
+- [Privacy policy](https://www.automationanywhere.com/legal/privacy)
+- [GitHub](https://github.com/AutomationAnywhere)
+- [Status](https://status.automationanywhere.digital/)
+
+## API Evangelist rating
+
+**Kin Score 74.6** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 70.5 |
+| Contract governance | 41.7 |
+| Operational transparency | 81.6 |
+| Developer ergonomics | 78.6 |
+| Access clarity | 57.9 |
+
+**Agent readiness 51.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/automation-anywhere/](https://apis.io/providers/automation-anywhere/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Automation Anywhere: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/automation-anywhere/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
