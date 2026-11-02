@@ -1,0 +1,199 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Automation Anywhere
+providerId: automation-anywhere
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+notes: Automation Anywhere does not publish per-edition prices on its public site. Pricing is quote-based
+  and varies by edition (Cloud Starter, Pro, Enterprise / Automation 360), bot count, and AI-Agent
+  Studio add-ons. There is a free Community Edition for individuals and a 30-day Cloud trial.
+tags:
+  - RPA
+  - Intelligent Automation
+  - AI Agents
+  - Workflow Automation
+  - Document Automation
+  - Enterprise
+description: Automation Anywhere sells the Automation 360 platform via three commercial editions
+  (Cloud Starter, Pro, Enterprise) plus a free Community Edition. Public pricing is not posted; sales
+  contact is required for tier and bot-count quotes. Add-on products (AI Agent Studio, Document
+  Automation, Co-Pilot) are licensed separately.
+sources:
+  - https://www.automationanywhere.com/
+  - https://www.automationanywhere.com/products/automation-360
+  - https://docs.automationanywhere.com/
+plans:
+  - id: automation-anywhere-community
+    name: Community Edition
+    type: freemium
+    description: Free single-user edition of Automation 360 Cloud for learning, prototyping, and personal
+      automation. Unattended bot count is limited and commercial use is restricted.
+    entries:
+      - label: Cloud Control Room (single user)
+        name: cloud_control_room
+        type: subscription
+        metric: seat
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: AI Agent Studio (limited)
+      - name: Bot Editor
+      - name: Community Bot Store
+      - name: Personal-use license
+  - id: automation-anywhere-cloud-starter
+    name: Cloud Starter
+    type: subscription
+    description: Entry commercial edition of Automation 360 Cloud. Bundle of attended/unattended bots
+      with Control Room hosted by Automation Anywhere. Pricing is quote-based.
+    entries:
+      - label: Cloud Edition Subscription
+        name: cloud_starter_subscription
+        type: subscription
+        metric: bot
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Cloud-hosted Control Room
+      - name: Attended Bots
+      - name: Unattended Bots
+      - name: Bot Insight Analytics
+      - name: Standard Support
+  - id: automation-anywhere-pro
+    name: Cloud Pro
+    type: subscription
+    description: Mid-tier Automation 360 Cloud edition with expanded bot capacity, IQ Bot / Document
+      Automation, and AI Agent Studio entitlements. Quote-based.
+    entries:
+      - label: Pro Edition Subscription
+        name: pro_subscription
+        type: subscription
+        metric: bot
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: AI Agent Studio
+      - name: Document Automation (IQ Bot)
+      - name: Co-Pilot for Automators
+      - name: Process Discovery
+      - name: Premium Support
+  - id: automation-anywhere-enterprise
+    name: Enterprise (Automation 360)
+    type: enterprise
+    description: Full Automation 360 platform for large-scale deployments. Includes on-premises or
+      private-cloud Control Room, custom bot pools, role-based governance, and named CSM. Quote-based.
+    entries:
+      - label: Enterprise Platform License
+        name: enterprise_platform
+        type: subscription
+        metric: bot
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: On-prem or Private Cloud Control Room
+      - name: AI Agent Studio
+      - name: Document Automation
+      - name: Co-Pilot
+      - name: Bot Insight + Process Discovery
+      - name: 24/7 Premium Support
+      - name: Customer Success Manager
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+
+# --- 2026-09-17 enrichment pass: evidence added, tier names left as previously generated ---
+plan_count: 1
+published_pricing: false
+verified:
+  generated: '2026-09-17'
+  method: searched
+  note: >-
+    Automation Anywhere publishes no public price for any commercial edition. The
+    only plan with a published, verifiable price is Community Edition, which is
+    free. The four commercial editions listed above were written by a 2026-05-04
+    bulk sweep from marketing copy, carry price "contact sales", and could not be
+    confirmed against any published pricing page during this pass -- treat their
+    names as unverified.
+  probes:
+    - url: https://www.automationanywhere.com/products/enterprise/community-edition
+      status: 200
+      finding: Free Community Edition, self-serve, published.
+    - url: https://www.automationanywhere.com/pricing
+      status: 404
+    - url: https://www.automationanywhere.com/products/pricing
+      status: 404
+    - url: https://www.automationanywhere.com/lp/pricing
+      status: 404
+  usage_metering:
+    product: Enterprise Knowledge (EKB)
+    model: credits
+    description: >-
+      EKB usage is billed in credits: flat-rate Platform Action Credits for
+      discrete operations plus variable LLM Token Credits based on tokens
+      processed. Credit consumption tables and per-model input/output rates are
+      published; the price of a credit is not.
+    docs: https://ai-kb.automationanywhere.com/general/credits
+    note: >-
+      On-premises deployments do not consume billed credits; there credits act as
+      a governance cap that super admins assign per team.
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - seat
+  - subscription
+  units:
+  - seat
+  plans:
+  - name: Community Edition
+    access: freemium
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Cloud Starter
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: Cloud Pro
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: Enterprise (Automation 360)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - year
