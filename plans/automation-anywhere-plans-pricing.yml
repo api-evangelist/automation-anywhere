@@ -157,7 +157,7 @@ verified:
       On-premises deployments do not consume billed credits; there credits act as
       a governance cap that super admins assign per team.
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - seat
