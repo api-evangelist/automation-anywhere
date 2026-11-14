@@ -11,6 +11,9 @@ artifacts:
   agentic-access/automation-anywhere-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/automation-anywhere-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   asyncapi/automation-anywhere-webhooks.yml:
     method: searched
     evidence: declared in the artifact
@@ -18,6 +21,12 @@ artifacts:
     method: derived
     evidence: declared in the artifact
   capabilities/automation-anywhere-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
     method: unknown
     evidence: no authorship recorded
   changelog/automation-anywhere-changelog.yml:
@@ -191,6 +200,9 @@ artifacts:
   collections/automation-anywhere-workspaces-api.postman_collection.json:
     method: derived
     evidence: openapi/automation-anywhere-workspaces-api
+  compliance/automation-anywhere-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
   components/automation-anywhere-components.yml:
     method: searched
     evidence: declared in the artifact
@@ -200,8 +212,17 @@ artifacts:
   conventions/automation-anywhere-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/automation-anywhere-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/automation-anywhere-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  deprecation/automation-anywhere-deprecation-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
+  eligibility/automation-anywhere-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/automation-anywhere-problem-types.yml:
     method: searched
@@ -213,6 +234,12 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   heartbeat/2026-11-02.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-06.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
   integrations/_index.yml:
@@ -512,7 +539,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -576,6 +603,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/automation-anywhere-lifecycle.yml:
@@ -816,6 +846,9 @@ artifacts:
   plans/automation-anywhere-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
+  privacy/automation-anywhere-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/automation-anywhere-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
@@ -845,6 +878,9 @@ artifacts:
     evidence: no authorship recorded
   sla/automation-anywhere-sla.yml:
     method: searched
+    evidence: declared in the artifact
+  terms/automation-anywhere-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   vocabulary/automation-anywhere-vocabulary.yml:
     method: unknown
